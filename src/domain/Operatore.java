@@ -1,5 +1,5 @@
 package domain;
 
-public class Operatore {
+public class Operatore extends Utente {
 
 }

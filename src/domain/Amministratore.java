@@ -1,5 +1,7 @@
 package domain;
 
-public class Amministratore {
+public class Amministratore extends Utente {
 
+	
+	
 }

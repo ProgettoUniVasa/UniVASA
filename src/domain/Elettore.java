@@ -1,6 +1,6 @@
 package domain;
 
-public class Elettore {
+public class Elettore extends Utente {
 
 	private String matricola;
 

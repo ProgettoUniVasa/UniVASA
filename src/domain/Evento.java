@@ -18,6 +18,7 @@ public class Evento {
 	private String report_risultati;
 	private Integer report_statistiche;
 	
+	
 	public Long getId() {
 		return id;
 	}
