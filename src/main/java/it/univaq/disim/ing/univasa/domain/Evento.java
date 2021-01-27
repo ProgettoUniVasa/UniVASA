@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Evento {
+
 	private Long id;
 
 	private String nome;
@@ -21,7 +22,7 @@ public class Evento {
 
 	private String report_statistiche;
 
-	private Integer numero_preferenze_esprimibili;
+	private int numero_preferenze_esprimibili;
 
 	private Set<Amministratore> amministratori = new HashSet<>();
 	private Set<Candidato> candidati = new HashSet<>();
@@ -29,14 +30,12 @@ public class Evento {
 	private Set<SchedaElettorale> schedeOnline = new HashSet<>(); // elettori online
 	private Set<ElettoreInSede> elettoriInSede = new HashSet<>();
 
-	// Operations
-
 	public Evento() {
 		super();
 	}
 
 	public Evento(Long id, String nome, String regolamento, LocalDateTime dataOraInizio, LocalDateTime dataOraFine,
-			String luogo, String report_risultati, String report_statistiche, Integer numero_preferenze_esprimibili,
+			String luogo, String report_risultati, String report_statistiche, int numero_preferenze_esprimibili,
 			Set<Amministratore> amministratori, Set<Candidato> candidati, Set<Operatore> operatori,
 			Set<SchedaElettorale> schedeOnline, Set<ElettoreInSede> elettoriInSede) {
 		super();
@@ -88,7 +87,7 @@ public class Evento {
 		return report_statistiche;
 	}
 
-	public Integer getNumero_preferenze_esprimibili() {
+	public int getNumero_preferenze_esprimibili() {
 		return numero_preferenze_esprimibili;
 	}
 
@@ -144,7 +143,7 @@ public class Evento {
 		this.report_statistiche = report_statistiche;
 	}
 
-	public void setNumero_preferenze_esprimibili(Integer numero_preferenze_esprimibili) {
+	public void setNumero_preferenze_esprimibili(int numero_preferenze_esprimibili) {
 		this.numero_preferenze_esprimibili = numero_preferenze_esprimibili;
 	}
 

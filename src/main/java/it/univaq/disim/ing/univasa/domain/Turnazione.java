@@ -4,10 +4,10 @@ import java.time.LocalDate;
 
 public class Turnazione {
 	private Long id;
-	private Enum fascia;
+	private TipologiaTurno fascia;
 	private LocalDate data_evento;
 
-	public Turnazione(Long id, Enum fascia, LocalDate data_evento) {
+	public Turnazione(Long id, TipologiaTurno fascia, LocalDate data_evento) {
 		super();
 		this.id = id;
 		this.fascia = fascia;
@@ -22,7 +22,7 @@ public class Turnazione {
 		return id;
 	}
 
-	public Enum getFascia() {
+	public TipologiaTurno getFascia() {
 		return fascia;
 	}
 
@@ -34,7 +34,7 @@ public class Turnazione {
 		this.id = id;
 	}
 
-	public void setFascia(Enum fascia) {
+	public void setFascia(TipologiaTurno fascia) {
 		this.fascia = fascia;
 	}
 

@@ -10,20 +10,15 @@ public class Operatore extends Utente {
 	private Set<Evento> evento = new HashSet<>();
 
 	public Operatore(Long id, String nome, String cognome, String email, String username, String password,
-			String telefono, LocalDate data_nascita, Enum professione, String nome_università, String dipartimento,
-			Set<Turnazione> turnazioni, Set<Evento> evento) {
+			String telefono, LocalDate data_nascita, Professione professione, String nome_università,
+			String dipartimento) {
 		super(id, nome, cognome, email, username, password, telefono, data_nascita, professione, nome_università,
 				dipartimento);
-		this.turnazioni = turnazioni;
-		this.evento = evento;
 	}
 
 	public Operatore() {
 		super();
 	}
-
-	
-                                 
 
 	public Set<Turnazione> getTurnazioni() {
 		return turnazioni;
@@ -42,25 +37,15 @@ public class Operatore extends Utente {
 	}
 //  Operations 
 	/*
-    public riconoscimentoElettore() {
-        //TODO
-    }
-
-	
-    public calcoloRisultati() {
-        //TODO
-    }
-
-	    public caricaRisultati() {
-        //TODO
-    }
-
-	    public visualizzaTurnazioni() {
-        //TODO
-    }
-
-	    public visualizzaPrenotatiInSede() {
-        //TODO
-    }
-*/
+	 * public riconoscimentoElettore() { //TODO }
+	 * 
+	 * 
+	 * public calcoloRisultati() { //TODO }
+	 * 
+	 * public caricaRisultati() { //TODO }
+	 * 
+	 * public visualizzaTurnazioni() { //TODO }
+	 * 
+	 * public visualizzaPrenotatiInSede() { //TODO }
+	 */
 }

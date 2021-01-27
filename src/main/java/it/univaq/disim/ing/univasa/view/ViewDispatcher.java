@@ -3,8 +3,8 @@ package it.univaq.disim.ing.univasa.view;
 import java.io.IOException;
 
 import it.univaq.disim.ing.univasa.controller.DataInitializable;
-import it.univaq.disim.ing.univasa.domain.Medico;
-import it.univaq.disim.ing.univasa.domain.Paziente;
+import it.univaq.disim.ing.univasa.domain.Elettore;
+import it.univaq.disim.ing.univasa.domain.Operatore;
 import it.univaq.disim.ing.univasa.domain.Utente;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -99,11 +99,11 @@ public class ViewDispatcher {
 		}
 	}
 
-	public void registraMedico(Medico medico) {
+	public void registraMedico(Elettore elettore) {
 		try {
-			View<Medico> layoutView = loadView("registraMedico");
-			DataInitializable<Medico> layoutController = layoutView.getController();
-			layoutController.initializeData(medico);
+			View<Elettore> layoutView = loadView("registraElettore");
+			DataInitializable<Elettore> layoutController = layoutView.getController();
+			layoutController.initializeData(elettore);
 
 			layout = (BorderPane) layoutView.getView();
 
@@ -115,11 +115,11 @@ public class ViewDispatcher {
 		}
 	}
 
-	public void registraPaziente(Paziente paziente) {
+	public void registraPaziente(Operatore operatore) {
 		try {
-			View<Paziente> layoutView = loadView("registraPaziente");
-			DataInitializable<Paziente> layoutController = layoutView.getController();
-			layoutController.initializeData(paziente);
+			View<Operatore> layoutView = loadView("registraOperatore");
+			DataInitializable<Operatore> layoutController = layoutView.getController();
+			layoutController.initializeData(operatore);
 
 			layout = (BorderPane) layoutView.getView();
 
@@ -152,5 +152,4 @@ public class ViewDispatcher {
 			throw new ViewException(e);
 		}
 	}
-
 }
