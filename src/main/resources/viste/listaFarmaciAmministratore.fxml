@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="575.0" prefWidth="762.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.oop.pharma.controller.amministratorecontroller.ListaFarmaciAmministratoreController">
+<VBox prefHeight="575.0" prefWidth="762.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.amministratorecontroller.ListaFarmaciAmministratoreController">
    <children>
       <Label fx:id="farmaciLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="39.0" prefWidth="790.0" text="Lista Farmaci" textAlignment="CENTER" textFill="#0abab5">
          <font>

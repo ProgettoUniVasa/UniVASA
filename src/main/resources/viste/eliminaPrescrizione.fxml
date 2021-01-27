@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="396.0" prefWidth="755.0" style="-fx-background-color: #0ABAB5;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.oop.pharma.controller.medicocontroller.EliminaPrescrizioneController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="396.0" prefWidth="755.0" style="-fx-background-color: #0ABAB5;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.medicocontroller.EliminaPrescrizioneController">
    <children>
       <Label alignment="CENTER" prefHeight="70.0" prefWidth="793.0" text="Sei sicuro di voler eliminare la seguente prescrizione?">
          <font>
