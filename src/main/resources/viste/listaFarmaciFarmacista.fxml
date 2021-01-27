@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="568.0" prefWidth="763.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.oop.pharma.controller.farmacistacontroller.ListaFarmaciFarmacistaController">
+   <children>
+      <Label fx:id="farmaciLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="39.0" prefWidth="829.0" text="Lista Farmaci" textAlignment="CENTER" textFill="#0abab5">
+         <font>
+            <Font name="Palatino Linotype Bold" size="30.0" />
+         </font>
+         <VBox.margin>
+            <Insets top="10.0" />
+         </VBox.margin>
+      </Label>
+      <TableView fx:id="farmaciTable" prefHeight="489.0" prefWidth="0.0" style="-fx-background-color: #0ABAB5;">
+         <columns>
+            <TableColumn fx:id="nomeTableColumn" prefWidth="111.0" text="Nome" />
+            <TableColumn fx:id="principioAttivoTableColumn" prefWidth="132.0" text="Principio Attivo" />
+            <TableColumn fx:id="produttoreTableColumn" prefWidth="169.0" text="Produttore" />
+            <TableColumn fx:id="scadenzaTableColumn" prefWidth="103.0" text="Scadenza" />
+            <TableColumn fx:id="costoTableColumn" prefWidth="79.0" text="Costo" />
+            <TableColumn fx:id="quantitaDisponibileTableColumn" prefWidth="138.0" text="Quantità disponibile" />
+         </columns>
+         <VBox.margin>
+            <Insets bottom="10.0" left="5.0" right="10.0" top="10.0" />
+         </VBox.margin>
+      </TableView>
+   </children>
+   <padding>
+      <Insets bottom="10.0" left="5.0" right="10.0" />
+   </padding>
+</VBox>

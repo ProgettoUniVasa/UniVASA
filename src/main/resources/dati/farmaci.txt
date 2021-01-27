@@ -1,0 +1,5 @@
+5
+1§Oki§Ketoprofene§PharmaMedix§2021-10-25§5.6§17§20
+2§Aulin§Nimesulide§Helsinn Birex Pharmac§2020-09-30§4.89§26§15
+3§Augmentin§Amoxicillina§MediFarm§2020-09-30§3.99§59§30
+4§Toradol§Ketorolac§RECORDATI SPA§2021-08-27§8.5§25§30

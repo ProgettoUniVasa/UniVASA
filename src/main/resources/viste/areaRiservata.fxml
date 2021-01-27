@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="399.0" prefWidth="651.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.oop.pharma.controller.AreaRiservataController">
+   <children>
+      <HBox prefHeight="70.0" prefWidth="600.0">
+         <children>
+            <Label prefHeight="70.0" prefWidth="680.0" text="Area Riservata" textFill="#0abab5">
+               <font>
+                  <Font name="Palatino Linotype Bold" size="30.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="40.0" />
+               </HBox.margin>
+            </Label>
+         </children>
+      </HBox>
+      <GridPane prefHeight="313.0" prefWidth="644.0">
+         <columnConstraints>
+            <ColumnConstraints maxWidth="116.60001220703126" minWidth="39.99997940063477" prefWidth="45.600006103515625" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="263.00002059936526" minWidth="10.0" prefWidth="164.59999389648436" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="453.5999511718749" minWidth="10.0" prefWidth="427.20003662109383" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Label prefHeight="60.0" prefWidth="241.0" text="Nome :" GridPane.columnIndex="1">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label prefHeight="79.0" prefWidth="231.0" text="Cognome :" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label prefHeight="68.0" prefWidth="209.0" text="CF :" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label prefHeight="50.0" prefWidth="196.0" text="Data di nascita :" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label prefHeight="45.0" prefWidth="194.0" text="Luogo di nascita :" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label prefHeight="57.0" prefWidth="191.0" text="Residenza :" GridPane.columnIndex="1" GridPane.rowIndex="5">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label prefHeight="80.0" prefWidth="207.0" text="Telefono :" GridPane.columnIndex="1" GridPane.rowIndex="6">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label prefHeight="73.0" prefWidth="234.0" text="Username :" GridPane.columnIndex="1" GridPane.rowIndex="8">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label prefHeight="67.0" prefWidth="200.0" text="Password :" GridPane.columnIndex="1" GridPane.rowIndex="9">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="nomeLabel" prefHeight="72.0" prefWidth="429.0" GridPane.columnIndex="2">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="cognomeLabel" layoutX="286.0" layoutY="16.0" prefHeight="38.0" prefWidth="434.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="cfLabel" prefHeight="49.0" prefWidth="434.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="dataNascitaLabel" prefHeight="37.0" prefWidth="434.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="luogoNascitaLabel" prefHeight="42.0" prefWidth="434.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="residenzaLabel" prefHeight="41.0" prefWidth="434.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="telefonoLabel" prefHeight="48.0" prefWidth="434.0" GridPane.columnIndex="2" GridPane.rowIndex="6">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="usernameLabel" prefHeight="50.0" prefWidth="434.0" GridPane.columnIndex="2" GridPane.rowIndex="8">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="passwordLabel" prefHeight="53.0" prefWidth="434.0" GridPane.columnIndex="2" GridPane.rowIndex="9">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </GridPane>
+   </children>
+</VBox>

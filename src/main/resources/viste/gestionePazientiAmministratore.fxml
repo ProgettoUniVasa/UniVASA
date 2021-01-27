@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="527.0" prefWidth="772.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.oop.pharma.controller.amministratorecontroller.GestionePazientiAmministratoreController">
+   <children>
+      <Label alignment="CENTER" prefHeight="52.0" prefWidth="898.0" text="Gestione Pazienti" textFill="#0abab5">
+         <font>
+            <Font name="Palatino Linotype Bold" size="30.0" />
+         </font>
+         <VBox.margin>
+            <Insets top="5.0" />
+         </VBox.margin>
+      </Label>
+      <TableView fx:id="pazientiTable" prefHeight="461.0" prefWidth="767.0" style="-fx-background-color: #0ABAB5;">
+         <columns>
+            <TableColumn fx:id="nomeTableColumn" text="Nome" />
+            <TableColumn fx:id="cognomeTableColumn" text="Cognome" />
+            <TableColumn fx:id="cfTableColumn" prefWidth="141.0" text="CF" />
+            <TableColumn fx:id="luogoNascitaTableColumn" prefWidth="93.0" text="Luogo Nascita" />
+            <TableColumn fx:id="residenzaTableColumn" prefWidth="92.0" text="Residenza" />
+            <TableColumn fx:id="telefonoTableColumn" prefWidth="93.0" text="Telefono" />
+            <TableColumn fx:id="modificaTableColumn" prefWidth="86.0" text="Modifica" />
+            <TableColumn fx:id="eliminaTableColumn" prefWidth="115.0" text="Elimina" />
+         </columns>
+         <VBox.margin>
+            <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
+         </VBox.margin>
+      </TableView>
+   </children>
+</VBox>

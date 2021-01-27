@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="515.0" prefWidth="773.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.oop.pharma.controller.amministratorecontroller.ListaFarmaciInEsaurimentoController">
+   <children>
+      <Label fx:id="farmaciLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="39.0" prefWidth="829.0" text="Lista Farmaci In Esaurimento" textAlignment="CENTER" textFill="#0abab5">
+         <font>
+            <Font name="Palatino Linotype Bold" size="30.0" />
+         </font>
+         <VBox.margin>
+            <Insets top="10.0" />
+         </VBox.margin>
+      </Label>
+      <TableView fx:id="farmaciTable" prefHeight="436.0" prefWidth="672.0" style="-fx-background-color: #0ABAB5;">
+         <columns>
+            <TableColumn fx:id="nomeTableColumn" prefWidth="94.0" resizable="false" text="Nome" />
+            <TableColumn fx:id="principioAttivoTableColumn" prefWidth="122.0" resizable="false" text="Principio Attivo" />
+            <TableColumn fx:id="produttoreTableColumn" prefWidth="142.0" resizable="false" text="Produttore" />
+            <TableColumn fx:id="scadenzaTableColumn" prefWidth="84.0" resizable="false" text="Scadenza" />
+            <TableColumn fx:id="costoTableColumn" prefWidth="67.0" resizable="false" text="Costo" />
+            <TableColumn fx:id="quantitaDisponibileTableColumn" prefWidth="125.0" resizable="false" text="Quantità disponibile" />
+            <TableColumn fx:id="azioniTableColumn" minWidth="0.0" prefWidth="108.0" resizable="false" text="Azioni" />
+         </columns>
+         <VBox.margin>
+            <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
+         </VBox.margin>
+      </TableView>
+   </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" />
+   </padding>
+</VBox>
