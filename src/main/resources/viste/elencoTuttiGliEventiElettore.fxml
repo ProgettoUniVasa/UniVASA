@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="415.0" prefWidth="642.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="415.0" prefWidth="642.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.elettorecontroller.ElencoTuttiGliEventiElettoreController">
    <children>
       <HBox prefHeight="48.0" prefWidth="642.0">
          <children>
@@ -29,7 +29,7 @@
             <Font name="Palatino Linotype Bold" size="30.0" />
          </font>
       </Label>
-      <TableView prefHeight="320.0" prefWidth="633.0" style="-fx-background-color: #0abab5;">
+      <TableView fx:id="tuttiGliEventiTable" prefHeight="320.0" prefWidth="633.0" style="-fx-background-color: #0abab5;">
         <columns>
           <TableColumn fx:id="nomeTableColumn" prefWidth="87.19997823238373" text="Nome" />
           <TableColumn fx:id="dataOraInizioTableColumn" prefWidth="100.80000305175781" text="Data e ora inizio" />
