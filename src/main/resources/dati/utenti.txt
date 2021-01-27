@@ -1,7 +1,0 @@
-7
-1§medico§1234§medico§Enrico§Adamelli§DLMNRC00I78G780P§2000-01-16§Sulmona§Caserta§3339165127§Maschio§1059APK564§OCULISTA
-2§paziente§0000§paziente§Michele§Intrevado§NTRMCH99A34B450R§1999-06-16§Pescara§Pescara§3289090938§Maschio§74.5
-3§farmacista§5678§farmacista§Martina§Nolletti§NLLMTN99E64A345W§1999-05-24§L'Aquila§Tornimparte§3452344956§Femmina
-4§amministratore§1111§amministratore§Samuel§Cipriani§CPRSML99D45V123E§1999-12-04§L'Aquila§Lucoli§3489674325§Maschio
-5§leo§1001§farmacista§Leo§Verdi§VRDLRI00R45Q234Y§2001-05-20§Roma§L'Aquila§3325274810§Maschio
-6§mimmo§1002§paziente§Mimmo§Di Maio§DMTMMM96W89O953G§1996-08-12§Palermo§Caserta§0864566051§Maschio§50.0
