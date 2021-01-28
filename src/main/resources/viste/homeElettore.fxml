@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: orange;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: orange;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.elettorecontroller.HomeElettoreController">
    <children>
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
@@ -38,27 +38,39 @@
             </ImageView>
          </children>
       </HBox>
-      <Button fx:id="votaButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#votaAction" prefHeight="175.0" prefWidth="570.0" text="Vota ora">
-         <VBox.margin>
-            <Insets bottom="5.0" left="15.0" right="15.0" />
-         </VBox.margin>
-         <font>
-            <Font name="Ebrima Bold" size="48.0" />
-         </font>
-      </Button>
-      <HBox prefHeight="100.0" prefWidth="579.0">
+      <HBox prefHeight="174.0" prefWidth="600.0">
          <children>
-            <Button fx:id="listaEventiButton" mnemonicParsing="false" onAction="#visualizzaEventiAction" prefHeight="116.0" prefWidth="275.0" text="Tutti gli Eventi ">
+            <Button fx:id="votaButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#votaAction" prefHeight="120.0" prefWidth="275.0" text="Vota ora">
+               <font>
+                  <Font name="Ebrima Bold" size="36.0" />
+               </font>
                <HBox.margin>
-                  <Insets left="15.0" right="5.0" />
+                  <Insets left="15.0" right="5.0" top="10.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="reportButton" mnemonicParsing="false" onAction="#visualizzaReportAction" prefHeight="120.0" prefWidth="275.0" text="Risultati e statistiche">
+               <font>
+                  <Font name="Ebrima Bold" size="24.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="15.0" right="5.0" top="10.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <HBox prefHeight="184.0" prefWidth="600.0">
+         <children>
+            <Button fx:id="listaEventiButton" mnemonicParsing="false" onAction="#visualizzaEventiAction" prefHeight="120.0" prefWidth="275.0" text="Tutti gli Eventi ">
+               <HBox.margin>
+                  <Insets left="15.0" right="5.0" top="10.0" />
                </HBox.margin>
                <font>
                   <Font name="Ebrima Bold" size="24.0" />
                </font>
             </Button>
-            <Button fx:id="listaEventiPersonaliButton" mnemonicParsing="false" onAction="#visualizzaEventiPersonaliAction" prefHeight="110.0" prefWidth="275.0" text="I tuoi Eventi">
+            <Button fx:id="listaEventiPersonaliButton" mnemonicParsing="false" onAction="#visualizzaEventiPersonaliAction" prefHeight="120.0" prefWidth="275.0" text="I tuoi Eventi">
                <HBox.margin>
-                  <Insets left="15.0" right="5.0" />
+                  <Insets left="15.0" right="5.0" top="10.0" />
                </HBox.margin>
                <font>
                   <Font name="Ebrima Bold" size="24.0" />

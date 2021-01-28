@@ -7,10 +7,12 @@ import java.util.ResourceBundle;
 
 import it.univaq.disim.ing.univasa.business.BusinessException;
 import it.univaq.disim.ing.univasa.business.EventoService;
-import it.univaq.disim.ing.univasa.business.MyPharmaBusinessFactory;
+import it.univaq.disim.ing.univasa.business.UnivasaBusinessFactory;
 import it.univaq.disim.ing.univasa.controller.DataInitializable;
 import it.univaq.disim.ing.univasa.domain.Elettore;
 import it.univaq.disim.ing.univasa.domain.Evento;
+import it.univaq.disim.ing.univasa.domain.Stato;
+import it.univaq.disim.ing.univasa.domain.Utente;
 import it.univaq.disim.ing.univasa.view.ViewDispatcher;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ObservableValue;
@@ -26,6 +28,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.util.Callback;
 
@@ -62,6 +65,9 @@ public class ElencoEventiPersonaliElettoreController implements Initializable, D
 
 	@FXML
 	private Button esciButton;
+	
+	@FXML
+	private Button indietroButton;
 
 	private ViewDispatcher dispatcher;
 
@@ -71,7 +77,7 @@ public class ElencoEventiPersonaliElettoreController implements Initializable, D
 
 	public ElencoEventiPersonaliElettoreController() {
 		dispatcher = ViewDispatcher.getInstance();
-		MyPharmaBusinessFactory factory = MyPharmaBusinessFactory.getInstance(); // vedere business factory
+		UnivasaBusinessFactory factory = UnivasaBusinessFactory.getInstance(); // vedere business factory
 		eventoService = factory.getEventoService();
 	}
 
@@ -105,7 +111,7 @@ public class ElencoEventiPersonaliElettoreController implements Initializable, D
 		statoTableColumn.setCellValueFactory(new PropertyValueFactory<>("stato")); // non esiste come attributo di
 																					// Evento, si potrebbe mettere uno
 																					// stato votazione/stato evento?
-
+		
 		statoTableColumn.setCellFactory(new Callback<TableColumn<Elettore, String>, TableCell<Elettore, String>>() {
 			public TableCell<Elettore, String> call(TableColumn<Elettore, String> param) {
 				return new TableCell<Elettore, String>() {
@@ -113,12 +119,15 @@ public class ElencoEventiPersonaliElettoreController implements Initializable, D
 					public void updateItem(String item, boolean empty) {
 						super.updateItem(item, empty);
 						if (!isEmpty()) {
-							if (item.contains("Prenotazione Online")) {
+							if (item.contains(Stato.prenotazione_online.toString())) {
+								this.setText("Prenotazione Online");
 								this.setTextFill(Color.GREEN);
-							} else if (item.contains("Prenotazione In Sede")) {
+							} else if (item.contains(Stato.prenotazione_in_sede.toString())) {
+								this.setText("Prenotazione In Sede");
 								this.setTextFill(Color.ORANGE);
 								//visualizzare vista per cambiare metodo di votazione
-							} else if (item.contains("Evento terminato")) {
+							} else if (item.contains(Stato.evento_terminato.toString())) {
+								this.setText("Evento terminato");
 								this.setTextFill(Color.RED);
 								//Visualizzare le statistiche se cliccato
 							}
@@ -143,5 +152,10 @@ public class ElencoEventiPersonaliElettoreController implements Initializable, D
 			dispatcher.renderError(e);
 		}
 	}
-
+	
+	@FXML
+	public void indietroAction(ActionEvent event) {
+		dispatcher.renderView("homeElettore", elettore);
+	}
+	
 }

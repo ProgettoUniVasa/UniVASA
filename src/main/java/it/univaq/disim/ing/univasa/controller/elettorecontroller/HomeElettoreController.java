@@ -49,17 +49,25 @@ public class HomeElettoreController implements Initializable, DataInitializable<
 	
 	@FXML
 	public void visualizzaEventiPersonaliAction(ActionEvent event) {
-		dispatcher.renderView("elencoEventiPersonaliElettore", elettore); //elencoEventiPersonaliElettore.fxml
+		dispatcher.renderView("elencoEventiPersonaliElettore", elettore); //elencoEventiPersonaliElettore.fxml; nella tableView ci sarà la colonna di bottoni "azione per cambiare modalità" 
+																		  //che avrà eccezione in caso di stato.prenotazione_online, e porterà a "schermataCambioModalità" in caso di prenotazione in sede 
 		}
 	
 	@FXML
 	public void votaAction(ActionEvent event) {
-		dispatcher.renderView("votazioneElettore", elettore); //3 opzioni: l'elettore vedrà gli eventi che può votare nel momento in cui clicca il bottone, 
+		dispatcher.renderView("votazioneElettore", elettore); // tableView con evento che è votabile ORA e bottone per votare che porta a "schermataVotazione" 
+		}
+	@FXML
+	public void visualizzaReportAction(ActionEvent event) {
+		dispatcher.renderView("elencoReport", elettore); //elencoReport.fxml
+		}												 // tableView con evento (tutti anche quelli a cui l'elettore non si è prenotato? in tal caso 
+													     // basta un metodo generico?) e bottone Visualizza per vedere i report del relativo evento.
+}															  
+
+
+															  //3 opzioni: l'elettore vedrà gli eventi che può votare nel momento in cui clicca il bottone, 
 															  //quindi una lista di eventi da cui sceglierà quello in cui votare "online" ora ,
 															  //che successivamente, tramite un bottone, 
 															  //porta alla schermata della scheda elettorale online. In alternativa si può usare 
 		 													  //questo bottone per vedere gli Eventi Attivi Oggi, ma sarebbe ridondante. Oppure per 
 															  //vedere i soli risultati degli eventi terminati. 
-		}
-	
-}
