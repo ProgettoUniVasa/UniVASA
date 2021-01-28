@@ -8,15 +8,15 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="329.0" prefWidth="666.0" style="-fx-background-color: orange;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.elettorecontroller.PrenotazioneVotazioneInPresenzaElettore">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="329.0" prefWidth="666.0" style="-fx-background-color: orange;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.elettorecontroller.PrenotazioneVotazioneOnlineElettore">
    <children>
-      <Label alignment="CENTER" prefHeight="68.0" prefWidth="666.0" text="Prenotazione Votazione In Presenza">
+      <Label alignment="CENTER" prefHeight="68.0" prefWidth="666.0" text="Prenotazione Votazione Online">
          <font>
             <Font name="Palatino Linotype Bold" size="30.0" />
          </font>
       </Label>
       <Separator prefWidth="200.0" />
-      <Label prefHeight="187.0" prefWidth="666.0" text=" Sei sicuro di volerti prenotare per la votazione in presenza di questo evento?">
+      <Label prefHeight="187.0" prefWidth="666.0" text=" Sei sicuro di volerti prenotare per la votazione Online di questo evento?">
          <font>
             <Font size="16.0" />
          </font>
@@ -28,7 +28,7 @@
       </Separator>
       <HBox prefHeight="54.0" prefWidth="666.0">
          <children>
-            <Button fx:id="prenotatiInPresenzaButton" mnemonicParsing="false" onAction="#prenotatiInPresenzaAction" text="Si">
+            <Button fx:id="prenotatiOnlineButton" mnemonicParsing="false" onAction="#prenotatiOnlineAction" text="Si">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
@@ -36,7 +36,7 @@
                   <Insets left="250.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="annullaPrenotazioneInPresenzaButton" mnemonicParsing="false" onAction="#annullaPrenotazioneInPresenzaAction" text="No">
+            <Button fx:id="annullaPrenotazioneOnlineButton" mnemonicParsing="false" onAction="#annullaPrenotazioneOnlineAction" text="No">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>

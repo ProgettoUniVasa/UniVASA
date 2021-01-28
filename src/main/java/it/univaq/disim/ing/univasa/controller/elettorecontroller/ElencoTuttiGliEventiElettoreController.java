@@ -1,7 +1,6 @@
 // vedere business factory
-// vedere service
 // creare vista regolamentoEvento
-// creare vista prenotazioneEvento SCEGLIERE SE FARE DUE COLONNE E LE DUE VISTE SUCCESSIVE (UNA PER PRENOTAZIONE IN PRESENZA, L'ALTRA PER PRENOTAZIONE ONLINE)
+// creare vista PRENOTAZIONE IN PRESENZA, PRENOTAZIONE ONLINE
 // vedere parte codice bottone in alto a destra logout
 
 package it.univaq.disim.ing.univasa.controller.elettorecontroller;
@@ -13,6 +12,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import it.univaq.disim.ing.univasa.business.BusinessException;
+import it.univaq.disim.ing.univasa.business.EventoService;
 import it.univaq.disim.ing.univasa.business.MyPharmaBusinessFactory;
 import it.univaq.disim.ing.univasa.controller.DataInitializable;
 import it.univaq.disim.ing.univasa.domain.Elettore;
@@ -55,7 +55,7 @@ public class ElencoTuttiGliEventiElettoreController implements Initializable, Da
 
 	@FXML
 	private TableColumn<Evento, Button> prenotazioneInPresenzaTableColumn;
-	
+
 	@FXML
 	private TableColumn<Evento, Button> prenotazioneOnlineTableColumn;
 
@@ -64,22 +64,22 @@ public class ElencoTuttiGliEventiElettoreController implements Initializable, Da
 
 	private ViewDispatcher dispatcher;
 
-	private PrescrizioneService prescrizioneService; //vedere service
+	private EventoService eventoService;
 
 	private Elettore elettore;
 
 	public ElencoTuttiGliEventiElettoreController() {
 		dispatcher = ViewDispatcher.getInstance();
-		MyPharmaBusinessFactory factory = MyPharmaBusinessFactory.getInstance(); //vedere business factory
-		prescrizioneService = factory.getPrescrizioneService();
+		MyPharmaBusinessFactory factory = MyPharmaBusinessFactory.getInstance(); // vedere business factory
+		eventoService = factory.getEventoService();
 	}
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
-		nomeTableColumn.setCellValueFactory(new PropertyValueFactory<>("nome")); //vedere cosa fa "nome"
-		dataOraInizioTableColumn.setCellValueFactory(new PropertyValueFactory<>("data e ora inizio")); //vedere cosa fa "data e ora inizio"
-		dataOraFineTableColumn.setCellValueFactory(new PropertyValueFactory<>("data e ora fine")); //vedere cosa fa "data e ora fine"
-		luogoTableColumn.setCellValueFactory(new PropertyValueFactory<>("luogo")); //vedere cosa fa "luogo"
+		nomeTableColumn.setCellValueFactory(new PropertyValueFactory<>("nome"));
+		dataOraInizioTableColumn.setCellValueFactory(new PropertyValueFactory<>("dataOraInizio"));
+		dataOraFineTableColumn.setCellValueFactory(new PropertyValueFactory<>("dataOraFine"));
+		luogoTableColumn.setCellValueFactory(new PropertyValueFactory<>("luogo"));
 
 		regolamentoTableColumn.setStyle("-fx-alignment: CENTER;");
 		regolamentoTableColumn.setCellValueFactory(
@@ -92,13 +92,13 @@ public class ElencoTuttiGliEventiElettoreController implements Initializable, Da
 
 							@Override
 							public void handle(ActionEvent event) {
-								dispatcher.renderView("regolamentoEvento", param.getValue()); //creare vista regolamentoEvento
+								dispatcher.renderView("regolamentoEvento", param.getValue()); // creare vista
+																								// regolamento evento
 							}
 						});
 						return new SimpleObjectProperty<Button>(regolamentoButton);
 					}
 				});
-
 
 		prenotazioneInPresenzaTableColumn.setStyle("-fx-alignment: CENTER;");
 		prenotazioneInPresenzaTableColumn.setCellValueFactory(
@@ -111,13 +111,13 @@ public class ElencoTuttiGliEventiElettoreController implements Initializable, Da
 
 							@Override
 							public void handle(ActionEvent event) {
-								dispatcher.renderView("prenotazioneInPresenzaEvento", param.getValue()); //creare vista prenotazioneInPresenzaEvento
+								dispatcher.renderView("prenotazioneInPresenzaEvento", param.getValue());
 							}
 						});
 						return new SimpleObjectProperty<Button>(prenotazioneInPresenzaButton);
 					}
 				});
-		
+
 		prenotazioneOnlineTableColumn.setStyle("-fx-alignment: CENTER;");
 		prenotazioneOnlineTableColumn.setCellValueFactory(
 				new Callback<TableColumn.CellDataFeatures<Evento, Button>, ObservableValue<Button>>() {
@@ -129,7 +129,8 @@ public class ElencoTuttiGliEventiElettoreController implements Initializable, Da
 
 							@Override
 							public void handle(ActionEvent event) {
-								dispatcher.renderView("prenotazioneOnlineEvento", param.getValue()); //creare vista prenotazioneInPresenzaEvento
+								dispatcher.renderView("prenotazioneOnlineEvento", param.getValue()); // creare vista
+																										// prenotazioneInPresenzaEvento
 							}
 						});
 						return new SimpleObjectProperty<Button>(prenotazioneOnlineButton);
@@ -142,7 +143,7 @@ public class ElencoTuttiGliEventiElettoreController implements Initializable, Da
 	public void initializeData(Elettore elettore) {
 		try {
 			this.elettore = elettore;
-			List<Evento> eventi = prescrizioneService.trovaPrescrizioniMedico(elettore); //vedere service
+			List<Evento> eventi = eventoService.trovaTuttiEventi();
 			ObservableList<Evento> eventiData = FXCollections.observableArrayList(eventi);
 			tuttiGliEventiTable.setItems(eventiData);
 		} catch (BusinessException e) {
@@ -150,7 +151,7 @@ public class ElencoTuttiGliEventiElettoreController implements Initializable, Da
 		}
 	}
 
-	//parte codice bottone in alto a destra logout
+	// parte codice bottone in alto a destra logout
 	@FXML
 	public void esciAction(ActionEvent event) throws BusinessException {
 		Prescrizione prescrizione = new Prescrizione();
