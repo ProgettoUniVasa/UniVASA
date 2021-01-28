@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="563.0" prefWidth="1177.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.amministratorecontroller.ListaCandidatiAmministratoreController">
+   <children>
+      <Label fx:id="candidatiLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="39.0" prefWidth="1196.0" text="Lista Candidati" textAlignment="CENTER" textFill="#0abab5">
+         <font>
+            <Font name="Palatino Linotype Bold" size="30.0" />
+         </font>
+         <VBox.margin>
+            <Insets top="10.0" />
+         </VBox.margin>
+      </Label>
+      <Button fx:id="aggiungiCandidatoButton" mnemonicParsing="false" onAction="#aggiungiCandidatoAction" prefHeight="37.0" prefWidth="198.0" text="Aggiungi Candidato">
+         <VBox.margin>
+            <Insets bottom="10.0" left="960.0" right="5.0" />
+         </VBox.margin>
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <TableView fx:id="eventiTable" prefHeight="464.0" prefWidth="743.0" style="-fx-background-color: #0ABAB5;">
+        <columns>
+          <TableColumn fx:id="nomeTableColumn" prefWidth="92.0" text="Nome" />
+            <TableColumn fx:id="cognomeTableColumn" prefWidth="98.0" text="Cognome" />
+            <TableColumn fx:id="emailTableColumn" prefWidth="140.0" text="Email" />
+            <TableColumn fx:id="usernameTableColumn" prefWidth="115.0" text="Username" />
+            <TableColumn fx:id="passwordTableColumn" prefWidth="113.0" text="Password" />
+            <TableColumn fx:id="telefonoTableColumn" prefWidth="118.0" text="Telefono" />
+            <TableColumn fx:id="dataNascitaTableColumn" prefWidth="93.0" text="Data Di Nascita" />
+            <TableColumn fx:id="professioneTableColumn" prefWidth="100.0" text="Professione" />
+            <TableColumn fx:id="nome_universitàTableColumn" prefWidth="99.0" text="Nome Università" />
+            <TableColumn fx:id="dipartimentoTableColumn" prefWidth="109.0" text="Dipartimento" />
+            <TableColumn fx:id="eliminaTableColumn" minWidth="0.0" prefWidth="69.0" text="Elimina" />
+        </columns>
+         <VBox.margin>
+            <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
+         </VBox.margin>
+      </TableView>
+   </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" />
+   </padding>
+</VBox>

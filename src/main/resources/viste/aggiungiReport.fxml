@@ -13,9 +13,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="382.0" prefWidth="625.0" style="-fx-background-color: #0ABAB5;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.amministratorecontroller.AggiungiEventoController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="382.0" prefWidth="625.0" style="-fx-background-color: #0ABAB5;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.amministratorecontroller.AggiungiReportController">
    <children>
-      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="49.0" prefWidth="665.0" text="Aggiungi Evento">
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="49.0" prefWidth="665.0" text="Aggiungi Report">
          <font>
             <Font name="Palatino Linotype Bold" size="30.0" />
          </font>
@@ -31,10 +31,10 @@
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="40.799993896484374" minHeight="10.0" prefHeight="28.79999771118164" vgrow="SOMETIMES" />
           <RowConstraints maxHeight="32.00000228881835" minHeight="10.0" prefHeight="32.00000228881835" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="32.00000228881835" minHeight="10.0" prefHeight="32.00000228881835" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="34.40000610351562" minHeight="0.0" prefHeight="32.8" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="65.59999999999998" minHeight="10.0" prefHeight="32.79999999999998" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="65.59999999999998" minHeight="10.0" prefHeight="32.79999999999998" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
@@ -46,17 +46,12 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" prefHeight="65.0" prefWidth="334.0" text="Regolamento : " GridPane.rowIndex="1">
+            <Label alignment="CENTER" prefHeight="90.0" prefWidth="339.0" text="Data Ora Inizio :" GridPane.rowIndex="1">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" prefHeight="90.0" prefWidth="339.0" text="Data Ora Inizio :" GridPane.rowIndex="2">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER" layoutX="10.0" layoutY="77.0" prefHeight="65.0" prefWidth="321.0" text="Data Ora Fine : " GridPane.rowIndex="3">
+            <Label alignment="CENTER" layoutX="10.0" layoutY="77.0" prefHeight="65.0" prefWidth="321.0" text="Data Ora Fine : " GridPane.rowIndex="2">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
@@ -64,7 +59,7 @@
                   <Insets />
                </GridPane.margin>
             </Label>
-            <Label alignment="CENTER" layoutX="10.0" layoutY="110.0" prefHeight="81.0" prefWidth="309.0" text="Luogo :" GridPane.rowIndex="4">
+            <Label alignment="CENTER" layoutX="10.0" layoutY="110.0" prefHeight="81.0" prefWidth="309.0" text="Luogo :" GridPane.rowIndex="3">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
@@ -72,7 +67,7 @@
                   <Insets />
                </GridPane.margin>
             </Label>
-            <Label alignment="CENTER" layoutX="10.0" layoutY="143.0" prefHeight="66.0" prefWidth="309.0" text="Numero Preferenze Esprimibili :" GridPane.rowIndex="5">
+            <Label alignment="CENTER" layoutX="10.0" layoutY="143.0" prefHeight="66.0" prefWidth="309.0" text="Report Risultati :" GridPane.rowIndex="4">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
@@ -84,23 +79,25 @@
                <GridPane.margin>
                   <Insets right="20.0" />
                </GridPane.margin></TextField>
-            <TextField fx:id="regolamento" prefHeight="26.0" prefWidth="319.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <GridPane.margin>
-                  <Insets right="20.0" />
-               </GridPane.margin></TextField>
-            <DatePicker fx:id="dataOraFine" prefHeight="26.0" prefWidth="380.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <DatePicker fx:id="dataOraFine" prefHeight="26.0" prefWidth="380.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets right="20.0" />
                </GridPane.margin></DatePicker>
-            <TextField fx:id="luogo" prefHeight="26.0" prefWidth="330.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <TextField fx:id="luogo" prefHeight="26.0" prefWidth="330.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets right="20.0" />
                </GridPane.margin></TextField>
-            <TextField fx:id="numero_preferenze_esprimibili" prefHeight="26.0" prefWidth="325.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+            <TextField fx:id="report_risultati" prefHeight="26.0" prefWidth="325.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <GridPane.margin>
                   <Insets right="20.0" />
                </GridPane.margin></TextField>
-            <DatePicker fx:id="dataOraInizio" prefHeight="26.0" prefWidth="296.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <DatePicker fx:id="dataOraInizio" prefHeight="26.0" prefWidth="296.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label alignment="CENTER" prefHeight="66.0" prefWidth="309.0" text="Report Statistiche :" GridPane.rowIndex="5">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <TextField fx:id="report_statistiche" prefHeight="26.0" prefWidth="296.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
          </children>
       </GridPane>
       <Separator prefHeight="27.0" prefWidth="647.0" />

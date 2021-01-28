@@ -13,9 +13,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="402.0" prefWidth="696.0" style="-fx-background-color: #0ABAB5;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.amministratorecontroller.EliminaFarmacoController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="402.0" prefWidth="696.0" style="-fx-background-color: #0ABAB5;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.amministratorecontroller.EliminaReportController">
    <children>
-      <Label alignment="CENTER" prefHeight="70.0" prefWidth="726.0" text="Elimina Evento">
+      <Label alignment="CENTER" prefHeight="70.0" prefWidth="726.0" text="Elimina Report">
          <font>
             <Font name="Palatino Linotype Bold" size="30.0" />
          </font>
@@ -42,27 +42,22 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" prefHeight="154.0" prefWidth="614.0" text="Regolamento:" GridPane.rowIndex="1">
+            <Label alignment="CENTER" prefHeight="146.0" prefWidth="696.0" text="Data Ora Inizio:" GridPane.rowIndex="1">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" prefHeight="146.0" prefWidth="696.0" text="Data Ora Inizio:" GridPane.rowIndex="2">
+            <Label alignment="CENTER" prefHeight="146.0" prefWidth="696.0" text="Data Ora Fine:" GridPane.rowIndex="2">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" prefHeight="146.0" prefWidth="696.0" text="Data Ora Fine:" GridPane.rowIndex="3">
+            <Label alignment="CENTER" prefHeight="232.0" prefWidth="567.0" text="Luogo:" GridPane.rowIndex="3">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" prefHeight="232.0" prefWidth="567.0" text="Luogo:" GridPane.rowIndex="4">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER" prefHeight="232.0" prefWidth="567.0" text="Numero preferenze:" GridPane.rowIndex="5">
+            <Label alignment="CENTER" prefHeight="232.0" prefWidth="567.0" text="Report Risultati:" GridPane.rowIndex="4">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
@@ -72,23 +67,28 @@
                   <Insets right="20.0" />
                </GridPane.margin>
             </TextField>
-            <TextField fx:id="regolamento" editable="false" prefHeight="35.0" prefWidth="435.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <GridPane.margin>
-                  <Insets right="20.0" />
-               </GridPane.margin>
-            </TextField>
-            <DatePicker fx:id="dataOraInizio" editable="false" prefHeight="35.0" prefWidth="423.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <DatePicker fx:id="dataOraFine" editable="false" prefHeight="35.0" prefWidth="435.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <DatePicker fx:id="dataOraInizio" editable="false" prefHeight="35.0" prefWidth="423.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <DatePicker fx:id="dataOraFine" editable="false" prefHeight="35.0" prefWidth="435.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets right="20.0" />
                </GridPane.margin>
             </DatePicker>
-            <TextField fx:id="luogo" editable="false" prefHeight="35.0" prefWidth="435.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <TextField fx:id="luogo" editable="false" prefHeight="35.0" prefWidth="435.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets right="20.0" />
                </GridPane.margin>
             </TextField>
-            <TextField fx:id="quantitaDisponibnumero_preferenze_esprimibiliile" editable="false" prefHeight="35.0" prefWidth="435.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+            <TextField fx:id="report_risultati" editable="false" prefHeight="35.0" prefWidth="435.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <GridPane.margin>
+                  <Insets right="20.0" />
+               </GridPane.margin>
+            </TextField>
+            <Label alignment="CENTER" prefHeight="232.0" prefWidth="567.0" text="Report Statistiche:" GridPane.rowIndex="5">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <TextField fx:id="report_statistiche" editable="false" prefHeight="35.0" prefWidth="395.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                <GridPane.margin>
                   <Insets right="20.0" />
                </GridPane.margin>
