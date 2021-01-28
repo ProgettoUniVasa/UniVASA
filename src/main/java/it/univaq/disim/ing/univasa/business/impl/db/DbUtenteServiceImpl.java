@@ -372,6 +372,11 @@ public class DbUtenteServiceImpl implements UtenteService {
 	}
 
 	@Override
+	public List<Candidato> trovaTuttiCandidati() throws BusinessException {
+		return null;
+	}
+
+	@Override
 	public List<Evento> visualizzaEventi(Operatore operatore) throws BusinessException {
 		return null;
 	}

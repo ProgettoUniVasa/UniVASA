@@ -40,6 +40,7 @@ public interface UtenteService {
 	List<Elettore> gestionePrenotazioni(Evento evento) throws BusinessException;
 	List<Candidato> visualizzaCandidati(Evento evento) throws BusinessException;
 	void modificaOperatore(Operatore operatore) throws BusinessException;
+	List<Candidato> trovaTuttiCandidati() throws BusinessException;
 
 	// Operatore
 	List<Evento> visualizzaEventi(Operatore operatore) throws BusinessException;					// da aggiungere al CD
