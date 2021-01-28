@@ -30,6 +30,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
             <Label alignment="CENTER" prefHeight="148.0" prefWidth="346.0" text="Nome :">
@@ -42,17 +43,17 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" prefHeight="146.0" prefWidth="696.0" text="Dipartimento :" GridPane.rowIndex="2">
+            <Label alignment="CENTER" prefHeight="146.0" prefWidth="696.0" text="Email :" GridPane.rowIndex="2">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" prefHeight="146.0" prefWidth="696.0" text="Email :" GridPane.rowIndex="3">
+            <Label alignment="CENTER" prefHeight="146.0" prefWidth="696.0" text="Telefono :" GridPane.rowIndex="3">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" prefHeight="232.0" prefWidth="567.0" text="Telefono :" GridPane.rowIndex="4">
+            <Label alignment="CENTER" prefHeight="232.0" prefWidth="567.0" text="Nome Università :" GridPane.rowIndex="4">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
@@ -67,17 +68,27 @@
                   <Insets right="20.0" />
                </GridPane.margin>
             </TextField>
-            <TextField fx:id="dipartimento" editable="false" prefHeight="35.0" prefWidth="435.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <TextField fx:id="email" editable="false" prefHeight="35.0" prefWidth="435.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets right="20.0" />
                </GridPane.margin>
             </TextField>
-            <TextField fx:id="email" editable="false" prefHeight="35.0" prefWidth="435.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <TextField fx:id="telefono" editable="false" prefHeight="35.0" prefWidth="435.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets right="20.0" />
                </GridPane.margin>
             </TextField>
-            <TextField fx:id="telefono" editable="false" prefHeight="35.0" prefWidth="435.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <TextField fx:id="nome_università" editable="false" prefHeight="35.0" prefWidth="435.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <GridPane.margin>
+                  <Insets right="20.0" />
+               </GridPane.margin>
+            </TextField>
+            <Label alignment="CENTER" prefHeight="146.0" prefWidth="696.0" text="Dipartimento :" GridPane.rowIndex="5">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <TextField fx:id="dipartimento" editable="false" prefHeight="35.0" prefWidth="435.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                <GridPane.margin>
                   <Insets right="20.0" />
                </GridPane.margin>

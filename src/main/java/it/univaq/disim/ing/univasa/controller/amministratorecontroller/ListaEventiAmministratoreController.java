@@ -7,7 +7,7 @@ import java.util.ResourceBundle;
 
 import it.univaq.disim.ing.univasa.business.BusinessException;
 import it.univaq.disim.ing.univasa.business.EventoService;
-import it.univaq.disim.ing.univasa.business.MyPharmaBusinessFactory;
+import it.univaq.disim.ing.univasa.business.UnivasaBusinessFactory;
 import it.univaq.disim.ing.univasa.controller.DataInitializable;
 import it.univaq.disim.ing.univasa.domain.Amministratore;
 import it.univaq.disim.ing.univasa.domain.Evento;
@@ -75,7 +75,7 @@ public class ListaEventiAmministratoreController implements Initializable, DataI
 
 	public ListaEventiAmministratoreController() {
 		dispatcher = ViewDispatcher.getInstance();
-		MyPharmaBusinessFactory factory = MyPharmaBusinessFactory.getInstance();
+		UnivasaBusinessFactory factory = UnivasaBusinessFactory.getInstance();
 		eventoService = factory.getEventoService();
 	}
 

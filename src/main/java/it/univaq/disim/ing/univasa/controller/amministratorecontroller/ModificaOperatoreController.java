@@ -1,5 +1,10 @@
 package it.univaq.disim.ing.univasa.controller.amministratorecontroller;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
+import javax.swing.JOptionPane;
+
 import it.univaq.disim.ing.univasa.business.BusinessException;
 import it.univaq.disim.ing.univasa.business.UnivasaBusinessFactory;
 import it.univaq.disim.ing.univasa.business.UtenteService;
@@ -13,10 +18,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
-import javax.swing.*;
-import java.net.URL;
-import java.util.ResourceBundle;
-
 public class ModificaOperatoreController implements Initializable, DataInitializable<Operatore> {
 
 	@FXML
@@ -26,7 +27,7 @@ public class ModificaOperatoreController implements Initializable, DataInitializ
 	private TextField telefono;
 
 	@FXML
-	private TextField universita;
+	private TextField nome_università;
 
 	@FXML
 	private TextField dipartimento;
@@ -60,7 +61,7 @@ public class ModificaOperatoreController implements Initializable, DataInitializ
 		this.operatore = operatore;
 		this.email.setText(operatore.getEmail());
 		this.telefono.setText(operatore.getTelefono());
-		this.universita.setText(operatore.getNome_università());
+		this.nome_università.setText(operatore.getNome_università());
 		this.dipartimento.setText(operatore.getDipartimento());
 	}
 
@@ -73,14 +74,13 @@ public class ModificaOperatoreController implements Initializable, DataInitializ
 				JOptionPane.showMessageDialog(null, " Il numero di telefono deve essere di 10 cifre!", "ATTENZIONE",
 						JOptionPane.WARNING_MESSAGE);
 			} else
-				// controllo @ per email
-				if (!email.getText().contains("@")) {
-					JOptionPane.showMessageDialog(null, "Email non valida", "ATTENZIONE",
-							JOptionPane.WARNING_MESSAGE);
-				}else{
+			// controllo @ per email
+			if (!email.getText().contains("@")) {
+				JOptionPane.showMessageDialog(null, "Email non valida", "ATTENZIONE", JOptionPane.WARNING_MESSAGE);
+			} else {
 				operatore.setEmail(email.getText());
 				operatore.setTelefono(telefono.getText());
-				operatore.setNome_università(universita.getText());
+				operatore.setNome_università(nome_università.getText());
 				operatore.setDipartimento(dipartimento.getText());
 
 				utenteService.modificaOperatore(operatore);

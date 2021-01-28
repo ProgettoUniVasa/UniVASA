@@ -139,7 +139,7 @@ public class GestioneOperatoriAmministratoreController implements Initializable,
 	}
 
 	@FXML
-	public void aggiungiFarmacistaAction(ActionEvent event) {
+	public void aggiungiOperatoreAction(ActionEvent event) {
 		dispatcher.renderView("aggiungiOperatore", operatore);
 	}
 

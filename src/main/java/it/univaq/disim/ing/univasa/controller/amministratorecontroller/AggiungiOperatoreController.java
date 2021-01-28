@@ -76,13 +76,12 @@ public class AggiungiOperatoreController implements Initializable, DataInitializ
 	public void initializeData(Operatore operatore) {
 		// Si disabilita il bottone se i campi di seguito non rispettano le proprietà
 		// definite
-		aggiungiOperatoreButton.disableProperty()
-				.bind((nome.textProperty().isEmpty()
-						.or(cognome.textProperty().isEmpty()
-								.or(email.textProperty().isEmpty().or(telefono.textProperty().isEmpty()
-										.or(dataNascita.valueProperty().isNull().or(
-												professione.accessibleTextProperty().isEqualTo(professione).or(nome_università.textProperty()
-														.isEmpty().or(dipartimento.textProperty().isEmpty())))))))));
+		aggiungiOperatoreButton.disableProperty().bind((nome.textProperty().isEmpty().or(cognome.textProperty()
+				.isEmpty()
+				.or(email.textProperty().isEmpty().or(telefono.textProperty().isEmpty()
+						.or(dataNascita.valueProperty().isNull()
+								.or(professione.accessibleTextProperty().isEqualTo(professione).or(nome_università
+										.textProperty().isEmpty().or(dipartimento.textProperty().isEmpty())))))))));
 	}
 
 	@FXML

@@ -5,7 +5,7 @@ import java.util.ResourceBundle;
 
 import it.univaq.disim.ing.univasa.business.BusinessException;
 import it.univaq.disim.ing.univasa.business.EventoService;
-import it.univaq.disim.ing.univasa.business.MyPharmaBusinessFactory;
+import it.univaq.disim.ing.univasa.business.UnivasaBusinessFactory;
 import it.univaq.disim.ing.univasa.controller.DataInitializable;
 import it.univaq.disim.ing.univasa.domain.Amministratore;
 import it.univaq.disim.ing.univasa.domain.Evento;
@@ -53,7 +53,7 @@ public class AggiungiEventoController implements Initializable, DataInitializabl
 
 	public AggiungiEventoController() {
 		dispatcher = ViewDispatcher.getInstance();
-		MyPharmaBusinessFactory factory = MyPharmaBusinessFactory.getInstance();
+		UnivasaBusinessFactory factory = UnivasaBusinessFactory.getInstance();
 		eventoService = factory.getEventoService();
 	}
 
@@ -66,7 +66,7 @@ public class AggiungiEventoController implements Initializable, DataInitializabl
 		this.evento = evento;
 		this.nome.setText(evento.getNome());
 		this.regolamento.setText(evento.getRegolamento());
-		this.dataOraInizio.setPromptText("" + evento.getDataOraInizio()); // Con LocalDate va
+		this.dataOraInizio.setPromptText("" + evento.getDataOraInizio());
 		this.dataOraFine.setPromptText("" + evento.getDataOraFine());
 		this.luogo.setText(evento.getLuogo());
 		this.numero_preferenze_esprimibili.setText("" + evento.getNumero_preferenze_esprimibili());
@@ -85,7 +85,8 @@ public class AggiungiEventoController implements Initializable, DataInitializabl
 		try {
 			evento.setNome(nome.getText());
 			evento.setRegolamento(regolamento.getText());
-			evento.setDataOraInizio(dataOraInizio.getValue());
+			//dio porco la data di merda. dobbiamo dividerla dio cane okay?
+			evento.setDataOraInizio(dataOraInizio.getPromptText());
 			evento.setDataOraFine(dataOraFine.getValue());
 			evento.setLuogo(luogo.getText());
 			evento.setNumero_preferenze_esprimibili(Integer.parseInt(numero_preferenze_esprimibili.getText()));

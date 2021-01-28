@@ -25,13 +25,16 @@ public class EliminaOperatoreController implements Initializable, DataInitializa
 	private TextField cognome;
 
 	@FXML
-	private TextField dipartimento;
-
-	@FXML
 	private TextField email;
 
 	@FXML
 	private TextField telefono;
+
+	@FXML
+	private TextField nome_università;
+
+	@FXML
+	private TextField dipartimento;
 
 	@FXML
 	private Button eliminaButton;
@@ -64,6 +67,7 @@ public class EliminaOperatoreController implements Initializable, DataInitializa
 		this.cognome.setText(operatore.getCognome());
 		this.email.setText(operatore.getEmail());
 		this.telefono.setText(operatore.getTelefono());
+		this.nome_università.setText(operatore.getNome_università());
 		this.dipartimento.setText(operatore.getDipartimento());
 	}
 

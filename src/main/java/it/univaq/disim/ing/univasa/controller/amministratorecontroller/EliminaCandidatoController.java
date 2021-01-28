@@ -4,20 +4,19 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import it.univaq.disim.ing.univasa.business.BusinessException;
-import it.univaq.disim.ing.univasa.business.MyPharmaBusinessFactory;
+import it.univaq.disim.ing.univasa.business.UnivasaBusinessFactory;
 import it.univaq.disim.ing.univasa.business.UtenteService;
 import it.univaq.disim.ing.univasa.controller.DataInitializable;
 import it.univaq.disim.ing.univasa.domain.Amministratore;
-import it.univaq.disim.ing.univasa.domain.Paziente;
+import it.univaq.disim.ing.univasa.domain.Candidato;
 import it.univaq.disim.ing.univasa.view.ViewDispatcher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
-public class EliminaPazienteController implements Initializable, DataInitializable<Paziente> {
+public class EliminaCandidatoController implements Initializable, DataInitializable<Candidato> {
 
 	@FXML
 	private TextField nome;
@@ -26,19 +25,16 @@ public class EliminaPazienteController implements Initializable, DataInitializab
 	private TextField cognome;
 
 	@FXML
-	private TextField cf;
-
-	@FXML
-	private TextField luogoNascita;
-
-	@FXML
-	private DatePicker dataNascita;
-
-	@FXML
-	private TextField residenza;
+	private TextField email;
 
 	@FXML
 	private TextField telefono;
+
+	@FXML
+	private TextField nome_università;
+
+	@FXML
+	private TextField dipartimento;
 
 	@FXML
 	private Button eliminaButton;
@@ -50,13 +46,13 @@ public class EliminaPazienteController implements Initializable, DataInitializab
 
 	private UtenteService utenteService;
 
-	private Paziente paziente;
+	private Candidato candidato;
 
 	private Amministratore amministratore;
 
-	public EliminaPazienteController() {
+	public EliminaCandidatoController() {
 		dispatcher = ViewDispatcher.getInstance();
-		MyPharmaBusinessFactory factory = MyPharmaBusinessFactory.getInstance();
+		UnivasaBusinessFactory factory = UnivasaBusinessFactory.getInstance();
 		utenteService = factory.getUtenteService();
 	}
 
@@ -65,15 +61,14 @@ public class EliminaPazienteController implements Initializable, DataInitializab
 	}
 
 	@Override
-	public void initializeData(Paziente paziente) {
-		this.paziente = paziente;
-		this.nome.setText(paziente.getNome());
-		this.cognome.setText(paziente.getCognome());
-		this.cf.setText(paziente.getCf());
-		this.luogoNascita.setText(paziente.getLuogoNascita());
-		this.dataNascita.setValue(paziente.getDataNascita());
-		this.residenza.setText(paziente.getResidenza());
-		this.telefono.setText(paziente.getTelefono());
+	public void initializeData(Candidato candidato) {
+		this.candidato = candidato;
+		this.nome.setText(candidato.getNome());
+		this.cognome.setText(candidato.getCognome());
+		this.email.setText(candidato.getEmail());
+		this.telefono.setText(candidato.getTelefono());
+		this.nome_università.setText(candidato.getNome_università());
+		this.dipartimento.setText(candidato.getDipartimento());
 	}
 
 	@FXML
@@ -81,8 +76,8 @@ public class EliminaPazienteController implements Initializable, DataInitializab
 
 		try {
 
-			utenteService.eliminaUtente(paziente);
-			dispatcher.renderView("gestionePazientiAmministratore", amministratore);
+			utenteService.eliminaUtente(candidato);
+			dispatcher.renderView("gestioneCandidatiAmministratore", amministratore);
 
 		} catch (BusinessException e) {
 			e.printStackTrace();
@@ -92,6 +87,6 @@ public class EliminaPazienteController implements Initializable, DataInitializab
 
 	@FXML
 	public void annullaAction(ActionEvent event) {
-		dispatcher.renderView("gestionePazientiAmministratore", amministratore);
+		dispatcher.renderView("gestioneCandidatiAmministratore", amministratore);
 	}
 }

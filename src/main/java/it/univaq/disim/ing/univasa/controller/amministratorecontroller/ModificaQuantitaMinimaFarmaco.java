@@ -18,6 +18,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
+//certificato elettore?
 public class ModificaQuantitaMinimaFarmaco implements Initializable, DataInitializable<Farmaco> {
 
 	@FXML

@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -17,6 +19,15 @@
             <Insets top="5.0" />
          </VBox.margin>
       </Label>
+      <HBox prefHeight="76.0" prefWidth="912.0">
+         <children>
+            <Button fx:id="aggiungiCandidatoButton" mnemonicParsing="false" onAction="#aggiungiCandidatoAction" prefHeight="37.0" prefWidth="131.0" text="Aggiungi Candidato">
+               <HBox.margin>
+                  <Insets left="770.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
       <TableView fx:id="mediciTable" prefHeight="430.0" prefWidth="753.0" style="-fx-background-color: #0ABAB5;">
         <columns>
           <TableColumn fx:id="nomeTableColumn" prefWidth="62.0" text="Nome" />

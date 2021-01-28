@@ -5,7 +5,7 @@ import java.util.ResourceBundle;
 
 import it.univaq.disim.ing.univasa.business.BusinessException;
 import it.univaq.disim.ing.univasa.business.EventoService;
-import it.univaq.disim.ing.univasa.business.MyPharmaBusinessFactory;
+import it.univaq.disim.ing.univasa.business.UnivasaBusinessFactory;
 import it.univaq.disim.ing.univasa.controller.DataInitializable;
 import it.univaq.disim.ing.univasa.domain.Amministratore;
 import it.univaq.disim.ing.univasa.domain.Evento;
@@ -53,7 +53,7 @@ public class AggiungiReportController implements Initializable, DataInitializabl
 
 	public AggiungiReportController() {
 		dispatcher = ViewDispatcher.getInstance();
-		MyPharmaBusinessFactory factory = MyPharmaBusinessFactory.getInstance();
+		UnivasaBusinessFactory factory = UnivasaBusinessFactory.getInstance();
 		eventoService = factory.getEventoService();
 	}
 
@@ -65,8 +65,8 @@ public class AggiungiReportController implements Initializable, DataInitializabl
 	public void initializeData(Evento evento) {
 		this.evento = evento;
 		this.nomeEvento.setText(evento.getNome());
-		this.dataOraInizio.setValue(evento.getDataOraInizio());
-		this.dataOraFine.setValue(evento.getDataOraFine());
+		this.dataOraInizio.setPromptText("" + evento.getDataOraInizio());
+		this.dataOraFine.setPromptText("" + evento.getDataOraFine());
 		this.luogo.setText(evento.getLuogo());
 		this.report_risultati.setText(evento.getReport_risultati());
 		this.report_statistiche.setText(evento.getReport_statistiche());
@@ -84,6 +84,7 @@ public class AggiungiReportController implements Initializable, DataInitializabl
 	public void salvaAction(ActionEvent event) {
 		try {
 			evento.setNome(nomeEvento.getText());
+			// .
 			evento.setDataOraInizio(dataOraInizio.getValue());
 			evento.setDataOraFine(dataOraFine.getValue());
 			evento.setLuogo(luogo.getText());
