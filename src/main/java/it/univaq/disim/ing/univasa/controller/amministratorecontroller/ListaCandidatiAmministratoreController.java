@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import it.univaq.disim.ing.univasa.business.BusinessException;
-import it.univaq.disim.ing.univasa.business.MyPharmaBusinessFactory;
+import it.univaq.disim.ing.univasa.business.UnivasaBusinessFactory;
 import it.univaq.disim.ing.univasa.business.UtenteService;
 import it.univaq.disim.ing.univasa.controller.DataInitializable;
 import it.univaq.disim.ing.univasa.domain.Amministratore;
@@ -30,7 +30,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 
-public class ListaCandidatiAmministratoreController implements Initializable, DataInitializable<Amministratore> {
+public class ListaCandidatiAmministratoreController implements Initializable, DataInitializable<Evento> {
 
 	@FXML
 	private Label candidatiLabel;
@@ -48,12 +48,6 @@ public class ListaCandidatiAmministratoreController implements Initializable, Da
 	private TableColumn<Candidato, String> emailTableColumn;
 
 	@FXML
-	private TableColumn<Candidato, String> usernameTableColumn;
-
-	@FXML
-	private TableColumn<Candidato, String> passwordTableColumn;
-
-	@FXML
 	private TableColumn<Candidato, String> telefonoTableColumn;
 
 	@FXML
@@ -63,15 +57,13 @@ public class ListaCandidatiAmministratoreController implements Initializable, Da
 	private TableColumn<Candidato, Professione> professioneTableColumn;
 
 	@FXML
-	private TableColumn<Candidato, String> nome_universitàTableColumn;
+	private TableColumn<Candidato, String> nomeUniversitàTableColumn;
 
 	@FXML
 	private TableColumn<Candidato, String> dipartimentoTableColumn;
-	
-	//voti ricevuti, evento
 
 	@FXML
-	private Button aggiungiCandidatoButton;
+	private TableColumn<Candidato, Button> eliminaTableColumn;
 
 	private ViewDispatcher dispatcher;
 
@@ -79,18 +71,10 @@ public class ListaCandidatiAmministratoreController implements Initializable, Da
 
 	private Candidato candidato;
 
-	@FXML
-	private TableColumn<Candidato, Button> azioniTableColumn;
-
-	@FXML
-	private TableColumn<Candidato, Button> modificaTableColumn;
-
-	@FXML
-	private TableColumn<Candidato, Button> eliminaTableColumn;
 
 	public ListaCandidatiAmministratoreController() {
 		dispatcher = ViewDispatcher.getInstance();
-		MyPharmaBusinessFactory factory = MyPharmaBusinessFactory.getInstance();
+		UnivasaBusinessFactory factory = UnivasaBusinessFactory.getInstance();
 		utenteService = factory.getUtenteService();
 	}
 
@@ -99,12 +83,10 @@ public class ListaCandidatiAmministratoreController implements Initializable, Da
 		nomeTableColumn.setCellValueFactory(new PropertyValueFactory<>("nome"));
 		cognomeTableColumn.setCellValueFactory(new PropertyValueFactory<>("cognome"));
 		emailTableColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
-		usernameTableColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
-		passwordTableColumn.setCellValueFactory(new PropertyValueFactory<>("password"));
 		telefonoTableColumn.setCellValueFactory(new PropertyValueFactory<>("telefono"));
 		dataNascitaTableColumn.setCellValueFactory(new PropertyValueFactory<>("dataNascita"));
 		professioneTableColumn.setCellValueFactory(new PropertyValueFactory<>("professione"));
-		nome_universitàTableColumn.setCellValueFactory(new PropertyValueFactory<>("nome_università"));
+		nomeUniversitàTableColumn.setCellValueFactory(new PropertyValueFactory<>("nome_università"));
 		dipartimentoTableColumn.setCellValueFactory(new PropertyValueFactory<>("dipartimento"));
 
 		eliminaTableColumn.setStyle("-fx-alignment: CENTER;");
@@ -115,7 +97,6 @@ public class ListaCandidatiAmministratoreController implements Initializable, Da
 					public ObservableValue<Button> call(CellDataFeatures<Candidato, Button> param) {
 						final Button eliminaButton = new Button("Elimina");
 						eliminaButton.setOnAction(new EventHandler<ActionEvent>() {
-
 							@Override
 							public void handle(ActionEvent event) {
 								dispatcher.renderView("eliminaCandidato", param.getValue());
@@ -128,9 +109,9 @@ public class ListaCandidatiAmministratoreController implements Initializable, Da
 	}
 
 	@Override
-	public void initializeData(Amministratore amministratore) {
+	public void initializeData(Evento evento) {
 		try {
-			List<Candidato> candidato = utenteService.trovaTuttiCandidati();
+			List<Candidato> candidati = utenteService.visualizzaCandidati(evento);
 			ObservableList<Candidato> candidatiData = FXCollections.observableArrayList(candidati);
 
 			candidatiTable.setItems(candidatiData);

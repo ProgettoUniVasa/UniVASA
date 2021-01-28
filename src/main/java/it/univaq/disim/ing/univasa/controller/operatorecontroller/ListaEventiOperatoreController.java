@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.ResourceBundle;
 import it.univaq.disim.ing.univasa.business.BusinessException;
-import it.univaq.disim.ing.univasa.business.MyPharmaBusinessFactory;
+import it.univaq.disim.ing.univasa.business.UnivasaBusinessFactory;
 import it.univaq.disim.ing.univasa.business.UtenteService;
 import it.univaq.disim.ing.univasa.controller.DataInitializable;
 import it.univaq.disim.ing.univasa.domain.Evento;
@@ -57,7 +57,7 @@ public class ListaEventiOperatoreController implements Initializable, DataInitia
 
     public ListaEventiOperatoreController() {
         dispatcher = ViewDispatcher.getInstance();
-        MyPharmaBusinessFactory factory = MyPharmaBusinessFactory.getInstance();
+        UnivasaBusinessFactory factory = UnivasaBusinessFactory.getInstance();
         utenteService = factory.getUtenteService();
     }
 

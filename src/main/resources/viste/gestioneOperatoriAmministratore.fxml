@@ -26,7 +26,7 @@
             <Font size="16.0" />
          </font>
       </Button>
-      <TableView fx:id="farmacistiTable" prefHeight="472.0" prefWidth="698.0" style="-fx-background-color: #0ABAB5;">
+      <TableView fx:id="operatoriTable" prefHeight="472.0" prefWidth="698.0" style="-fx-background-color: #0ABAB5;">
          <columns>
             <TableColumn fx:id="nomeTableColumn" prefWidth="88.0" text="Nome" />
             <TableColumn fx:id="cognomeTableColumn" prefWidth="102.0" text="Cognome" />

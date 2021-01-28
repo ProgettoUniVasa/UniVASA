@@ -41,6 +41,7 @@ public interface UtenteService {
 	List<Elettore> gestionePrenotazioni(Evento evento) throws BusinessException;
 	List<Utente> visualizzaUtenti() throws  BusinessException;
 	List<Candidato> visualizzaCandidati(Evento evento) throws BusinessException;
+	void modificaOperatore(Operatore operatore) throws BusinessException;
 
 	// Operatore
 	List<Evento> visualizzaEventi(Operatore operatore) throws BusinessException;					// da aggiungere al CD
@@ -61,4 +62,5 @@ public interface UtenteService {
 	List<ElettoreOnline> visualizzaPrenotatiOnline(SchedaElettorale schedaElettorale) throws BusinessException;
 
 	void eliminaUtente(Utente utente) throws UtenteNotFoundException, BusinessException;
+
 }

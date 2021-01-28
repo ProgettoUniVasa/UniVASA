@@ -6,16 +6,18 @@ import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 
 import it.univaq.disim.ing.univasa.business.BusinessException;
-import it.univaq.disim.ing.univasa.business.MyPharmaBusinessFactory;
+import it.univaq.disim.ing.univasa.business.UnivasaBusinessFactory;
 import it.univaq.disim.ing.univasa.business.UtenteService;
 import it.univaq.disim.ing.univasa.controller.DataInitializable;
 import it.univaq.disim.ing.univasa.domain.Amministratore;
 import it.univaq.disim.ing.univasa.domain.Operatore;
+import it.univaq.disim.ing.univasa.domain.Professione;
 import it.univaq.disim.ing.univasa.view.ViewDispatcher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
@@ -37,7 +39,7 @@ public class AggiungiOperatoreController implements Initializable, DataInitializ
 	private DatePicker dataNascita;
 
 	@FXML
-	private TextField professione;
+	private ComboBox<Professione> professione;
 
 	@FXML
 	private TextField nome_università;
@@ -61,12 +63,13 @@ public class AggiungiOperatoreController implements Initializable, DataInitializ
 
 	public AggiungiOperatoreController() {
 		dispatcher = ViewDispatcher.getInstance();
-		MyPharmaBusinessFactory factory = MyPharmaBusinessFactory.getInstance();
+		UnivasaBusinessFactory factory = UnivasaBusinessFactory.getInstance();
 		utenteService = factory.getUtenteService();
 	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		professione.getItems().addAll(Professione.values());
 	}
 
 	@Override
@@ -78,7 +81,7 @@ public class AggiungiOperatoreController implements Initializable, DataInitializ
 						.or(cognome.textProperty().isEmpty()
 								.or(email.textProperty().isEmpty().or(telefono.textProperty().isEmpty()
 										.or(dataNascita.valueProperty().isNull().or(
-												professione.textProperty().isEmpty().or(nome_università.textProperty()
+												professione.accessibleTextProperty().isEqualTo(professione).or(nome_università.textProperty()
 														.isEmpty().or(dipartimento.textProperty().isEmpty())))))))));
 	}
 
@@ -86,14 +89,14 @@ public class AggiungiOperatoreController implements Initializable, DataInitializ
 	public void aggiungiOperatoreAction(ActionEvent event) {
 		try {
 
-			// Variabile che conta il numero di farmacisti con il cf che si vuogliono
+			// Variabile che conta il numero di operatori con email o telefono che si vuole
 			// inserire
 			int c = 0;
 			operatore.setNome(nome.getText());
 			operatore.setCognome(cognome.getText());
 			operatore.setEmail(email.getText());
 			operatore.setTelefono(telefono.getText());
-			operatore.setDataNascita(dataNascita.getValue());
+			operatore.setData_nascita(dataNascita.getValue());
 			operatore.setProfessione(professione.getValue());
 			operatore.setNome_università(nome_università.getText());
 			operatore.setDipartimento(dipartimento.getText());

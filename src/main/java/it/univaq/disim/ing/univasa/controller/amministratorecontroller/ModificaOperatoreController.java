@@ -1,8 +1,5 @@
 package it.univaq.disim.ing.univasa.controller.amministratorecontroller;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
 import it.univaq.disim.ing.univasa.business.BusinessException;
 import it.univaq.disim.ing.univasa.business.UnivasaBusinessFactory;
 import it.univaq.disim.ing.univasa.business.UtenteService;
@@ -16,16 +13,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
-public class EliminaOperatoreController implements Initializable, DataInitializable<Operatore> {
+import javax.swing.*;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-	@FXML
-	private TextField nome;
-
-	@FXML
-	private TextField cognome;
-
-	@FXML
-	private TextField dipartimento;
+public class ModificaOperatoreController implements Initializable, DataInitializable<Operatore> {
 
 	@FXML
 	private TextField email;
@@ -34,7 +26,13 @@ public class EliminaOperatoreController implements Initializable, DataInitializa
 	private TextField telefono;
 
 	@FXML
-	private Button eliminaButton;
+	private TextField universita;
+
+	@FXML
+	private TextField dipartimento;
+
+	@FXML
+	private Button salvaButton;
 
 	@FXML
 	private Button annullaButton;
@@ -47,7 +45,7 @@ public class EliminaOperatoreController implements Initializable, DataInitializa
 
 	private Amministratore amministratore;
 
-	public EliminaOperatoreController() {
+	public ModificaOperatoreController() {
 		dispatcher = ViewDispatcher.getInstance();
 		UnivasaBusinessFactory factory = UnivasaBusinessFactory.getInstance();
 		utenteService = factory.getUtenteService();
@@ -60,20 +58,37 @@ public class EliminaOperatoreController implements Initializable, DataInitializa
 	@Override
 	public void initializeData(Operatore operatore) {
 		this.operatore = operatore;
-		this.nome.setText(operatore.getNome());
-		this.cognome.setText(operatore.getCognome());
 		this.email.setText(operatore.getEmail());
 		this.telefono.setText(operatore.getTelefono());
+		this.universita.setText(operatore.getNome_università());
 		this.dipartimento.setText(operatore.getDipartimento());
 	}
 
 	@FXML
-	public void eliminaAction(ActionEvent event) {
+	public void salvaAction(ActionEvent event) {
 		try {
-			utenteService.eliminaUtente(operatore);
-			dispatcher.renderView("gestioneOperatoriAmministratore", amministratore);
+			// Controllo sul numero di telefono che deve essere lungo 10 cifre e non può
+			// contenere lettere
+			if (telefono.getLength() != 10 || !telefono.getText().matches("^[0-9]+$")) {
+				JOptionPane.showMessageDialog(null, " Il numero di telefono deve essere di 10 cifre!", "ATTENZIONE",
+						JOptionPane.WARNING_MESSAGE);
+			} else
+				// controllo @ per email
+				if (!email.getText().contains("@")) {
+					JOptionPane.showMessageDialog(null, "Email non valida", "ATTENZIONE",
+							JOptionPane.WARNING_MESSAGE);
+				}else{
+				operatore.setEmail(email.getText());
+				operatore.setTelefono(telefono.getText());
+				operatore.setNome_università(universita.getText());
+				operatore.setDipartimento(dipartimento.getText());
+
+				utenteService.modificaOperatore(operatore);
+
+				dispatcher.renderView("gestioneOperatoriAmministratore", amministratore);
+			}
 		} catch (BusinessException e) {
-			e.printStackTrace();
+			dispatcher.renderError(e);
 		}
 	}
 

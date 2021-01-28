@@ -4,7 +4,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 import it.univaq.disim.ing.univasa.business.BusinessException;
-import it.univaq.disim.ing.univasa.business.MyPharmaBusinessFactory;
+import it.univaq.disim.ing.univasa.business.UnivasaBusinessFactory;
 import it.univaq.disim.ing.univasa.business.UtenteService;
 import it.univaq.disim.ing.univasa.controller.DataInitializable;
 import it.univaq.disim.ing.univasa.domain.ElettoreInSede;
@@ -51,7 +51,7 @@ public class EventoOperatoreController implements Initializable, DataInitializab
 
     public EventoOperatoreController() {
         dispatcher = ViewDispatcher.getInstance();
-        MyPharmaBusinessFactory factory = MyPharmaBusinessFactory.getInstance();
+        UnivasaBusinessFactory factory = UnivasaBusinessFactory.getInstance();
         utenteService = factory.getUtenteService();
     }
 
