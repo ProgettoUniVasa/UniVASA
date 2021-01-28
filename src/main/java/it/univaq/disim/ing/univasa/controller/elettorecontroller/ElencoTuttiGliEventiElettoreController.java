@@ -105,7 +105,7 @@ public class ElencoTuttiGliEventiElettoreController implements Initializable, Da
 
 							@Override
 							public void handle(ActionEvent event) {
-								dispatcher.renderView("prenotazioneInPresenzaEvento", param.getValue());
+								dispatcher.renderView("prenotazioneVotazioneInPresenza", param.getValue());
 							}
 						});
 						return new SimpleObjectProperty<Button>(prenotazioneInPresenzaButton);
@@ -123,7 +123,7 @@ public class ElencoTuttiGliEventiElettoreController implements Initializable, Da
 
 							@Override
 							public void handle(ActionEvent event) {
-								dispatcher.renderView("prenotazioneOnlineEvento", param.getValue());
+								dispatcher.renderView("prenotazioneVotazioneOnline", param.getValue());
 							}
 						});
 						return new SimpleObjectProperty<Button>(prenotazioneOnlineButton);
