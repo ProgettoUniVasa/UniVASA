@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="329.0" prefWidth="666.0" style="-fx-background-color: orange;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.elettorecontroller.PrenotazioneVotazioneInPresenzaElettore">
    <children>
       <Label alignment="CENTER" prefHeight="68.0" prefWidth="666.0" text="Prenotazione votazione in presenza">
@@ -17,7 +16,7 @@
          </font>
       </Label>
       <Separator prefWidth="200.0" />
-      <Label prefHeight="187.0" prefWidth="666.0" text="Sei sicuro di volerti prenotare per la votazione in presenza di questo evento?">
+      <Label prefHeight="187.0" prefWidth="666.0" text=" Sei sicuro di volerti prenotare per la votazione in presenza di questo evento?">
          <font>
             <Font size="16.0" />
          </font>
