@@ -23,12 +23,12 @@
             </Button>
          </children>
       </HBox>
-      <Label alignment="TOP_CENTER" prefHeight="46.0" prefWidth="734.0" text="Tutti gli eventi" textFill="#0abab5">
+      <Label alignment="TOP_CENTER" prefHeight="46.0" prefWidth="734.0" text="Tutti gli eventi" textFill="ORANGE">
          <font>
             <Font name="Palatino Linotype Bold" size="30.0" />
          </font>
       </Label>
-      <TableView fx:id="tuttiGliEventiTable" prefHeight="386.0" prefWidth="788.0" style="-fx-background-color: #0abab5;">
+      <TableView fx:id="tuttiGliEventiTable" prefHeight="386.0" prefWidth="788.0" style="-fx-background-color: orange;">
         <columns>
           <TableColumn fx:id="nomeTableColumn" prefWidth="87.19997823238373" text="Nome" />
           <TableColumn fx:id="dataOraInizioTableColumn" prefWidth="100.80000305175781" text="Data e ora inizio" />
