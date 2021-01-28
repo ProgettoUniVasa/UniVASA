@@ -37,23 +37,17 @@ public interface UtenteService {
 	void creaCandidato(Candidato candidato) throws BusinessException;
 
 	// Amministratore
-	boolean creaEvento(Evento evento) throws  BusinessException;
-	boolean eliminaEvento(Evento evento) throws  BusinessException;
-	boolean creaReport(String report) throws  BusinessException;
-	boolean verificaCertificato(String certificato) throws  BusinessException;
-	List<Elettore> gestionePrenotazioni(Evento evento) throws  BusinessException;
-	boolean creaTurnazione(Turnazione turnazione) throws  BusinessException;
-	boolean associaTurnazione(Turnazione turnazione, Operatore operatore) throws  BusinessException;
+	boolean verificaCertificato(String certificato) throws BusinessException;
+	List<Elettore> gestionePrenotazioni(Evento evento) throws BusinessException;
 	List<Utente> visualizzaUtenti() throws  BusinessException;
-	List<Candidato> visualizzaCandidati(Evento evento) throws  BusinessException;
+	List<Candidato> visualizzaCandidati(Evento evento) throws BusinessException;
 
 	// Operatore
 	List<Evento> visualizzaEventi(Operatore operatore) throws BusinessException;					// da aggiungere al CD
-	boolean riconoscimentoElettore(ElettoreInSede elettoreInSede) throws  BusinessException;		// ma questa viene fatta con un documneto????
-	boolean calcoloRisulatti(Evento evento) throws  BusinessException;
+	boolean riconoscimentoElettore(ElettoreInSede elettoreInSede) throws BusinessException;		// ma questa viene fatta con un documneto????
 	boolean caricaRisultati(Evento evento) throws  BusinessException;
-	List<Turnazione> visualizzaturnazioni(Operatore operatore) throws  BusinessException;
-	List<ElettoreInSede> visualizzaPrenotatiInSede(Evento evento) throws  BusinessException;
+	List<Turnazione> visualizzaTurnazioni(Operatore operatore) throws BusinessException;
+	List<ElettoreInSede> visualizzaPrenotatiInSede(Evento evento) throws BusinessException;
 
 	// Elettore generico -- ma dove lo salva??? Non c'è un DB
 	void prenotazioneInSede(Elettore elettore, Evento evento) throws BusinessException;

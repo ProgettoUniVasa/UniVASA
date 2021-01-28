@@ -14,12 +14,11 @@ import java.util.List;
 import it.univaq.disim.ing.univasa.business.BusinessException;
 import it.univaq.disim.ing.univasa.business.UtenteNotFoundException;
 import it.univaq.disim.ing.univasa.business.UtenteService;
-import it.univaq.disim.ing.univasa.domain.Amministratore;
+import it.univaq.disim.ing.univasa.domain.*;
 import it.univaq.disim.ing.univasa.domain.Farmacista;
 import it.univaq.disim.ing.univasa.domain.Medico;
 import it.univaq.disim.ing.univasa.domain.Paziente;
 import it.univaq.disim.ing.univasa.domain.TipologiaMedico;
-import it.univaq.disim.ing.univasa.domain.Utente;
 
 public class DbUtenteServiceImpl implements UtenteService {
 
@@ -30,7 +29,9 @@ public class DbUtenteServiceImpl implements UtenteService {
 	// Definizione query in Java
 	private static final String trovaTuttiUtenti = "select * from utente";
 	private static final String trovaUtenteDaId = "select * from utente where id=?";
-	private static final String trovaFarmacisti = "select * from utente where tipologia='farmacista' ";
+	private static final String visualizzaTurnazioni = "select * from turnazione where id_operatore=?";
+
+	/*private static final String trovaFarmacisti = "select * from utente where tipologia='farmacista' ";
 	private static final String trovaPazienti = "select * from utente where tipologia='paziente' ";
 	private static final String trovaMedici = "select * from utente where tipologia='medico' ";
 
@@ -41,6 +42,7 @@ public class DbUtenteServiceImpl implements UtenteService {
 	private static final String modificaMedico = "update utente set username=?, password=?, nome=?, cognome=?, cf=?, dataNascita=?, luogoNascita=?, residenza=?, telefono=?, sesso=?, codicealbomedici=?, tipologiamedico=? where id = ?";
 	private static final String modificaPaziente = "update utente set username=?, password=?, nome=?, cognome=?, cf=?, dataNascita=?, luogoNascita=?, residenza=?, telefono=?, sesso=?, saldo=? where id = ?";
 	private static final String modificaFarmacista = "update utente set username=?, password=?, nome=?, cognome=?, cf=?, dataNascita=?, luogoNascita=?, residenza=?, telefono=?, sesso=? where id = ?";
+	 */
 
 	private static final String eliminaUtente = "delete from utente where id=? ";
 
@@ -282,6 +284,140 @@ public class DbUtenteServiceImpl implements UtenteService {
 		return result;
 	}
 
+	@Override
+	public List<Amministratore> trovaTuttiAmministratori() throws BusinessException {
+		return null;
+	}
+
+	@Override
+	public List<Operatore> trovaTuttiOperatori() throws BusinessException {
+		return null;
+	}
+
+	@Override
+	public List<Elettore> trovaTuttiElettori() throws BusinessException {
+		return null;
+	}
+
+	@Override
+	public void creaAmministratore(Amministratore amministratore) throws BusinessException {
+
+	}
+
+	@Override
+	public void creaOperatore(Operatore operatore) throws BusinessException {
+
+	}
+
+	@Override
+	public void creaElettore(Elettore elettore) throws BusinessException {
+
+	}
+
+	@Override
+	public void creaElettoreInSede(ElettoreInSede elettoreInSede) throws BusinessException {
+
+	}
+
+	@Override
+	public void creaElettoreOnline(ElettoreOnline elettoreOnline) throws BusinessException {
+
+	}
+
+	@Override
+	public void creaCandidato(Candidato candidato) throws BusinessException {
+
+	}
+
+	@Override
+	public boolean verificaCertificato(String certificato) throws BusinessException {
+		return false;
+	}
+
+	@Override
+	public List<Elettore> gestionePrenotazioni(Evento evento) throws BusinessException {
+		return null;
+	}
+
+	@Override
+	public List<Utente> visualizzaUtenti() throws BusinessException {
+		return null;
+	}
+
+	@Override
+	public List<Candidato> visualizzaCandidati(Evento evento) throws BusinessException {
+		return null;
+	}
+
+	@Override
+	public List<Evento> visualizzaEventi(Operatore operatore) throws BusinessException {
+		return null;
+	}
+
+	@Override
+	public boolean riconoscimentoElettore(ElettoreInSede elettoreInSede) throws BusinessException {
+		return false;
+	}
+
+	@Override
+	public boolean caricaRisultati(Evento evento) throws BusinessException {
+		return false;
+	}
+
+	@Override
+	public List<Turnazione> visualizzaTurnazioni(Operatore operatore) throws BusinessException {
+		return null;
+	}
+
+	@Override
+	public List<ElettoreInSede> visualizzaPrenotatiInSede(Evento evento) throws BusinessException {
+		return null;
+	}
+
+	@Override
+	public void prenotazioneInSede(Elettore elettore, Evento evento) throws BusinessException {
+
+	}
+
+	@Override
+	public void prenotazioneOnline(Elettore elettore, Evento evento) throws BusinessException {
+
+	}
+
+	@Override
+	public void vota(ElettoreOnline elettoreOnline, Evento evento) throws BusinessException {
+
+	}
+
+	@Override
+	public boolean riconoscimentoOnline(ElettoreOnline elettoreOnline, Evento evento) throws BusinessException {
+		return false;
+	}
+
+	@Override
+	public List<ElettoreOnline> visualizzaPrenotatiOnline(SchedaElettorale schedaElettorale) throws BusinessException {
+		return null;
+	}
+
+	@Override
+	public void eliminaUtente(Utente utente) throws UtenteNotFoundException, BusinessException {
+		// Connessione al Database e richiamo query
+		try (Connection c = DriverManager.getConnection(url, user, pwd);) {
+
+			PreparedStatement ps = c.prepareStatement(eliminaUtente);
+
+			ps.setInt(1, utente.getId());
+
+			ps.executeUpdate();
+
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+	}
+
+
+
+	/*
 	@Override
 	public List<Farmacista> trovaTuttiFarmacisti() throws BusinessException {
 		List<Farmacista> result = new ArrayList<>();
@@ -598,21 +734,6 @@ public class DbUtenteServiceImpl implements UtenteService {
 			ex.printStackTrace();
 		}
 	}
-
-	@Override
-	public void eliminaUtente(Utente utente) throws UtenteNotFoundException, BusinessException {
-		// Connessione al Database e richiamo query
-		try (Connection c = DriverManager.getConnection(url, user, pwd);) {
-
-			PreparedStatement ps = c.prepareStatement(eliminaUtente);
-
-			ps.setInt(1, utente.getId());
-
-			ps.executeUpdate();
-
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-		}
-	}
+	*/
 
 }

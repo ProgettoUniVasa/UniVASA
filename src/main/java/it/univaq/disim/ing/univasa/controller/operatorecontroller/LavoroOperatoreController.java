@@ -91,7 +91,7 @@ public class LavoroOperatoreController implements Initializable, DataInitializab
     public void initializeData(Operatore operatore) {
         try {
             this.operatore = operatore;
-            List<Turnazione> lavoroOperatore = utenteService.visualizzaturnazioni();
+            List<Turnazione> lavoroOperatore = utenteService.visualizzaTurnazioni(operatore);
             ObservableList<Turnazione> lavoroOperatoreDate = FXCollections
                     .observableArrayList(lavoroOperatore);
             lavoroTable.setItems(lavoroOperatoreDate);
