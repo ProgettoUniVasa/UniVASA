@@ -18,28 +18,27 @@ import it.univaq.disim.ing.univasa.domain.*;
 
 public class DbUtenteServiceImpl implements UtenteService {
 
-	private static final String url = "jdbc:mysql://localhost:3306/pharmadb?noAccessToProcedureBodies=true&serverTimezone=Europe/Rome";
+	private static final String url = "jdbc:mysql://localhost:3306/univasa?noAccessToProcedureBodies=true&serverTimezone=Europe/Rome";
 	private static final String user = "dbuser";
 	private static final String pwd = "sql_password123";
 
 	// Definizione query in Java
-	private static final String trovaTuttiUtenti = "select * from utente";
-	private static final String trovaUtenteDaId = "select * from utente where id=?";
+	/*private static final String trovaTuttiUtenti = "select * from utente";
+	private static final String trovaUtenteDaId = "select * from utente where id=?";*/
 	private static final String visualizzaTurnazioni = "select * from turnazione where id_operatore=?";
 
-	/*private static final String trovaFarmacisti = "select * from utente where tipologia='farmacista' ";
-	private static final String trovaPazienti = "select * from utente where tipologia='paziente' ";
+	private static final String trovaOperatori = "select * from operatore where id=? ";
+	/*private static final String trovaPazienti = "select * from utente where tipologia='paziente' ";
 	private static final String trovaMedici = "select * from utente where tipologia='medico' ";
-
-	private static final String inserisciFarmacista = "insert into utente (username, password, nome, cognome, cf, dataNascita, luogoNascita, residenza, telefono, sesso, tipologia) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, \"farmacista\" )";
-	private static final String inserisciPaziente = "insert into utente (username, password, nome, cognome, cf, dataNascita, luogoNascita, residenza, telefono, sesso, saldo, tipologia) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?, \"paziente\") ";
+	*/
+	private static final String inserisciOperatore = "insert into operatore (nome, cognome, email, username, password, telefono, data_nascita, professione, nome_università, dipartimento) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	/*private static final String inserisciPaziente = "insert into utente (username, password, nome, cognome, cf, dataNascita, luogoNascita, residenza, telefono, sesso, saldo, tipologia) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?, \"paziente\") ";
 	private static final String inserisciMedico = "insert into utente (username, password, nome, cognome, cf, dataNascita, luogoNascita, residenza, telefono, sesso, codicealbomedici, tipologiamedico, tipologia) values (?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?, \"medico\")";
-
-	private static final String modificaMedico = "update utente set username=?, password=?, nome=?, cognome=?, cf=?, dataNascita=?, luogoNascita=?, residenza=?, telefono=?, sesso=?, codicealbomedici=?, tipologiamedico=? where id = ?";
-	private static final String modificaPaziente = "update utente set username=?, password=?, nome=?, cognome=?, cf=?, dataNascita=?, luogoNascita=?, residenza=?, telefono=?, sesso=?, saldo=? where id = ?";
-	private static final String modificaFarmacista = "update utente set username=?, password=?, nome=?, cognome=?, cf=?, dataNascita=?, luogoNascita=?, residenza=?, telefono=?, sesso=? where id = ?";
 	 */
-
+	private static final String modificaOperatore = "update operatore set email=?, telefono=?, nome_università=?, dipartimento=? where id = ?";
+	/*private static final String modificaPaziente = "update utente set username=?, password=?, nome=?, cognome=?, cf=?, dataNascita=?, luogoNascita=?, residenza=?, telefono=?, sesso=?, saldo=? where id = ?";
+	private static final String modificaFarmacista = "update utente set username=?, password=?, nome=?, cognome=?, cf=?, dataNascita=?, luogoNascita=?, residenza=?, telefono=?, sesso=? where id = ?";
+	*/
 	private static final String eliminaUtente = "delete from utente where id=? ";
 
 	@Override
@@ -59,11 +58,11 @@ public class DbUtenteServiceImpl implements UtenteService {
 
 					switch (r.getString(15)) {
 
-					case "medico":
-						utente = new Medico();
+					case "elettore":
+						utente = new Elettore();
 						break;
-					case "paziente":
-						utente = new Paziente();
+					case "operatore":
+						utente = new Operatore();
 						break;
 					case "farmacista":
 						utente = new Farmacista();
