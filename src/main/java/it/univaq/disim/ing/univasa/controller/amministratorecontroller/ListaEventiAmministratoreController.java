@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import it.univaq.disim.ing.univasa.business.BusinessException;
+import it.univaq.disim.ing.univasa.business.EventoService;
 import it.univaq.disim.ing.univasa.business.MyPharmaBusinessFactory;
 import it.univaq.disim.ing.univasa.controller.DataInitializable;
 import it.univaq.disim.ing.univasa.domain.Amministratore;

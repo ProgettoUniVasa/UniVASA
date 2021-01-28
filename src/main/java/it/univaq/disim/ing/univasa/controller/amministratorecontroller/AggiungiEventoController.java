@@ -4,7 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import it.univaq.disim.ing.univasa.business.BusinessException;
-import it.univaq.disim.ing.univasa.business.FarmacoService;
+import it.univaq.disim.ing.univasa.business.EventoService;
 import it.univaq.disim.ing.univasa.business.MyPharmaBusinessFactory;
 import it.univaq.disim.ing.univasa.controller.DataInitializable;
 import it.univaq.disim.ing.univasa.domain.Amministratore;
@@ -73,10 +73,11 @@ public class AggiungiEventoController implements Initializable, DataInitializabl
 
 		// Si disabilita il bottone se i campi di seguito non rispettano le proprietà
 		// definite
-		salvaButton.disableProperty().bind((nome.textProperty().isEmpty()
-				.or(regolamento.textProperty().isEmpty().or(dataOraInizio.valueProperty().isNull())
-						.or(dataOraFine.valueProperty().isNull().or(luogo.textProperty().isEmpty()
-								.or((numero_preferenze_esprimibili.textProperty().isEmpty())))))));
+		salvaButton.disableProperty()
+				.bind((nome.textProperty().isEmpty()
+						.or(regolamento.textProperty().isEmpty().or(dataOraInizio.valueProperty().isNull())
+								.or(dataOraFine.valueProperty().isNull().or(luogo.textProperty().isEmpty()
+										.or((numero_preferenze_esprimibili.textProperty().isEmpty())))))));
 	}
 
 	@FXML
