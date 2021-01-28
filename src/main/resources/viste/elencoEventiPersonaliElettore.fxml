@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="415.0" prefWidth="642.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox prefHeight="48.0" prefWidth="642.0">
+         <children>
+            <ImageView fx:id="esciButton" fitHeight="37.0" fitWidth="60.0" onMouseClicked="#esciAction">
+               <image>
+                  <Image url="@logout.png" />
+               </image>
+               <HBox.margin>
+                  <Insets left="560.0" top="5.0" />
+               </HBox.margin>
+            </ImageView>
+         </children>
+      </HBox>
+      <Label alignment="TOP_CENTER" prefHeight="46.0" prefWidth="734.0" text="I Tuoi Eventi" textFill="ORANGE">
+         <font>
+            <Font name="Palatino Linotype Bold" size="30.0" />
+         </font>
+      </Label>
+      <TableView fx:id="eventiPersonaliTable" prefHeight="320.0" prefWidth="633.0" style="-fx-background-color: orange;">
+         <columns>
+            <TableColumn fx:id="nomeTableColumn" prefWidth="87.19997823238373" text="Nome" />
+            <TableColumn fx:id="dataOraInizioTableColumn" prefWidth="100.80000305175781" text="Inizio dell'evento" />
+            <TableColumn fx:id="dataOraFineTableColumn" prefWidth="105.5999755859375" text="Fine dell'evento" />
+            <TableColumn fx:id="luogoTableColumn" prefWidth="127.20001220703125" text="Luogo" />
+            <TableColumn fx:id="regolamentoTableColumn" prefWidth="94.39990234375" text="Regolamento" />
+            <TableColumn fx:id="prenotazioneTableColumn" prefWidth="115.20002441406245" text="Stato" />
+         </columns>
+         <VBox.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" />
+         </VBox.margin>
+      </TableView>
+   </children>
+</VBox>
