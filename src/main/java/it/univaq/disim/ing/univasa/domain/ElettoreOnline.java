@@ -7,9 +7,17 @@ import java.util.Set;
 public class ElettoreOnline extends Elettore {
 
 	private Set<SchedaElettorale> schede_votate = new HashSet<>();
+	private Stato stato = Stato.prenotazione_online;
+
 
 	public ElettoreOnline() {
 		super();
+	}
+
+	public ElettoreOnline(Set<SchedaElettorale> schede_votate, Stato stato) {
+		super();
+		this.schede_votate = schede_votate;
+		this.stato = stato;
 	}
 
 	public ElettoreOnline(Long id, String nome, String cognome, String email, String username, String password,
@@ -26,6 +34,16 @@ public class ElettoreOnline extends Elettore {
 	public void setSchede_votate(Set<SchedaElettorale> schede_votate) {
 		this.schede_votate = schede_votate;
 	}
+
+	public Stato getStato() {
+		return stato;
+	}
+
+	public void setStato(Stato stato) {
+		this.stato = stato;
+	}
+	
+	
 	// Operations
 
 	/*

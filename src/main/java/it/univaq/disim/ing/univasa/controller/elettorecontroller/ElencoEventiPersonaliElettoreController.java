@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import it.univaq.disim.ing.univasa.business.BusinessException;
+import it.univaq.disim.ing.univasa.business.EventoService;
 import it.univaq.disim.ing.univasa.business.MyPharmaBusinessFactory;
 import it.univaq.disim.ing.univasa.controller.DataInitializable;
-import it.univaq.disim.ing.univasa.controller.pazientecontroller.Prescrizione;
 import it.univaq.disim.ing.univasa.domain.Elettore;
 import it.univaq.disim.ing.univasa.domain.Evento;
 import it.univaq.disim.ing.univasa.view.ViewDispatcher;
@@ -49,7 +49,7 @@ public class ElencoEventiPersonaliElettoreController implements Initializable, D
 	private TableColumn<Evento, Button> regolamentoTableColumn;
 
 	@FXML
-	private TableColumn<Evento, String> statoTableColumn;   // uso String per visualizzare la mia modalità di voto (in
+	private TableColumn<Elettore, String> statoTableColumn;   // uso String per visualizzare la mia modalità di voto (in
 															// presenza / online) se la prenotazione è stata effettuata.
 															// Se sono in presenza, devo poter cliccare il tasto per
 															// cambiare modalità di voto ed accedere alla vista che
@@ -106,9 +106,9 @@ public class ElencoEventiPersonaliElettoreController implements Initializable, D
 																					// Evento, si potrebbe mettere uno
 																					// stato votazione/stato evento?
 
-		statoTableColumn.setCellFactory(new Callback<TableColumn<Evento, String>, TableCell<Evento, String>>() {
-			public TableCell<Evento, String> call(TableColumn<Evento, String> param) {
-				return new TableCell<Evento, String>() {
+		statoTableColumn.setCellFactory(new Callback<TableColumn<Elettore, String>, TableCell<Elettore, String>>() {
+			public TableCell<Elettore, String> call(TableColumn<Elettore, String> param) {
+				return new TableCell<Elettore, String>() {
 					@Override
 					public void updateItem(String item, boolean empty) {
 						super.updateItem(item, empty);
