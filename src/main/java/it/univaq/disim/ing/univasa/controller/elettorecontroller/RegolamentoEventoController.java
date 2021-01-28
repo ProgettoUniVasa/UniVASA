@@ -52,6 +52,6 @@ public class RegolamentoEventoController implements Initializable, DataInitializ
 
 	@FXML
 	public void annullaPrescrizioneAction(ActionEvent event) {
-		dispatcher.renderView("prescrizioniMedico", evento.getMedico());
+		dispatcher.renderView("elencoTuttiGliEventiElettore", evento.getElettore()); //get elettore non esiste RIVEDERE
 	}
 }
