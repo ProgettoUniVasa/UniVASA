@@ -2,6 +2,7 @@ package it.univaq.disim.ing.univasa.business.impl.db;
 
 import it.univaq.disim.ing.univasa.business.*;
 import it.univaq.disim.ing.univasa.domain.Evento;
+import it.univaq.disim.ing.univasa.domain.Operatore;
 import it.univaq.disim.ing.univasa.domain.Turnazione;
 
 public class DbTurnazioneServiceImpl implements TurnazioneService {
@@ -14,18 +15,15 @@ public class DbTurnazioneServiceImpl implements TurnazioneService {
 	private static final String password = "sql_password123";
 
 	// Definizione query in Java
+	private static final String creaTurnazione = "insert into turnazione(Evento_idEvento, Operatore_idOperatore, fascia_oraria,data_turno) values(?,?,?,?,?)";
 
 	public DbTurnazioneServiceImpl(EventoService eventoService) {
 		this.eventoService = eventoService;
 	}
 
 	@Override
-	public void creaTurnazione(Turnazione turnazione) throws BusinessException {
+	public void creaTurnazione(Turnazione turnazione, Operatore operatore) throws BusinessException {
 
 	}
 
-	@Override
-	public void assegnaTurnazione(Turnazione turnazione, Evento evento) throws BusinessException {
-
-	}
 }

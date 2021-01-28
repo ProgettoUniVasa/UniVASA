@@ -7,6 +7,7 @@ public class Turnazione {
 	// Questa association???? Ci andrebbe Operatore, ma a che mi serve se l'Operatore ha un set dei suoi turni?
 	private Long id;
 	private Evento evento;
+	private Operatore operatore;
 	private TipologiaTurno fascia;
 	private LocalDate data_turno;
 
@@ -52,4 +53,13 @@ public class Turnazione {
 	public void setData_turno(LocalDate data_turno) {
 		this.data_turno = data_turno;
 	}
+
+	public Operatore getOperatore() {
+		return operatore;
+	}
+
+	public void setOperatore(Operatore operatore) {
+		this.operatore = operatore;
+	}
+
 }
