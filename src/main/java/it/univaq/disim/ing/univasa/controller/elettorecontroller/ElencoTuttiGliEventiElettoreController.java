@@ -1,8 +1,3 @@
-// vedere business factory
-// creare vista regolamentoEvento
-// creare vista PRENOTAZIONE IN PRESENZA, PRENOTAZIONE ONLINE
-// vedere parte codice bottone in alto a destra logout
-
 package it.univaq.disim.ing.univasa.controller.elettorecontroller;
 
 import java.net.URL;
@@ -13,7 +8,7 @@ import java.util.ResourceBundle;
 
 import it.univaq.disim.ing.univasa.business.BusinessException;
 import it.univaq.disim.ing.univasa.business.EventoService;
-import it.univaq.disim.ing.univasa.business.MyPharmaBusinessFactory;
+import it.univaq.disim.ing.univasa.business.UnivasaBusinessFactory;
 import it.univaq.disim.ing.univasa.controller.DataInitializable;
 import it.univaq.disim.ing.univasa.domain.Elettore;
 import it.univaq.disim.ing.univasa.domain.Evento;
@@ -70,7 +65,7 @@ public class ElencoTuttiGliEventiElettoreController implements Initializable, Da
 
 	public ElencoTuttiGliEventiElettoreController() {
 		dispatcher = ViewDispatcher.getInstance();
-		MyPharmaBusinessFactory factory = MyPharmaBusinessFactory.getInstance(); // vedere business factory
+		UnivasaBusinessFactory factory = UnivasaBusinessFactory.getInstance();
 		eventoService = factory.getEventoService();
 	}
 
@@ -92,8 +87,7 @@ public class ElencoTuttiGliEventiElettoreController implements Initializable, Da
 
 							@Override
 							public void handle(ActionEvent event) {
-								dispatcher.renderView("regolamentoEvento", param.getValue()); // creare vista
-																								// regolamento evento
+								dispatcher.renderView("regolamentoEvento", param.getValue());
 							}
 						});
 						return new SimpleObjectProperty<Button>(regolamentoButton);
@@ -129,8 +123,7 @@ public class ElencoTuttiGliEventiElettoreController implements Initializable, Da
 
 							@Override
 							public void handle(ActionEvent event) {
-								dispatcher.renderView("prenotazioneOnlineEvento", param.getValue()); // creare vista
-																										// prenotazioneInPresenzaEvento
+								dispatcher.renderView("prenotazioneOnlineEvento", param.getValue());
 							}
 						});
 						return new SimpleObjectProperty<Button>(prenotazioneOnlineButton);

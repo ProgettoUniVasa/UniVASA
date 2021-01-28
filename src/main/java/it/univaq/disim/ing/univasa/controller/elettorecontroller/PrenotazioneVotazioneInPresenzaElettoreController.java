@@ -5,7 +5,7 @@ import java.util.ResourceBundle;
 
 import it.univaq.disim.ing.univasa.business.BusinessException;
 import it.univaq.disim.ing.univasa.business.EventoService;
-import it.univaq.disim.ing.univasa.business.MyPharmaBusinessFactory;
+import it.univaq.disim.ing.univasa.business.UnivasaBusinessFactory;
 import it.univaq.disim.ing.univasa.business.UtenteService;
 import it.univaq.disim.ing.univasa.controller.DataInitializable;
 import it.univaq.disim.ing.univasa.domain.Elettore;
@@ -16,7 +16,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 
-public class PrenotazioneVotazioneInPresenzaElettore implements Initializable, DataInitializable<Evento> {
+public class PrenotazioneVotazioneInPresenzaElettoreController implements Initializable, DataInitializable<Evento> {
 
 	@FXML
 	private Button prenotatiInPresenzaButton;
@@ -34,10 +34,10 @@ public class PrenotazioneVotazioneInPresenzaElettore implements Initializable, D
 
 	private Elettore elettore;
 
-	public PrenotazioneVotazioneInPresenzaElettore() {
+	public PrenotazioneVotazioneInPresenzaElettoreController() {
 		dispatcher = ViewDispatcher.getInstance();
-		MyPharmaBusinessFactory factory = MyPharmaBusinessFactory.getInstance(); //vedere factory
-		PrescrizioneService = factory.getPrescrizioneService(); //vedere
+		UnivasaBusinessFactory factory = UnivasaBusinessFactory.getInstance();
+		eventoService = factory.getEventoService();
 		utenteService = factory.getUtenteService();
 	}
 
