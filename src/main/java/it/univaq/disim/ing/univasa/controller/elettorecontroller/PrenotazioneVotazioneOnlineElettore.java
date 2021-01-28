@@ -16,13 +16,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 
-public class PrenotazioneVotazioneInPresenzaElettore implements Initializable, DataInitializable<Evento> {
+public class PrenotazioneVotazioneOnlineElettore implements Initializable, DataInitializable<Evento> {
 
 	@FXML
-	private Button prenotatiInPresenzaButton;
+	private Button prenotatiOnlineButton;
 
 	@FXML
-	private Button annullaPrenotazioneInPresenzaButton;
+	private Button annullaPrenotazioneOnlineButton;
 
 	private ViewDispatcher dispatcher;
 
@@ -34,7 +34,7 @@ public class PrenotazioneVotazioneInPresenzaElettore implements Initializable, D
 
 	private Elettore elettore;
 
-	public PrenotazioneVotazioneInPresenzaElettore() {
+	public PrenotazioneVotazioneOnlineElettore() {
 		dispatcher = ViewDispatcher.getInstance();
 		MyPharmaBusinessFactory factory = MyPharmaBusinessFactory.getInstance(); //vedere factory
 		PrescrizioneService = factory.getPrescrizioneService(); //vedere
@@ -50,12 +50,12 @@ public class PrenotazioneVotazioneInPresenzaElettore implements Initializable, D
 	}
 
 	@FXML
-	public void prenotatiInPresenzaAction(ActionEvent event) throws BusinessException {
+	public void prenotatiOnlineAction(ActionEvent event) throws BusinessException {
 
 	}
 
 	@FXML
-	public void annullaPrenotazioneInPresenzaAction(ActionEvent event) throws BusinessException {
+	public void annullaPrenotazioneOnlineAction(ActionEvent event) throws BusinessException {
 		dispatcher.renderView("elencoTuttiGliEventiElettore", elettore);
 	}
 }

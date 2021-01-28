@@ -1,28 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="477.0" prefWidth="797.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.elettorecontroller.ElencoTuttiGliEventiElettoreController">
    <children>
-      <HBox prefHeight="0.0" prefWidth="718.0">
-         <children>
-            <Button fx:id="esciButton" mnemonicParsing="false" onAction="#esciAction" prefHeight="38.0" prefWidth="71.0" text="esci">
-               <HBox.margin>
-                  <Insets left="720.0" top="5.0" />
-               </HBox.margin>
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Button>
-         </children>
-      </HBox>
+      <HBox prefHeight="0.0" prefWidth="718.0" />
+      <ImageView fx:id="esciButton" fitHeight="37.0" fitWidth="60.0" onMouseClicked="#esciAction" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@logout.png" />
+         </image>
+         <VBox.margin>
+            <Insets left="730.0" />
+         </VBox.margin>
+      </ImageView>
       <Label alignment="TOP_CENTER" prefHeight="46.0" prefWidth="734.0" text="Tutti gli eventi" textFill="ORANGE">
          <font>
             <Font name="Palatino Linotype Bold" size="30.0" />
@@ -43,4 +41,7 @@
          </VBox.margin>
       </TableView>
    </children>
+   <padding>
+      <Insets top="5.0" />
+   </padding>
 </VBox>
