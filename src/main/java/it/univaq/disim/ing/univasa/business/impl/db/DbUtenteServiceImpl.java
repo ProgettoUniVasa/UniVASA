@@ -23,23 +23,50 @@ public class DbUtenteServiceImpl implements UtenteService {
 	private static final String pwd = "sql_password123";
 
 	// Definizione query in Java
-	/*private static final String trovaTuttiUtenti = "select * from utente";
-	private static final String trovaUtenteDaId = "select * from utente where id=?";*/
 	private static final String visualizzaTurnazioni = "select * from turnazione where id_operatore=?";
-
-	private static final String trovaOperatori = "select * from operatore where id=? ";
 	/*private static final String trovaPazienti = "select * from utente where tipologia='paziente' ";
 	private static final String trovaMedici = "select * from utente where tipologia='medico' ";
 	*/
+
 	private static final String inserisciOperatore = "insert into operatore (nome, cognome, email, username, password, telefono, data_nascita, professione, nome_università, dipartimento) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	/*private static final String inserisciPaziente = "insert into utente (username, password, nome, cognome, cf, dataNascita, luogoNascita, residenza, telefono, sesso, saldo, tipologia) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?, \"paziente\") ";
 	private static final String inserisciMedico = "insert into utente (username, password, nome, cognome, cf, dataNascita, luogoNascita, residenza, telefono, sesso, codicealbomedici, tipologiamedico, tipologia) values (?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?, \"medico\")";
 	 */
+
 	private static final String modificaOperatore = "update operatore set email=?, telefono=?, nome_università=?, dipartimento=? where id = ?";
 	/*private static final String modificaPaziente = "update utente set username=?, password=?, nome=?, cognome=?, cf=?, dataNascita=?, luogoNascita=?, residenza=?, telefono=?, sesso=?, saldo=? where id = ?";
 	private static final String modificaFarmacista = "update utente set username=?, password=?, nome=?, cognome=?, cf=?, dataNascita=?, luogoNascita=?, residenza=?, telefono=?, sesso=? where id = ?";
 	*/
-	private static final String eliminaUtente = "delete from utente where id=? ";
+
+	/* -------------------------------------------------------------------------------------------------------------------------------------------- */
+
+	// trovaUtenteById --- dobbiamo sapere che tipo di utente si tratta
+	private static final String trovaAmministratore = "select * from amministratore where id=?";
+	private static final String trovaOperatore = "select * from operatore where id=?";
+	private static final String trovaElettore = "select * from elettore where id=?";
+	// trovaTuttiUtenti
+	private static final String trovaAmministratori = "select * from amministratore";		// Vale anche per trovaTuttiAmministratori
+	private static final String trovaOperatori = "select * from operatore";					// Vale anche per trovaTuttiOperatori
+	private static final String trovaElettori = "select * from elettore";					// Vale anche per trovaTuttiElettori
+	// creaAmministratore
+	private static final String creaAmministratore = "insert into amministratore (nome, cognome, email, username, password, telefono, data_nascita, professione, nome_università, dipartimento) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	// creaOperatore
+	private static final String creaCandidato = "insert into operatore (nome, cognome, email, username, password, telefono, data_nascita, professione, nome_università, dipartimento) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	// creaElettore --- N.B. categoria Elettore???? Non sarebbe più esatto in elettore_partecipa_evento????
+	private static final String creaElettore = "insert into elettore (nome, cognome, email, username, password, telefono, data_nascita, professione, nome_università, dipartimento, matricola, certificato, categoria) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	// creaElettoreInSede & creaElettoreOnline --- Ecco appunto... come lo registro mo sta cosa?
+	// ...
+	// creaCandidato --- Dobbiamo sistemare ste associazioni, PER FORZA.
+	// ...
+	// verificaCertificato --- EH... BOO!!
+	// ...
+	// gestionePrenotazioni
+	private static final String gestionePrenotazioni = "select * from elettore_partecipa_evento where Evento_idEvento=?";
+	// visualizzaCandidati
+	private static final String visualizzaCandidati = "select * from candidatura where Evento_idEvento=?";
+	// viusalizzaEventi --- Cosa lega nel DB operatore ed evento????
+	// ...
+
 
 	@Override
 	public Utente autenticazione(String username, String password) throws UtenteNotFoundException, BusinessException {
@@ -335,13 +362,13 @@ public class DbUtenteServiceImpl implements UtenteService {
 	}
 
 	@Override
-	public List<Utente> visualizzaUtenti() throws BusinessException {
+	public List<Candidato> visualizzaCandidati(Evento evento) throws BusinessException {
 		return null;
 	}
 
 	@Override
-	public List<Candidato> visualizzaCandidati(Evento evento) throws BusinessException {
-		return null;
+	public void modificaOperatore(Operatore operatore) throws BusinessException {
+
 	}
 
 	@Override

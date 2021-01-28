@@ -12,7 +12,6 @@ public interface UtenteService {
 	Utente autenticazione(String username, String password) throws UtenteNotFoundException, BusinessException;
 
 	Utente trovaUtenteDaId(int id) throws BusinessException;
-
 	List<Utente> trovaTuttiUtenti() throws BusinessException;
 
 	// Metodo che restituisce una lista di tutti gli amministratorei
@@ -39,7 +38,6 @@ public interface UtenteService {
 	// Amministratore
 	boolean verificaCertificato(String certificato) throws BusinessException;
 	List<Elettore> gestionePrenotazioni(Evento evento) throws BusinessException;
-	List<Utente> visualizzaUtenti() throws  BusinessException;
 	List<Candidato> visualizzaCandidati(Evento evento) throws BusinessException;
 	void modificaOperatore(Operatore operatore) throws BusinessException;
 
