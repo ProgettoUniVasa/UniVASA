@@ -26,7 +26,7 @@ import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.util.Callback;
 
-public class ListaEventiOperatoreController implements Initializable, DataInitializable<Evento> {
+public class ListaEventiOperatoreController implements Initializable, DataInitializable<Operatore> {
 
     @FXML
     private Button indietroButton;
