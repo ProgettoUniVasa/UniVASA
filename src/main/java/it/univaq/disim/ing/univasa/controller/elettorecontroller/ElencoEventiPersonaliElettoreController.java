@@ -49,7 +49,7 @@ public class ElencoEventiPersonaliElettoreController implements Initializable, D
 	private TableColumn<Evento, Button> regolamentoTableColumn;
 
 	@FXML
-	private TableColumn<Evento, String> statoTableColumn; // uso String per visualizzare la mia modalità di voto (in
+	private TableColumn<Evento, String> statoTableColumn;   // uso String per visualizzare la mia modalità di voto (in
 															// presenza / online) se la prenotazione è stata effettuata.
 															// Se sono in presenza, devo poter cliccare il tasto per
 															// cambiare modalità di voto ed accedere alla vista che
