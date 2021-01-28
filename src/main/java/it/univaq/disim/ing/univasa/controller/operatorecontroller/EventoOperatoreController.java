@@ -9,6 +9,7 @@ import it.univaq.disim.ing.univasa.business.UtenteService;
 import it.univaq.disim.ing.univasa.controller.DataInitializable;
 import it.univaq.disim.ing.univasa.domain.ElettoreInSede;
 import it.univaq.disim.ing.univasa.domain.Evento;
+import it.univaq.disim.ing.univasa.domain.Operatore;
 import it.univaq.disim.ing.univasa.view.ViewDispatcher;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -24,7 +25,7 @@ import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.util.Callback;
 
-public class EventoOperatoreController implements Initializable, DataInitializable<ElettoreInSede> {
+public class EventoOperatoreController implements Initializable, DataInitializable<Evento> {
 
     @FXML
     private Button indietroButton;
@@ -42,6 +43,7 @@ public class EventoOperatoreController implements Initializable, DataInitializab
     private TableColumn<ElettoreInSede, String> matricolaTableColumn;
 
     private Evento evento;
+    private Operatore operatore;
 
     private ViewDispatcher dispatcher;
 

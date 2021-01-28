@@ -3,6 +3,7 @@ package it.univaq.disim.ing.univasa.controller.operatorecontroller;
 import it.univaq.disim.ing.univasa.business.MyPharmaBusinessFactory;
 import it.univaq.disim.ing.univasa.business.UtenteService;
 import it.univaq.disim.ing.univasa.controller.DataInitializable;
+import it.univaq.disim.ing.univasa.domain.Operatore;
 import it.univaq.disim.ing.univasa.domain.Utente;
 import it.univaq.disim.ing.univasa.view.ViewDispatcher;
 import javafx.event.ActionEvent;
@@ -28,6 +29,8 @@ public class DashboardOperatoreController implements Initializable, DataInitiali
 
     private UtenteService utenteService;
 
+    private Operatore operatore;
+
     public DashboardOperatoreController() {
         dispatcher = ViewDispatcher.getInstance();
         MyPharmaBusinessFactory factory = MyPharmaBusinessFactory.getInstance();
@@ -44,12 +47,12 @@ public class DashboardOperatoreController implements Initializable, DataInitiali
 
     @FXML
     public void mostraEventi(ActionEvent event) {
-        dispatcher.mostraListaEventiOperatore(operatore);
+        dispatcher.renderView("listaEventiOperatore", operatore);
     }
 
     @FXML
     public void mostraLavoro(ActionEvent event) {
-        dispatcher.mostraLavoroOperatore(operatore);
+        dispatcher.renderView("lavoroOperatore", operatore);
     }
 
     @FXML
