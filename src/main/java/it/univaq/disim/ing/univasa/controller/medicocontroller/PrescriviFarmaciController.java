@@ -9,7 +9,6 @@ import java.util.ResourceBundle;
 import it.univaq.disim.ing.univasa.business.BusinessException;
 import it.univaq.disim.ing.univasa.business.FarmacoService;
 import it.univaq.disim.ing.univasa.business.MyPharmaBusinessFactory;
-import it.univaq.disim.ing.univasa.business.PrescrizioneService;
 import it.univaq.disim.ing.univasa.controller.DataInitializable;
 import it.univaq.disim.ing.univasa.domain.Farmaco;
 import it.univaq.disim.ing.univasa.domain.FarmacoPrescritto;

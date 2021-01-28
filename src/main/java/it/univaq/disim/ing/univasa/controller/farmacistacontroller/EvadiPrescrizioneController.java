@@ -9,7 +9,6 @@ import javax.swing.JOptionPane;
 import it.univaq.disim.ing.univasa.business.BusinessException;
 import it.univaq.disim.ing.univasa.business.FarmacoService;
 import it.univaq.disim.ing.univasa.business.MyPharmaBusinessFactory;
-import it.univaq.disim.ing.univasa.business.PrescrizioneService;
 import it.univaq.disim.ing.univasa.controller.DataInitializable;
 import it.univaq.disim.ing.univasa.domain.Farmacista;
 import it.univaq.disim.ing.univasa.domain.FarmacoPrescritto;

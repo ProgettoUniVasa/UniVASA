@@ -2,7 +2,6 @@ package it.univaq.disim.ing.univasa.business.impl.db;
 
 import it.univaq.disim.ing.univasa.business.FarmacoService;
 import it.univaq.disim.ing.univasa.business.MyPharmaBusinessFactory;
-import it.univaq.disim.ing.univasa.business.PrescrizioneService;
 import it.univaq.disim.ing.univasa.business.UtenteService;
 
 public class DbMyPharmaBusinessFactoryImpl extends MyPharmaBusinessFactory {

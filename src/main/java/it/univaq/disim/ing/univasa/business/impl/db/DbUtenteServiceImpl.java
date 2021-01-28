@@ -15,10 +15,6 @@ import it.univaq.disim.ing.univasa.business.BusinessException;
 import it.univaq.disim.ing.univasa.business.UtenteNotFoundException;
 import it.univaq.disim.ing.univasa.business.UtenteService;
 import it.univaq.disim.ing.univasa.domain.*;
-import it.univaq.disim.ing.univasa.domain.Farmacista;
-import it.univaq.disim.ing.univasa.domain.Medico;
-import it.univaq.disim.ing.univasa.domain.Paziente;
-import it.univaq.disim.ing.univasa.domain.TipologiaMedico;
 
 public class DbUtenteServiceImpl implements UtenteService {
 
