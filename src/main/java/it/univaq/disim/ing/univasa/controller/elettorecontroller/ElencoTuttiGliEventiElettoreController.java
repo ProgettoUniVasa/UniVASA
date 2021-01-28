@@ -55,10 +55,13 @@ public class ElencoTuttiGliEventiElettoreController implements Initializable, Da
 	private TableColumn<Evento, Button> regolamentoTableColumn;
 
 	@FXML
-	private TableColumn<Evento, Button> prenotazioneTableColumn;
+	private TableColumn<Evento, Button> prenotazioneInPresenzaTableColumn;
+	
+	@FXML
+	private TableColumn<Evento, Button> prenotazioneOnlineTableColumn;
 
 	@FXML
-	private Button logoutButton;
+	private Button esciButton;
 
 	private ViewDispatcher dispatcher;
 
@@ -98,21 +101,39 @@ public class ElencoTuttiGliEventiElettoreController implements Initializable, Da
 				});
 
 
-		prenotazioneTableColumn.setStyle("-fx-alignment: CENTER;");
-		prenotazioneTableColumn.setCellValueFactory(
+		prenotazioneInPresenzaTableColumn.setStyle("-fx-alignment: CENTER;");
+		prenotazioneInPresenzaTableColumn.setCellValueFactory(
 				new Callback<TableColumn.CellDataFeatures<Evento, Button>, ObservableValue<Button>>() {
 
 					@Override
 					public ObservableValue<Button> call(CellDataFeatures<Evento, Button> param) {
-						final Button prenotazioneButton = new Button("Prenota");
-						prenotazioneButton.setOnAction(new EventHandler<ActionEvent>() {
+						final Button prenotazioneInPresenzaButton = new Button("Prenota");
+						prenotazioneInPresenzaButton.setOnAction(new EventHandler<ActionEvent>() {
 
 							@Override
 							public void handle(ActionEvent event) {
-								dispatcher.renderView("prenotazioneEvento", param.getValue()); //creare vista prenotazioneEvento
+								dispatcher.renderView("prenotazioneInPresenzaEvento", param.getValue()); //creare vista prenotazioneInPresenzaEvento
 							}
 						});
-						return new SimpleObjectProperty<Button>(prenotazioneButton);
+						return new SimpleObjectProperty<Button>(prenotazioneInPresenzaButton);
+					}
+				});
+		
+		prenotazioneOnlineTableColumn.setStyle("-fx-alignment: CENTER;");
+		prenotazioneOnlineTableColumn.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<Evento, Button>, ObservableValue<Button>>() {
+
+					@Override
+					public ObservableValue<Button> call(CellDataFeatures<Evento, Button> param) {
+						final Button prenotazioneOnlineButton = new Button("Prenota");
+						prenotazioneOnlineButton.setOnAction(new EventHandler<ActionEvent>() {
+
+							@Override
+							public void handle(ActionEvent event) {
+								dispatcher.renderView("prenotazioneOnlineEvento", param.getValue()); //creare vista prenotazioneInPresenzaEvento
+							}
+						});
+						return new SimpleObjectProperty<Button>(prenotazioneOnlineButton);
 					}
 				});
 
@@ -132,7 +153,7 @@ public class ElencoTuttiGliEventiElettoreController implements Initializable, Da
 
 	//parte codice bottone in alto a destra logout
 	@FXML
-	public void aggiungiPrescrizioneAction(ActionEvent event) throws BusinessException {
+	public void esciAction(ActionEvent event) throws BusinessException {
 		Prescrizione prescrizione = new Prescrizione();
 		prescrizione.setMedico(medico);
 		prescrizione.setFirma(medico.getNome() + " " + medico.getCognome());

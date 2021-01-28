@@ -9,14 +9,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="415.0" prefWidth="642.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.elettorecontroller.ElencoTuttiGliEventiElettoreController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="477.0" prefWidth="797.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.elettorecontroller.ElencoTuttiGliEventiElettoreController">
    <children>
-      <HBox prefHeight="48.0" prefWidth="642.0">
+      <HBox prefHeight="0.0" prefWidth="718.0">
          <children>
-            <Button fx:id="logoutButton" mnemonicParsing="false" onAction="#logoutAction" text="logout">
+            <Button fx:id="esciButton" mnemonicParsing="false" onAction="#esciAction" prefHeight="38.0" prefWidth="71.0" text="esci">
                <HBox.margin>
-                  <Insets left="560.0" top="5.0" />
+                  <Insets left="720.0" top="5.0" />
                </HBox.margin>
                <font>
                   <Font size="16.0" />
@@ -29,14 +28,15 @@
             <Font name="Palatino Linotype Bold" size="30.0" />
          </font>
       </Label>
-      <TableView fx:id="tuttiGliEventiTable" prefHeight="320.0" prefWidth="633.0" style="-fx-background-color: #0abab5;">
+      <TableView fx:id="tuttiGliEventiTable" prefHeight="386.0" prefWidth="788.0" style="-fx-background-color: #0abab5;">
         <columns>
           <TableColumn fx:id="nomeTableColumn" prefWidth="87.19997823238373" text="Nome" />
           <TableColumn fx:id="dataOraInizioTableColumn" prefWidth="100.80000305175781" text="Data e ora inizio" />
             <TableColumn fx:id="dataOraFineTableColumn" prefWidth="105.5999755859375" text="Data e ora fine" />
             <TableColumn fx:id="luogoTableColumn" prefWidth="127.20001220703125" text="Luogo" />
-            <TableColumn fx:id="regolamentoTableColumn" prefWidth="94.39990234375" text="Regolamento" />
-            <TableColumn fx:id="prenotazioneTableColumn" prefWidth="115.20002441406245" text="Prenotazione" />
+            <TableColumn fx:id="regolamentoTableColumn" prefWidth="95.19992065429688" text="Regolamento" />
+            <TableColumn fx:id="prenotazioneInPresenzaTableColumn" prefWidth="147.2000732421875" text="Prenotazione in presenza" />
+            <TableColumn fx:id="prenotazioneOnlineTableColumn" prefWidth="120.0" text="Prenotazione Online" />
         </columns>
          <VBox.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" />
