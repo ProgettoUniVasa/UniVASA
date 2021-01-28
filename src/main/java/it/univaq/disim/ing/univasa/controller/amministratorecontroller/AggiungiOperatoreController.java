@@ -31,12 +31,6 @@ public class AggiungiOperatoreController implements Initializable, DataInitializ
 	private TextField email;
 
 	@FXML
-	private TextField username;
-
-	@FXML
-	private TextField password;
-
-	@FXML
 	private TextField telefono;
 
 	@FXML
@@ -81,9 +75,8 @@ public class AggiungiOperatoreController implements Initializable, DataInitializ
 		// definite
 		aggiungiOperatoreButton.disableProperty()
 				.bind((nome.textProperty().isEmpty()
-						.or(cognome.textProperty().isEmpty().or(email.textProperty().isEmpty()
-								.or(username.textProperty().isEmpty()).or(password.textProperty().isEmpty())
-								.or(telefono.textProperty().isEmpty()
+						.or(cognome.textProperty().isEmpty()
+								.or(email.textProperty().isEmpty().or(telefono.textProperty().isEmpty()
 										.or(dataNascita.valueProperty().isNull().or(
 												professione.textProperty().isEmpty().or(nome_università.textProperty()
 														.isEmpty().or(dipartimento.textProperty().isEmpty())))))))));
@@ -99,16 +92,14 @@ public class AggiungiOperatoreController implements Initializable, DataInitializ
 			operatore.setNome(nome.getText());
 			operatore.setCognome(cognome.getText());
 			operatore.setEmail(email.getText());
-			operatore.setUsername(username.getText());
-			operatore.setPassword(password.getText());
 			operatore.setTelefono(telefono.getText());
 			operatore.setDataNascita(dataNascita.getValue());
-			operatore.setProfessione(professione.getText());
+			operatore.setProfessione(professione.getValue());
 			operatore.setNome_università(nome_università.getText());
 			operatore.setDipartimento(dipartimento.getText());
 
 			for (Operatore f : utenteService.trovaTuttiOperatori()) {
-				if (f.getUsername().equals(username.getText()) || f.getPassword().equals(password.getText())) {
+				if (f.getEmail().equals(email.getText()) || f.getTelefono().equals(telefono.getText())) {
 					c++;
 					JOptionPane.showMessageDialog(null, "Esiste già questo operatore", "Errore",
 							JOptionPane.ERROR_MESSAGE);

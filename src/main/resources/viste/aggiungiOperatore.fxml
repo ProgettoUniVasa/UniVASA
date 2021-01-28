@@ -13,9 +13,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="510.0" prefWidth="661.0" style="-fx-background-color: #0abab5;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.amministratorecontroller.AggiungiOperatoreController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="496.0" prefWidth="653.0" style="-fx-background-color: #0abab5;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.amministratorecontroller.AggiungiOperatoreController">
    <children>
-      <Label alignment="CENTER" prefHeight="69.0" prefWidth="727.0" text="Aggiungi Farmacista">
+      <Label alignment="CENTER" prefHeight="69.0" prefWidth="727.0" text="Aggiungi Operatore di Seggio">
          <font>
             <Font name="Palatino Linotype Bold" size="30.0" />
          </font>
@@ -26,8 +26,6 @@
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
          </columnConstraints>
          <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -53,37 +51,27 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" prefHeight="49.0" prefWidth="336.0" text="Username :" GridPane.rowIndex="3">
+            <Label alignment="CENTER" prefHeight="129.0" prefWidth="465.0" text="Telefono : " GridPane.rowIndex="3">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" prefHeight="120.0" prefWidth="454.0" text="Password :" GridPane.rowIndex="4">
+            <Label alignment="CENTER" prefHeight="134.0" prefWidth="422.0" text="Data Di Nascita :" GridPane.rowIndex="4">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" prefHeight="129.0" prefWidth="465.0" text="Telefono : " GridPane.rowIndex="5">
+            <Label alignment="CENTER" prefHeight="123.0" prefWidth="397.0" text="Professione :" GridPane.rowIndex="5">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" prefHeight="134.0" prefWidth="422.0" text="Data Di Nascita :" GridPane.rowIndex="6">
+            <Label alignment="CENTER" prefHeight="130.0" prefWidth="389.0" text="Nome Università :" GridPane.rowIndex="6">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" prefHeight="123.0" prefWidth="397.0" text="Professione :" GridPane.rowIndex="7">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER" prefHeight="130.0" prefWidth="389.0" text="Nome Università :" GridPane.rowIndex="8">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER" prefHeight="143.0" prefWidth="425.0" text="Dipartimento :" GridPane.rowIndex="9">
+            <Label alignment="CENTER" prefHeight="143.0" prefWidth="425.0" text="Dipartimento :" GridPane.rowIndex="7">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
@@ -103,36 +91,26 @@
                   <Insets right="10.0" />
                </GridPane.margin>
             </TextField>
-            <TextField fx:id="username" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <TextField fx:id="telefono" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets right="10.0" />
                </GridPane.margin>
             </TextField>
-            <TextField fx:id="telefono" GridPane.columnIndex="1" GridPane.rowIndex="5">
-               <GridPane.margin>
-                  <Insets right="10.0" />
-               </GridPane.margin>
-            </TextField>
-            <DatePicker fx:id="dataNascita" prefHeight="25.0" prefWidth="319.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+            <DatePicker fx:id="dataNascita" prefHeight="25.0" prefWidth="319.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <GridPane.margin>
                   <Insets right="10.0" />
                </GridPane.margin></DatePicker>
-            <TextField fx:id="professione" GridPane.columnIndex="1" GridPane.rowIndex="7">
+            <TextField fx:id="professione" GridPane.columnIndex="1" GridPane.rowIndex="5">
                <GridPane.margin>
                   <Insets right="10.0" />
                </GridPane.margin>
             </TextField>
-            <TextField fx:id="nome_università" GridPane.columnIndex="1" GridPane.rowIndex="8">
+            <TextField fx:id="nome_università" GridPane.columnIndex="1" GridPane.rowIndex="6">
                <GridPane.margin>
                   <Insets right="10.0" />
                </GridPane.margin>
             </TextField>
-            <TextField fx:id="dipartimento" GridPane.columnIndex="1" GridPane.rowIndex="9">
-               <GridPane.margin>
-                  <Insets right="10.0" />
-               </GridPane.margin>
-            </TextField>
-            <TextField fx:id="password" prefHeight="25.0" prefWidth="291.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <TextField fx:id="dipartimento" GridPane.columnIndex="1" GridPane.rowIndex="7">
                <GridPane.margin>
                   <Insets right="10.0" />
                </GridPane.margin>

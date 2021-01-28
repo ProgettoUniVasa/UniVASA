@@ -65,7 +65,7 @@ public class EliminaReportController implements Initializable, DataInitializable
 	public void initializeData(Evento evento) {
 		this.evento = evento;
 		this.nome.setText(evento.getNome());
-		this.dataOraInizio.setText(evento.getDataOraInizio());
+		this.dataOraInizio.setValue(evento.getDataOraInizio());
 		this.dataOraFine.setValue(evento.getDataOraFine());
 		this.luogo.setText(evento.getLuogo());
 		this.report_risultati.setText(evento.getReport_risultati());

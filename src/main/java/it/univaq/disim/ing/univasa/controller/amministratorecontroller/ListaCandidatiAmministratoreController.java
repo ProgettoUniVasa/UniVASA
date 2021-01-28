@@ -78,7 +78,7 @@ public class ListaCandidatiAmministratoreController implements Initializable, Da
 	private Candidato candidato;
 
 	@FXML
-	private TableColumn<Evento, Button> azioniTableColumn;
+	private TableColumn<Candidato, Button> azioniTableColumn;
 
 	@FXML
 	private TableColumn<Candidato, Button> modificaTableColumn;

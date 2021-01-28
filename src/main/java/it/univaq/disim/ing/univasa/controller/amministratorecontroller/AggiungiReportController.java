@@ -65,7 +65,7 @@ public class AggiungiReportController implements Initializable, DataInitializabl
 	public void initializeData(Evento evento) {
 		this.evento = evento;
 		this.nomeEvento.setText(evento.getNome());
-		this.dataOraInizio.setText(evento.getDataOraInizio());
+		this.dataOraInizio.setValue(evento.getDataOraInizio());
 		this.dataOraFine.setValue(evento.getDataOraFine());
 		this.luogo.setText(evento.getLuogo());
 		this.report_risultati.setText(evento.getReport_risultati());
@@ -84,7 +84,7 @@ public class AggiungiReportController implements Initializable, DataInitializabl
 	public void salvaAction(ActionEvent event) {
 		try {
 			evento.setNome(nomeEvento.getText());
-			evento.setDataOraInizio(dataOraInizio.getText());
+			evento.setDataOraInizio(dataOraInizio.getValue());
 			evento.setDataOraFine(dataOraFine.getValue());
 			evento.setLuogo(luogo.getText());
 			evento.setReport_risultati(report_risultati.getText());

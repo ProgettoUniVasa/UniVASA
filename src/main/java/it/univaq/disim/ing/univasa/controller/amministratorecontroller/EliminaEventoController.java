@@ -72,7 +72,7 @@ public class EliminaEventoController implements Initializable, DataInitializable
 		this.evento = evento;
 		this.nome.setText(evento.getNome());
 		this.regolamento.setText(evento.getRegolamento());
-		this.dataOraInizio.setText(evento.getDataOraInizio());
+		this.dataOraInizio.setValue(evento.getDataOraInizio());
 		this.dataOraFine.setValue(evento.getDataOraFine());
 		this.luogo.setText(evento.getLuogo());
 		this.report_risultati.setText(evento.getReport_risultati());

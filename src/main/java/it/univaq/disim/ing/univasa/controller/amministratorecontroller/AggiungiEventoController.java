@@ -66,7 +66,7 @@ public class AggiungiEventoController implements Initializable, DataInitializabl
 		this.evento = evento;
 		this.nome.setText(evento.getNome());
 		this.regolamento.setText(evento.getRegolamento());
-		this.dataOraInizio.setText(evento.getDataOraInizio());
+		this.dataOraInizio.setValue(evento.getDataOraInizio()); // Con LocalDate va
 		this.dataOraFine.setValue(evento.getDataOraFine());
 		this.luogo.setText(evento.getLuogo());
 		this.numero_preferenze_esprimibili.setText("" + evento.getNumero_preferenze_esprimibili());
@@ -85,7 +85,7 @@ public class AggiungiEventoController implements Initializable, DataInitializabl
 		try {
 			evento.setNome(nome.getText());
 			evento.setRegolamento(regolamento.getText());
-			evento.setDataOraInizio(dataOraInizio.getText());
+			evento.setDataOraInizio(dataOraInizio.getValue());
 			evento.setDataOraFine(dataOraFine.getValue());
 			evento.setLuogo(luogo.getText());
 			evento.setNumero_preferenze_esprimibili(Integer.parseInt(numero_preferenze_esprimibili.getText()));

@@ -115,21 +115,7 @@ public class ListaEventiAmministratoreController implements Initializable, DataI
 	public void initializeData(Amministratore amministratore) {
 		try {
 			List<Evento> evento = eventoService.trovaTuttiEventi();
-			ObservableList<Evento> eventiData = FXCollections.observableArrayList(eventi);
-			// eventi passati
-			/*
-			 * nomeTableColumn.setCellFactory(new Callback<TableColumn<Evento, String>,
-			 * TableCell<Evento, String>>() { public TableCell<Evento, String>
-			 * call(TableColumn<Evento, String> param) { return new TableCell<Evento,
-			 * String>() {
-			 * 
-			 * @Override public void updateItem(String item, boolean empty) {
-			 * super.updateItem(item, empty); if (!isEmpty()) { try { // Per ogni farmaco in
-			 * esaurimento si colora il nome di rosso for (Farmaco f :
-			 * farmacoService.farmaciInEsaurimento()) { if (item.contains("" + f.getNome()))
-			 * { this.setTextFill(Color.RED); break; } } } catch (BusinessException e) {
-			 * e.printStackTrace(); } setText(item); } } }; } });
-			 */
+			ObservableList<Evento> eventiData = FXCollections.observableArrayList(evento);
 
 			eventoTable.setItems(eventiData);
 

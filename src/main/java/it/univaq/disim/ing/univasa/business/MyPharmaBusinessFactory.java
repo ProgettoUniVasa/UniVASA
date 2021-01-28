@@ -12,8 +12,8 @@ public abstract class MyPharmaBusinessFactory {
 
 	public abstract UtenteService getUtenteService();
 
-	public abstract PrescrizioneService getPrescrizioneService();
+	public abstract TurnazioneService getTurnazioneService();
 
-	public abstract FarmacoService getFarmacoService();
+	public abstract EventoService getEventoService();
 
 }

@@ -8,7 +8,7 @@ import it.univaq.disim.ing.univasa.business.MyPharmaBusinessFactory;
 import it.univaq.disim.ing.univasa.business.UtenteService;
 import it.univaq.disim.ing.univasa.controller.DataInitializable;
 import it.univaq.disim.ing.univasa.domain.Amministratore;
-import it.univaq.disim.ing.univasa.domain.Farmacista;
+import it.univaq.disim.ing.univasa.domain.Operatore;
 import it.univaq.disim.ing.univasa.view.ViewDispatcher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,7 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
-public class EliminaFarmacistaController implements Initializable, DataInitializable<Farmacista> {
+public class EliminaOperatoreController implements Initializable, DataInitializable<Operatore> {
 
 	@FXML
 	private TextField nome;
@@ -25,13 +25,16 @@ public class EliminaFarmacistaController implements Initializable, DataInitializ
 	private TextField cognome;
 
 	@FXML
-	private TextField cf;
-
-	@FXML
-	private TextField residenza;
+	private TextField email;
 
 	@FXML
 	private TextField telefono;
+
+	@FXML
+	private TextField nome_università;
+
+	@FXML
+	private TextField dipartimento;
 
 	@FXML
 	private Button eliminaButton;
@@ -43,11 +46,11 @@ public class EliminaFarmacistaController implements Initializable, DataInitializ
 
 	private UtenteService utenteService;
 
-	private Farmacista farmacista;
+	private Operatore operatore;
 
 	private Amministratore amministratore;
 
-	public EliminaFarmacistaController() {
+	public EliminaOperatoreController() {
 		dispatcher = ViewDispatcher.getInstance();
 		MyPharmaBusinessFactory factory = MyPharmaBusinessFactory.getInstance();
 		utenteService = factory.getUtenteService();
@@ -58,13 +61,14 @@ public class EliminaFarmacistaController implements Initializable, DataInitializ
 	}
 
 	@Override
-	public void initializeData(Farmacista farmacista) {
-		this.farmacista = farmacista;
-		this.nome.setText(farmacista.getNome());
-		this.cognome.setText(farmacista.getCognome());
-		this.cf.setText(farmacista.getCf());
-		this.residenza.setText(farmacista.getResidenza());
-		this.telefono.setText(farmacista.getTelefono());
+	public void initializeData(Operatore operatore) {
+		this.operatore = operatore;
+		this.nome.setText(operatore.getNome());
+		this.cognome.setText(operatore.getCognome());
+		this.email.setText(operatore.getEmail());
+		this.telefono.setText(operatore.getTelefono());
+		this.nome_università.setText(operatore.getNome_università());
+		this.dipartimento.setText(operatore.getDipartimento());
 	}
 
 	@FXML
@@ -72,8 +76,8 @@ public class EliminaFarmacistaController implements Initializable, DataInitializ
 
 		try {
 
-			utenteService.eliminaUtente(farmacista);
-			dispatcher.renderView("gestioneFarmacistiAmministratore", amministratore);
+			utenteService.eliminaUtente(operatore);
+			dispatcher.renderView("gestioneOperatoriAmministratore", amministratore);
 
 		} catch (BusinessException e) {
 			e.printStackTrace();
@@ -83,6 +87,6 @@ public class EliminaFarmacistaController implements Initializable, DataInitializ
 
 	@FXML
 	public void annullaAction(ActionEvent event) {
-		dispatcher.renderView("gestioneFarmacistiAmministratore", amministratore);
+		dispatcher.renderView("gestioneOperatoriAmministratore", amministratore);
 	}
 }
