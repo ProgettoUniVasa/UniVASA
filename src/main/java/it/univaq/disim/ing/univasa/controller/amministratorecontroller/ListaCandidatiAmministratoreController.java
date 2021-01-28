@@ -67,6 +67,8 @@ public class ListaCandidatiAmministratoreController implements Initializable, Da
 
 	@FXML
 	private TableColumn<Candidato, String> dipartimentoTableColumn;
+	
+	//voti ricevuti, evento
 
 	@FXML
 	private Button aggiungiCandidatoButton;

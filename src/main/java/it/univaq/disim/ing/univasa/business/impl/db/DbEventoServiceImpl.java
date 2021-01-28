@@ -17,24 +17,24 @@ import it.univaq.disim.ing.univasa.domain.Evento;
 
 public class DbEventoServiceImpl implements EventoService {
 
-	private static final String url = "jdbc:mysql://localhost:3306/pharmadb?noAccessToProcedureBodies=true&serverTimezone=Europe/Rome";
+	private static final String url = "jdbc:mysql://localhost:3306/univasa?noAccessToProcedureBodies=true&serverTimezone=Europe/Rome";
 	private static final String user = "dbuser";
 	private static final String password = "sql_password123";
 
 	// Definizione query in Java
-	private static final String inserisciFarmaco = "insert into farmaco (nome, principioAttivo, produttore, scadenza, costo, quantitaDisponibile, quantitaMinima) values (?,?,?,?,?,?,?) ";
-	private static final String aggiornaFarmaco = "update farmaco set nome=?, principioAttivo=?, produttore=?, scadenza=?, costo=?, quantitaDisponibile=?, quantitaMinima=? where id = ?";
-	private static final String cancellaFarmaco = "delete from farmaco where id=?";
+	private static final String inserisciEvento = "insert into evento (nome, regolamento, data_ora_inizio, data_ora_fine, luogo, numero_preferenze_esprimibili) values (?,?,?,?,?,?) ";
+	private static final String inserisciReport = "insert into evento (report_risultati, report_statistiche) values (?,?) where ";
+	private static final String aggiornaReport = "update evento set report_risultati=?, report_statistiche=? where id = ?";
+	private static final String cancellaEvento = "delete from evento where id=?";
 
-	private static final String trovaTuttiFarmaci = "select * from farmaco";
-	private static final String trovaFarmacoDaId = "select * from farmaco where id=?";
-	private static final String trovaNomiFarmaci = "select nome from farmaco";
-	private static final String farmaciInEsaurimento = "select * from farmaco where quantitaDisponibile <= quantitaMinima";
+	private static final String trovaTuttiEventi = "select * from evento";
+	private static final String trovaEventoDaId = "select * from evento where id=?";
+	private static final String trovaNomiEventi = "select nome from evento";
 
 	@Override
 	public void creaEvento(Evento evento) throws BusinessException {
 		// Conversione da LocalDate a Date
-		Date data = java.sql.Date.valueOf(evento.getScadenza());
+		Date data = java.sql.Date.valueOf("" + evento.getDataOraInizio());
 
 		// Connessione al Database e richiamo query
 		try (Connection c = DriverManager.getConnection(url, user, password);) {
