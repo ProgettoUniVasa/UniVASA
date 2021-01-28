@@ -1,4 +1,4 @@
-package it.univaq.disim.ing.univasa.controller.pazientecontroller;
+package it.univaq.disim.ing.univasa.controller.operatorecontroller;
 
 import java.net.URL;
 import java.time.LocalDate;

@@ -3,15 +3,18 @@ package it.univaq.disim.ing.univasa.domain;
 import java.time.LocalDate;
 
 public class Turnazione {
-	private Long id;
-	private TipologiaTurno fascia;
-	private LocalDate data_evento;
 
-	public Turnazione(Long id, TipologiaTurno fascia, LocalDate data_evento) {
+	// Questa association???? Ci andrebbe Operatore, ma a che mi serve se l'Operatore ha un set dei suoi turni?
+	private Long id;
+	private Evento evento;
+	private TipologiaTurno fascia;
+	private LocalDate data_turno;
+
+	public Turnazione(Long id, TipologiaTurno fascia, Evento evento) {
 		super();
 		this.id = id;
 		this.fascia = fascia;
-		this.data_evento = data_evento;
+		this.evento = evento;
 	}
 
 	public Turnazione() {
@@ -26,8 +29,8 @@ public class Turnazione {
 		return fascia;
 	}
 
-	public LocalDate getData_evento() {
-		return data_evento;
+	public Evento getEvento() {
+		return evento;
 	}
 
 	public void setId(Long id) {
@@ -38,8 +41,15 @@ public class Turnazione {
 		this.fascia = fascia;
 	}
 
-	public void setData_evento(LocalDate data_evento) {
-		this.data_evento = data_evento;
+	public void setEvento(Evento evento) {
+		this.evento = evento;
 	}
 
+	public LocalDate getData_turno() {
+		return data_turno;
+	}
+
+	public void setData_turno(LocalDate data_turno) {
+		this.data_turno = data_turno;
+	}
 }

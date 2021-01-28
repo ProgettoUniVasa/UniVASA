@@ -2,10 +2,9 @@ package it.univaq.disim.ing.univasa.business;
 
 import java.util.List;
 
-import it.univaq.disim.ing.univasa.domain.Farmacista;
-import it.univaq.disim.ing.univasa.domain.Medico;
-import it.univaq.disim.ing.univasa.domain.Paziente;
-import it.univaq.disim.ing.univasa.domain.Utente;
+import it.univaq.disim.ing.univasa.domain.*;
+
+import javax.swing.text.Element;
 
 public interface UtenteService {
 
@@ -16,26 +15,56 @@ public interface UtenteService {
 
 	List<Utente> trovaTuttiUtenti() throws BusinessException;
 
-	// Metodo che restituisce una lista di tutti i farmacisti
-	List<Farmacista> trovaTuttiFarmacisti() throws BusinessException;
+	// Metodo che restituisce una lista di tutti gli amministratorei
+	List<Amministratore> trovaTuttiAmministratori() throws BusinessException;
 
-	// Metodo che restituisce una lista di tutti i pazienti
-	List<Paziente> trovaTuttiPazienti() throws BusinessException;
+	// Metodo che restituisce una lista di tutti gli operatori
+	List<Operatore> trovaTuttiOperatori() throws BusinessException;
 
-	// Metodo che restituisce una lista di tutti i medici
-	List<Medico> trovaTuttiMedici() throws BusinessException;
+	// Metodo che restituisce una lista di tutti gli elettori
+	List<Elettore> trovaTuttiElettori() throws BusinessException;
 
-	void creaFarmacista(Farmacista farmacista) throws BusinessException;
+	void creaAmministratore(Amministratore amministratore) throws BusinessException;
 
-	void creaPaziente(Paziente paziente) throws BusinessException;
+	void creaOperatore(Operatore operatore) throws BusinessException;
 
-	void creaMedico(Medico medico) throws BusinessException;
+	void creaElettore(Elettore elettore) throws BusinessException;
 
-	void aggiornaFarmacista(Farmacista farmacista) throws BusinessException;
+	void creaElettoreInSede(ElettoreInSede elettoreInSede) throws BusinessException;
 
-	void aggiornaPaziente(Paziente paziente) throws BusinessException;
+	void creaElettoreOnline(ElettoreOnline elettoreOnline) throws BusinessException;
 
-	void aggiornaMedico(Medico medico) throws BusinessException;
+	void creaCandidato(Candidato candidato) throws BusinessException;
+
+	// Amministratore
+	boolean creaEvento(Evento evento) throws  BusinessException;
+	boolean eliminaEvento(Evento evento) throws  BusinessException;
+	boolean creaReport(String report) throws  BusinessException;
+	boolean verificaCertificato(String certificato) throws  BusinessException;
+	List<Elettore> gestionePrenotazioni(Evento evento) throws  BusinessException;
+	boolean creaTurnazione(Turnazione turnazione) throws  BusinessException;
+	boolean associaTurnazione(Turnazione turnazione, Operatore operatore) throws  BusinessException;
+	List<Utente> visualizzaUtenti() throws  BusinessException;
+	List<Candidato> visualizzaCandidati(Evento evento) throws  BusinessException;
+
+	// Operatore
+	List<Evento> visualizzaEventi(Operatore operatore) throws BusinessException;					// da aggiungere al CD
+	boolean riconoscimentoElettore(ElettoreInSede elettoreInSede) throws  BusinessException;		// ma questa viene fatta con un documneto????
+	boolean calcoloRisulatti(Evento evento) throws  BusinessException;
+	boolean caricaRisultati(Evento evento) throws  BusinessException;
+	List<Turnazione> visualizzaturnazioni(Operatore operatore) throws  BusinessException;
+	List<ElettoreInSede> visualizzaPrenotatiInSede(Evento evento) throws  BusinessException;
+
+	// Elettore generico -- ma dove lo salva??? Non c'è un DB
+	void prenotazioneInSede(Elettore elettore, Evento evento) throws BusinessException;
+	void prenotazioneOnline(Elettore elettore, Evento evento) throws BusinessException;
+
+	// ElettoreOnline
+	void vota(ElettoreOnline elettoreOnline, Evento evento) throws BusinessException;
+	boolean riconoscimentoOnline(ElettoreOnline elettoreOnline, Evento evento) throws BusinessException;
+
+	// SchedaElettorale
+	List<ElettoreOnline> visualizzaPrenotatiOnline(SchedaElettorale schedaElettorale) throws BusinessException;
 
 	void eliminaUtente(Utente utente) throws UtenteNotFoundException, BusinessException;
 }
