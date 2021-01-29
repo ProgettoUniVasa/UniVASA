@@ -17,7 +17,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
-//aggiungere l'ora
 public class EliminaEventoController implements Initializable, DataInitializable<Evento> {
 
 	@FXML
@@ -31,6 +30,12 @@ public class EliminaEventoController implements Initializable, DataInitializable
 
 	@FXML
 	private DatePicker dataFine;
+
+	@FXML
+	private TextField oraInizio;
+
+	@FXML
+	private TextField oraFine;
 
 	@FXML
 	private TextField luogo;
@@ -75,6 +80,8 @@ public class EliminaEventoController implements Initializable, DataInitializable
 		this.regolamento.setText(evento.getRegolamento());
 		this.dataInizio.setValue(evento.getDataInizio());
 		this.dataFine.setValue(evento.getDataFine());
+		this.oraInizio.setText(evento.getOraInizio());
+		this.oraFine.setText(evento.getOraFine());
 		this.luogo.setText(evento.getLuogo());
 		this.report_risultati.setText(evento.getReport_risultati());
 		this.report_statistiche.setText(evento.getReport_statistiche());
@@ -84,9 +91,11 @@ public class EliminaEventoController implements Initializable, DataInitializable
 		// definite
 		eliminaButton.disableProperty().bind((nome.textProperty().isEmpty()
 				.or(regolamento.textProperty().isEmpty().or(dataInizio.valueProperty().isNull())
-						.or(dataFine.valueProperty().isNull().or(luogo.textProperty().isEmpty()
-								.or(report_risultati.textProperty().isEmpty().or(report_statistiche.textProperty()
-										.isEmpty().or(numero_preferenze_esprimibili.textProperty().isEmpty()))))))));
+						.or(dataFine.valueProperty().isNull().or(oraInizio.textProperty().isEmpty()
+								.or(oraFine.textProperty().isEmpty().or(luogo.textProperty().isEmpty()
+										.or(report_risultati.textProperty().isEmpty().or(report_statistiche
+												.textProperty().isEmpty()
+												.or(numero_preferenze_esprimibili.textProperty().isEmpty()))))))))));
 	}
 
 	@FXML

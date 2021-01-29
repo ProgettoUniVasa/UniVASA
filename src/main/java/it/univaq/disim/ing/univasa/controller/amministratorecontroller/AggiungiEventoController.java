@@ -16,7 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-//aggiungere l'ora
+
 public class AggiungiEventoController implements Initializable, DataInitializable<Evento> {
 
 	@FXML
@@ -30,6 +30,12 @@ public class AggiungiEventoController implements Initializable, DataInitializabl
 
 	@FXML
 	private DatePicker dataFine;
+
+	@FXML
+	private TextField oraInizio;
+
+	@FXML
+	private TextField oraFine;
 
 	@FXML
 	private TextField luogo;
@@ -68,6 +74,8 @@ public class AggiungiEventoController implements Initializable, DataInitializabl
 		this.regolamento.setText(evento.getRegolamento());
 		this.dataInizio.setValue(evento.getDataInizio());
 		this.dataFine.setValue(evento.getDataFine());
+		this.oraInizio.setText(evento.getOraInizio());
+		this.oraFine.setText(evento.getOraFine());
 		this.luogo.setText(evento.getLuogo());
 		this.numero_preferenze_esprimibili.setText("" + evento.getNumero_preferenze_esprimibili());
 
@@ -76,8 +84,9 @@ public class AggiungiEventoController implements Initializable, DataInitializabl
 		salvaButton.disableProperty()
 				.bind((nome.textProperty().isEmpty()
 						.or(regolamento.textProperty().isEmpty().or(dataInizio.valueProperty().isNull())
-								.or(dataFine.valueProperty().isNull().or(luogo.textProperty().isEmpty()
-										.or((numero_preferenze_esprimibili.textProperty().isEmpty())))))));
+								.or(dataFine.valueProperty().isNull().or(oraInizio.textProperty().isEmpty()
+										.or(oraFine.textProperty().isEmpty().or(luogo.textProperty().isEmpty()
+												.or((numero_preferenze_esprimibili.textProperty().isEmpty())))))))));
 	}
 
 	@FXML
@@ -87,6 +96,8 @@ public class AggiungiEventoController implements Initializable, DataInitializabl
 			evento.setRegolamento(regolamento.getText());
 			evento.setDataInizio(dataInizio.getValue());
 			evento.setDataFine(dataFine.getValue());
+			evento.setOraInizio(oraInizio.getText());
+			evento.setOraFine(oraFine.getText());
 			evento.setLuogo(luogo.getText());
 			evento.setNumero_preferenze_esprimibili(Integer.parseInt(numero_preferenze_esprimibili.getText()));
 

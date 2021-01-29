@@ -11,6 +11,7 @@ import it.univaq.disim.ing.univasa.business.UtenteService;
 import it.univaq.disim.ing.univasa.controller.DataInitializable;
 import it.univaq.disim.ing.univasa.domain.Amministratore;
 import it.univaq.disim.ing.univasa.domain.Candidato;
+import it.univaq.disim.ing.univasa.domain.Evento;
 import it.univaq.disim.ing.univasa.domain.Professione;
 import it.univaq.disim.ing.univasa.view.ViewDispatcher;
 import javafx.beans.property.SimpleObjectProperty;
@@ -73,6 +74,8 @@ public class GestioneCandidatiAmministratoreController implements Initializable,
 
 	private Candidato candidato;
 
+	private Evento evento;
+
 	public GestioneCandidatiAmministratoreController() {
 		dispatcher = ViewDispatcher.getInstance();
 		UnivasaBusinessFactory factory = UnivasaBusinessFactory.getInstance();
@@ -113,7 +116,7 @@ public class GestioneCandidatiAmministratoreController implements Initializable,
 	@Override
 	public void initializeData(Amministratore amministratore) {
 		try {
-			List<Candidato> candidati = utenteService.trovaTuttiCandidati();
+			List<Candidato> candidati = utenteService.visualizzaCandidati(evento);
 			ObservableList<Candidato> candidatiData = FXCollections.observableArrayList(candidati);
 			candidatiTable.setItems(candidatiData);
 		} catch (BusinessException e) {
