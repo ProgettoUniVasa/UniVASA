@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import it.univaq.disim.ing.univasa.business.EventoService;
 import it.univaq.disim.ing.univasa.business.UnivasaBusinessFactory;
 import it.univaq.disim.ing.univasa.controller.DataInitializable;
+import it.univaq.disim.ing.univasa.domain.Elettore;
 import it.univaq.disim.ing.univasa.domain.Evento;
 import it.univaq.disim.ing.univasa.view.ViewDispatcher;
 import javafx.event.ActionEvent;
@@ -31,6 +32,8 @@ public class RegolamentoEventoController implements Initializable, DataInitializ
 
 	private Evento evento;
 
+	private Elettore elettore;
+
 	public RegolamentoEventoController() {
 		dispatcher = ViewDispatcher.getInstance();
 		UnivasaBusinessFactory factory = UnivasaBusinessFactory.getInstance();
@@ -52,6 +55,6 @@ public class RegolamentoEventoController implements Initializable, DataInitializ
 
 	@FXML
 	public void annullaPrescrizioneAction(ActionEvent event) {
-		dispatcher.renderView("elencoTuttiGliEventiElettore", evento.getElettore()); //get elettore non esiste RIVEDERE
+		dispatcher.renderView("elencoTuttiGliEventiElettore", elettore); //get elettore non esiste RIVEDERE
 	}
 }

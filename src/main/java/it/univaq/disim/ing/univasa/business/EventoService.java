@@ -13,11 +13,14 @@ public interface EventoService {
 
 	void creaReport(Evento evento) throws BusinessException;
 
+	boolean caricaRisultatiInPresenza(Evento evento) throws  BusinessException;
+
 	List<Evento> trovaTuttiEventi() throws BusinessException;
 
-	List<Evento> trovaEventiElettore(Elettore elettore) throws BusinessException;
+	List<Evento> trovaEventiPrenotatiElettore(Elettore elettore) throws BusinessException;
 
 	Evento trovaEventoDaId(Long id) throws BusinessException;
+
 
 	// Metodo che restituisce i nomi di tutti i farmaci
 	List<String> nomiEventi() throws BusinessException;

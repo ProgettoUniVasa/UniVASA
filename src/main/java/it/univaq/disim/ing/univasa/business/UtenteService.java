@@ -29,25 +29,18 @@ public interface UtenteService {
 
 	void creaElettore(Elettore elettore) throws BusinessException;
 
-	void creaElettoreInSede(ElettoreInSede elettoreInSede) throws BusinessException;
-
-	void creaElettoreOnline(ElettoreOnline elettoreOnline) throws BusinessException;
-
 	void creaCandidato(Candidato candidato) throws BusinessException;
 
+
 	// Amministratore
-	boolean verificaCertificato(String certificato) throws BusinessException;
+	void accettaCertificato(String certificato) throws BusinessException;
+	void rifiutaCertificato(String certificato) throws BusinessException;
 	List<Elettore> gestionePrenotazioni(Evento evento) throws BusinessException;
 	List<Candidato> visualizzaCandidati(Evento evento) throws BusinessException;
 	void modificaOperatore(Operatore operatore) throws BusinessException;
-	List<Candidato> trovaTuttiCandidati() throws BusinessException;
 
 	// Operatore
-	List<Evento> visualizzaEventi(Operatore operatore) throws BusinessException;					// da aggiungere al CD
-	boolean riconoscimentoElettore(ElettoreInSede elettoreInSede) throws BusinessException;		// ma questa viene fatta con un documneto????
-	boolean caricaRisultati(Evento evento) throws  BusinessException;
-	List<Turnazione> visualizzaTurnazioni(Operatore operatore) throws BusinessException;
-	List<ElettoreInSede> visualizzaPrenotatiInSede(Evento evento) throws BusinessException;
+	List<Elettore> visualizzaPrenotatiInSede(Evento evento) throws BusinessException;
 
 	// Elettore generico -- ma dove lo salva??? Non c'è un DB
 	void prenotazioneInSede(Elettore elettore, Evento evento) throws BusinessException;
@@ -55,10 +48,7 @@ public interface UtenteService {
 
 	// ElettoreOnline
 	void vota(ElettoreOnline elettoreOnline, Evento evento) throws BusinessException;
-	boolean riconoscimentoOnline(ElettoreOnline elettoreOnline, Evento evento) throws BusinessException;
 
-	// SchedaElettorale
-	List<ElettoreOnline> visualizzaPrenotatiOnline(SchedaElettorale schedaElettorale) throws BusinessException;
 
 	void eliminaUtente(Utente utente) throws UtenteNotFoundException, BusinessException;
 

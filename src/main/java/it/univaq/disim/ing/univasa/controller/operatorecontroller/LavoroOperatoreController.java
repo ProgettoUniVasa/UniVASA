@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.ResourceBundle;
 import it.univaq.disim.ing.univasa.business.BusinessException;
+import it.univaq.disim.ing.univasa.business.TurnazioneService;
 import it.univaq.disim.ing.univasa.business.UnivasaBusinessFactory;
 import it.univaq.disim.ing.univasa.business.UtenteService;
 import it.univaq.disim.ing.univasa.controller.DataInitializable;
@@ -50,12 +51,12 @@ public class LavoroOperatoreController implements Initializable, DataInitializab
 
     private ViewDispatcher dispatcher;
 
-    private UtenteService utenteService;
+    private TurnazioneService turnazioneService;
 
     public LavoroOperatoreController() {
         dispatcher = ViewDispatcher.getInstance();
         UnivasaBusinessFactory factory = UnivasaBusinessFactory.getInstance();
-        utenteService = factory.getUtenteService();
+        turnazioneService = factory.getTurnazioneService();
     }
 
     @Override
@@ -91,7 +92,7 @@ public class LavoroOperatoreController implements Initializable, DataInitializab
     public void initializeData(Operatore operatore) {
         try {
             this.operatore = operatore;
-            List<Turnazione> lavoroOperatore = utenteService.visualizzaTurnazioni(operatore);
+            List<Turnazione> lavoroOperatore = turnazioneService.visualizzaTurnazioni(operatore);
             ObservableList<Turnazione> lavoroOperatoreDate = FXCollections
                     .observableArrayList(lavoroOperatore);
             lavoroTable.setItems(lavoroOperatoreDate);

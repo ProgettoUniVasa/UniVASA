@@ -7,6 +7,7 @@ import it.univaq.disim.ing.univasa.business.BusinessException;
 import it.univaq.disim.ing.univasa.business.UnivasaBusinessFactory;
 import it.univaq.disim.ing.univasa.business.UtenteService;
 import it.univaq.disim.ing.univasa.controller.DataInitializable;
+import it.univaq.disim.ing.univasa.domain.Elettore;
 import it.univaq.disim.ing.univasa.domain.ElettoreInSede;
 import it.univaq.disim.ing.univasa.domain.Evento;
 import it.univaq.disim.ing.univasa.domain.Operatore;
@@ -31,16 +32,16 @@ public class EventoOperatoreController implements Initializable, DataInitializab
     private Button indietroButton;
 
     @FXML
-    private TableView<ElettoreInSede> eventoTable;
+    private TableView<Elettore> eventoTable;
 
     @FXML
-    private TableColumn<ElettoreInSede, String> nomeTableColumn;
+    private TableColumn<Elettore, String> nomeTableColumn;
 
     @FXML
-    private TableColumn<ElettoreInSede, String> cognomeTableColumn;
+    private TableColumn<Elettore, String> cognomeTableColumn;
 
     @FXML
-    private TableColumn<ElettoreInSede, String> matricolaTableColumn;
+    private TableColumn<Elettore, String> matricolaTableColumn;
 
     private Evento evento;
     private Operatore operatore;
@@ -59,25 +60,25 @@ public class EventoOperatoreController implements Initializable, DataInitializab
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         nomeTableColumn.setCellValueFactory(
-                new Callback<TableColumn.CellDataFeatures<ElettoreInSede, String>, ObservableValue<String>>() {
+                new Callback<TableColumn.CellDataFeatures<Elettore, String>, ObservableValue<String>>() {
                     @Override
-                    public ObservableValue<String> call(CellDataFeatures<ElettoreInSede, String> param) {
+                    public ObservableValue<String> call(CellDataFeatures<Elettore, String> param) {
                         return new SimpleStringProperty(param.getValue().getNome());
                     }
                 });
 
         cognomeTableColumn.setCellValueFactory(
-                new Callback<TableColumn.CellDataFeatures<ElettoreInSede, String>, ObservableValue<String>>() {
+                new Callback<TableColumn.CellDataFeatures<Elettore, String>, ObservableValue<String>>() {
                     @Override
-                    public ObservableValue<String> call(CellDataFeatures<ElettoreInSede, String> param) {
+                    public ObservableValue<String> call(CellDataFeatures<Elettore, String> param) {
                         return new SimpleObjectProperty<String>(param.getValue().getCognome());
                     }
                 });
 
         matricolaTableColumn.setCellValueFactory(
-                new Callback<TableColumn.CellDataFeatures<ElettoreInSede, String>, ObservableValue<String>>() {
+                new Callback<TableColumn.CellDataFeatures<Elettore, String>, ObservableValue<String>>() {
                     @Override
-                    public ObservableValue<String> call(CellDataFeatures<ElettoreInSede, String> param) {
+                    public ObservableValue<String> call(CellDataFeatures<Elettore, String> param) {
                         return new SimpleObjectProperty<String>(param.getValue().getMatricola());
                     }
                 });
@@ -88,9 +89,8 @@ public class EventoOperatoreController implements Initializable, DataInitializab
     public void initializeData(Evento evento) {
         try {
             this.evento = evento;
-            List<ElettoreInSede> elettoriInSede = utenteService.visualizzaPrenotatiInSede(evento);
-            ObservableList<ElettoreInSede> elettoriInSedeData = FXCollections
-                    .observableArrayList(elettoriInSede);
+            List<Elettore> elettoriInSede = utenteService.visualizzaPrenotatiInSede(evento);
+            ObservableList<Elettore> elettoriInSedeData = FXCollections.observableArrayList(elettoriInSede);
             eventoTable.setItems(elettoriInSedeData);
         } catch (BusinessException e) {
             dispatcher.renderError(e);

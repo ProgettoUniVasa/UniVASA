@@ -22,50 +22,43 @@ public class DbUtenteServiceImpl implements UtenteService {
 	private static final String user = "dbuser";
 	private static final String pwd = "sql_password123";
 
-	// Definizione query in Java
-	private static final String visualizzaTurnazioni = "select * from turnazione where id_operatore=?";
-	/*private static final String trovaPazienti = "select * from utente where tipologia='paziente' ";
-	private static final String trovaMedici = "select * from utente where tipologia='medico' ";
-	*/
-
-	private static final String inserisciOperatore = "insert into operatore (nome, cognome, email, username, password, telefono, data_nascita, professione, nome_università, dipartimento) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-	/*private static final String inserisciPaziente = "insert into utente (username, password, nome, cognome, cf, dataNascita, luogoNascita, residenza, telefono, sesso, saldo, tipologia) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?, \"paziente\") ";
-	private static final String inserisciMedico = "insert into utente (username, password, nome, cognome, cf, dataNascita, luogoNascita, residenza, telefono, sesso, codicealbomedici, tipologiamedico, tipologia) values (?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?, \"medico\")";
-	 */
-
-	private static final String modificaOperatore = "update operatore set email=?, telefono=?, nome_università=?, dipartimento=? where id = ?";
-	/*private static final String modificaPaziente = "update utente set username=?, password=?, nome=?, cognome=?, cf=?, dataNascita=?, luogoNascita=?, residenza=?, telefono=?, sesso=?, saldo=? where id = ?";
-	private static final String modificaFarmacista = "update utente set username=?, password=?, nome=?, cognome=?, cf=?, dataNascita=?, luogoNascita=?, residenza=?, telefono=?, sesso=? where id = ?";
-	*/
-
 	/* -------------------------------------------------------------------------------------------------------------------------------------------- */
 
 	// trovaUtenteById --- dobbiamo sapere che tipo di utente si tratta
-	private static final String trovaAmministratore = "select * from amministratore where id=?";
-	private static final String trovaOperatore = "select * from operatore where id=?";
-	private static final String trovaElettore = "select * from elettore where id=?";
+	private static final String trovaUtente = "select * from utente where id=?";
 	// trovaTuttiUtenti
-	private static final String trovaAmministratori = "select * from amministratore";		// Vale anche per trovaTuttiAmministratori
-	private static final String trovaOperatori = "select * from operatore";					// Vale anche per trovaTuttiOperatori
-	private static final String trovaElettori = "select * from elettore";					// Vale anche per trovaTuttiElettori
+	private static final String trovaTuttiUtenti = "select * from utente";
 	// creaAmministratore
-	private static final String creaAmministratore = "insert into amministratore (nome, cognome, email, username, password, telefono, data_nascita, professione, nome_università, dipartimento) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	private static final String creaAmministratore = "insert into utente (nome, cognome, email, username, password, telefono, data_nascita, professione, nome_universita, dipartimento, tipo_utente) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'amministratore')";
 	// creaOperatore
-	private static final String creaCandidato = "insert into operatore (nome, cognome, email, username, password, telefono, data_nascita, professione, nome_università, dipartimento) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-	// creaElettore --- N.B. categoria Elettore???? Non sarebbe più esatto in elettore_partecipa_evento????
-	private static final String creaElettore = "insert into elettore (nome, cognome, email, username, password, telefono, data_nascita, professione, nome_università, dipartimento, matricola, certificato, categoria) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-	// creaElettoreInSede & creaElettoreOnline --- Ecco appunto... come lo registro mo sta cosa?
-	// ...
-	// creaCandidato --- Dobbiamo sistemare ste associazioni, PER FORZA.
-	// ...
-	// verificaCertificato --- EH... BOO!!
-	// ...
+	private static final String creaOperatore = "insert into operatore (nome, cognome, email, username, password, telefono, data_nascita, professione, nome_universita, dipartimento, tipo_utente) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'operatore')";
+	// creaElettore
+	private static final String creaElettore = "insert into elettore (nome, cognome, email, username, password, telefono, data_nascita, professione, nome_universita, dipartimento, matricola, tipo_utente) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'elettore')";
+	// creaElettoreInSede & creaElettoreOnline
+	private static final String prenotazioneInSede = "insert into prenotazione (id_utente,id_evento,tipo_prenotazione,stato) values (?,?,'presenza','no')";
+	private static final String prenotazioneOnline = "insert into prenotazione (id_utente,id_evento,tipo_prenotazione) values (?,?,'online')";
+	// creaCandidato
+	private static final String creaCandidato = "insert into candidatura (id_utente,id_evento,voti_ricevuti) values (?,?,0)";
+	// accetta certificato & rifiutaCertificato
+	private static final String accettaCertificato = "update set stato='no' from prenotazione where id_evento=? and id_utente=?";
+	private static final String rifiutaCertificato = "delete from prenotazione where id_evento=? and id_utente=?";
 	// gestionePrenotazioni
-	private static final String gestionePrenotazioni = "select * from elettore_partecipa_evento where Evento_idEvento=?";
+	private static final String gestionePrenotazioni = "select * from prenotazione where id_evento=?";
 	// visualizzaCandidati
-	private static final String visualizzaCandidati = "select * from candidatura where Evento_idEvento=?";
-	// viusalizzaEventi --- Cosa lega nel DB operatore ed evento????
-	// ...
+	private static final String visualizzaCandidati = "select * from utente u join candidatura c on u.id=c.id_utente where c.id_evento=?";
+	// viusalizzaEventi
+	private static final String visualizzaEventi = "select * from evento";
+	// modificaOperatore
+	private static final String modificaOperatore = "update set telefono=?, email=?, nome_universita=?, dipartimento=? from utente where id=?";
+	// visualizzaTurnazioni
+	private static final String visualizzaTurnazioni = "select * from turnazione where id_utente=?";
+	// visualizzaPrenotatiInSede
+	private static final String visualizzaPrenotatiInSede = "select * from prenotazione where id_evento=? and tipo_prenotazione='presenza'";
+	// vota
+	private static final String vota = "update set voti_ricevuti=voti_ricevuti+1 from candidatura where id_utente=? and id_evento=?";
+	private static final String aggiornaPrenotazione = "update set stato='si' from prenotazione where id_utente=? and id_evento=?";
+	// eliminaUtente
+	private static final String eliminaUtente = "delete from utente where id_utente=?";
 
 
 	@Override
@@ -337,23 +330,8 @@ public class DbUtenteServiceImpl implements UtenteService {
 	}
 
 	@Override
-	public void creaElettoreInSede(ElettoreInSede elettoreInSede) throws BusinessException {
-
-	}
-
-	@Override
-	public void creaElettoreOnline(ElettoreOnline elettoreOnline) throws BusinessException {
-
-	}
-
-	@Override
 	public void creaCandidato(Candidato candidato) throws BusinessException {
 
-	}
-
-	@Override
-	public boolean verificaCertificato(String certificato) throws BusinessException {
-		return false;
 	}
 
 	@Override
@@ -366,38 +344,24 @@ public class DbUtenteServiceImpl implements UtenteService {
 		return null;
 	}
 
+
 	@Override
-	public void modificaOperatore(Operatore operatore) throws BusinessException {
+	public void modificaOperatore(Operatore operatore) throws BusinessException { }
+
+
+
+	@Override
+	public void accettaCertificato(String certificato) throws BusinessException {
 
 	}
 
 	@Override
-	public List<Candidato> trovaTuttiCandidati() throws BusinessException {
-		return null;
+	public void rifiutaCertificato(String certificato) throws BusinessException {
+
 	}
 
 	@Override
-	public List<Evento> visualizzaEventi(Operatore operatore) throws BusinessException {
-		return null;
-	}
-
-	@Override
-	public boolean riconoscimentoElettore(ElettoreInSede elettoreInSede) throws BusinessException {
-		return false;
-	}
-
-	@Override
-	public boolean caricaRisultati(Evento evento) throws BusinessException {
-		return false;
-	}
-
-	@Override
-	public List<Turnazione> visualizzaTurnazioni(Operatore operatore) throws BusinessException {
-		return null;
-	}
-
-	@Override
-	public List<ElettoreInSede> visualizzaPrenotatiInSede(Evento evento) throws BusinessException {
+	public List<Elettore> visualizzaPrenotatiInSede(Evento evento) throws BusinessException {
 		return null;
 	}
 
@@ -416,15 +380,6 @@ public class DbUtenteServiceImpl implements UtenteService {
 
 	}
 
-	@Override
-	public boolean riconoscimentoOnline(ElettoreOnline elettoreOnline, Evento evento) throws BusinessException {
-		return false;
-	}
-
-	@Override
-	public List<ElettoreOnline> visualizzaPrenotatiOnline(SchedaElettorale schedaElettorale) throws BusinessException {
-		return null;
-	}
 
 	@Override
 	public void eliminaUtente(Utente utente) throws UtenteNotFoundException, BusinessException {

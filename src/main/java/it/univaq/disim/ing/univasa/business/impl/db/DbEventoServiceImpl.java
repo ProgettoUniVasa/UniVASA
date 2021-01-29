@@ -23,14 +23,20 @@ public class DbEventoServiceImpl implements EventoService {
 	private static final String user = "dbuser";
 	private static final String password = "sql_password123";
 
-	// Definizione query in Java
-	private static final String inserisciEvento = "insert into evento (nome, regolamento, data_ora_inizio, data_ora_fine, luogo, numero_preferenze_esprimibili) values (?,?,?,?,?,?) ";
-	private static final String inserisciReport = "insert into evento (report_risultati, report_statistiche) values (?,?) where id=?";
-	private static final String cancellaEvento = "delete from evento where id=?";
+	/* -------------------------------------------------------------------------------------------------------------------------------------------- */
 
+	// Definizione query in Java
+	private static final String creaEvento = "insert into evento (nome, regolamento, data_inizio, data_fine, ora_inizio, ora_fine, luogo, numero_preferenze_esprimibili,stato) values (?,?,?,?,?,?,?,?,'programmato') ";
+	private static final String creaReport = "insert into evento (report_risultati, report_statistiche) values (?,?) where id=?";
+	private static final String cancellaEvento = "delete from evento where id=?";
 	private static final String trovaTuttiEventi = "select * from evento";
 	private static final String trovaEventoDaId = "select * from evento where id=?";
 	private static final String trovaNomiEventi = "select nome from evento";
+	
+	// si deve ripetere per ogni candidato che riceve voti
+	private static final String caricaRisultatiInPresenza = "update set voti_ricevuti=voti_ricevuti+? from candidatura where id_utente=? and id_evento=?";
+	private static final String trovaEventiPrenotatiElettore = "select * from evento e join prenotazione p on e.id=p.id_utente";
+
 
 	@Override
 	public void creaEvento(Evento evento) throws BusinessException {
@@ -41,7 +47,7 @@ public class DbEventoServiceImpl implements EventoService {
 		// Connessione al Database e richiamo query
 		try (Connection c = DriverManager.getConnection(url, user, password);) {
 
-			PreparedStatement ps = c.prepareStatement(inserisciEvento);
+			PreparedStatement ps = c.prepareStatement(creaEvento);
 			ps.setString(1, evento.getNome());
 			ps.setString(2, evento.getRegolamento());
 			ps.setDate(3, data_inizio);
@@ -61,7 +67,7 @@ public class DbEventoServiceImpl implements EventoService {
 		// Connessione al Database e richiamo query
 		try (Connection c = DriverManager.getConnection(url, user, password);) {
 
-			PreparedStatement ps = c.prepareStatement(inserisciReport);
+			PreparedStatement ps = c.prepareStatement(creaReport);
 			ps.setString(1, evento.getReport_risultati());
 			ps.setString(2, evento.getReport_statistiche());
 
@@ -70,6 +76,11 @@ public class DbEventoServiceImpl implements EventoService {
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 		}
+	}
+
+	@Override
+	public boolean caricaRisultatiInPresenza(Evento evento) throws BusinessException {
+		return false;
 	}
 
 	@Override
@@ -205,7 +216,7 @@ public class DbEventoServiceImpl implements EventoService {
 	}
 
 	@Override
-	public List<Evento> trovaEventiElettore(Elettore elettore) throws BusinessException {
+	public List<Evento> trovaEventiPrenotatiElettore(Elettore elettore) throws BusinessException {
 		return null;
 	}
 

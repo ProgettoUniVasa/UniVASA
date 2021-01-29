@@ -145,7 +145,7 @@ public class ElencoEventiPersonaliElettoreController implements Initializable, D
 	public void initializeData(Elettore elettore) {
 		try {
 			this.elettore = elettore;
-			List<Evento> eventi = eventoService.trovaEventiElettore(elettore); // vedere service
+			List<Evento> eventi = eventoService.trovaEventiPrenotatiElettore(elettore); // vedere service
 			ObservableList<Evento> eventiData = FXCollections.observableArrayList(eventi);
 			eventiPersonaliTable.setItems(eventiData);
 		} catch (BusinessException e) {

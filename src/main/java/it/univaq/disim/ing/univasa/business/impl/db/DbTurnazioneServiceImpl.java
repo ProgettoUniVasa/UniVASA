@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.List;
 
 import it.univaq.disim.ing.univasa.business.BusinessException;
 import it.univaq.disim.ing.univasa.business.EventoService;
@@ -22,8 +23,12 @@ public class DbTurnazioneServiceImpl implements TurnazioneService {
 	private static final String user = "dbuser";
 	private static final String password = "sql_password123";
 
+	/* -------------------------------------------------------------------------------------------------------------------------------------------- */
+
 	// Definizione query in Java
-	private static final String associaTurnazione = "insert into turnazione(Evento_idEvento, Operatore_idOperatore, fascia_oraria, data_turno) values(?,?,?,?)";
+	private static final String associaTurnazione = "insert into turnazione(id_utente, id_evento, fascia, data_giorno) values(?,?,?,?)";
+	private static final String visualizzaTurnazioni = "select * from turnazione where id_utente=?";
+
 
 	public DbTurnazioneServiceImpl(EventoService eventoService, UtenteService utenteService) {
 		this.eventoService = eventoService;
@@ -49,6 +54,11 @@ public class DbTurnazioneServiceImpl implements TurnazioneService {
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 		}
+	}
+
+	@Override
+	public List<Turnazione> visualizzaTurnazioni(Operatore operatore) throws BusinessException {
+		return null;
 	}
 
 }
