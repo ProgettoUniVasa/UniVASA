@@ -50,7 +50,7 @@ public class HomeElettoreController implements Initializable, DataInitializable<
 	@FXML
 	public void visualizzaEventiPersonaliAction(ActionEvent event) {
 		dispatcher.renderView("elencoEventiPersonaliElettore", elettore); //elencoEventiPersonaliElettore.fxml; nella tableView ci sarà la colonna di bottoni "azione per cambiare modalità" 
-																		  //che avrà eccezione in caso di stato.prenotazione_online, e porterà a "schermataCambioModalità" in caso di prenotazione in sede 
+																		  //che avrà eccezione in caso di stato.prenotazione_online, e porterà a "CambioModalitaVotazione" in caso di prenotazione in sede 
 		}
 	
 	@FXML
