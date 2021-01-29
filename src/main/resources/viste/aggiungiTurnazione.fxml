@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
@@ -13,9 +14,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="382.0" prefWidth="625.0" style="-fx-background-color: #0ABAB5;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.amministratorecontroller.AggiungiEventoController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="343.0" prefWidth="625.0" style="-fx-background-color: #0ABAB5;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.amministratorecontroller.AggiungiTurnazioneController">
    <children>
-      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="49.0" prefWidth="665.0" text="Aggiungi Evento">
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="49.0" prefWidth="665.0" text="Aggiungi Turnazione">
          <font>
             <Font name="Palatino Linotype Bold" size="30.0" />
          </font>
@@ -24,7 +25,7 @@
          </padding>
       </Label>
       <Separator prefHeight="28.0" prefWidth="610.0" />
-      <GridPane prefHeight="205.0" prefWidth="586.0">
+      <GridPane prefHeight="169.0" prefWidth="598.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="308.9999633789063" minWidth="10.0" prefWidth="308.9999633789063" />
           <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" maxWidth="479.20001220703125" minWidth="-Infinity" prefWidth="301.8000366210937" />
@@ -32,15 +33,12 @@
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints maxHeight="40.799993896484374" minHeight="10.0" prefHeight="28.79999771118164" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="32.00000228881835" minHeight="10.0" prefHeight="32.00000228881835" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="32.00000228881835" minHeight="10.0" prefHeight="32.00000228881835" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="32.00000228881835" minHeight="10.0" prefHeight="32.00000228881835" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="32.00000228881835" minHeight="10.0" prefHeight="32.00000228881835" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="34.40000610351562" minHeight="0.0" prefHeight="32.8" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="65.59999999999998" minHeight="10.0" prefHeight="32.79999999999998" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label alignment="CENTER" prefHeight="34.0" prefWidth="341.0" text="Nome :">
+            <Label alignment="CENTER" prefHeight="34.0" prefWidth="341.0" text="Email Operatore :">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
@@ -48,25 +46,17 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" prefHeight="65.0" prefWidth="334.0" text="Regolamento : " GridPane.rowIndex="1">
+            <Label alignment="CENTER" prefHeight="65.0" prefWidth="334.0" text="Fascia Oraria : " GridPane.rowIndex="1">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" prefHeight="90.0" prefWidth="339.0" text="Data Ora Inizio :" GridPane.rowIndex="2">
+            <Label alignment="CENTER" prefHeight="90.0" prefWidth="339.0" text="Data Turnazione :" GridPane.rowIndex="2">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="10.0" layoutY="77.0" prefHeight="65.0" prefWidth="321.0" text="Data Ora Fine : " GridPane.rowIndex="3">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-            </Label>
-            <Label alignment="CENTER" layoutX="10.0" layoutY="110.0" prefHeight="81.0" prefWidth="309.0" text="Luogo :" GridPane.rowIndex="6">
+            <Label alignment="CENTER" layoutX="10.0" layoutY="77.0" prefHeight="65.0" prefWidth="321.0" text="Nome Evento : " GridPane.rowIndex="3">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
@@ -74,7 +64,7 @@
                   <Insets />
                </GridPane.margin>
             </Label>
-            <Label alignment="CENTER" layoutX="10.0" layoutY="143.0" prefHeight="66.0" prefWidth="309.0" text="Numero Preferenze Esprimibili :" GridPane.rowIndex="7">
+            <Label alignment="CENTER" layoutX="10.0" layoutY="110.0" prefHeight="81.0" prefWidth="309.0" text="Luogo :" GridPane.rowIndex="4">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
@@ -82,45 +72,21 @@
                   <Insets />
                </GridPane.margin>
             </Label>
-            <TextField fx:id="nome" prefHeight="26.0" prefWidth="325.0" GridPane.columnIndex="1">
+            <TextField fx:id="email" prefHeight="26.0" prefWidth="325.0" GridPane.columnIndex="1">
                <GridPane.margin>
                   <Insets right="20.0" />
                </GridPane.margin></TextField>
-            <TextField fx:id="regolamento" prefHeight="26.0" prefWidth="319.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <TextField fx:id="luogo" prefHeight="26.0" prefWidth="330.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <GridPane.margin>
                   <Insets right="20.0" />
                </GridPane.margin></TextField>
-            <DatePicker fx:id="dataFine" prefHeight="26.0" prefWidth="380.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <DatePicker fx:id="data_turno" prefHeight="26.0" prefWidth="296.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="nome_evento" prefHeight="26.0" prefWidth="319.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets right="20.0" />
-               </GridPane.margin></DatePicker>
-            <TextField fx:id="luogo" prefHeight="26.0" prefWidth="330.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
-               <GridPane.margin>
-                  <Insets right="20.0" />
-               </GridPane.margin></TextField>
-            <TextField fx:id="numero_preferenze_esprimibili" prefHeight="26.0" prefWidth="325.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
-               <GridPane.margin>
-                  <Insets right="20.0" />
-               </GridPane.margin></TextField>
-            <DatePicker fx:id="dataInizio" prefHeight="26.0" prefWidth="296.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Label alignment="CENTER" prefHeight="65.0" prefWidth="321.0" text="Ora Inizio : " GridPane.rowIndex="4">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER" prefHeight="65.0" prefWidth="321.0" text="Ora Fine : " GridPane.rowIndex="5">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-            </Label>
-            <TextField fx:id="oraInizio" prefHeight="26.0" prefWidth="319.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
-               <GridPane.margin>
-                  <Insets right="20.0" />
-               </GridPane.margin></TextField>
-            <TextField fx:id="oraFine" prefHeight="26.0" prefWidth="319.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
-               <GridPane.margin>
-                  <Insets right="20.0" />
-               </GridPane.margin></TextField>
+               </GridPane.margin>
+            </TextField>
+            <ComboBox fx:id="fascia" prefHeight="25.0" prefWidth="295.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
       <Separator prefHeight="27.0" prefWidth="647.0" />

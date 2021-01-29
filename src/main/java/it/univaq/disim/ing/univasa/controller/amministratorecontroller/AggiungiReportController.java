@@ -17,7 +17,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
-//aggiungere l'ora
 public class AggiungiReportController implements Initializable, DataInitializable<Evento> {
 
 	@FXML
@@ -83,7 +82,6 @@ public class AggiungiReportController implements Initializable, DataInitializabl
 	public void salvaAction(ActionEvent event) {
 		try {
 			evento.setNome(nomeEvento.getText());
-			// .
 			evento.setDataInizio(dataInizio.getValue());
 			evento.setDataFine(dataFine.getValue());
 			evento.setLuogo(luogo.getText());

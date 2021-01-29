@@ -57,15 +57,19 @@ public class DashboardAmministratoreController implements Initializable, DataIni
 		dispatcher.renderView("listaEventiAmministratore", amministratore);
 	}
 
-	//dio porco le turnazioni.
 	@FXML
 	public void associazioneTurni(ActionEvent event) {
-		dispatcher.renderView("li mortacci tua.", amministratore);
+		dispatcher.renderView("listaTurnazioniAmministratore", amministratore);
 	}
 	
 	@FXML
 	public void creazioneReportAction(ActionEvent event) {
 		dispatcher.renderView("listaReportAmministratore", amministratore);
+	}
+	
+	@FXML
+	public void gestioneOperatoriAction(ActionEvent event) {
+		dispatcher.renderView("gestioneOperatoriAmministratore", amministratore);
 	}
 
 	@FXML

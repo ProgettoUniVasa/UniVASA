@@ -49,6 +49,12 @@ public class ListaEventiAmministratoreController implements Initializable, DataI
 	private TableColumn<Evento, LocalDate> dataFineTableColumn;
 
 	@FXML
+	private TableColumn<Evento, String> oraInizioTableColumn;
+
+	@FXML
+	private TableColumn<Evento, String> oraFineTableColumn;
+
+	@FXML
 	private TableColumn<Evento, String> luogoTableColumn;
 
 	@FXML
@@ -59,9 +65,6 @@ public class ListaEventiAmministratoreController implements Initializable, DataI
 
 	@FXML
 	private TableColumn<Evento, Integer> numero_preferenze_esprimibiliTableColumn;
-
-	@FXML
-	private TableColumn<Evento, Button> azioniTableColumn;
 
 	@FXML
 	private TableColumn<Evento, Button> eliminaTableColumn;
@@ -85,6 +88,8 @@ public class ListaEventiAmministratoreController implements Initializable, DataI
 		regolamentoTableColumn.setCellValueFactory(new PropertyValueFactory<>("regolamento"));
 		dataInizioTableColumn.setCellValueFactory(new PropertyValueFactory<>("dataInizio"));
 		dataFineTableColumn.setCellValueFactory(new PropertyValueFactory<>("dataFine"));
+		oraInizioTableColumn.setCellValueFactory(new PropertyValueFactory<>("oraInizio"));
+		oraFineTableColumn.setCellValueFactory(new PropertyValueFactory<>("oraFine"));
 		luogoTableColumn.setCellValueFactory(new PropertyValueFactory<>("luogo"));
 		report_risultatiTableColumn.setCellValueFactory(new PropertyValueFactory<>("report_risultati"));
 		report_statisticheTableColumn.setCellValueFactory(new PropertyValueFactory<>("report_statistiche"));

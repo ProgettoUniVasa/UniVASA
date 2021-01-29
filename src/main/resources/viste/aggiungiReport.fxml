@@ -38,7 +38,7 @@
             <RowConstraints maxHeight="65.59999999999998" minHeight="10.0" prefHeight="32.79999999999998" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label alignment="CENTER" prefHeight="34.0" prefWidth="341.0" text="Nome :">
+            <Label alignment="CENTER" prefHeight="34.0" prefWidth="341.0" text="Nome Evento:">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
@@ -46,12 +46,12 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" prefHeight="90.0" prefWidth="339.0" text="Data Inizio :" GridPane.rowIndex="1">
+            <Label alignment="CENTER" prefHeight="90.0" prefWidth="339.0" text="Data Inizio Evento :" GridPane.rowIndex="1">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="10.0" layoutY="77.0" prefHeight="65.0" prefWidth="321.0" text="Data Fine : " GridPane.rowIndex="2">
+            <Label alignment="CENTER" layoutX="10.0" layoutY="77.0" prefHeight="65.0" prefWidth="321.0" text="Data Fine Evento : " GridPane.rowIndex="2">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
@@ -59,7 +59,7 @@
                   <Insets />
                </GridPane.margin>
             </Label>
-            <Label alignment="CENTER" layoutX="10.0" layoutY="110.0" prefHeight="81.0" prefWidth="309.0" text="Luogo :" GridPane.rowIndex="3">
+            <Label alignment="CENTER" layoutX="10.0" layoutY="110.0" prefHeight="81.0" prefWidth="309.0" text="Luogo Evento :" GridPane.rowIndex="3">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>

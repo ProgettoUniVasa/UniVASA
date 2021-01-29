@@ -34,7 +34,7 @@ public class DbEventoServiceImpl implements EventoService {
 	private static final String trovaNomiEventi = "select nome from evento";
 	
 	// si deve ripetere per ogni candidato che riceve voti
-	private static final String caricaRisultatiInPresenza = "update set voti_ricevuti=voti_ricevuti+? from candidatura where id_utente=? and id_evento=?";
+	private static final String caricaRisultatiInPresenza = "update from candidatura set voti_ricevuti=voti_ricevuti+? where id_utente=? and id_evento=?";
 	private static final String trovaEventiPrenotatiElettore = "select * from evento e join prenotazione p on e.id=p.id_utente";
 
 
@@ -213,6 +213,11 @@ public class DbEventoServiceImpl implements EventoService {
 			}
 		}
 		return result;
+	}
+
+	@Override
+	public Evento eventodaEmail() {
+		return null;
 	}
 
 	@Override
