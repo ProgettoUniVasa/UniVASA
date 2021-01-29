@@ -51,7 +51,13 @@ public class PrenotazioneVotazioneInPresenzaElettoreController implements Initia
 
 	@FXML
 	public void prenotatiInPresenzaAction(ActionEvent event) throws BusinessException {
+		try {
+			utenteService.prenotazioneInSede(elettore, evento);
 
+			dispatcher.renderView("elencoTuttiGliEventiElettore", elettore);
+		} catch (BusinessException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@FXML

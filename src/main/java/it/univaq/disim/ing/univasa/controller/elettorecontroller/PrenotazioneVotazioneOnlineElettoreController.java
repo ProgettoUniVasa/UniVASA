@@ -51,7 +51,14 @@ public class PrenotazioneVotazioneOnlineElettoreController implements Initializa
 
 	@FXML
 	public void prenotatiOnlineAction(ActionEvent event) throws BusinessException {
+		try {
+			utenteService.prenotazioneOnline(elettore, evento);
+			;
 
+			dispatcher.renderView("elencoTuttiGliEventiElettore", elettore);
+		} catch (BusinessException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@FXML
