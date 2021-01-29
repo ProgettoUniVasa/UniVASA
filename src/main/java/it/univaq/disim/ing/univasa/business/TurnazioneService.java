@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface TurnazioneService {
 
-	void creaTurnazione(Evento evento, Operatore operatore, TipologiaTurno fascia, LocalDate giorno) throws BusinessException;
+	void creaTurnazione(Turnazione turnazione) throws BusinessException;
 
 	List<Turnazione> visualizzaTurnazioni(Operatore operatore) throws BusinessException;
 

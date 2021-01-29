@@ -52,4 +52,5 @@ public interface UtenteService {
 
 	void eliminaUtente(Utente utente) throws UtenteNotFoundException, BusinessException;
 
+    Operatore utenteDaEmail();
 }

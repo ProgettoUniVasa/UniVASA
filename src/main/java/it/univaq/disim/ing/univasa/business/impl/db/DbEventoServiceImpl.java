@@ -216,6 +216,11 @@ public class DbEventoServiceImpl implements EventoService {
 	}
 
 	@Override
+	public Evento eventodaEmail() {
+		return null;
+	}
+
+	@Override
 	public List<Evento> trovaEventiPrenotatiElettore(Elettore elettore) throws BusinessException {
 		return null;
 	}

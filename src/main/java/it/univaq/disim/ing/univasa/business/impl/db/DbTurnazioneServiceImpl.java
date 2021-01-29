@@ -40,7 +40,7 @@ public class DbTurnazioneServiceImpl implements TurnazioneService {
 
 
 	@Override
-	public void creaTurnazione(Evento evento, Operatore operatore, TipologiaTurno fascia, LocalDate giorno) throws BusinessException {
+	public void creaTurnazione() throws BusinessException {
 
 	}
 

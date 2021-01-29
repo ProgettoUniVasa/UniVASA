@@ -3,9 +3,7 @@ package it.univaq.disim.ing.univasa.controller.amministratorecontroller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import it.univaq.disim.ing.univasa.business.BusinessException;
-import it.univaq.disim.ing.univasa.business.TurnazioneService;
-import it.univaq.disim.ing.univasa.business.UnivasaBusinessFactory;
+import it.univaq.disim.ing.univasa.business.*;
 import it.univaq.disim.ing.univasa.controller.DataInitializable;
 import it.univaq.disim.ing.univasa.domain.Amministratore;
 import it.univaq.disim.ing.univasa.domain.Evento;
@@ -47,6 +45,8 @@ public class AggiungiTurnazioneController implements Initializable, DataInitiali
 	private ViewDispatcher dispatcher;
 
 	private TurnazioneService turnazioneService;
+	private UtenteService utenteService;
+	private EventoService eventoService;
 
 	private Turnazione turnazione;
 
@@ -60,6 +60,8 @@ public class AggiungiTurnazioneController implements Initializable, DataInitiali
 		dispatcher = ViewDispatcher.getInstance();
 		UnivasaBusinessFactory factory = UnivasaBusinessFactory.getInstance();
 		turnazioneService = factory.getTurnazioneService();
+		utenteService = factory.getUtenteService();
+		eventoService = factory.getEventoService();
 	}
 
 	@Override
@@ -86,17 +88,18 @@ public class AggiungiTurnazioneController implements Initializable, DataInitiali
 	@FXML
 	public void salvaAction(ActionEvent event) {
 		try {
-			turnazione.getOperatore().setEmail(email.getText());
+			turnazione.setOperatore(utenteService.utenteDaEmail());
 			turnazione.setFascia(fascia.getValue());
 			turnazione.setData_turno(data_turno.getValue());
-			turnazione.getEvento().setNome(nome_evento.getText());
-			turnazione.getEvento().setLuogo(luogo.getText());
+			turnazione.setEvento(eventoService.eventodaEmail());
 
-			if (turnazione.getId() == null) {
-				turnazioneService.creaTurnazione(evento, operatore, fascia, data_turno);
-
+			if (turnazione.getEvento()==null || turnazione.getOperatore()==null) {
+				// email o evento non esistenti
+			}else {
+				if (turnazione.getId() == null) {
+					turnazioneService.creaTurnazione(turnazione);
+				}
 			}
-
 			dispatcher.renderView("listaTurnazioniAmministratore", amministratore);
 
 		} catch (BusinessException e) {

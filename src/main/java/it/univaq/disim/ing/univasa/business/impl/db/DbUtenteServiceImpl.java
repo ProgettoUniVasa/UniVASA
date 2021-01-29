@@ -415,6 +415,29 @@ public class DbUtenteServiceImpl implements UtenteService {
 	@Override
 	public void creaAmministratore(Amministratore amministratore) throws BusinessException {
 
+		// Connessione al Database e richiamo query
+		try (Connection c = DriverManager.getConnection(url, user, pwd);) {
+
+			PreparedStatement ps = c.prepareStatement(creaAmministratore);
+
+			// Conversione da LocalDate a Date
+			Date data = java.sql.Date.valueOf(amministratore.getDataNascita());
+
+			ps.setString(1, amministratore.getUsername());
+			ps.setString(2, amministratore.getPassword());
+			ps.setString(3, amministratore.getNome());
+			ps.setString(4, amministratore.getCognome());
+			ps.setString(5, amministratore.getCf());
+			ps.setDate(6, data);
+			ps.setString(7, amministratore.getLuogoNascita());
+			ps.setString(8, amministratore.getResidenza());
+			ps.setString(9, amministratore.getTelefono());
+			ps.setString(10, amministratore.getSesso());
+
+			ps.executeUpdate();
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
 	}
 
 	@Override
@@ -493,6 +516,11 @@ public class DbUtenteServiceImpl implements UtenteService {
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 		}
+	}
+
+	@Override
+	public Operatore utenteDaEmail() {
+		return null;
 	}
 
 
