@@ -17,6 +17,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
+//aggiungere l'ora
 public class EliminaEventoController implements Initializable, DataInitializable<Evento> {
 
 	@FXML
@@ -26,10 +27,10 @@ public class EliminaEventoController implements Initializable, DataInitializable
 	private TextField regolamento;
 
 	@FXML
-	private DatePicker dataOraInizio;
+	private DatePicker dataInizio;
 
 	@FXML
-	private DatePicker dataOraFine;
+	private DatePicker dataFine;
 
 	@FXML
 	private TextField luogo;
@@ -72,8 +73,8 @@ public class EliminaEventoController implements Initializable, DataInitializable
 		this.evento = evento;
 		this.nome.setText(evento.getNome());
 		this.regolamento.setText(evento.getRegolamento());
-		this.dataOraInizio.setPromptText("" + evento.getDataOraInizio());
-		this.dataOraFine.setPromptText("" + evento.getDataOraFine());
+		this.dataInizio.setValue(evento.getDataInizio());
+		this.dataFine.setValue(evento.getDataFine());
 		this.luogo.setText(evento.getLuogo());
 		this.report_risultati.setText(evento.getReport_risultati());
 		this.report_statistiche.setText(evento.getReport_statistiche());
@@ -82,8 +83,8 @@ public class EliminaEventoController implements Initializable, DataInitializable
 		// Si disabilita il bottone se i campi di seguito non rispettano le proprietà
 		// definite
 		eliminaButton.disableProperty().bind((nome.textProperty().isEmpty()
-				.or(regolamento.textProperty().isEmpty().or(dataOraInizio.valueProperty().isNull())
-						.or(dataOraFine.valueProperty().isNull().or(luogo.textProperty().isEmpty()
+				.or(regolamento.textProperty().isEmpty().or(dataInizio.valueProperty().isNull())
+						.or(dataFine.valueProperty().isNull().or(luogo.textProperty().isEmpty()
 								.or(report_risultati.textProperty().isEmpty().or(report_statistiche.textProperty()
 										.isEmpty().or(numero_preferenze_esprimibili.textProperty().isEmpty()))))))));
 	}

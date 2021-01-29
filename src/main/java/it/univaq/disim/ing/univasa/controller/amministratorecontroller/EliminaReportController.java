@@ -16,17 +16,17 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-
+//aggiungere l'ora
 public class EliminaReportController implements Initializable, DataInitializable<Evento> {
 
 	@FXML
 	private TextField nome;
 
 	@FXML
-	private DatePicker dataOraInizio;
+	private DatePicker dataInizio;
 
 	@FXML
-	private DatePicker dataOraFine;
+	private DatePicker dataFine;
 
 	@FXML
 	private TextField luogo;
@@ -65,16 +65,16 @@ public class EliminaReportController implements Initializable, DataInitializable
 	public void initializeData(Evento evento) {
 		this.evento = evento;
 		this.nome.setText(evento.getNome());
-		this.dataOraInizio.setPromptText("" + evento.getDataOraInizio());
-		this.dataOraFine.setPromptText("" + evento.getDataOraFine());
+		this.dataInizio.setValue(evento.getDataInizio());
+		this.dataFine.setValue(evento.getDataFine());
 		this.luogo.setText(evento.getLuogo());
 		this.report_risultati.setText(evento.getReport_risultati());
 		this.report_statistiche.setText(evento.getReport_statistiche());
 
 		// Si disabilita il bottone se i campi di seguito non rispettano le proprietà
 		// definite
-		eliminaButton.disableProperty().bind((nome.textProperty().isEmpty().or((dataOraInizio.valueProperty().isNull())
-				.or(dataOraFine.valueProperty().isNull().or(luogo.textProperty().isEmpty().or(
+		eliminaButton.disableProperty().bind((nome.textProperty().isEmpty().or((dataInizio.valueProperty().isNull())
+				.or(dataFine.valueProperty().isNull().or(luogo.textProperty().isEmpty().or(
 						report_risultati.textProperty().isEmpty().or(report_statistiche.textProperty().isEmpty())))))));
 	}
 

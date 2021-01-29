@@ -43,10 +43,10 @@ public class ListaEventiAmministratoreController implements Initializable, DataI
 	private TableColumn<Evento, String> regolamentoTableColumn;
 
 	@FXML
-	private TableColumn<Evento, LocalDate> dataOraInizioTableColumn;
+	private TableColumn<Evento, LocalDate> dataInizioTableColumn;
 
 	@FXML
-	private TableColumn<Evento, LocalDate> dataOraFineTableColumn;
+	private TableColumn<Evento, LocalDate> dataFineTableColumn;
 
 	@FXML
 	private TableColumn<Evento, String> luogoTableColumn;
@@ -83,8 +83,8 @@ public class ListaEventiAmministratoreController implements Initializable, DataI
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 		nomeTableColumn.setCellValueFactory(new PropertyValueFactory<>("nome"));
 		regolamentoTableColumn.setCellValueFactory(new PropertyValueFactory<>("regolamento"));
-		dataOraInizioTableColumn.setCellValueFactory(new PropertyValueFactory<>("dataOraInizio"));
-		dataOraFineTableColumn.setCellValueFactory(new PropertyValueFactory<>("dataOraFine"));
+		dataInizioTableColumn.setCellValueFactory(new PropertyValueFactory<>("dataInizio"));
+		dataFineTableColumn.setCellValueFactory(new PropertyValueFactory<>("dataFine"));
 		luogoTableColumn.setCellValueFactory(new PropertyValueFactory<>("luogo"));
 		report_risultatiTableColumn.setCellValueFactory(new PropertyValueFactory<>("report_risultati"));
 		report_statisticheTableColumn.setCellValueFactory(new PropertyValueFactory<>("report_statistiche"));

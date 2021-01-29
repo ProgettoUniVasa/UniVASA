@@ -1,6 +1,6 @@
 package it.univaq.disim.ing.univasa.domain;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,9 +12,13 @@ public class Evento {
 
 	private String regolamento;
 
-	private LocalDateTime dataOraInizio;
+	private LocalDate dataInizio;
 
-	private LocalDateTime dataOraFine;
+	private LocalDate dataFine;
+
+	private String oraInizio;
+
+	private String oraFine;
 
 	private String luogo;
 
@@ -34,16 +38,18 @@ public class Evento {
 		super();
 	}
 
-	public Evento(Long id, String nome, String regolamento, LocalDateTime dataOraInizio, LocalDateTime dataOraFine,
-			String luogo, String report_risultati, String report_statistiche, int numero_preferenze_esprimibili,
-			Set<Amministratore> amministratori, Set<Candidato> candidati, Set<Operatore> operatori,
-			Set<SchedaElettorale> schedeOnline, Set<ElettoreInSede> elettoriInSede) {
+	public Evento(Long id, String nome, String regolamento, LocalDate dataInizio, LocalDate dataFine, String oraInizio,
+			String oraFine, String luogo, String report_risultati, String report_statistiche,
+			int numero_preferenze_esprimibili, Set<Amministratore> amministratori, Set<Candidato> candidati,
+			Set<Operatore> operatori, Set<SchedaElettorale> schedeOnline, Set<ElettoreInSede> elettoriInSede) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.regolamento = regolamento;
-		this.dataOraInizio = dataOraInizio;
-		this.dataOraFine = dataOraFine;
+		this.dataInizio = dataInizio;
+		this.dataFine = dataFine;
+		this.oraInizio = oraInizio;
+		this.oraFine = oraFine;
 		this.luogo = luogo;
 		this.report_risultati = report_risultati;
 		this.report_statistiche = report_statistiche;
@@ -67,12 +73,20 @@ public class Evento {
 		return regolamento;
 	}
 
-	public LocalDateTime getDataOraInizio() {
-		return dataOraInizio;
+	public LocalDate getDataInizio() {
+		return dataInizio;
 	}
 
-	public LocalDateTime getDataOraFine() {
-		return dataOraFine;
+	public LocalDate getDataFine() {
+		return dataFine;
+	}
+
+	public String getOraInizio() {
+		return oraInizio;
+	}
+
+	public String getOraFine() {
+		return oraFine;
 	}
 
 	public String getLuogo() {
@@ -123,12 +137,20 @@ public class Evento {
 		this.regolamento = regolamento;
 	}
 
-	public void setDataOraInizio(LocalDateTime dataOraInizio) {
-		this.dataOraInizio = dataOraInizio;
+	public void setDataInizio(LocalDate dataInizio) {
+		this.dataInizio = dataInizio;
 	}
 
-	public void setDataOraFine(LocalDateTime dataOraFine) {
-		this.dataOraFine = dataOraFine;
+	public void setDataFine(LocalDate dataFine) {
+		this.dataFine = dataFine;
+	}
+
+	public void setOraInizio(String oraInizio) {
+		this.oraInizio = oraInizio;
+	}
+
+	public void setOraFine(String oraFine) {
+		this.oraFine = oraFine;
 	}
 
 	public void setLuogo(String luogo) {

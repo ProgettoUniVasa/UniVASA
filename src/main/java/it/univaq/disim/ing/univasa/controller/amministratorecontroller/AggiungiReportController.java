@@ -17,16 +17,17 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
+//aggiungere l'ora
 public class AggiungiReportController implements Initializable, DataInitializable<Evento> {
 
 	@FXML
 	private TextField nomeEvento;
 
 	@FXML
-	private DatePicker dataOraInizio;
+	private DatePicker dataInizio;
 
 	@FXML
-	private DatePicker dataOraFine;
+	private DatePicker dataFine;
 
 	@FXML
 	private TextField luogo;
@@ -65,19 +66,17 @@ public class AggiungiReportController implements Initializable, DataInitializabl
 	public void initializeData(Evento evento) {
 		this.evento = evento;
 		this.nomeEvento.setText(evento.getNome());
-		this.dataOraInizio.setPromptText("" + evento.getDataOraInizio());
-		this.dataOraFine.setPromptText("" + evento.getDataOraFine());
+		this.dataInizio.setValue(evento.getDataInizio());
+		this.dataFine.setValue(evento.getDataFine());
 		this.luogo.setText(evento.getLuogo());
 		this.report_risultati.setText(evento.getReport_risultati());
 		this.report_statistiche.setText(evento.getReport_statistiche());
 
 		// Si disabilita il bottone se i campi di seguito non rispettano le proprietà
 		// definite
-		salvaButton.disableProperty()
-				.bind((nomeEvento.textProperty().isEmpty()
-						.or((dataOraInizio.valueProperty().isNull()).or(dataOraFine.valueProperty().isNull()
-								.or(luogo.textProperty().isEmpty().or(report_risultati.textProperty().isEmpty()
-										.or(report_statistiche.textProperty().isEmpty())))))));
+		salvaButton.disableProperty().bind((nomeEvento.textProperty().isEmpty().or((dataInizio.valueProperty().isNull())
+				.or(dataFine.valueProperty().isNull().or(luogo.textProperty().isEmpty().or(
+						report_risultati.textProperty().isEmpty().or(report_statistiche.textProperty().isEmpty())))))));
 	}
 
 	@FXML
@@ -85,8 +84,8 @@ public class AggiungiReportController implements Initializable, DataInitializabl
 		try {
 			evento.setNome(nomeEvento.getText());
 			// .
-			evento.setDataOraInizio(dataOraInizio.getValue());
-			evento.setDataOraFine(dataOraFine.getValue());
+			evento.setDataInizio(dataInizio.getValue());
+			evento.setDataFine(dataFine.getValue());
 			evento.setLuogo(luogo.getText());
 			evento.setReport_risultati(report_risultati.getText());
 			evento.setReport_statistiche(report_statistiche.getText());

@@ -13,8 +13,10 @@ import java.util.List;
 
 import it.univaq.disim.ing.univasa.business.BusinessException;
 import it.univaq.disim.ing.univasa.business.EventoService;
+import it.univaq.disim.ing.univasa.domain.Elettore;
 import it.univaq.disim.ing.univasa.domain.Evento;
 
+//aggiungere l'ora
 public class DbEventoServiceImpl implements EventoService {
 
 	private static final String url = "jdbc:mysql://localhost:3306/univasa?noAccessToProcedureBodies=true&serverTimezone=Europe/Rome";
@@ -33,8 +35,8 @@ public class DbEventoServiceImpl implements EventoService {
 	@Override
 	public void creaEvento(Evento evento) throws BusinessException {
 		// Conversione da LocalDate a Date
-		Date data_inizio = java.sql.Date.valueOf("" + evento.getDataOraInizio());
-		Date data_fine = java.sql.Date.valueOf("" + evento.getDataOraFine());
+		Date data_inizio = java.sql.Date.valueOf(evento.getDataInizio());
+		Date data_fine = java.sql.Date.valueOf(evento.getDataFine());
 
 		// Connessione al Database e richiamo query
 		try (Connection c = DriverManager.getConnection(url, user, password);) {
@@ -103,10 +105,10 @@ public class DbEventoServiceImpl implements EventoService {
 				evento.setNome(r.getString(2));
 				evento.setRegolamento(r.getString(3));
 				// Conversione da Date a LocalDateTime
-				evento.setDataOraInizio(
-						Instant.ofEpochMilli(r.getDate(4).getTime()).atZone(ZoneId.systemDefault()).toLocalDateTime());
-				evento.setDataOraFine(
-						Instant.ofEpochMilli(r.getDate(5).getTime()).atZone(ZoneId.systemDefault()).toLocalDateTime());
+				evento.setDataInizio(
+						Instant.ofEpochMilli(r.getDate(4).getTime()).atZone(ZoneId.systemDefault()).toLocalDate());
+				evento.setDataFine(
+						Instant.ofEpochMilli(r.getDate(5).getTime()).atZone(ZoneId.systemDefault()).toLocalDate());
 				evento.setLuogo(r.getString(6));
 				evento.setReport_risultati(r.getString(7));
 				evento.setReport_statistiche(r.getString(8));
@@ -147,10 +149,10 @@ public class DbEventoServiceImpl implements EventoService {
 				evento.setNome(r.getString(2));
 				evento.setRegolamento(r.getString(3));
 				// Conversione da Date a LocalDateTime
-				evento.setDataOraInizio(
-						Instant.ofEpochMilli(r.getDate(4).getTime()).atZone(ZoneId.systemDefault()).toLocalDateTime());
-				evento.setDataOraFine(
-						Instant.ofEpochMilli(r.getDate(5).getTime()).atZone(ZoneId.systemDefault()).toLocalDateTime());
+				evento.setDataInizio(
+						Instant.ofEpochMilli(r.getDate(4).getTime()).atZone(ZoneId.systemDefault()).toLocalDate());
+				evento.setDataFine(
+						Instant.ofEpochMilli(r.getDate(5).getTime()).atZone(ZoneId.systemDefault()).toLocalDate());
 				evento.setLuogo(r.getString(6));
 				evento.setReport_risultati(r.getString(7));
 				evento.setReport_statistiche(r.getString(8));
@@ -200,6 +202,11 @@ public class DbEventoServiceImpl implements EventoService {
 			}
 		}
 		return result;
+	}
+
+	@Override
+	public List<Evento> trovaEventiElettore(Elettore elettore) throws BusinessException {
+		return null;
 	}
 
 }

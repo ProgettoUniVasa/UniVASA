@@ -16,7 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-
+//aggiungere l'ora
 public class AggiungiEventoController implements Initializable, DataInitializable<Evento> {
 
 	@FXML
@@ -26,10 +26,10 @@ public class AggiungiEventoController implements Initializable, DataInitializabl
 	private TextField regolamento;
 
 	@FXML
-	private DatePicker dataOraInizio;
+	private DatePicker dataInizio;
 
 	@FXML
-	private DatePicker dataOraFine;
+	private DatePicker dataFine;
 
 	@FXML
 	private TextField luogo;
@@ -66,8 +66,8 @@ public class AggiungiEventoController implements Initializable, DataInitializabl
 		this.evento = evento;
 		this.nome.setText(evento.getNome());
 		this.regolamento.setText(evento.getRegolamento());
-		this.dataOraInizio.setPromptText("" + evento.getDataOraInizio());
-		this.dataOraFine.setPromptText("" + evento.getDataOraFine());
+		this.dataInizio.setValue(evento.getDataInizio());
+		this.dataFine.setValue(evento.getDataFine());
 		this.luogo.setText(evento.getLuogo());
 		this.numero_preferenze_esprimibili.setText("" + evento.getNumero_preferenze_esprimibili());
 
@@ -75,8 +75,8 @@ public class AggiungiEventoController implements Initializable, DataInitializabl
 		// definite
 		salvaButton.disableProperty()
 				.bind((nome.textProperty().isEmpty()
-						.or(regolamento.textProperty().isEmpty().or(dataOraInizio.valueProperty().isNull())
-								.or(dataOraFine.valueProperty().isNull().or(luogo.textProperty().isEmpty()
+						.or(regolamento.textProperty().isEmpty().or(dataInizio.valueProperty().isNull())
+								.or(dataFine.valueProperty().isNull().or(luogo.textProperty().isEmpty()
 										.or((numero_preferenze_esprimibili.textProperty().isEmpty())))))));
 	}
 
@@ -85,9 +85,8 @@ public class AggiungiEventoController implements Initializable, DataInitializabl
 		try {
 			evento.setNome(nome.getText());
 			evento.setRegolamento(regolamento.getText());
-			//dio porco la data di merda. dobbiamo dividerla dio cane okay?
-			evento.setDataOraInizio(dataOraInizio.getPromptText());
-			evento.setDataOraFine(dataOraFine.getValue());
+			evento.setDataInizio(dataInizio.getValue());
+			evento.setDataFine(dataFine.getValue());
 			evento.setLuogo(luogo.getText());
 			evento.setNumero_preferenze_esprimibili(Integer.parseInt(numero_preferenze_esprimibili.getText()));
 

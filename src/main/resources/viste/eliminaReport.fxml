@@ -42,12 +42,12 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" prefHeight="146.0" prefWidth="696.0" text="Data Ora Inizio:" GridPane.rowIndex="1">
+            <Label alignment="CENTER" prefHeight="146.0" prefWidth="696.0" text="Data Inizio:" GridPane.rowIndex="1">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" prefHeight="146.0" prefWidth="696.0" text="Data Ora Fine:" GridPane.rowIndex="2">
+            <Label alignment="CENTER" prefHeight="146.0" prefWidth="696.0" text="Data Fine:" GridPane.rowIndex="2">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
@@ -67,8 +67,8 @@
                   <Insets right="20.0" />
                </GridPane.margin>
             </TextField>
-            <DatePicker fx:id="dataOraInizio" editable="false" prefHeight="35.0" prefWidth="423.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <DatePicker fx:id="dataOraFine" editable="false" prefHeight="35.0" prefWidth="435.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <DatePicker fx:id="dataInizio" editable="false" prefHeight="35.0" prefWidth="423.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <DatePicker fx:id="dataFine" editable="false" prefHeight="35.0" prefWidth="435.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets right="20.0" />
                </GridPane.margin>

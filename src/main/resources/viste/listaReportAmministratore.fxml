@@ -29,8 +29,8 @@
       <TableView fx:id="reportTable" prefHeight="464.0" prefWidth="743.0" style="-fx-background-color: #0ABAB5;">
         <columns>
           <TableColumn fx:id="nomeTableColumn" prefWidth="87.0" text="Nome Evento" />
-            <TableColumn fx:id="dataOraInizioTableColumn" prefWidth="96.0" text="Data Ora Inizio" />
-            <TableColumn fx:id="dataOraFineTableColumn" prefWidth="97.0" text="Data Ora Fine" />
+            <TableColumn fx:id="dataInizioTableColumn" prefWidth="96.0" text="Data Inizio" />
+            <TableColumn fx:id="dataFineTableColumn" prefWidth="97.0" text="Data Fine" />
             <TableColumn fx:id="luogoTableColumn" prefWidth="84.0" text="Luogo" />
             <TableColumn fx:id="report_risultatiTableColumn" prefWidth="119.0" text="Report Risultati" />
             <TableColumn fx:id="report_statisticheTableColumn" prefWidth="143.0" text="Report Statistiche" />
