@@ -5,13 +5,16 @@ import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 
 import it.univaq.disim.ing.univasa.business.BusinessException;
 import it.univaq.disim.ing.univasa.business.EventoService;
 import it.univaq.disim.ing.univasa.business.TurnazioneService;
 import it.univaq.disim.ing.univasa.business.UtenteService;
+import it.univaq.disim.ing.univasa.domain.Evento;
 import it.univaq.disim.ing.univasa.domain.Operatore;
+import it.univaq.disim.ing.univasa.domain.TipologiaTurno;
 import it.univaq.disim.ing.univasa.domain.Turnazione;
 
 public class DbTurnazioneServiceImpl implements TurnazioneService {
@@ -35,30 +38,20 @@ public class DbTurnazioneServiceImpl implements TurnazioneService {
 		this.utenteService = utenteService;
 	}
 
+
 	@Override
-	public void associaTurnazione(Turnazione turnazione, Operatore operatore) throws BusinessException {
-		// Conversione da LocalDate a Date
-		Date data_turno = java.sql.Date.valueOf("" + turnazione.getData_turno());
+	public void creaTurnazione(Evento evento, Operatore operatore, TipologiaTurno fascia, LocalDate giorno) throws BusinessException {
 
-		// Connessione al Database e richiamo query
-		try (Connection c = DriverManager.getConnection(url, user, password);) {
-
-			PreparedStatement ps = c.prepareStatement(associaTurnazione);
-			ps.setLong(1, turnazione.getEvento().getId());
-			ps.setLong(2, turnazione.getOperatore().getId());
-			ps.setString(3, turnazione.getFascia().toString());
-			ps.setDate(4, data_turno);
-
-			ps.executeUpdate();
-
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-		}
 	}
 
 	@Override
 	public List<Turnazione> visualizzaTurnazioni(Operatore operatore) throws BusinessException {
 		return null;
+	}
+
+	@Override
+	public void eliminaTurnazione(Turnazione turnazione) throws BusinessException {
+
 	}
 
 }

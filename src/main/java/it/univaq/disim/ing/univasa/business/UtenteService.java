@@ -11,7 +11,7 @@ public interface UtenteService {
 	// Metodo che permette ad un utente di effettuare il login
 	Utente autenticazione(String username, String password) throws UtenteNotFoundException, BusinessException;
 
-	Utente trovaUtenteDaId(int id) throws BusinessException;
+	Utente trovaUtenteDaId(Long id) throws BusinessException;
 	List<Utente> trovaTuttiUtenti() throws BusinessException;
 
 	// Metodo che restituisce una lista di tutti gli amministratorei
