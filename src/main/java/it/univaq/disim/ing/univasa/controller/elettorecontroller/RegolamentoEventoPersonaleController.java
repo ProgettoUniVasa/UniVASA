@@ -15,8 +15,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
-public class RegolamentoTuttiGliEventiController implements Initializable, DataInitializable<Evento> {
-	
+public class RegolamentoEventoPersonaleController implements Initializable, DataInitializable<Evento> {
+
 	@FXML
 	private TextField nome;
 
@@ -34,7 +34,7 @@ public class RegolamentoTuttiGliEventiController implements Initializable, DataI
 
 	private Elettore elettore;
 
-	public RegolamentoTuttiGliEventiController() {
+	public RegolamentoEventoPersonaleController() {
 		dispatcher = ViewDispatcher.getInstance();
 		UnivasaBusinessFactory factory = UnivasaBusinessFactory.getInstance();
 		eventoService = factory.getEventoService();
@@ -55,6 +55,6 @@ public class RegolamentoTuttiGliEventiController implements Initializable, DataI
 
 	@FXML
 	public void indietroAction(ActionEvent event) {
-		dispatcher.renderView("elencoTuttiGliEventiElettore", elettore);
+		dispatcher.renderView("elencoEventiPersonaliElettore", elettore);
 	}
 }
