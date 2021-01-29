@@ -28,6 +28,8 @@ public class Evento {
 
 	private int numero_preferenze_esprimibili;
 
+	private StatoEvento statoEvento;
+
 	private Set<Amministratore> amministratori = new HashSet<>();
 	private Set<Candidato> candidati = new HashSet<>();
 	private Set<Operatore> operatori = new HashSet<>();
@@ -40,8 +42,9 @@ public class Evento {
 
 	public Evento(Long id, String nome, String regolamento, LocalDate dataInizio, LocalDate dataFine, String oraInizio,
 			String oraFine, String luogo, String report_risultati, String report_statistiche,
-			int numero_preferenze_esprimibili, Set<Amministratore> amministratori, Set<Candidato> candidati,
-			Set<Operatore> operatori, Set<SchedaElettorale> schedeOnline, Set<ElettoreInSede> elettoriInSede) {
+			int numero_preferenze_esprimibili, StatoEvento statoEvento, Set<Amministratore> amministratori,
+			Set<Candidato> candidati, Set<Operatore> operatori, Set<SchedaElettorale> schedeOnline,
+			Set<ElettoreInSede> elettoriInSede) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -54,6 +57,7 @@ public class Evento {
 		this.report_risultati = report_risultati;
 		this.report_statistiche = report_statistiche;
 		this.numero_preferenze_esprimibili = numero_preferenze_esprimibili;
+		this.statoEvento = statoEvento;
 		this.amministratori = amministratori;
 		this.candidati = candidati;
 		this.operatori = operatori;
@@ -169,6 +173,14 @@ public class Evento {
 		this.numero_preferenze_esprimibili = numero_preferenze_esprimibili;
 	}
 
+	public StatoEvento getStatoEvento() {
+		return statoEvento;
+	}
+
+	public void setStatoEvento(StatoEvento statoEvento) {
+		this.statoEvento = statoEvento;
+	}
+
 	public void setAmministratori(Set<Amministratore> amministratori) {
 		this.amministratori = amministratori;
 	}
@@ -197,4 +209,5 @@ public class Evento {
 	 * 
 	 * public visualizzaAmministratori() { //TODO }
 	 */
+
 }
