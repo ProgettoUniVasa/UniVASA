@@ -1,7 +1,6 @@
 package it.univaq.disim.ing.univasa.controller.elettorecontroller;
 
 import java.net.URL;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -26,6 +25,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 
 public class ElencoTuttiGliEventiElettoreController implements Initializable, DataInitializable<Elettore> {
@@ -87,7 +87,7 @@ public class ElencoTuttiGliEventiElettoreController implements Initializable, Da
 
 							@Override
 							public void handle(ActionEvent event) {
-								dispatcher.renderView("regolamentoEvento", param.getValue());
+								dispatcher.renderView("regolamentoTuttiGliEventi", param.getValue());
 							}
 						});
 						return new SimpleObjectProperty<Button>(regolamentoButton);
@@ -144,18 +144,9 @@ public class ElencoTuttiGliEventiElettoreController implements Initializable, Da
 		}
 	}
 
-	// parte codice bottone in alto a destra logout
 	@FXML
-	public void esciAction(ActionEvent event) throws BusinessException {
-		Prescrizione prescrizione = new Prescrizione();
-		prescrizione.setMedico(medico);
-		prescrizione.setFirma(medico.getNome() + " " + medico.getCognome());
-		prescrizione.setData(LocalDate.now());
-		prescrizione.setPaziente(new Paziente());
-		prescrizione.getPaziente().setNome("");
-		prescrizione.getPaziente().setCognome("");
-
-		dispatcher.renderView("aggiungiPrescrizione", prescrizione);
-	}
+	public void esciAction(MouseEvent event) {
+		dispatcher.logout();
+	};
 
 }
