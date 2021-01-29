@@ -49,8 +49,6 @@ public class DbUtenteServiceImpl implements UtenteService {
 	private static final String gestionePrenotazioni = "select * from prenotazione where id_evento=? and (tipo='in presenza' or (tipo='online' and stato is not null))";
 	// visualizzaCandidati
 	private static final String visualizzaCandidati = "select * from utente u join candidatura c on u.id=c.id_utente where c.id_evento=?";
-	// viusalizzaEventi
-	private static final String visualizzaEventi = "select * from evento";
 	// modificaOperatore
 	private static final String modificaOperatore = "update from utente set telefono=?, email=?, nome_universita=?, dipartimento=? where id=?";
 	// visualizzaTurnazioni
@@ -58,11 +56,12 @@ public class DbUtenteServiceImpl implements UtenteService {
 	// visualizzaPrenotatiInSede
 	private static final String visualizzaPrenotatiInSede = "select * from prenotazione where id_evento=? and tipo_prenotazione='in presenza'";
 	// vota
-	private static final String vota = "update from candidatura set voti_ricevuti=voti_ricevuti+1 where id_utente=? and id_evento=?";
+	private static final String vota = "update from candidatura set voti_ricevuti=voti_ricevuti+1 where id_utente=? and id_evento=?";			// ciclica
 	private static final String aggiornaPrenotazione = "update from prenotazione set stato='si' where id_utente=? and id_evento=?";
 	// eliminaUtente
 	private static final String eliminaUtente = "delete from utente where id_utente=?";
-
+	// utenteDaEmail
+	private static final String utenteDaEmail = "select * from utente where email=?";
 
 	@Override
 	public Utente autenticazione(String username, String password) throws UtenteNotFoundException, BusinessException {
@@ -414,25 +413,23 @@ public class DbUtenteServiceImpl implements UtenteService {
 
 	@Override
 	public void creaAmministratore(Amministratore amministratore) throws BusinessException {
-
 		// Connessione al Database e richiamo query
 		try (Connection c = DriverManager.getConnection(url, user, pwd);) {
 
 			PreparedStatement ps = c.prepareStatement(creaAmministratore);
 
 			// Conversione da LocalDate a Date
-			Date data = java.sql.Date.valueOf(amministratore.getDataNascita());
+			Date data = java.sql.Date.valueOf(amministratore.getData_nascita());
 
-			ps.setString(1, amministratore.getUsername());
-			ps.setString(2, amministratore.getPassword());
-			ps.setString(3, amministratore.getNome());
-			ps.setString(4, amministratore.getCognome());
-			ps.setString(5, amministratore.getCf());
+			ps.setString(1, amministratore.getNome());
+			ps.setString(2, amministratore.getCognome());
+			ps.setString(3, amministratore.getUsername());
+			ps.setString(4, amministratore.getPassword());
+			ps.setString(5, amministratore.getTelefono());
 			ps.setDate(6, data);
-			ps.setString(7, amministratore.getLuogoNascita());
-			ps.setString(8, amministratore.getResidenza());
-			ps.setString(9, amministratore.getTelefono());
-			ps.setString(10, amministratore.getSesso());
+			ps.setString(7, String.valueOf(amministratore.getProfessione()));
+			ps.setString(8, amministratore.getNome_università());
+			ps.setString(9, amministratore.getDipartimento());
 
 			ps.executeUpdate();
 		} catch (SQLException ex) {
@@ -442,63 +439,208 @@ public class DbUtenteServiceImpl implements UtenteService {
 
 	@Override
 	public void creaOperatore(Operatore operatore) throws BusinessException {
+		// Connessione al Database e richiamo query
+		try (Connection c = DriverManager.getConnection(url, user, pwd);) {
 
+			PreparedStatement ps = c.prepareStatement(creaOperatore);
+
+			// Conversione da LocalDate a Date
+			Date data = java.sql.Date.valueOf(operatore.getData_nascita());
+
+			ps.setString(1, operatore.getNome());
+			ps.setString(2, operatore.getCognome());
+			ps.setString(3, operatore.getUsername());
+			ps.setString(4, operatore.getPassword());
+			ps.setString(5, operatore.getTelefono());
+			ps.setDate(6, data);
+			ps.setString(7, String.valueOf(operatore.getProfessione()));
+			ps.setString(8, operatore.getNome_università());
+			ps.setString(9, operatore.getDipartimento());
+
+			ps.executeUpdate();
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
 	}
 
 	@Override
 	public void creaElettore(Elettore elettore) throws BusinessException {
+		// Connessione al Database e richiamo query
+		try (Connection c = DriverManager.getConnection(url, user, pwd);) {
 
+			PreparedStatement ps = c.prepareStatement(creaElettore);
+
+			// Conversione da LocalDate a Date
+			Date data = java.sql.Date.valueOf(elettore.getData_nascita());
+
+			ps.setString(1, elettore.getNome());
+			ps.setString(2, elettore.getCognome());
+			ps.setString(3, elettore.getUsername());
+			ps.setString(4, elettore.getPassword());
+			ps.setString(5, elettore.getTelefono());
+			ps.setDate(6, data);
+			ps.setString(7, String.valueOf(elettore.getProfessione()));
+			ps.setString(8, elettore.getNome_università());
+			ps.setString(9, elettore.getDipartimento());
+			ps.setString(10, elettore.getMatricola());
+
+			ps.executeUpdate();
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
 	}
 
 	@Override
 	public void creaCandidato(Candidato candidato) throws BusinessException {
-
+			// Attualmente ingestibile
 	}
 
 	@Override
 	public List<Elettore> gestionePrenotazioni(Evento evento) throws BusinessException {
-		return null;
+		List<Elettore> elettori = new ArrayList<Elettore>();
+		ResultSet r = null;
+
+		// Connessione al Database e richiamo query
+		try (Connection c = DriverManager.getConnection(url, user, pwd);) {
+
+			PreparedStatement ps = c.prepareStatement(gestionePrenotazioni);
+			ps.setLong(1, evento.getId());
+			r = ps.executeQuery();
+
+			while (r.next()) {
+				Elettore elettore = new Elettore();
+				elettore.setId(r.getLong(1));
+				elettore.setNome(r.getString(2));
+				elettore.setCognome(r.getString(3));
+				elettore.setEmail(r.getString(4));
+				elettore.setUsername(r.getString(5));
+				elettore.setPassword(r.getString(6));
+				elettore.setTelefono(r.getString(7));
+				// Conversione da Date a LocalDate
+				elettore.setData_nascita(
+						Instant.ofEpochMilli(r.getDate(8).getTime()).atZone(ZoneId.systemDefault()).toLocalDate());
+				elettore.setProfessione(Professione.valueOf(r.getString(9)));
+				elettore.setNome_università(r.getString(10));
+				elettore.setDipartimento(r.getString(11));
+				elettore.setMatricola(r.getString(12));
+				elettori.add(elettore);
+			}
+
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+
+		return elettori;
 	}
 
 	@Override
 	public List<Candidato> visualizzaCandidati(Evento evento) throws BusinessException {
-		return null;
+		// Anche questa ingestibile, forse servirà Candidatura piuttosto che Candidato
 	}
 
 
 	@Override
-	public void modificaOperatore(Operatore operatore) throws BusinessException { }
+	public void modificaOperatore(Operatore operatore) throws BusinessException {
+		// Connessione al Database e richiamo query
+		try (Connection c = DriverManager.getConnection(url, user, pwd);) {
 
+			PreparedStatement ps = c.prepareStatement(modificaOperatore);
 
+			ps.setString(1, operatore.getTelefono());
+			ps.setString(2, operatore.getEmail());
+			ps.setString(3, operatore.getNome_università());
+			ps.setString(4, operatore.getDipartimento());
+			ps.setLong(5, operatore.getId());
+
+			ps.executeUpdate();
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+	}
 
 	@Override
 	public void accettaCertificato(String certificato) throws BusinessException {
-
+		// Ehi qui mi serve la Prenotazione, abbiamo questa magnifica classe????
 	}
 
 	@Override
 	public void rifiutaCertificato(String certificato) throws BusinessException {
-
+		// Ehi qui mi serve la Prenotazione, abbiamo questa magnifica classe????
 	}
 
 	@Override
 	public List<Elettore> visualizzaPrenotatiInSede(Evento evento) throws BusinessException {
-		return null;
+		List<Elettore> elettori = new ArrayList<Elettore>();
+		ResultSet r = null;
+
+		// Connessione al Database e richiamo query
+		try (Connection c = DriverManager.getConnection(url, user, pwd);) {
+
+			PreparedStatement ps = c.prepareStatement(visualizzaPrenotatiInSede);
+			ps.setLong(1, evento.getId());
+			r = ps.executeQuery();
+
+			while (r.next()) {
+				Elettore elettore = new Elettore();
+				elettore.setId(r.getLong(1));
+				elettore.setNome(r.getString(2));
+				elettore.setCognome(r.getString(3));
+				elettore.setEmail(r.getString(4));
+				elettore.setUsername(r.getString(5));
+				elettore.setPassword(r.getString(6));
+				elettore.setTelefono(r.getString(7));
+				// Conversione da Date a LocalDate
+				elettore.setData_nascita(
+						Instant.ofEpochMilli(r.getDate(8).getTime()).atZone(ZoneId.systemDefault()).toLocalDate());
+				elettore.setProfessione(Professione.valueOf(r.getString(9)));
+				elettore.setNome_università(r.getString(10));
+				elettore.setDipartimento(r.getString(11));
+				elettore.setMatricola(r.getString(12));
+				elettori.add(elettore);
+			}
+
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+
+		return elettori;
 	}
 
 	@Override
 	public void prenotazioneInSede(Elettore elettore, Evento evento) throws BusinessException {
+		// Connessione al Database e richiamo query
+		try (Connection c = DriverManager.getConnection(url, user, pwd);) {
 
+			PreparedStatement ps = c.prepareStatement(prenotazioneInSede);
+
+			ps.setLong(1, elettore.getId());
+			ps.setLong(2, evento.getId());
+
+			ps.executeUpdate();
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
 	}
 
 	@Override
 	public void prenotazioneOnline(Elettore elettore, Evento evento) throws BusinessException {
+		// Connessione al Database e richiamo query
+		try (Connection c = DriverManager.getConnection(url, user, pwd);) {
 
+			PreparedStatement ps = c.prepareStatement(prenotazioneOnline);
+
+			ps.setLong(1, elettore.getId());
+			ps.setLong(2, evento.getId());
+
+			ps.executeUpdate();
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
 	}
 
 	@Override
 	public void vota(ElettoreOnline elettoreOnline, Evento evento) throws BusinessException {
-
+			// Da vedere bene, ho bisogno di controllare la Vista e il Controller associato.
 	}
 
 
@@ -519,329 +661,93 @@ public class DbUtenteServiceImpl implements UtenteService {
 	}
 
 	@Override
-	public Operatore utenteDaEmail() {
+	public Utente utenteDaEmail(String email) {
+		ResultSet r = null;
+
+		// Connessione al Database e richiamo query
+		try (Connection c = DriverManager.getConnection(url, user, pwd);) {
+
+			PreparedStatement ps = c.prepareStatement(utenteDaEmail);
+			ps.setString(1, email);
+			r = ps.executeQuery();
+
+			while (r.next()) {
+				if (r.getString(13).equals("amministratore")) {
+					Amministratore amministratore = new Amministratore();
+
+					amministratore.setId(r.getLong(1));
+					amministratore.setUsername(r.getString(5));
+					amministratore.setPassword(r.getString(6));
+					amministratore.setNome(r.getString(2));
+					amministratore.setCognome(r.getString(3));
+					amministratore.setEmail(email);
+					// Conversione da Date a LocalDate
+					amministratore.setData_nascita(
+							Instant.ofEpochMilli(r.getDate(8).getTime()).atZone(ZoneId.systemDefault()).toLocalDate());
+					amministratore.setProfessione(Professione.valueOf(r.getString(9)));
+					amministratore.setTelefono(r.getString(7));
+					amministratore.setNome_università(r.getString(10));
+					amministratore.setDipartimento(r.getString(11));
+					r.close();
+					return amministratore;
+				}
+
+				if (r.getString(13).equals("operatore")) {
+					Operatore operatore = new Operatore();
+
+					operatore.setId(id);
+					operatore.setUsername(r.getString(5));
+					operatore.setPassword(r.getString(6));
+					operatore.setNome(r.getString(2));
+					operatore.setCognome(r.getString(3));
+					operatore.setEmail(r.getString(4));
+					// Conversione da Date a LocalDate
+					operatore.setData_nascita(
+							Instant.ofEpochMilli(r.getDate(8).getTime()).atZone(ZoneId.systemDefault()).toLocalDate());
+					operatore.setProfessione(Professione.valueOf(r.getString(9)));
+					operatore.setTelefono(r.getString(7));
+					operatore.setNome_università(r.getString(10));
+					operatore.setDipartimento(r.getString(11));
+					r.close();
+					return operatore;
+				}
+
+				if (r.getString(13).equals("elettore")) {
+					Elettore elettore = new Elettore();
+
+					elettore.setId(id);
+					elettore.setUsername(r.getString(5));
+					elettore.setPassword(r.getString(6));
+					elettore.setNome(r.getString(2));
+					elettore.setCognome(r.getString(3));
+					elettore.setEmail(r.getString(4));
+					// Conversione da Date a LocalDate
+					elettore.setData_nascita(
+							Instant.ofEpochMilli(r.getDate(8).getTime()).atZone(ZoneId.systemDefault()).toLocalDate());
+					elettore.setProfessione(Professione.valueOf(r.getString(9)));
+					elettore.setTelefono(r.getString(7));
+					elettore.setNome_università(r.getString(10));
+					elettore.setDipartimento(r.getString(11));
+					elettore.setMatricola(r.getString(12));
+					r.close();
+					return elettore;
+				}
+
+			}
+			r.close();
+			throw new UtenteNotFoundException();
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		} finally {
+			if (r != null) {
+				try {
+					r.close();
+				} catch (SQLException ex) {
+					ex.printStackTrace();
+				}
+			}
+		}
 		return null;
 	}
-
-
-
-	/*
-	@Override
-	public List<Farmacista> trovaTuttiFarmacisti() throws BusinessException {
-		List<Farmacista> result = new ArrayList<>();
-		ResultSet r = null;
-
-		// Connessione al Database e richiamo query
-		try (Connection c = DriverManager.getConnection(url, user, pwd);) {
-
-			PreparedStatement ps = c.prepareStatement(trovaFarmacisti);
-			r = ps.executeQuery();
-
-			while (r.next()) {
-				Farmacista farmacista = new Farmacista();
-
-				farmacista.setId(r.getInt(1));
-				farmacista.setUsername(r.getString(10));
-				farmacista.setPassword(r.getString(11));
-				farmacista.setNome(r.getString(2));
-				farmacista.setCognome(r.getString(3));
-				farmacista.setCf(r.getString(8));
-				// Conversione da Date a LocalDate
-				farmacista.setDataNascita(
-						Instant.ofEpochMilli(r.getDate(6).getTime()).atZone(ZoneId.systemDefault()).toLocalDate());
-				farmacista.setLuogoNascita(r.getString(7));
-				farmacista.setResidenza(r.getString(9));
-				farmacista.setTelefono(r.getString(4));
-				farmacista.setSesso(r.getString(5));
-				result.add(farmacista);
-			}
-			r.close();
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-		} finally {
-			if (r != null) {
-				try {
-					r.close();
-				} catch (SQLException ex) {
-					ex.printStackTrace();
-				}
-			}
-		}
-		return result;
-	}
-
-	@Override
-	public List<Paziente> trovaTuttiPazienti() throws BusinessException {
-		List<Paziente> result = new ArrayList<>();
-		ResultSet r = null;
-
-		// Connessione al Database e richiamo query
-		try (Connection c = DriverManager.getConnection(url, user, pwd);) {
-
-			PreparedStatement ps = c.prepareStatement(trovaPazienti);
-			r = ps.executeQuery();
-
-			while (r.next()) {
-				Paziente paziente = new Paziente();
-
-				paziente.setId(r.getInt(1));
-				paziente.setUsername(r.getString(10));
-				paziente.setPassword(r.getString(11));
-				paziente.setNome(r.getString(2));
-				paziente.setCognome(r.getString(3));
-				paziente.setCf(r.getString(8));
-				// Conversione da Date a LocalDate
-				paziente.setDataNascita(
-						Instant.ofEpochMilli(r.getDate(6).getTime()).atZone(ZoneId.systemDefault()).toLocalDate());
-				paziente.setLuogoNascita(r.getString(7));
-				paziente.setResidenza(r.getString(9));
-				paziente.setTelefono(r.getString(4));
-				paziente.setSesso(r.getString(5));
-				paziente.setSaldo(r.getDouble(12));
-				result.add(paziente);
-			}
-			r.close();
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-		} finally {
-			if (r != null) {
-				try {
-					r.close();
-				} catch (SQLException ex) {
-					ex.printStackTrace();
-				}
-			}
-		}
-		return result;
-	}
-
-	@Override
-	public List<Medico> trovaTuttiMedici() throws BusinessException {
-		List<Medico> result = new ArrayList<>();
-		ResultSet r = null;
-
-		// Connessione al Database e richiamo query
-		try (Connection c = DriverManager.getConnection(url, user, pwd);) {
-
-			PreparedStatement ps = c.prepareStatement(trovaMedici);
-			r = ps.executeQuery();
-
-			while (r.next()) {
-				Medico medico = new Medico();
-
-				medico.setId(r.getInt(1));
-				medico.setUsername(r.getString(10));
-				medico.setPassword(r.getString(11));
-				medico.setNome(r.getString(2));
-				medico.setCognome(r.getString(3));
-				medico.setCf(r.getString(8));
-				// Conversione da Date a LocalDate
-				medico.setDataNascita(
-						Instant.ofEpochMilli(r.getDate(6).getTime()).atZone(ZoneId.systemDefault()).toLocalDate());
-				medico.setLuogoNascita(r.getString(7));
-				medico.setResidenza(r.getString(9));
-				medico.setTelefono(r.getString(4));
-				medico.setSesso(r.getString(5));
-				medico.setCodiceAlboMedici(r.getString(13));
-				medico.setTipologia(TipologiaMedico.valueOf(r.getString(14)));
-				result.add(medico);
-			}
-			r.close();
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-		} finally {
-			if (r != null) {
-				try {
-					r.close();
-				} catch (SQLException ex) {
-					ex.printStackTrace();
-				}
-			}
-		}
-		return result;
-	}
-
-	@Override
-	public void creaFarmacista(Farmacista farmacista) throws BusinessException {
-
-		// Connessione al Database e richiamo query
-		try (Connection c = DriverManager.getConnection(url, user, pwd);) {
-
-			PreparedStatement ps = c.prepareStatement(inserisciFarmacista);
-
-			// Conversione da LocalDate a Date
-			Date data = java.sql.Date.valueOf(farmacista.getDataNascita());
-
-			ps.setString(1, farmacista.getUsername());
-			ps.setString(2, farmacista.getPassword());
-			ps.setString(3, farmacista.getNome());
-			ps.setString(4, farmacista.getCognome());
-			ps.setString(5, farmacista.getCf());
-			ps.setDate(6, data);
-			ps.setString(7, farmacista.getLuogoNascita());
-			ps.setString(8, farmacista.getResidenza());
-			ps.setString(9, farmacista.getTelefono());
-			ps.setString(10, farmacista.getSesso());
-
-			ps.executeUpdate();
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-		}
-	}
-
-	@Override
-	public void creaPaziente(Paziente paziente) throws BusinessException {
-
-		// Connessione al Database e richiamo query
-		try (Connection c = DriverManager.getConnection(url, user, pwd);) {
-
-			PreparedStatement ps = c.prepareStatement(inserisciPaziente);
-
-			// Conversione da LocalDate a Date
-			Date data = java.sql.Date.valueOf(paziente.getDataNascita());
-
-			ps.setString(1, paziente.getUsername());
-			ps.setString(2, paziente.getPassword());
-			ps.setString(3, paziente.getNome());
-			ps.setString(4, paziente.getCognome());
-			ps.setString(5, paziente.getCf());
-			ps.setDate(6, data);
-			ps.setString(7, paziente.getLuogoNascita());
-			ps.setString(8, paziente.getResidenza());
-			ps.setString(9, paziente.getTelefono());
-			ps.setString(10, paziente.getSesso());
-			ps.setDouble(11, paziente.getSaldo());
-
-			ps.executeUpdate();
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-		}
-	}
-
-	@Override
-	public void creaMedico(Medico medico) throws BusinessException {
-
-		// Connessione al Database e richiamo query
-		try (Connection c = DriverManager.getConnection(url, user, pwd);) {
-
-			PreparedStatement ps = c.prepareStatement(inserisciMedico);
-
-			// Conversione da LocalDate a Date
-			Date data = java.sql.Date.valueOf(medico.getDataNascita());
-
-			ps.setString(1, medico.getUsername());
-			ps.setString(2, medico.getPassword());
-			ps.setString(3, medico.getNome());
-			ps.setString(4, medico.getCognome());
-			ps.setString(5, medico.getCf());
-			ps.setDate(6, data);
-			ps.setString(7, medico.getLuogoNascita());
-			ps.setString(8, medico.getResidenza());
-			ps.setString(9, medico.getTelefono());
-			ps.setString(10, medico.getSesso());
-			ps.setString(11, medico.getCodiceAlboMedici());
-			ps.setString(12, medico.getTipologia().toString());
-
-			ps.executeUpdate();
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-		}
-
-	}
-
-	@Override
-	public void aggiornaFarmacista(Farmacista farmacista) throws BusinessException {
-
-		// Connessione al Database e richiamo query
-		try (Connection c = DriverManager.getConnection(url, user, pwd);) {
-
-			PreparedStatement ps = c.prepareStatement(modificaFarmacista);
-
-			// Conversione da LocalDate a Date
-			Date data = java.sql.Date.valueOf(farmacista.getDataNascita());
-
-			ps.setString(1, farmacista.getUsername());
-			ps.setString(2, farmacista.getPassword());
-			ps.setString(3, farmacista.getNome());
-			ps.setString(4, farmacista.getCognome());
-			ps.setString(5, farmacista.getCf());
-			ps.setDate(6, data);
-			ps.setString(7, farmacista.getLuogoNascita());
-			ps.setString(8, farmacista.getResidenza());
-			ps.setString(9, farmacista.getTelefono());
-			ps.setString(10, farmacista.getSesso());
-			ps.setInt(11, farmacista.getId());
-
-			ps.executeUpdate();
-
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-		}
-
-	}
-
-	@Override
-	public void aggiornaPaziente(Paziente paziente) throws BusinessException {
-
-		// Connessione al Database e richiamo query
-		try (Connection c = DriverManager.getConnection(url, user, pwd);) {
-
-			PreparedStatement ps = c.prepareStatement(modificaPaziente);
-
-			// Conversione da LocalDate a Date
-			Date data = java.sql.Date.valueOf(paziente.getDataNascita());
-
-			ps.setString(1, paziente.getUsername());
-			ps.setString(2, paziente.getPassword());
-			ps.setString(3, paziente.getNome());
-			ps.setString(4, paziente.getCognome());
-			ps.setString(5, paziente.getCf());
-			ps.setDate(6, data);
-			ps.setString(7, paziente.getLuogoNascita());
-			ps.setString(8, paziente.getResidenza());
-			ps.setString(9, paziente.getTelefono());
-			ps.setString(10, paziente.getSesso());
-			ps.setDouble(11, paziente.getSaldo());
-			ps.setInt(12, paziente.getId());
-
-			ps.executeUpdate();
-
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-		}
-	}
-
-	@Override
-	public void aggiornaMedico(Medico medico) throws BusinessException {
-
-		// Connessione al Database e richiamo query
-		try (Connection c = DriverManager.getConnection(url, user, pwd);) {
-
-			PreparedStatement ps = c.prepareStatement(modificaMedico);
-
-			// Conversione da LocalDate a Date
-			Date data = java.sql.Date.valueOf(medico.getDataNascita());
-
-			ps.setString(1, medico.getUsername());
-			ps.setString(2, medico.getPassword());
-			ps.setString(3, medico.getNome());
-			ps.setString(4, medico.getCognome());
-			ps.setString(5, medico.getCf());
-			ps.setDate(6, data);
-			ps.setString(7, medico.getLuogoNascita());
-			ps.setString(8, medico.getResidenza());
-			ps.setString(9, medico.getTelefono());
-			ps.setString(10, medico.getSesso());
-			ps.setString(11, medico.getCodiceAlboMedici());
-			ps.setString(12, medico.getTipologia().toString());
-			ps.setInt(13, medico.getId());
-
-			ps.executeUpdate();
-
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-		}
-	}
-	*/
 
 }

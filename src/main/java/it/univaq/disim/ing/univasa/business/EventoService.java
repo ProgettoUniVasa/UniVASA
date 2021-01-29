@@ -25,5 +25,5 @@ public interface EventoService {
 	// Metodo che restituisce i nomi di tutti i farmaci
 	List<String> nomiEventi() throws BusinessException;
 
-    Evento eventodaEmail();
+    Evento eventodaNome(String nome);
 }

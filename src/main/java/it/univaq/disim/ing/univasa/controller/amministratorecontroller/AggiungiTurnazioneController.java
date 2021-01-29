@@ -88,10 +88,10 @@ public class AggiungiTurnazioneController implements Initializable, DataInitiali
 	@FXML
 	public void salvaAction(ActionEvent event) {
 		try {
-			turnazione.setOperatore(utenteService.utenteDaEmail());
+			turnazione.setOperatore((Operatore) utenteService.utenteDaEmail(email.getText()));
 			turnazione.setFascia(fascia.getValue());
 			turnazione.setData_turno(data_turno.getValue());
-			turnazione.setEvento(eventoService.eventodaEmail());
+			turnazione.setEvento(eventoService.eventodaNome(email.getText()));
 
 			if (turnazione.getEvento()==null || turnazione.getOperatore()==null) {
 				// email o evento non esistenti

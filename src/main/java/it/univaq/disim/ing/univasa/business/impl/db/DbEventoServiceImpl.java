@@ -216,7 +216,7 @@ public class DbEventoServiceImpl implements EventoService {
 	}
 
 	@Override
-	public Evento eventodaEmail() {
+	public Evento eventodaNome(String email) {
 		return null;
 	}
 
