@@ -1,21 +1,18 @@
 package it.univaq.disim.ing.univasa.business.impl.db;
 
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.List;
 
+import com.google.protobuf.Value;
 import it.univaq.disim.ing.univasa.business.BusinessException;
 import it.univaq.disim.ing.univasa.business.EventoService;
 import it.univaq.disim.ing.univasa.business.TurnazioneService;
 import it.univaq.disim.ing.univasa.business.UtenteService;
-import it.univaq.disim.ing.univasa.domain.Evento;
-import it.univaq.disim.ing.univasa.domain.Operatore;
-import it.univaq.disim.ing.univasa.domain.TipologiaTurno;
-import it.univaq.disim.ing.univasa.domain.Turnazione;
+import it.univaq.disim.ing.univasa.domain.*;
 
 public class DbTurnazioneServiceImpl implements TurnazioneService {
 
@@ -29,29 +26,88 @@ public class DbTurnazioneServiceImpl implements TurnazioneService {
 	/* -------------------------------------------------------------------------------------------------------------------------------------------- */
 
 	// Definizione query in Java
-	private static final String associaTurnazione = "insert into turnazione(id_utente, id_evento, fascia, data_giorno) values(?,?,?,?)";
+	private static final String creaTurnazione = "insert into turnazione(id_utente, id_evento, fascia, data_giorno) values(?,?,?,?)";
 	private static final String visualizzaTurnazioni = "select * from turnazione where id_utente=?";
-
+	private static final String eliminaTurnazione = "delete from turnazione where id=?";
 
 	public DbTurnazioneServiceImpl(EventoService eventoService, UtenteService utenteService) {
 		this.eventoService = eventoService;
 		this.utenteService = utenteService;
 	}
 
-
 	@Override
-	public void creaTurnazione() throws BusinessException {
+	public void creaTurnazione(Turnazione turnazione) throws BusinessException {
+		// Conversione da LocalDate a Date
+		Date data_giorno = java.sql.Date.valueOf(turnazione.getData_turno());
 
+		// Connessione al Database e richiamo query
+		try (Connection c = DriverManager.getConnection(url, user, password);) {
+
+			PreparedStatement ps = c.prepareStatement(creaTurnazione);
+			ps.setLong(1, turnazione.getEvento().getId());
+			ps.setLong(2, turnazione.getOperatore().getId());
+			ps.setString(3, String.valueOf(turnazione.getFascia()));
+			ps.setDate(4, data_giorno);
+
+			ps.executeUpdate();
+
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
 	}
 
 	@Override
 	public List<Turnazione> visualizzaTurnazioni(Operatore operatore) throws BusinessException {
-		return null;
+		List<Turnazione> result = new ArrayList<>();
+		ResultSet r = null;
+
+		// Connessione al Database e richiamo query
+		try (Connection c = DriverManager.getConnection(url, user, password);) {
+
+			PreparedStatement ps = c.prepareStatement(visualizzaTurnazioni);
+			r = ps.executeQuery();
+
+			while (r.next()) {
+
+				Turnazione turnazione = new Turnazione();
+				turnazione.setId(r.getLong(1));
+				turnazione.setOperatore((Operatore) utenteService.trovaUtenteDaId(r.getLong(2)));
+				turnazione.setEvento(eventoService.trovaEventoDaId(r.getLong(3)));
+				turnazione.setFascia(TipologiaTurno.valueOf(r.getString(4)));
+				turnazione.setData_turno(
+						Instant.ofEpochMilli(r.getDate(5).getTime()).atZone(ZoneId.systemDefault()).toLocalDate());
+				result.add(turnazione);
+			}
+
+			r.close();
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		} finally {
+			if (r != null) {
+				try {
+					r.close();
+				} catch (SQLException ex) {
+					ex.printStackTrace();
+				}
+			}
+		}
+		return result;
 	}
 
 	@Override
 	public void eliminaTurnazione(Turnazione turnazione) throws BusinessException {
+		// Connessione al Database e richiamo query
+		try (Connection c = DriverManager.getConnection(url, user, password);) {
 
+			PreparedStatement ps = c.prepareStatement(eliminaTurnazione);
+
+			ps.setLong(1, turnazione.getId());
+
+			ps.executeUpdate();
+
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
 	}
 
 }

@@ -536,6 +536,7 @@ public class DbUtenteServiceImpl implements UtenteService {
 	@Override
 	public List<Candidato> visualizzaCandidati(Evento evento) throws BusinessException {
 		// Anche questa ingestibile, forse servirà Candidatura piuttosto che Candidato
+		return null;
 	}
 
 
@@ -643,7 +644,6 @@ public class DbUtenteServiceImpl implements UtenteService {
 			// Da vedere bene, ho bisogno di controllare la Vista e il Controller associato.
 	}
 
-
 	@Override
 	public void eliminaUtente(Utente utente) throws UtenteNotFoundException, BusinessException {
 		// Connessione al Database e richiamo query
@@ -651,7 +651,7 @@ public class DbUtenteServiceImpl implements UtenteService {
 
 			PreparedStatement ps = c.prepareStatement(eliminaUtente);
 
-			ps.setInt(1, utente.getId());
+			ps.setLong(1, utente.getId());
 
 			ps.executeUpdate();
 
@@ -695,12 +695,12 @@ public class DbUtenteServiceImpl implements UtenteService {
 				if (r.getString(13).equals("operatore")) {
 					Operatore operatore = new Operatore();
 
-					operatore.setId(id);
+					operatore.setId(r.getLong(1));
 					operatore.setUsername(r.getString(5));
 					operatore.setPassword(r.getString(6));
 					operatore.setNome(r.getString(2));
 					operatore.setCognome(r.getString(3));
-					operatore.setEmail(r.getString(4));
+					operatore.setEmail(email);
 					// Conversione da Date a LocalDate
 					operatore.setData_nascita(
 							Instant.ofEpochMilli(r.getDate(8).getTime()).atZone(ZoneId.systemDefault()).toLocalDate());
@@ -715,12 +715,12 @@ public class DbUtenteServiceImpl implements UtenteService {
 				if (r.getString(13).equals("elettore")) {
 					Elettore elettore = new Elettore();
 
-					elettore.setId(id);
+					elettore.setId(r.getLong(1));
 					elettore.setUsername(r.getString(5));
 					elettore.setPassword(r.getString(6));
 					elettore.setNome(r.getString(2));
 					elettore.setCognome(r.getString(3));
-					elettore.setEmail(r.getString(4));
+					elettore.setEmail(email);
 					// Conversione da Date a LocalDate
 					elettore.setData_nascita(
 							Instant.ofEpochMilli(r.getDate(8).getTime()).atZone(ZoneId.systemDefault()).toLocalDate());
@@ -736,7 +736,7 @@ public class DbUtenteServiceImpl implements UtenteService {
 			}
 			r.close();
 			throw new UtenteNotFoundException();
-		} catch (SQLException ex) {
+		} catch (SQLException | UtenteNotFoundException ex) {
 			ex.printStackTrace();
 		} finally {
 			if (r != null) {

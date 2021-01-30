@@ -13,7 +13,7 @@ public interface EventoService {
 
 	void creaReport(Evento evento) throws BusinessException;
 
-	boolean caricaRisultatiInPresenza(Evento evento) throws  BusinessException;
+	void caricaRisultatiInPresenza(Evento evento) throws  BusinessException;
 
 	List<Evento> trovaTuttiEventi() throws BusinessException;
 
@@ -21,6 +21,7 @@ public interface EventoService {
 
 	Evento trovaEventoDaId(Long id) throws BusinessException;
 
+	List<Evento> trovaEventiDaLuogo(String luogo) throws BusinessException;
 
 	// Metodo che restituisce i nomi di tutti i farmaci
 	List<String> nomiEventi() throws BusinessException;

@@ -52,5 +52,5 @@ public interface UtenteService {
 
 	void eliminaUtente(Utente utente) throws UtenteNotFoundException, BusinessException;
 
-    Utente utenteDaEmail(String email);
+    Utente utenteDaEmail(String email) throws UtenteNotFoundException, BusinessException;
 }
