@@ -17,25 +17,22 @@ public class AreaRiservataController implements Initializable, DataInitializable
 	private Label cognomeLabel;
 
 	@FXML
-	private Label cfLabel;
+	private Label emailLabel;
 
 	@FXML
-	private Label dataNascitaLabel;
-
-	@FXML
-	private Label luogoNascitaLabel;
-
-	@FXML
-	private Label residenzaLabel;
+	private Label data_nascitaLabel;
 
 	@FXML
 	private Label telefonoLabel;
 
 	@FXML
-	private Label usernameLabel;
+	private Label nome_universitàLabel;
 
 	@FXML
-	private Label passwordLabel;
+	private Label dipartimentoLabel;
+
+	@FXML
+	private Label usernameLabel;
 
 	public AreaRiservataController() {
 	}
@@ -49,13 +46,12 @@ public class AreaRiservataController implements Initializable, DataInitializable
 
 		this.nomeLabel.setText(utente.getNome());
 		this.cognomeLabel.setText(utente.getCognome());
-		this.cfLabel.setText(utente.getCf());
-		this.dataNascitaLabel.setText("" + utente.getDataNascita());
-		this.luogoNascitaLabel.setText(utente.getLuogoNascita());
-		this.residenzaLabel.setText(utente.getResidenza());
+		this.emailLabel.setText(utente.getEmail());
+		this.data_nascitaLabel.setText("" + utente.getData_nascita());
 		this.telefonoLabel.setText(utente.getTelefono());
+		this.nome_universitàLabel.setText(utente.getNome_università());
+		this.dipartimentoLabel.setText(utente.getDipartimento());
 		this.usernameLabel.setText(utente.getUsername());
-		this.passwordLabel.setText(utente.getPassword());
 
 	}
 

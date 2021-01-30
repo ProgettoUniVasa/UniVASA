@@ -6,10 +6,10 @@ import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 
 import it.univaq.disim.ing.univasa.business.BusinessException;
-import it.univaq.disim.ing.univasa.business.MyPharmaBusinessFactory;
+import it.univaq.disim.ing.univasa.business.UnivasaBusinessFactory;
 import it.univaq.disim.ing.univasa.business.UtenteService;
-import it.univaq.disim.ing.univasa.domain.Medico;
-import it.univaq.disim.ing.univasa.domain.TipologiaMedico;
+import it.univaq.disim.ing.univasa.domain.Elettore;
+import it.univaq.disim.ing.univasa.domain.Professione;
 import it.univaq.disim.ing.univasa.view.ViewDispatcher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,7 +19,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
-public class RegistraMedicoController implements Initializable, DataInitializable<Medico> {
+public class RegistraElettoreController implements Initializable, DataInitializable<Elettore> {
 
 	@FXML
 	private TextField username;
@@ -34,28 +34,25 @@ public class RegistraMedicoController implements Initializable, DataInitializabl
 	private TextField cognome;
 
 	@FXML
-	private ComboBox<String> sesso;
+	private TextField email;
 
 	@FXML
-	private TextField cf;
-
-	@FXML
-	private DatePicker dataNascita;
-
-	@FXML
-	private TextField luogoNascita;
-
-	@FXML
-	private TextField residenza;
+	private DatePicker data_nascita;
 
 	@FXML
 	private TextField telefono;
 
 	@FXML
-	private TextField codiceAlbo;
+	private ComboBox<Professione> professione;
 
 	@FXML
-	private ComboBox<TipologiaMedico> tipologia;
+	private TextField nome_università;
+
+	@FXML
+	private TextField dipartimento;
+
+	@FXML
+	private TextField matricola;
 
 	@FXML
 	private Button registraButton;
@@ -67,40 +64,40 @@ public class RegistraMedicoController implements Initializable, DataInitializabl
 
 	private UtenteService utenteService;
 
-	private Medico medico = new Medico();
+	private Elettore elettore = new Elettore();
 
-	public RegistraMedicoController() {
+	public RegistraElettoreController() {
 		dispatcher = ViewDispatcher.getInstance();
-		MyPharmaBusinessFactory factory = MyPharmaBusinessFactory.getInstance();
+		UnivasaBusinessFactory factory = UnivasaBusinessFactory.getInstance();
 		utenteService = factory.getUtenteService();
 	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		sesso.getItems().addAll("Maschio", "Femmina");
-		tipologia.getItems().addAll(TipologiaMedico.values());
+		professione.getItems().addAll(Professione.values());
 	}
 
 	@Override
-	public void initializeData(Medico medico) {
+	public void initializeData(Elettore elettore) {
 
 		// Si disabilita il bottone se i campi di seguito non rispettano le proprietà
 		// definite
 		registraButton.disableProperty()
 				.bind((username.textProperty().isEmpty()).or(password.textProperty().isEmpty())
 						.or(nome.textProperty().isEmpty()).or(cognome.textProperty().isEmpty())
-						.or(sesso.accessibleTextProperty().isEqualTo(sesso)).or(cf.textProperty().isEmpty())
-						.or(dataNascita.valueProperty().isNull()).or(luogoNascita.textProperty().isEmpty())
-						.or(residenza.textProperty().isEmpty()).or(codiceAlbo.textProperty().isEmpty())
-						.or(tipologia.accessibleTextProperty().isEqualTo(tipologia)));
+						.or(email.textProperty().isEmpty()).or(data_nascita.valueProperty().isNull())
+						.or(telefono.textProperty().isEmpty()).or(professione.valueProperty().isNull())
+						.or(nome_università.textProperty().isEmpty()).or(dipartimento.textProperty().isEmpty())
+						.or(matricola.textProperty().isEmpty()));
+
 	}
 
 	@FXML
-	public void registraMedicoAction(ActionEvent event) {
+	public void registraElettoreAction(ActionEvent event) {
 		try {
 			int c = 0;
-			for (Medico m : utenteService.trovaTuttiMedici()) {
-				if (m.getUsername().equals(username.getText()) || m.getCf().equals(cf.getText())) {
+			for (Elettore e : utenteService.trovaTuttiElettori()) {
+				if (e.getUsername().equals(username.getText()) || e.getEmail().equals(email.getText())) {
 					c++;
 					JOptionPane.showMessageDialog(null, " Questo nome utente è gia esistente", "Errore",
 							JOptionPane.ERROR_MESSAGE);
@@ -113,34 +110,32 @@ public class RegistraMedicoController implements Initializable, DataInitializabl
 				JOptionPane.showMessageDialog(null, " Il numero di telefono deve essere di 10 cifre!", "ATTENZIONE",
 						JOptionPane.WARNING_MESSAGE);
 			} else {
-				if (c == 0 && medico.getId() == null) {
-					medico.setUsername(username.getText());
-					medico.setPassword(password.getText());
-					medico.setNome(nome.getText());
-					medico.setCognome(cognome.getText());
-					medico.setSesso(sesso.getValue());
-					medico.setCf(cf.getText());
-					medico.setDataNascita(dataNascita.getValue());
-					medico.setLuogoNascita(luogoNascita.getText());
-					medico.setResidenza(residenza.getText());
-					medico.setTelefono(telefono.getText());
-					medico.setCodiceAlboMedici(codiceAlbo.getText());
-					medico.setTipologia(tipologia.getValue());
-					utenteService.creaMedico(medico);
+				if (c == 0 && elettore.getId() == null) {
+					elettore.setUsername(username.getText());
+					elettore.setPassword(password.getText());
+					elettore.setNome(nome.getText());
+					elettore.setCognome(cognome.getText());
+					elettore.setEmail(email.getText());
+					elettore.setData_nascita(data_nascita.getValue());
+					elettore.setTelefono(telefono.getText());
+					elettore.setProfessione(professione.getValue());
+					elettore.setNome_università(nome_università.getText());
+					elettore.setDipartimento(dipartimento.getText());
+					elettore.setMatricola(matricola.getText());
+					utenteService.creaElettore(elettore);
 					dispatcher.logout();
 				} else {
-					utenteService.aggiornaMedico(medico);
 					dispatcher.logout();
 				}
 			}
+
 		} catch (BusinessException e) {
 			dispatcher.renderError(e);
 		}
-
 	}
 
 	@FXML
 	public void annullaAction(ActionEvent event) {
-		dispatcher.registratiAction(medico);
+		dispatcher.registratiAction(elettore);
 	}
 }

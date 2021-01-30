@@ -67,6 +67,12 @@ public class ListaEventiAmministratoreController implements Initializable, DataI
 	private TableColumn<Evento, Integer> numero_preferenze_esprimibiliTableColumn;
 
 	@FXML
+	private TableColumn<Evento, Button> azioniTableColumn;
+
+	@FXML
+	private TableColumn<Evento, Button> azioni2TableColumn;
+
+	@FXML
 	private TableColumn<Evento, Button> eliminaTableColumn;
 
 	@FXML
@@ -95,6 +101,42 @@ public class ListaEventiAmministratoreController implements Initializable, DataI
 		report_statisticheTableColumn.setCellValueFactory(new PropertyValueFactory<>("report_statistiche"));
 		numero_preferenze_esprimibiliTableColumn
 				.setCellValueFactory(new PropertyValueFactory<>("numero_preferenze_esprimibili"));
+
+		azioniTableColumn.setStyle("-fx-alignment: CENTER;");
+		azioniTableColumn.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<Evento, Button>, ObservableValue<Button>>() {
+
+					@Override
+					public ObservableValue<Button> call(CellDataFeatures<Evento, Button> param) {
+						final Button visualizzaButton = new Button("Visualizza Candidati");
+						visualizzaButton.setOnAction(new EventHandler<ActionEvent>() {
+
+							@Override
+							public void handle(ActionEvent event) {
+								dispatcher.renderView("listaCandidatiAmministratore", param.getValue());
+							}
+						});
+						return new SimpleObjectProperty<Button>(visualizzaButton);
+					}
+				});
+
+		azioni2TableColumn.setStyle("-fx-alignment: CENTER;");
+		azioni2TableColumn.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<Evento, Button>, ObservableValue<Button>>() {
+
+					@Override
+					public ObservableValue<Button> call(CellDataFeatures<Evento, Button> param) {
+						final Button visualizzaButton = new Button("Visualizza Prenotati");
+						visualizzaButton.setOnAction(new EventHandler<ActionEvent>() {
+
+							@Override
+							public void handle(ActionEvent event) {
+								dispatcher.renderView("listaPrenotatiAmministratore", param.getValue());
+							}
+						});
+						return new SimpleObjectProperty<Button>(visualizzaButton);
+					}
+				});
 
 		eliminaTableColumn.setStyle("-fx-alignment: CENTER;");
 		eliminaTableColumn.setCellValueFactory(

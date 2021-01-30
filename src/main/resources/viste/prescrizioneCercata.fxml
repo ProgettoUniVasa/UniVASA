@@ -15,9 +15,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="449.0" prefWidth="676.0" style="-fx-background-color: #0ABAB5;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.PrescrizioneCercataController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="449.0" prefWidth="676.0" style="-fx-background-color: #0ABAB5;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.EventoCercatoController">
    <children>
-      <Label alignment="CENTER" prefHeight="58.0" prefWidth="730.0" text="Prescrizione Cercata">
+      <Label alignment="CENTER" prefHeight="58.0" prefWidth="730.0" text="Evento Cercato">
          <font>
             <Font name="Palatino Linotype Bold" size="30.0" />
          </font>
@@ -39,32 +39,32 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Label prefHeight="43.0" prefWidth="213.0" text=" Numero :" GridPane.columnIndex="1">
+            <Label prefHeight="43.0" prefWidth="213.0" text=" Nome Evento :" GridPane.columnIndex="1">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label prefHeight="43.0" prefWidth="234.0" text=" Data :" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Label prefHeight="43.0" prefWidth="234.0" text=" Data Inizio :" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label prefHeight="42.0" prefWidth="217.0" text=" Firma :" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <Label prefHeight="42.0" prefWidth="217.0" text=" Ora Inizio :" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label prefHeight="42.0" prefWidth="201.0" text=" Costo Prescrizione :" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <Label prefHeight="42.0" prefWidth="201.0" text=" Luogo :" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <TextField fx:id="numero" prefHeight="30.0" prefWidth="425.0" GridPane.columnIndex="2">
+            <TextField fx:id="nome" prefHeight="30.0" prefWidth="425.0" GridPane.columnIndex="2">
                <GridPane.margin>
                   <Insets right="20.0" />
                </GridPane.margin>
             </TextField>
-            <DatePicker fx:id="data" cache="true" editable="false" prefHeight="30.0" prefWidth="445.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <DatePicker fx:id="dataInizio" cache="true" editable="false" prefHeight="30.0" prefWidth="445.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets right="20.0" />
                </GridPane.margin>
@@ -72,12 +72,12 @@
                   <Insets />
                </opaqueInsets>
             </DatePicker>
-            <TextField fx:id="firma" editable="false" prefHeight="30.0" prefWidth="445.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+            <TextField fx:id="oraInizio" editable="false" prefHeight="30.0" prefWidth="445.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets right="20.0" />
                </GridPane.margin>
             </TextField>
-            <TextField fx:id="costo" prefHeight="30.0" prefWidth="425.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+            <TextField fx:id="luogo" prefHeight="30.0" prefWidth="425.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets right="20.0" />
                </GridPane.margin>
@@ -87,7 +87,7 @@
       <TableView fx:id="farmaciPrescrittiTable" prefHeight="230.0" prefWidth="700.0">
          <columns>
             <TableColumn fx:id="nomeTableColumn" prefWidth="316.0" resizable="false" text="Nome" />
-            <TableColumn fx:id="quantitaTableColumn" prefWidth="339.0" resizable="false" text="Quantità Prescritta" />
+            <TableColumn fx:id="regolamentoTableColumn" prefWidth="339.0" resizable="false" text="Quantità Prescritta" />
          </columns>
          <VBox.margin>
             <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />

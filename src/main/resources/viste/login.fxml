@@ -28,7 +28,7 @@
          <font>
             <Font size="16.0" />
          </font></Button>
-      <Label layoutX="271.0" layoutY="223.0" prefHeight="48.0" prefWidth="166.0" text="PHARMA" textAlignment="CENTER">
+      <Label layoutX="271.0" layoutY="223.0" prefHeight="48.0" prefWidth="179.0" text="UNIVASA" textAlignment="CENTER">
          <font>
             <Font name="Palatino Linotype Bold" size="35.0" />
          </font>

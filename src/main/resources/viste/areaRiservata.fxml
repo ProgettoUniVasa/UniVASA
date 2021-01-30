@@ -39,7 +39,6 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
             <Label prefHeight="60.0" prefWidth="241.0" text="Nome :" GridPane.columnIndex="1">
@@ -52,7 +51,7 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label prefHeight="68.0" prefWidth="209.0" text="CF :" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <Label prefHeight="68.0" prefWidth="209.0" text="Email :" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
@@ -62,27 +61,22 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label prefHeight="45.0" prefWidth="194.0" text="Luogo di nascita :" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <Label prefHeight="45.0" prefWidth="194.0" text="Telefono :" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label prefHeight="57.0" prefWidth="191.0" text="Residenza :" GridPane.columnIndex="1" GridPane.rowIndex="5">
+            <Label prefHeight="57.0" prefWidth="191.0" text="Nome Università :" GridPane.columnIndex="1" GridPane.rowIndex="5">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label prefHeight="80.0" prefWidth="207.0" text="Telefono :" GridPane.columnIndex="1" GridPane.rowIndex="6">
+            <Label prefHeight="80.0" prefWidth="207.0" text="Dipartimento :" GridPane.columnIndex="1" GridPane.rowIndex="6">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
             <Label prefHeight="73.0" prefWidth="234.0" text="Username :" GridPane.columnIndex="1" GridPane.rowIndex="8">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-            </Label>
-            <Label prefHeight="67.0" prefWidth="200.0" text="Password :" GridPane.columnIndex="1" GridPane.rowIndex="9">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
@@ -97,37 +91,32 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="cfLabel" prefHeight="49.0" prefWidth="434.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+            <Label fx:id="emailLabel" prefHeight="49.0" prefWidth="434.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="dataNascitaLabel" prefHeight="37.0" prefWidth="434.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+            <Label fx:id="data_nascitaLabel" prefHeight="37.0" prefWidth="434.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="luogoNascitaLabel" prefHeight="42.0" prefWidth="434.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
+            <Label fx:id="telefonoLabel" prefHeight="42.0" prefWidth="434.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="residenzaLabel" prefHeight="41.0" prefWidth="434.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
+            <Label fx:id="nome_universitàLabel" prefHeight="41.0" prefWidth="434.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="telefonoLabel" prefHeight="48.0" prefWidth="434.0" GridPane.columnIndex="2" GridPane.rowIndex="6">
+            <Label fx:id="dipartimentoLabel" prefHeight="48.0" prefWidth="434.0" GridPane.columnIndex="2" GridPane.rowIndex="6">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
             <Label fx:id="usernameLabel" prefHeight="50.0" prefWidth="434.0" GridPane.columnIndex="2" GridPane.rowIndex="8">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <Label fx:id="passwordLabel" prefHeight="53.0" prefWidth="434.0" GridPane.columnIndex="2" GridPane.rowIndex="9">
                <font>
                   <Font size="18.0" />
                </font>
