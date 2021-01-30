@@ -49,6 +49,8 @@ public class DbUtenteServiceImpl implements UtenteService {
 	private static final String gestionePrenotazioni = "select * from prenotazione where id_evento=? and (tipo='in presenza' or (tipo='online' and stato is not null))";
 	// visualizzaCandidati
 	private static final String visualizzaCandidati = "select * from utente u join candidatura c on u.id=c.id_utente where c.id_evento=?";
+	// modificaAmministratore
+	private static final String modificaAmministratore = "update from amministratore set telefono=?, email=?, nome_universita=?, dipartimento=? where id=?";
 	// modificaOperatore
 	private static final String modificaOperatore = "update from utente set telefono=?, email=?, nome_universita=?, dipartimento=? where id=?";
 	// visualizzaTurnazioni
@@ -539,6 +541,24 @@ public class DbUtenteServiceImpl implements UtenteService {
 		return null;
 	}
 
+	@Override
+	public void modificaAmministratore(Amministratore amministratore) throws BusinessException {
+		// Connessione al Database e richiamo query
+		try (Connection c = DriverManager.getConnection(url, user, pwd);) {
+
+			PreparedStatement ps = c.prepareStatement(modificaAmministratore);
+
+			ps.setString(1, amministratore.getTelefono());
+			ps.setString(2, amministratore.getEmail());
+			ps.setString(3, amministratore.getNome_università());
+			ps.setString(4, amministratore.getDipartimento());
+			ps.setLong(5, amministratore.getId());
+
+			ps.executeUpdate();
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+	}
 
 	@Override
 	public void modificaOperatore(Operatore operatore) throws BusinessException {

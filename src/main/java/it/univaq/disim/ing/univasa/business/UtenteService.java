@@ -38,6 +38,7 @@ public interface UtenteService {
 	List<Elettore> gestionePrenotazioni(Evento evento) throws BusinessException;
 	List<Candidato> visualizzaCandidati(Evento evento) throws BusinessException;
 	void modificaOperatore(Operatore operatore) throws BusinessException;
+	void modificaAmministratore(Amministratore amministratore) throws BusinessException;
 
 	// Operatore
 	List<Elettore> visualizzaPrenotatiInSede(Evento evento) throws BusinessException;
