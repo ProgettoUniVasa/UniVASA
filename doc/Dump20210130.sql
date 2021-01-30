@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `univasa` /*!40100 DEFAULT CHARACTER SET utf8 */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `univasa`;
 -- MySQL dump 10.13  Distrib 8.0.21, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: univasa
@@ -172,6 +174,14 @@ LOCK TABLES `utente` WRITE;
 INSERT INTO `utente` VALUES (1,'a','A','Aa','a','a','22','2010-10-10','professore','bo','bo',NULL,'amministratore'),(2,'b','B','Bb','b','b','33','2000-11-11','impiegato','bo','bo',NULL,'operatore'),(3,'c','C','Cc','c','c','44','2000-12-12','studente','bo','bo','12345','elettore');
 /*!40000 ALTER TABLE `utente` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Dumping events for database 'univasa'
+--
+
+--
+-- Dumping routines for database 'univasa'
+--
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -182,4 +192,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-01-30 18:31:04
+-- Dump completed on 2021-01-30 18:48:14
