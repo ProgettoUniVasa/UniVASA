@@ -5,7 +5,7 @@ import it.univaq.disim.ing.univasa.view.ViewException;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-public class PharmaApplication extends Application {
+public class UniVASAApplication extends Application {
 
 	public static void main(String[] args) {
 		launch(args);
