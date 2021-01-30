@@ -1,10 +1,12 @@
 package it.univaq.disim.ing.univasa.controller.operatorecontroller;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.ResourceBundle;
 import it.univaq.disim.ing.univasa.business.BusinessException;
+import it.univaq.disim.ing.univasa.business.EventoService;
 import it.univaq.disim.ing.univasa.business.UnivasaBusinessFactory;
 import it.univaq.disim.ing.univasa.business.UtenteService;
 import it.univaq.disim.ing.univasa.controller.DataInitializable;
@@ -38,10 +40,10 @@ public class ListaEventiOperatoreController implements Initializable, DataInitia
     private TableColumn<Evento, String> nomeTableColumn;
 
     @FXML
-    private TableColumn<Evento, LocalDateTime> aperturaSeggioTableColumn;
+    private TableColumn<Evento, LocalDate> aperturaSeggioTableColumn;
 
     @FXML
-    private TableColumn<Evento, LocalDateTime> chiusuraSeggioTableColumn;
+    private TableColumn<Evento, LocalDate> chiusuraSeggioTableColumn;
 
     @FXML
     private TableColumn<Evento, String> luogoTableColumn;
@@ -53,12 +55,12 @@ public class ListaEventiOperatoreController implements Initializable, DataInitia
 
     private ViewDispatcher dispatcher;
 
-    private UtenteService utenteService;
+    private EventoService eventoService;
 
     public ListaEventiOperatoreController() {
         dispatcher = ViewDispatcher.getInstance();
         UnivasaBusinessFactory factory = UnivasaBusinessFactory.getInstance();
-        utenteService = factory.getUtenteService();
+        eventoService = factory.getEventoService();
     }
 
     @Override
@@ -73,18 +75,18 @@ public class ListaEventiOperatoreController implements Initializable, DataInitia
                 });
 
         aperturaSeggioTableColumn.setCellValueFactory(
-                new Callback<TableColumn.CellDataFeatures<Evento, LocalDateTime>, ObservableValue<LocalDateTime>>() {
+                new Callback<TableColumn.CellDataFeatures<Evento, LocalDate>, ObservableValue<LocalDate>>() {
                     @Override
-                    public ObservableValue<LocalDateTime> call(CellDataFeatures<Evento, LocalDateTime> param) {
-                        return new SimpleObjectProperty<LocalDateTime>(param.getValue().getDataOraInizio());
+                    public ObservableValue<LocalDate> call(CellDataFeatures<Evento, LocalDate> param) {
+                        return new SimpleObjectProperty<LocalDate>(param.getValue().getDataInizio());
                     }
                 });
 
         chiusuraSeggioTableColumn.setCellValueFactory(
-                new Callback<TableColumn.CellDataFeatures<Evento, LocalDateTime>, ObservableValue<LocalDateTime>>() {
+                new Callback<TableColumn.CellDataFeatures<Evento, LocalDate>, ObservableValue<LocalDate>>() {
                     @Override
-                    public ObservableValue<LocalDateTime> call(CellDataFeatures<Evento, LocalDateTime> param) {
-                        return new SimpleObjectProperty<LocalDateTime>(param.getValue().getDataOraFine());
+                    public ObservableValue<LocalDate> call(CellDataFeatures<Evento, LocalDate> param) {
+                        return new SimpleObjectProperty<LocalDate>(param.getValue().getDataFine());
                     }
                 });
 
@@ -117,7 +119,7 @@ public class ListaEventiOperatoreController implements Initializable, DataInitia
     public void initializeData(Operatore operatore) {
         try {
             this.operatore = operatore;
-            List<Evento> eventiOperatore = utenteService.visualizzaEventi();
+            List<Evento> eventiOperatore = eventoService.trovaTuttiEventi();
             ObservableList<Evento> eventiOperatoreData = FXCollections
                     .observableArrayList(eventiOperatore);
             listaEventiTable.setItems(eventiOperatoreData);
