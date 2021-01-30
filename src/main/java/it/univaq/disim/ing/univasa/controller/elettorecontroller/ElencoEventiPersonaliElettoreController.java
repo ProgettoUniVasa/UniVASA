@@ -38,31 +38,31 @@ import javafx.util.Callback;
 
 public class ElencoEventiPersonaliElettoreController implements Initializable, DataInitializable<Elettore> {
 	@FXML
-	private TableView<Evento> eventiPersonaliTable;
+	private TableView<Prenotazione> eventiPersonaliTable;
 
 	@FXML
-	private TableColumn<Evento, String> nomeTableColumn;
+	private TableColumn<Prenotazione, String> nomeTableColumn;
 
 	@FXML
-	private TableColumn<Evento, LocalDate> dataInizioTableColumn;
+	private TableColumn<Prenotazione, LocalDate> dataInizioTableColumn;
 
 	@FXML
-	private TableColumn<Evento, LocalDate> dataFineTableColumn;
+	private TableColumn<Prenotazione, LocalDate> dataFineTableColumn;
 
 	@FXML
-	private TableColumn<Evento, String> oraInizioTableColumn;
+	private TableColumn<Prenotazione, String> oraInizioTableColumn;
 
 	@FXML
-	private TableColumn<Evento, String> oraFineTableColumn;
+	private TableColumn<Prenotazione, String> oraFineTableColumn;
 
 	@FXML
-	private TableColumn<Evento, String> luogoTableColumn;
+	private TableColumn<Prenotazione, String> luogoTableColumn;
 
 	@FXML
-	private TableColumn<Evento, Button> regolamentoTableColumn;
+	private TableColumn<Prenotazione, Button> regolamentoTableColumn;
 
 	@FXML
-	private TableColumn<Evento, StatoEvento> statoEventoTableColumn; // uso String per visualizzare la mia modalità di
+	private TableColumn<Prenotazione, StatoEvento> statoEventoTableColumn; // uso String per visualizzare la mia modalità di
 																		// voto (in
 	// presenza / online) se la prenotazione è stata effettuata.
 	// Se sono in presenza, devo poter cliccare il tasto per
@@ -78,7 +78,7 @@ public class ElencoEventiPersonaliElettoreController implements Initializable, D
 																					// relativa?
 
 	@FXML
-	private TableColumn<Evento, Button> azioneTableColumn;
+	private TableColumn<Prenotazione, Button> azioneTableColumn;
 
 	@FXML
 	private Button esciButton;
@@ -89,13 +89,16 @@ public class ElencoEventiPersonaliElettoreController implements Initializable, D
 	private ViewDispatcher dispatcher;
 
 	private EventoService eventoService; // vedere service
-
+	
+	private PrenotazioneService prenotazioneService;
+	
 	private Elettore elettore;
 
 	public ElencoEventiPersonaliElettoreController() {
 		dispatcher = ViewDispatcher.getInstance();
 		UnivasaBusinessFactory factory = UnivasaBusinessFactory.getInstance(); // vedere business factory
 		eventoService = factory.getEventoService();
+		prenotazioneService = factory.getPrenotazioneService();
 	}
 
 	@Override
@@ -109,10 +112,10 @@ public class ElencoEventiPersonaliElettoreController implements Initializable, D
 
 		regolamentoTableColumn.setStyle("-fx-alignment: CENTER;");
 		regolamentoTableColumn.setCellValueFactory(
-				new Callback<TableColumn.CellDataFeatures<Evento, Button>, ObservableValue<Button>>() {
+				new Callback<TableColumn.CellDataFeatures<Prenotazione, Button>, ObservableValue<Button>>() {
 
 					@Override
-					public ObservableValue<Button> call(CellDataFeatures<Evento, Button> param) {
+					public ObservableValue<Button> call(CellDataFeatures<Prenotazione, Button> param) {
 						final Button regolamentoButton = new Button("Visualizza");
 						regolamentoButton.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -134,10 +137,10 @@ public class ElencoEventiPersonaliElettoreController implements Initializable, D
 		prenotazioneTableColumn.setCellValueFactory(new PropertyValueFactory<>("tipoPrenotazione"));
 		azioneTableColumn.setStyle("-fx-alignment: CENTER;");
 		azioneTableColumn.setCellValueFactory(
-				new Callback<TableColumn.CellDataFeatures<Evento, Button>, ObservableValue<Button>>() {
+				new Callback<TableColumn.CellDataFeatures<Prenotazione, Button>, ObservableValue<Button>>() {
 
 					@Override
-					public ObservableValue<Button> call(CellDataFeatures<Evento, Button> param) {
+					public ObservableValue<Button> call(CellDataFeatures<Prenotazione, Button> param) {
 						final Button azioneButton = new Button("Modifica");
 						azioneButton.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -180,18 +183,9 @@ public class ElencoEventiPersonaliElettoreController implements Initializable, D
 	public void initializeData(Elettore elettore) {
 		try {
 			this.elettore = elettore;
-			List<Evento> eventi = eventoService.trovaEventiPrenotatiElettore(elettore); // vedere service
-			ObservableList<Evento> eventiData = FXCollections.observableArrayList(eventi);
-			List<Prenotazione> prenotazioni = eventoService.trovaPrenotazioniElettore(elettore, elettore.getEvento()); // non
-																														// so
-																														// come
-																														// far
-																														// vedere
-																														// le
-																														// prenotazioni
-																														// :)
+			List<Prenotazione> prenotazioni = prenotazioneService.trovaPrenotazioniElettore(elettore); 
 			ObservableList<Prenotazione> prenotazioniData = FXCollections.observableArrayList(prenotazioni);
-			eventiPersonaliTable.setItems(eventiData);
+			eventiPersonaliTable.setItems(prenotazioniData);
 		} catch (BusinessException e) {
 			dispatcher.renderError(e);
 		}

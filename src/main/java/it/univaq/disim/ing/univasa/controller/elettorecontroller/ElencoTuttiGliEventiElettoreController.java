@@ -139,7 +139,7 @@ public class ElencoTuttiGliEventiElettoreController implements Initializable, Da
 	public void initializeData(Elettore elettore) {
 		try {
 			this.elettore = elettore;
-			List<Evento> eventi = eventoService.trovaTuttiEventi();
+			List<Evento> eventi = eventoService.trovaEventiDaPrenotare(elettore);
 			ObservableList<Evento> eventiData = FXCollections.observableArrayList(eventi);
 			tuttiGliEventiTable.setItems(eventiData);
 		} catch (BusinessException e) {
