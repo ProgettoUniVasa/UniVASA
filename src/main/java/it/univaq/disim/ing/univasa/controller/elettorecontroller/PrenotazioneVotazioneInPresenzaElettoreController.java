@@ -3,10 +3,7 @@ package it.univaq.disim.ing.univasa.controller.elettorecontroller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import it.univaq.disim.ing.univasa.business.BusinessException;
-import it.univaq.disim.ing.univasa.business.EventoService;
-import it.univaq.disim.ing.univasa.business.UnivasaBusinessFactory;
-import it.univaq.disim.ing.univasa.business.UtenteService;
+import it.univaq.disim.ing.univasa.business.*;
 import it.univaq.disim.ing.univasa.controller.DataInitializable;
 import it.univaq.disim.ing.univasa.domain.Elettore;
 import it.univaq.disim.ing.univasa.domain.Evento;
@@ -30,7 +27,7 @@ public class PrenotazioneVotazioneInPresenzaElettoreController implements Initia
 
 	private Evento evento;
 
-	private UtenteService utenteService;
+	private PrenotazioneService prenotazioneService;
 
 	private Elettore elettore;
 
@@ -38,7 +35,7 @@ public class PrenotazioneVotazioneInPresenzaElettoreController implements Initia
 		dispatcher = ViewDispatcher.getInstance();
 		UnivasaBusinessFactory factory = UnivasaBusinessFactory.getInstance();
 		eventoService = factory.getEventoService();
-		utenteService = factory.getUtenteService();
+		prenotazioneService = factory.getPrenotazioneService();
 	}
 
 	@Override
@@ -52,7 +49,7 @@ public class PrenotazioneVotazioneInPresenzaElettoreController implements Initia
 	@FXML
 	public void prenotatiInPresenzaAction(ActionEvent event) throws BusinessException {
 		try {
-			utenteService.prenotazioneInSede(elettore, evento);
+			prenotazioneService.prenotazioneInSede(elettore, evento);
 
 			dispatcher.renderView("elencoTuttiGliEventiElettore", elettore);
 		} catch (BusinessException e) {

@@ -37,9 +37,6 @@ public class DbUtenteServiceImpl implements UtenteService {
 	private static final String creaOperatore = "insert into operatore (nome, cognome, email, username, password, telefono, data_nascita, professione, nome_universita, dipartimento, tipo_utente) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'operatore')";
 	// creaElettore
 	private static final String creaElettore = "insert into elettore (nome, cognome, email, username, password, telefono, data_nascita, professione, nome_universita, dipartimento, matricola, tipo_utente) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'elettore')";
-	// creaElettoreInSede & creaElettoreOnline
-	private static final String prenotazioneInSede = "insert into prenotazione (id_utente,id_evento,tipo_prenotazione,stato) values (?,?,'in presenza','no')";
-	private static final String prenotazioneOnline = "insert into prenotazione (id_utente,id_evento,tipo_prenotazione) values (?,?,'online')";
 	// creaCandidato
 	private static final String creaCandidato = "insert into candidatura (id_utente,id_evento,voti_ricevuti) values (?,?,0)";
 	// accetta certificato & rifiutaCertificato
@@ -64,6 +61,7 @@ public class DbUtenteServiceImpl implements UtenteService {
 	private static final String eliminaUtente = "delete from utente where id_utente=?";
 	// utenteDaEmail
 	private static final String utenteDaEmail = "select * from utente where email=?";
+
 
 	@Override
 	public Utente autenticazione(String username, String password) throws UtenteNotFoundException, BusinessException {
@@ -627,37 +625,6 @@ public class DbUtenteServiceImpl implements UtenteService {
 		return elettori;
 	}
 
-	@Override
-	public void prenotazioneInSede(Elettore elettore, Evento evento) throws BusinessException {
-		// Connessione al Database e richiamo query
-		try (Connection c = DriverManager.getConnection(url, user, pwd);) {
-
-			PreparedStatement ps = c.prepareStatement(prenotazioneInSede);
-
-			ps.setLong(1, elettore.getId());
-			ps.setLong(2, evento.getId());
-
-			ps.executeUpdate();
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-		}
-	}
-
-	@Override
-	public void prenotazioneOnline(Elettore elettore, Evento evento) throws BusinessException {
-		// Connessione al Database e richiamo query
-		try (Connection c = DriverManager.getConnection(url, user, pwd);) {
-
-			PreparedStatement ps = c.prepareStatement(prenotazioneOnline);
-
-			ps.setLong(1, elettore.getId());
-			ps.setLong(2, evento.getId());
-
-			ps.executeUpdate();
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-		}
-	}
 
 	@Override
 	public void vota(ElettoreOnline elettoreOnline, Evento evento) throws BusinessException {

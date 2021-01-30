@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class ElettoreOnline extends Elettore {
-
+/*
 	private Set<SchedaElettorale> schede_votate = new HashSet<>();
 	private Stato stato = Stato.prenotazione_online;
 

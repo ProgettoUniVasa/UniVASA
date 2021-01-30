@@ -17,7 +17,7 @@ public interface EventoService {
 
 	List<Evento> trovaTuttiEventi() throws BusinessException;
 
-	List<Evento> trovaEventiPrenotatiElettore(Elettore elettore) throws BusinessException;
+	List<Evento> trovaEventiDaPrenotare(Elettore elettore) throws  BusinessException;
 
 	Evento trovaEventoDaId(Long id) throws BusinessException;
 

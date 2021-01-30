@@ -7,15 +7,13 @@ import java.util.ResourceBundle;
 
 import it.univaq.disim.ing.univasa.business.BusinessException;
 import it.univaq.disim.ing.univasa.business.EventoService;
+import it.univaq.disim.ing.univasa.business.PrenotazioneService;
 import it.univaq.disim.ing.univasa.business.UnivasaBusinessFactory;
 import it.univaq.disim.ing.univasa.controller.DataInitializable;
-import it.univaq.disim.ing.univasa.domain.Elettore;
-import it.univaq.disim.ing.univasa.domain.Evento;
-import it.univaq.disim.ing.univasa.domain.Prenotazione;
-import it.univaq.disim.ing.univasa.domain.StatoEvento;
-import it.univaq.disim.ing.univasa.domain.TipoPrenotazione;
+import it.univaq.disim.ing.univasa.domain.*;
 import it.univaq.disim.ing.univasa.view.ViewDispatcher;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -33,34 +31,31 @@ import javafx.util.Callback;
 public class ElencoEventiInCorsoController implements Initializable, DataInitializable<Elettore> {
 
 	@FXML
-	private TableView<Evento> eventiPersonaliTable;
+	private TableView<Prenotazione> eventiPersonaliTable;
 
 	@FXML
-	private TableColumn<Evento, String> nomeTableColumn;
+	private TableColumn<Prenotazione, String> nomeTableColumn;
 
 	@FXML
-	private TableColumn<Evento, LocalDate> dataInizioTableColumn;
+	private TableColumn<Prenotazione, LocalDate> dataInizioTableColumn;
 
 	@FXML
-	private TableColumn<Evento, LocalDate> dataFineTableColumn;
+	private TableColumn<Prenotazione, LocalDate> dataFineTableColumn;
 
 	@FXML
-	private TableColumn<Evento, String> oraInizioTableColumn;
+	private TableColumn<Prenotazione, String> oraInizioTableColumn;
 
 	@FXML
-	private TableColumn<Evento, String> oraFineTableColumn;
+	private TableColumn<Prenotazione, String> oraFineTableColumn;
 
 	@FXML
-	private TableColumn<Evento, String> luogoTableColumn;
+	private TableColumn<Prenotazione, String> luogoTableColumn;
 
 	@FXML
-	private TableColumn<Evento, Button> regolamentoTableColumn;
+	private TableColumn<Prenotazione, Button> regolamentoTableColumn;
 
 	@FXML
-	private TableColumn<Prenotazione, TipoPrenotazione> prenotazioneTableColumn;
-
-	@FXML
-	private TableColumn<Evento, Button> azioneTableColumn;
+	private TableColumn<Prenotazione, Button> azioneTableColumn;
 
 	@FXML
 	private Button esciButton;
@@ -70,37 +65,71 @@ public class ElencoEventiInCorsoController implements Initializable, DataInitial
 
 	private ViewDispatcher dispatcher;
 
-	private EventoService eventoService; // vedere service
-
+	private PrenotazioneService prenotazioneService;
 	private Elettore elettore;
 
 	public ElencoEventiInCorsoController() {
 		dispatcher = ViewDispatcher.getInstance();
 		UnivasaBusinessFactory factory = UnivasaBusinessFactory.getInstance(); // vedere business factory
-		eventoService = factory.getEventoService();
+		prenotazioneService = factory.getPrenotazioneService();
 	}
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
-		nomeTableColumn.setCellValueFactory(new PropertyValueFactory<>("nome"));
-		dataInizioTableColumn.setCellValueFactory(new PropertyValueFactory<>("dataInizio"));
-		dataFineTableColumn.setCellValueFactory(new PropertyValueFactory<>("dataFine"));
-		oraInizioTableColumn.setCellValueFactory(new PropertyValueFactory<>("oraInizio"));
-		oraFineTableColumn.setCellValueFactory(new PropertyValueFactory<>("oraFine"));
-		luogoTableColumn.setCellValueFactory(new PropertyValueFactory<>("luogo"));
-
+		nomeTableColumn.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<Prenotazione, String>, ObservableValue<String>>() {
+					@Override
+					public ObservableValue<String> call(CellDataFeatures<Prenotazione, String> param) {
+						return new SimpleStringProperty(param.getValue().getEvento().getNome());
+					}
+				});
+		dataInizioTableColumn.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<Prenotazione, LocalDate>, ObservableValue<LocalDate>>() {
+					@Override
+					public ObservableValue<LocalDate> call(CellDataFeatures<Prenotazione, LocalDate> param) {
+						return new SimpleObjectProperty<LocalDate>(param.getValue().getEvento().getDataInizio());
+					}
+				});
+		dataFineTableColumn.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<Prenotazione, LocalDate>, ObservableValue<LocalDate>>() {
+					@Override
+					public ObservableValue<LocalDate> call(CellDataFeatures<Prenotazione, LocalDate> param) {
+						return new SimpleObjectProperty<LocalDate>(param.getValue().getEvento().getDataFine());
+					}
+				});
+		oraInizioTableColumn.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<Prenotazione, String>, ObservableValue<String>>() {
+					@Override
+					public ObservableValue<String> call(CellDataFeatures<Prenotazione, String> param) {
+						return new SimpleStringProperty(param.getValue().getEvento().getOraInizio());
+					}
+				});
+		oraFineTableColumn.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<Prenotazione, String>, ObservableValue<String>>() {
+					@Override
+					public ObservableValue<String> call(CellDataFeatures<Prenotazione, String> param) {
+						return new SimpleStringProperty(param.getValue().getEvento().getOraFine());
+					}
+				});
+		luogoTableColumn.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<Prenotazione, String>, ObservableValue<String>>() {
+					@Override
+					public ObservableValue<String> call(CellDataFeatures<Prenotazione, String> param) {
+						return new SimpleStringProperty(param.getValue().getEvento().getLuogo());
+					}
+				});
 		regolamentoTableColumn.setStyle("-fx-alignment: CENTER;");
 		regolamentoTableColumn.setCellValueFactory(
-				new Callback<TableColumn.CellDataFeatures<Evento, Button>, ObservableValue<Button>>() {
+				new Callback<TableColumn.CellDataFeatures<Prenotazione, Button>, ObservableValue<Button>>() {
 
 					@Override
-					public ObservableValue<Button> call(CellDataFeatures<Evento, Button> param) {
+					public ObservableValue<Button> call(CellDataFeatures<Prenotazione, Button> param) {
 						final Button regolamentoButton = new Button("Visualizza");
 						regolamentoButton.setOnAction(new EventHandler<ActionEvent>() {
 
 							@Override
 							public void handle(ActionEvent event) {
-								dispatcher.renderView("regolamentoEventoPersonale", param.getValue()); // creare vista
+								dispatcher.renderView("regolamentoEventoPersonale", param.getValue().getEvento()); // creare vista
 								// regolamentoEvento
 							}
 						});
@@ -108,13 +137,12 @@ public class ElencoEventiInCorsoController implements Initializable, DataInitial
 					}
 				});
 
-		prenotazioneTableColumn.setCellValueFactory(new PropertyValueFactory<>("tipoPrenotazione"));
 		azioneTableColumn.setStyle("-fx-alignment: CENTER;");
 		azioneTableColumn.setCellValueFactory(
-				new Callback<TableColumn.CellDataFeatures<Evento, Button>, ObservableValue<Button>>() {
+				new Callback<TableColumn.CellDataFeatures<Prenotazione, Button>, ObservableValue<Button>>() {
 
 					@Override
-					public ObservableValue<Button> call(CellDataFeatures<Evento, Button> param) {
+					public ObservableValue<Button> call(CellDataFeatures<Prenotazione, Button> param) {
 						final Button azioneButton = new Button("Vota");
 						azioneButton.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -137,23 +165,10 @@ public class ElencoEventiInCorsoController implements Initializable, DataInitial
 
 	@Override
 	public void initializeData(Elettore elettore) {
-		try {
-			this.elettore = elettore;
-			List<Evento> eventi = eventoService.trovaEventiPrenotatiInCorsoElettore(elettore); // vedere service
-			ObservableList<Evento> eventiData = FXCollections.observableArrayList(eventi);
-			List<Prenotazione> prenotazioni = eventoService.trovaPrenotazioniElettore(elettore, elettore.getEvento()); // non
-																														// so
-																														// come
-																														// far
-																														// vedere
-																														// le
-																														// prenotazioni
-																														// :)
-			ObservableList<Prenotazione> prenotazioniData = FXCollections.observableArrayList(prenotazioni);
-			eventiPersonaliTable.setItems(eventiData);
-		} catch (BusinessException e) {
-			dispatcher.renderError(e);
-		}
+		this.elettore = elettore;
+		List<Prenotazione> prenotazioni = prenotazioneService.trovaPrenotazioniOnlineInCorso(elettore);
+		ObservableList<Prenotazione> prenotazioniData = FXCollections.observableArrayList(prenotazioni);
+		eventiPersonaliTable.setItems(prenotazioniData);
 	}
 
 	@FXML

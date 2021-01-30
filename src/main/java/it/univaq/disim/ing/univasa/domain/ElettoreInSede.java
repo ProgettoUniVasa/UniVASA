@@ -6,6 +6,7 @@ import java.util.Set;
 
 public class ElettoreInSede extends Elettore {
 
+	/*
 	private Set<Evento> evento = new HashSet<>();
 	private Stato stato = Stato.prenotazione_in_sede;
 	
@@ -42,4 +43,6 @@ public class ElettoreInSede extends Elettore {
 		this.stato = stato;
 	}
 
+
+	 */
 }

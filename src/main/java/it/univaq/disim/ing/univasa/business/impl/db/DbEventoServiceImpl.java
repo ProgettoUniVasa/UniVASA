@@ -150,6 +150,11 @@ public class DbEventoServiceImpl implements EventoService {
 	}
 
 	@Override
+	public List<Evento> trovaEventiDaPrenotare(Elettore elettore) throws BusinessException {
+		return null;
+	}
+
+	@Override
 	public Evento trovaEventoDaId(Long id) throws BusinessException {
 		Evento evento = new Evento();
 		ResultSet r = null;
@@ -312,9 +317,5 @@ public class DbEventoServiceImpl implements EventoService {
 		return evento;
 	}
 
-	@Override
-	public List<Evento> trovaEventiPrenotatiElettore(Elettore elettore) throws BusinessException {
-		return null;
-	}
 
 }

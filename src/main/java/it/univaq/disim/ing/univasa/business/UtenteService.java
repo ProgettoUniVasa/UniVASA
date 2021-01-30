@@ -31,7 +31,6 @@ public interface UtenteService {
 
 	void creaCandidato(Candidato candidato) throws BusinessException;
 
-
 	// Amministratore
 	void accettaCertificato(String certificato) throws BusinessException;
 	void rifiutaCertificato(String certificato) throws BusinessException;
@@ -43,13 +42,8 @@ public interface UtenteService {
 	// Operatore
 	List<Elettore> visualizzaPrenotatiInSede(Evento evento) throws BusinessException;
 
-	// Elettore generico -- ma dove lo salva??? Non c'è un DB
-	void prenotazioneInSede(Elettore elettore, Evento evento) throws BusinessException;
-	void prenotazioneOnline(Elettore elettore, Evento evento) throws BusinessException;
-
 	// ElettoreOnline
 	void vota(ElettoreOnline elettoreOnline, Evento evento) throws BusinessException;
-
 
 	void eliminaUtente(Utente utente) throws UtenteNotFoundException, BusinessException;
 
