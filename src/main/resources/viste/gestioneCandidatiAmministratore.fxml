@@ -5,6 +5,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -19,11 +21,16 @@
             <Insets top="5.0" />
          </VBox.margin>
       </Label>
-      <HBox prefHeight="76.0" prefWidth="912.0">
+      <HBox prefHeight="81.0" prefWidth="904.0">
          <children>
-            <Button fx:id="aggiungiCandidatoButton" mnemonicParsing="false" onAction="#aggiungiCandidatoAction" prefHeight="37.0" prefWidth="131.0" text="Aggiungi Candidato">
+            <ImageView fitHeight="66.0" fitWidth="81.0" onMouseClicked="#indietroAction">
+               <image>
+                  <Image url="@back.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="aggiungiCandidatoButton" mnemonicParsing="false" onAction="#aggiungiCandidatoAction" prefHeight="37.0" prefWidth="140.0" text="Aggiungi Candidato">
                <HBox.margin>
-                  <Insets left="770.0" />
+                  <Insets left="690.0" />
                </HBox.margin>
             </Button>
          </children>

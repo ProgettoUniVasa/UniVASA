@@ -72,6 +72,8 @@ public class GestioneOperatoriAmministratoreController implements Initializable,
 
 	private Operatore operatore;
 
+	private Amministratore amministratore;
+
 	public GestioneOperatoriAmministratoreController() {
 		dispatcher = ViewDispatcher.getInstance();
 		UnivasaBusinessFactory factory = UnivasaBusinessFactory.getInstance();
@@ -143,4 +145,8 @@ public class GestioneOperatoriAmministratoreController implements Initializable,
 		dispatcher.renderView("aggiungiOperatore", operatore);
 	}
 
+	@FXML
+	public void indietroAction(ActionEvent event) {
+		dispatcher.renderView("dashboardAmministratore", amministratore);
+	}
 }

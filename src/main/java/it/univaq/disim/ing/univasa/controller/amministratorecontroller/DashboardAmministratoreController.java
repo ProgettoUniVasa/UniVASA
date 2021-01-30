@@ -15,7 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 
-public class DashboardAmministratoreController implements Initializable, DataInitializable<Utente> {
+public class DashboardAmministratoreController implements Initializable, DataInitializable<Amministratore> {
 
 	@FXML
 	private Button eventiButton;
@@ -49,7 +49,7 @@ public class DashboardAmministratoreController implements Initializable, DataIni
 	}
 
 	@Override
-	public void initializeData(Utente utente) {
+	public void initializeData(Amministratore amministratore) {
 	}
 
 	@FXML

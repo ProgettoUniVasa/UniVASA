@@ -4,6 +4,9 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -17,6 +20,15 @@
             <Insets top="10.0" />
          </VBox.margin>
       </Label>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <ImageView fitHeight="56.0" fitWidth="66.0" onMouseClicked="#indietroAction">
+               <image>
+                  <Image url="@back.png" />
+               </image>
+            </ImageView>
+         </children>
+      </HBox>
       <TableView fx:id="farmaciTable" prefHeight="463.0" prefWidth="599.0" style="-fx-background-color: #0ABAB5;">
         <columns>
           <TableColumn fx:id="nomeTableColumn" prefWidth="117.0" text="Nome" />

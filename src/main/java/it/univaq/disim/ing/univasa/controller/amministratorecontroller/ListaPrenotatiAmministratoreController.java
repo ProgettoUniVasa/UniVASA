@@ -14,6 +14,7 @@ import it.univaq.disim.ing.univasa.domain.Evento;
 import it.univaq.disim.ing.univasa.view.ViewDispatcher;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -59,6 +60,8 @@ public class ListaPrenotatiAmministratoreController implements Initializable, Da
 
 	private Evento evento;
 
+	private Amministratore amministratore;
+
 	public ListaPrenotatiAmministratoreController() {
 		dispatcher = ViewDispatcher.getInstance();
 		UnivasaBusinessFactory factory = UnivasaBusinessFactory.getInstance();
@@ -84,5 +87,10 @@ public class ListaPrenotatiAmministratoreController implements Initializable, Da
 		} catch (BusinessException e) {
 			dispatcher.renderError(e);
 		}
+	}
+
+	@FXML
+	public void indietroAction(ActionEvent event) {
+		dispatcher.renderView("listaEventiAmministratore", amministratore);
 	}
 }

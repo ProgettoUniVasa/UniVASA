@@ -81,6 +81,8 @@ public class ListaEventiAmministratoreController implements Initializable, DataI
 	private ViewDispatcher dispatcher;
 
 	private EventoService eventoService;
+	
+	private Amministratore amministratore;
 
 	public ListaEventiAmministratoreController() {
 		dispatcher = ViewDispatcher.getInstance();
@@ -163,7 +165,6 @@ public class ListaEventiAmministratoreController implements Initializable, DataI
 		try {
 			List<Evento> evento = eventoService.trovaTuttiEventi();
 			ObservableList<Evento> eventiData = FXCollections.observableArrayList(evento);
-
 			eventoTable.setItems(eventiData);
 
 		} catch (BusinessException e) {
@@ -175,5 +176,10 @@ public class ListaEventiAmministratoreController implements Initializable, DataI
 	public void aggiungiEventoAction(ActionEvent event) {
 		Evento evento = new Evento();
 		dispatcher.renderView("aggiungiEvento", evento);
+	}
+	
+	@FXML
+	public void indietroAction(ActionEvent event) {
+		dispatcher.renderView("dashboardAmministratore", amministratore);
 	}
 }

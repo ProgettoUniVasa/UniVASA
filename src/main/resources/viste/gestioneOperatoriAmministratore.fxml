@@ -5,6 +5,9 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -18,14 +21,23 @@
             <Insets top="5.0" />
          </VBox.margin>
       </Label>
-      <Button fx:id="aggiungiOperatoreButton" mnemonicParsing="false" onAction="#aggiungiOperatoreAction" prefHeight="38.0" prefWidth="177.0" text="Aggiungi Operatore">
-         <VBox.margin>
-            <Insets left="850.0" />
-         </VBox.margin>
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Button>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <ImageView fitHeight="62.0" fitWidth="80.0" onMouseClicked="#indietroAction">
+               <image>
+                  <Image url="@back.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="aggiungiOperatoreButton" mnemonicParsing="false" onAction="#aggiungiOperatoreAction" prefHeight="38.0" prefWidth="177.0" text="Aggiungi Operatore">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="770.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
       <TableView fx:id="operatoriTable" prefHeight="472.0" prefWidth="698.0" style="-fx-background-color: #0ABAB5;">
          <columns>
             <TableColumn fx:id="nomeTableColumn" prefWidth="88.0" text="Nome" />

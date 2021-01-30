@@ -65,6 +65,8 @@ public class ListaTurnazioniAmministratoreController implements Initializable, D
 
 	private Operatore operatore;
 
+	private Amministratore amministratore;
+
 	public ListaTurnazioniAmministratoreController() {
 		dispatcher = ViewDispatcher.getInstance();
 		UnivasaBusinessFactory factory = UnivasaBusinessFactory.getInstance();
@@ -116,5 +118,10 @@ public class ListaTurnazioniAmministratoreController implements Initializable, D
 	public void aggiungiTurnoAction(ActionEvent event) {
 		Turnazione turnazione = new Turnazione();
 		dispatcher.renderView("aggiungiTurnazione", turnazione);
+	}
+
+	@FXML
+	public void indietroAction(ActionEvent event) {
+		dispatcher.renderView("dashboardAmministratore", amministratore);
 	}
 }

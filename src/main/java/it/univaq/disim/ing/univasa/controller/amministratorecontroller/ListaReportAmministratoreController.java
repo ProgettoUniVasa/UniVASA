@@ -64,6 +64,8 @@ public class ListaReportAmministratoreController implements Initializable, DataI
 
 	private EventoService eventoService;
 
+	private Amministratore amministratore;
+
 	public ListaReportAmministratoreController() {
 		dispatcher = ViewDispatcher.getInstance();
 		UnivasaBusinessFactory factory = UnivasaBusinessFactory.getInstance();
@@ -116,5 +118,10 @@ public class ListaReportAmministratoreController implements Initializable, DataI
 	public void aggiungiReportAction(ActionEvent event) {
 		Evento evento = new Evento();
 		dispatcher.renderView("aggiungiReport", evento);
+	}
+
+	@FXML
+	public void indietroAction(ActionEvent event) {
+		dispatcher.renderView("dashboardAmministratore", amministratore);
 	}
 }

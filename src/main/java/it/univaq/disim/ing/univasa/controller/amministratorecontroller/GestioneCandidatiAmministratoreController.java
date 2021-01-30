@@ -75,6 +75,8 @@ public class GestioneCandidatiAmministratoreController implements Initializable,
 	private Candidato candidato;
 
 	private Evento evento;
+	
+	private Amministratore amministratore;
 
 	public GestioneCandidatiAmministratoreController() {
 		dispatcher = ViewDispatcher.getInstance();
@@ -127,5 +129,10 @@ public class GestioneCandidatiAmministratoreController implements Initializable,
 	@FXML
 	public void aggiungiCandidatoAction(ActionEvent event) {
 		dispatcher.renderView("aggiungiCandidato", candidato);
+	}
+	
+	@FXML
+	public void indietroAction(ActionEvent event) {
+		dispatcher.renderView("listaEventiAmministratore", amministratore);
 	}
 }
