@@ -19,16 +19,22 @@ public class DashboardAmministratoreController implements Initializable, DataIni
 
 	@FXML
 	private Button eventiButton;
-	
+
 	@FXML
 	private Button turniButton;
+
+	@FXML
+	private Button operatoriButton;
 
 	@FXML
 	private Button reportButton;
 
 	@FXML
+	private Button amministratoriButton;
+
+	@FXML
 	private Button esciButton;
-	
+
 	@FXML
 	private Button profiloButton;
 
@@ -61,22 +67,27 @@ public class DashboardAmministratoreController implements Initializable, DataIni
 	public void associazioneTurni(ActionEvent event) {
 		dispatcher.renderView("listaTurnazioniAmministratore", amministratore);
 	}
-	
+
 	@FXML
 	public void creazioneReportAction(ActionEvent event) {
 		dispatcher.renderView("listaReportAmministratore", amministratore);
 	}
-	
+
 	@FXML
 	public void gestioneOperatoriAction(ActionEvent event) {
 		dispatcher.renderView("gestioneOperatoriAmministratore", amministratore);
 	}
 
 	@FXML
+	public void gestioneAmministratoriAction(ActionEvent event) {
+		dispatcher.renderView("gestioneAmministratoriAmministratore", amministratore);
+	}
+
+	@FXML
 	public void esciAction(ActionEvent event) {
 		dispatcher.logout();
 	}
-	
+
 	@FXML
 	public void visualizzaProfiloAction(MouseEvent event) {
 		dispatcher.renderView("areaRiservata", amministratore);

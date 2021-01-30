@@ -10,7 +10,6 @@ import it.univaq.disim.ing.univasa.business.UnivasaBusinessFactory;
 import it.univaq.disim.ing.univasa.business.UtenteService;
 import it.univaq.disim.ing.univasa.controller.DataInitializable;
 import it.univaq.disim.ing.univasa.domain.Amministratore;
-import it.univaq.disim.ing.univasa.domain.Operatore;
 import it.univaq.disim.ing.univasa.domain.Professione;
 import it.univaq.disim.ing.univasa.view.ViewDispatcher;
 import javafx.beans.property.SimpleObjectProperty;
@@ -28,51 +27,52 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 
-public class GestioneOperatoriAmministratoreController implements Initializable, DataInitializable<Amministratore> {
+public class GestioneAmministratoriAmministratoreController
+		implements Initializable, DataInitializable<Amministratore> {
 
 	@FXML
-	private TableView<Operatore> operatoriTable;
+	private TableView<Amministratore> amministratoriTable;
 
 	@FXML
-	private TableColumn<Operatore, String> nomeTableColumn;
+	private TableColumn<Amministratore, String> nomeTableColumn;
 
 	@FXML
-	private TableColumn<Operatore, String> cognomeTableColumn;
+	private TableColumn<Amministratore, String> cognomeTableColumn;
 
 	@FXML
-	private TableColumn<Operatore, String> emailTableColumn;
+	private TableColumn<Amministratore, String> emailTableColumn;
 
 	@FXML
-	private TableColumn<Operatore, String> telefonoTableColumn;
+	private TableColumn<Amministratore, String> telefonoTableColumn;
 
 	@FXML
-	private TableColumn<Operatore, LocalDate> dataNascitaTableColumn;
+	private TableColumn<Amministratore, LocalDate> dataNascitaTableColumn;
 
 	@FXML
-	private TableColumn<Operatore, Professione> professioneTableColumn;
+	private TableColumn<Amministratore, Professione> professioneTableColumn;
 
 	@FXML
-	private TableColumn<Operatore, String> nome_universitàTableColumn;
+	private TableColumn<Amministratore, String> nome_universitàTableColumn;
 
 	@FXML
-	private TableColumn<Operatore, String> dipartimentoTableColumn;
+	private TableColumn<Amministratore, String> dipartimentoTableColumn;
 
 	@FXML
-	private TableColumn<Operatore, Button> modificaTableColumn;
+	private TableColumn<Amministratore, Button> modificaTableColumn;
 
 	@FXML
-	private TableColumn<Operatore, Button> eliminaTableColumn;
+	private TableColumn<Amministratore, Button> eliminaTableColumn;
 
 	@FXML
-	private Button aggiungiOperatoreButton;
+	private Button aggiungiAmministratoreButton;
 
 	private ViewDispatcher dispatcher;
 
 	private UtenteService utenteService;
 
-	private Operatore operatore;
+	private Amministratore amministratore;
 
-	public GestioneOperatoriAmministratoreController() {
+	public GestioneAmministratoriAmministratoreController() {
 		dispatcher = ViewDispatcher.getInstance();
 		UnivasaBusinessFactory factory = UnivasaBusinessFactory.getInstance();
 		utenteService = factory.getUtenteService();
@@ -91,16 +91,16 @@ public class GestioneOperatoriAmministratoreController implements Initializable,
 
 		modificaTableColumn.setStyle("-fx-alignment: CENTER;");
 		modificaTableColumn.setCellValueFactory(
-				new Callback<TableColumn.CellDataFeatures<Operatore, Button>, ObservableValue<Button>>() {
+				new Callback<TableColumn.CellDataFeatures<Amministratore, Button>, ObservableValue<Button>>() {
 
 					@Override
-					public ObservableValue<Button> call(CellDataFeatures<Operatore, Button> param) {
+					public ObservableValue<Button> call(CellDataFeatures<Amministratore, Button> param) {
 						final Button modificaButton = new Button("Modifica");
 						modificaButton.setOnAction(new EventHandler<ActionEvent>() {
 
 							@Override
 							public void handle(ActionEvent event) {
-								dispatcher.renderView("modificaOperatore", param.getValue());
+								dispatcher.renderView("modificaAmministratore", param.getValue());
 							}
 						});
 						return new SimpleObjectProperty<Button>(modificaButton);
@@ -109,16 +109,16 @@ public class GestioneOperatoriAmministratoreController implements Initializable,
 
 		eliminaTableColumn.setStyle("-fx-alignment: CENTER;");
 		eliminaTableColumn.setCellValueFactory(
-				new Callback<TableColumn.CellDataFeatures<Operatore, Button>, ObservableValue<Button>>() {
+				new Callback<TableColumn.CellDataFeatures<Amministratore, Button>, ObservableValue<Button>>() {
 
 					@Override
-					public ObservableValue<Button> call(CellDataFeatures<Operatore, Button> param) {
+					public ObservableValue<Button> call(CellDataFeatures<Amministratore, Button> param) {
 						final Button eliminaButton = new Button("Elimina");
 						eliminaButton.setOnAction(new EventHandler<ActionEvent>() {
 
 							@Override
 							public void handle(ActionEvent event) {
-								dispatcher.renderView("eliminaOperatore", param.getValue());
+								dispatcher.renderView("eliminaAmministratore", param.getValue());
 							}
 						});
 						return new SimpleObjectProperty<Button>(eliminaButton);
@@ -130,17 +130,17 @@ public class GestioneOperatoriAmministratoreController implements Initializable,
 	@Override
 	public void initializeData(Amministratore amministratore) {
 		try {
-			List<Operatore> operatori = utenteService.trovaTuttiOperatori();
-			ObservableList<Operatore> operatoriData = FXCollections.observableArrayList(operatori);
-			operatoriTable.setItems(operatoriData);
+			List<Amministratore> amministratori = utenteService.trovaTuttiAmministratori();
+			ObservableList<Amministratore> amministratoriData = FXCollections.observableArrayList(amministratori);
+			amministratoriTable.setItems(amministratoriData);
 		} catch (BusinessException e) {
 			dispatcher.renderError(e);
 		}
 	}
 
 	@FXML
-	public void aggiungiOperatoreAction(ActionEvent event) {
-		dispatcher.renderView("aggiungiOperatore", operatore);
+	public void aggiungiAmministratoreAction(ActionEvent event) {
+		dispatcher.renderView("aggiungiAmministratore", amministratore);
 	}
 
 }
