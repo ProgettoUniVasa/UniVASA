@@ -24,19 +24,19 @@ USE `univasa` ;
 DROP TABLE IF EXISTS `univasa`.`utente` ;
 
 CREATE TABLE IF NOT EXISTS `univasa`.`utente` (
-  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,1
-  `nome` VARCHAR(50) NOT NULL,2
-  `cognome` VARCHAR(50) NOT NULL,3
-  `email` VARCHAR(50) NOT NULL,4
-  `username` VARCHAR(50) NOT NULL,5
-  `password` VARCHAR(50) NOT NULL,6
-  `telefono` VARCHAR(11) NOT NULL,7
-  `data_nascita` DATE NOT NULL,8
-  `professione` ENUM('studente', 'professore', 'impiegato') NOT NULL,9
-  `nome_universita` VARCHAR(50) NOT NULL,10
-  `dipartimento` VARCHAR(50) NOT NULL,11
-  `matricola` VARCHAR(10) NULL,12
-  `tipo_utente` VARCHAR(15) NOT NULL,13
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(50) NOT NULL,
+  `cognome` VARCHAR(50) NOT NULL,
+  `email` VARCHAR(50) NOT NULL,
+  `username` VARCHAR(50) NOT NULL,
+  `password` VARCHAR(50) NOT NULL,
+  `telefono` VARCHAR(11) NOT NULL,
+  `data_nascita` DATE NOT NULL,
+  `professione` ENUM('studente', 'professore', 'impiegato') NOT NULL,
+  `nome_universita` VARCHAR(50) NOT NULL,
+  `dipartimento` VARCHAR(50) NOT NULL,
+  `matricola` VARCHAR(10) NULL,
+  `tipo_utente` VARCHAR(15) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 

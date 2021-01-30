@@ -20,8 +20,8 @@ import it.univaq.disim.ing.univasa.domain.Evento;
 public class DbEventoServiceImpl implements EventoService {
 
 	private static final String url = "jdbc:mysql://localhost:3306/univasa?noAccessToProcedureBodies=true&serverTimezone=Europe/Rome";
-	private static final String user = "dbuser";
-	private static final String password = "sql_password123";
+	private static final String user = "root";
+	private static final String password = "";
 
 	/* -------------------------------------------------------------------------------------------------------------------------------------------- */
 

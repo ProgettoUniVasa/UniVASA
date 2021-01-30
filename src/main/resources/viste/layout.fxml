@@ -3,27 +3,18 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.RadialGradient?>
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="674.0" prefWidth="962.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.LayoutController">
    <top>
-      <HBox alignment="CENTER" prefHeight="121.0" prefWidth="738.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER" prefHeight="87.0" prefWidth="962.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
          <children>
             <Separator opacity="0.0" orientation="VERTICAL" prefHeight="121.0" prefWidth="9.0" />
-            <ImageView fitHeight="114.0" fitWidth="224.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@logo-univaq.png" />
-               </image>
-            </ImageView>
-            <Separator orientation="VERTICAL" prefHeight="121.0" prefWidth="77.0" />
-            <Label alignment="CENTER" prefHeight="103.0" prefWidth="344.0" text="PHARMA">
+            <Label alignment="CENTER" prefHeight="55.0" prefWidth="344.0" text="Univasa">
                <font>
                   <Font name="Palatino Linotype Bold" size="60.0" />
                </font>
@@ -36,22 +27,11 @@
                   </RadialGradient>
                </textFill>
                <HBox.margin>
-                  <Insets />
+                  <Insets left="150.0" />
                </HBox.margin>
             </Label>
             <Separator orientation="VERTICAL" prefHeight="121.0" prefWidth="142.0" visible="false" />
-            <ImageView fx:id="esciButton" fitHeight="49.0" fitWidth="69.0" onMouseClicked="#esciAction" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@logout.png" />
-               </image>
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </ImageView>
          </children>
       </HBox>
    </top>
-   <left>
-      <VBox fx:id="menuBar" prefHeight="553.0" prefWidth="194.0" style="-fx-background-color: #0ABAB5;" BorderPane.alignment="CENTER" />
-   </left>
 </BorderPane>

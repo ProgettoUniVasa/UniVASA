@@ -32,12 +32,6 @@ public class DashboardAmministratoreController implements Initializable, DataIni
 	@FXML
 	private Button amministratoriButton;
 
-	@FXML
-	private Button esciButton;
-
-	@FXML
-	private Button profiloButton;
-
 	private ViewDispatcher dispatcher;
 
 	private UtenteService utenteService;
@@ -64,7 +58,7 @@ public class DashboardAmministratoreController implements Initializable, DataIni
 	}
 
 	@FXML
-	public void associazioneTurni(ActionEvent event) {
+	public void associazioneTurniAction(ActionEvent event) {
 		dispatcher.renderView("listaTurnazioniAmministratore", amministratore);
 	}
 

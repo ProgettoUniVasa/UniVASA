@@ -20,8 +20,8 @@ public class DbTurnazioneServiceImpl implements TurnazioneService {
 	private UtenteService utenteService;
 
 	private static final String url = "jdbc:mysql://localhost:3306/univasa?noAccessToProcedureBodies=true&serverTimezone=Europe/Rome";
-	private static final String user = "dbuser";
-	private static final String password = "sql_password123";
+	private static final String user = "root";
+	private static final String password = "";
 
 	/* -------------------------------------------------------------------------------------------------------------------------------------------- */
 

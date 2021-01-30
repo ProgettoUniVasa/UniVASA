@@ -3,7 +3,9 @@ package it.univaq.disim.ing.univasa.view;
 import java.io.IOException;
 
 import it.univaq.disim.ing.univasa.controller.DataInitializable;
+import it.univaq.disim.ing.univasa.domain.Amministratore;
 import it.univaq.disim.ing.univasa.domain.Elettore;
+import it.univaq.disim.ing.univasa.domain.Operatore;
 import it.univaq.disim.ing.univasa.domain.Utente;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -48,7 +50,12 @@ public class ViewDispatcher {
 			layoutController.initializeData(utente);
 
 			layout = (BorderPane) layoutView.getView();
-			renderView("home", utente);
+			if (utente instanceof Amministratore)
+			renderView("dashboardAmministratore", utente);
+			else if (utente instanceof Operatore)
+				renderView("dashboardOperatore", utente);
+			else if (utente instanceof Elettore)
+				renderView("homeElettore", utente);
 			Scene scene = new Scene(layout);
 			stage.setScene(scene);
 
@@ -84,7 +91,7 @@ public class ViewDispatcher {
 	// Metodo per la registrazione di un utente
 	public void registratiAction(Utente utente) {
 		try {
-			View<Utente> layoutView = loadView("SignIn");
+			View<Utente> layoutView = loadView("registraElettore");
 			DataInitializable<Utente> layoutController = layoutView.getController();
 			layoutController.initializeData(utente);
 

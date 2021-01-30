@@ -113,7 +113,7 @@ public class ListaReportAmministratoreController implements Initializable, DataI
 	}
 
 	@FXML
-	public void aggiungiEventoAction(ActionEvent event) {
+	public void aggiungiReportAction(ActionEvent event) {
 		Evento evento = new Evento();
 		dispatcher.renderView("aggiungiReport", evento);
 	}

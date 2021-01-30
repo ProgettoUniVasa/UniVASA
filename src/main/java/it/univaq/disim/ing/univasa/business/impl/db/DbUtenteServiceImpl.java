@@ -19,8 +19,8 @@ import it.univaq.disim.ing.univasa.domain.*;
 public class DbUtenteServiceImpl implements UtenteService {
 
 	private static final String url = "jdbc:mysql://localhost:3306/univasa?noAccessToProcedureBodies=true&serverTimezone=Europe/Rome";
-	private static final String user = "dbuser";
-	private static final String pwd = "sql_password123";
+	private static final String user = "root";
+	private static final String pwd = "";
 
 	/* -------------------------------------------------------------------------------------------------------------------------------------------- */
 

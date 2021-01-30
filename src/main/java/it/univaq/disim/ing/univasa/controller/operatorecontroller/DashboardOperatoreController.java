@@ -22,9 +22,6 @@ public class DashboardOperatoreController implements Initializable, DataInitiali
     @FXML
     private Button lavoroButton;
 
-    @FXML
-    private Button logoutButton;
-
     private ViewDispatcher dispatcher;
 
     private UtenteService utenteService;
