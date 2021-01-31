@@ -52,9 +52,5 @@ public class DashboardOperatoreController implements Initializable, DataInitiali
         dispatcher.renderView("lavoroOperatore", operatore);
     }
 
-    @FXML
-    public void logoutAction(ActionEvent event) {
-        dispatcher.logout();
-    }
 
 }

@@ -31,9 +31,6 @@ import javafx.util.Callback;
 public class ListaEventiOperatoreController implements Initializable, DataInitializable<Operatore> {
 
     @FXML
-    private Button indietroButton;
-
-    @FXML
     private TableView<Evento> listaEventiTable;
 
     @FXML
@@ -126,11 +123,6 @@ public class ListaEventiOperatoreController implements Initializable, DataInitia
         } catch (BusinessException e) {
             dispatcher.renderError(e);
         }
-    }
-
-    @FXML
-    public void indietroAction(ActionEvent event) throws BusinessException {
-        dispatcher.renderView("dashboardOperatore", operatore);
     }
 
 }
