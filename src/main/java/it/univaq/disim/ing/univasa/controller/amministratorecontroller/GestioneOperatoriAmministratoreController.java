@@ -65,6 +65,9 @@ public class GestioneOperatoriAmministratoreController implements Initializable,
 
 	@FXML
 	private Button aggiungiOperatoreButton;
+	
+	@FXML
+	private Button indietroButton;
 
 	private ViewDispatcher dispatcher;
 
@@ -86,7 +89,7 @@ public class GestioneOperatoriAmministratoreController implements Initializable,
 		cognomeTableColumn.setCellValueFactory(new PropertyValueFactory<>("cognome"));
 		emailTableColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
 		telefonoTableColumn.setCellValueFactory(new PropertyValueFactory<>("telefono"));
-		dataNascitaTableColumn.setCellValueFactory(new PropertyValueFactory<>("dataNascita"));
+		dataNascitaTableColumn.setCellValueFactory(new PropertyValueFactory<>("data_nascita"));
 		professioneTableColumn.setCellValueFactory(new PropertyValueFactory<>("professione"));
 		nome_universitàTableColumn.setCellValueFactory(new PropertyValueFactory<>("nome_università"));
 		dipartimentoTableColumn.setCellValueFactory(new PropertyValueFactory<>("dipartimento"));

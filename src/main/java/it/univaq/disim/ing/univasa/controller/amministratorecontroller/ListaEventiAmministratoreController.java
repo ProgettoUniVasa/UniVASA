@@ -77,6 +77,9 @@ public class ListaEventiAmministratoreController implements Initializable, DataI
 
 	@FXML
 	private Button aggiungiEventoButton;
+	
+	@FXML
+	private Button indietroButton;
 
 	private ViewDispatcher dispatcher;
 

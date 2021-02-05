@@ -59,6 +59,9 @@ public class ListaReportAmministratoreController implements Initializable, DataI
 
 	@FXML
 	private Button aggiungiReportButton;
+	
+	@FXML
+	private Button indietroButton;
 
 	private ViewDispatcher dispatcher;
 

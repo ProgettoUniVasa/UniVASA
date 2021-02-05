@@ -75,7 +75,7 @@
                   <Insets />
                </GridPane.margin>
             </Label>
-            <TextField fx:id="nome" prefHeight="26.0" prefWidth="325.0" GridPane.columnIndex="1">
+            <TextField fx:id="nomeEvento" prefHeight="26.0" prefWidth="325.0" GridPane.columnIndex="1">
                <GridPane.margin>
                   <Insets right="20.0" />
                </GridPane.margin></TextField>
