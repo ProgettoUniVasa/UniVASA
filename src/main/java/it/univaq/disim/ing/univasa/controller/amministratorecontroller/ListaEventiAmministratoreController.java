@@ -34,7 +34,7 @@ public class ListaEventiAmministratoreController implements Initializable, DataI
 	private Label eventiLabel;
 
 	@FXML
-	private TableView<Evento> eventoTable;
+	private TableView<Evento> eventiTable;
 
 	@FXML
 	private TableColumn<Evento, String> nomeTableColumn;
@@ -157,7 +157,6 @@ public class ListaEventiAmministratoreController implements Initializable, DataI
 						return new SimpleObjectProperty<Button>(eliminaButton);
 					}
 				});
-
 	}
 
 	@Override
@@ -165,7 +164,7 @@ public class ListaEventiAmministratoreController implements Initializable, DataI
 		try {
 			List<Evento> evento = eventoService.trovaTuttiEventi();
 			ObservableList<Evento> eventiData = FXCollections.observableArrayList(evento);
-			eventoTable.setItems(eventiData);
+			eventiTable.setItems(eventiData);
 
 		} catch (BusinessException e) {
 			dispatcher.renderError(e);

@@ -5,8 +5,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -23,11 +21,7 @@
       </Label>
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
-            <ImageView fitHeight="70.0" fitWidth="78.0" onMouseClicked="#indietroAction">
-               <image>
-                  <Image url="@back.png" />
-               </image>
-            </ImageView>
+            <Button mnemonicParsing="false" onAction="#indietroAction" text="Indietro" />
             <Button fx:id="aggiungiTurnoButton" mnemonicParsing="false" onAction="#aggiungiTurnoAction" onMouseClicked="#aggiungiTurnoAction" prefHeight="37.0" prefWidth="156.0" text="Aggiungi Turno">
                <font>
                   <Font size="16.0" />
