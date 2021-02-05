@@ -66,22 +66,19 @@ public class EliminaCandidatoController implements Initializable, DataInitializa
 		this.nome.setText(candidato.getNome());
 		this.cognome.setText(candidato.getCognome());
 		this.email.setText(candidato.getEmail());
-		this.telefono.setText(candidato.getTelefono());
-		this.nome_università.setText(candidato.getNome_università());
-		this.dipartimento.setText(candidato.getDipartimento());
 	}
 
 	@FXML
 	public void eliminaAction(ActionEvent event) {
 
-		try {
+		//try {
 
-			utenteService.eliminaUtente(candidato);
-			dispatcher.renderView("gestioneCandidatiAmministratore", amministratore);
+			//utenteService.eliminaCandidato(candidato);
+			//dispatcher.renderView("gestioneCandidatiAmministratore", amministratore);
 
-		} catch (BusinessException e) {
-			e.printStackTrace();
-		}
+		//} catch (BusinessException e) {
+			//e.printStackTrace();
+		//}
 
 	}
 

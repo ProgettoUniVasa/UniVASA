@@ -78,7 +78,7 @@ public class DashboardAmministratoreController implements Initializable, DataIni
 	}
 
 	@FXML
-	public void esciAction(ActionEvent event) {
+	public void esciAction(MouseEvent event) {
 		dispatcher.logout();
 	}
 

@@ -40,7 +40,7 @@ public class VotazioneOnlineController implements Initializable, DataInitializab
 		try {
 			List<Candidato> candidati = eventoService.visualizzaCandidati(evento);
 			ObservableList<Candidato> candidatiData = FXCollections.observableArrayList(candidati);
-			candidatiGrid   ??????? .setItems(candidatiData);
+			//candidatiGrid   ??????? .setItems(candidatiData);
 		} catch (BusinessException e) {
 			dispatcher.renderError(e);
 		}

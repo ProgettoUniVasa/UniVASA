@@ -10,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -51,6 +52,15 @@ public class DashboardOperatoreController implements Initializable, DataInitiali
     public void mostraLavoro(ActionEvent event) {
         dispatcher.renderView("lavoroOperatore", operatore);
     }
-
+    
+    @FXML
+    public void esciAction(MouseEvent event) {
+		dispatcher.logout();
+	};
+	
+	@FXML
+	public void visualizzaProfiloAction(MouseEvent event) {
+		dispatcher.renderView("areaRiservata", operatore);
+	};
 
 }

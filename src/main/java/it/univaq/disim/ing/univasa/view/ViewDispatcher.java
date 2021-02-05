@@ -50,12 +50,15 @@ public class ViewDispatcher {
 			layoutController.initializeData(utente);
 
 			layout = (BorderPane) layoutView.getView();
-			if (utente instanceof Amministratore)
-			renderView("dashboardAmministratore", utente);
-			else if (utente instanceof Operatore)
+			if (utente instanceof Amministratore) {
+				renderView("dashboardAmministratore", utente);
+			}
+			else if (utente instanceof Operatore) {
 				renderView("dashboardOperatore", utente);
-			else if (utente instanceof Elettore)
+			}
+			else if (utente instanceof Elettore) {
 				renderView("homeElettore", utente);
+			}
 			Scene scene = new Scene(layout);
 			stage.setScene(scene);
 
