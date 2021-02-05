@@ -38,6 +38,7 @@ import javafx.scene.paint.Color;
 import javafx.util.Callback;
 
 public class ElencoEventiPersonaliElettoreController implements Initializable, DataInitializable<Elettore> {
+
 	@FXML
 	private TableView<Prenotazione> eventiPersonaliTable;
 
@@ -49,12 +50,6 @@ public class ElencoEventiPersonaliElettoreController implements Initializable, D
 
 	@FXML
 	private TableColumn<Prenotazione, LocalDate> dataFineTableColumn;
-
-	@FXML
-	private TableColumn<Prenotazione, String> oraInizioTableColumn;
-
-	@FXML
-	private TableColumn<Prenotazione, String> oraFineTableColumn;
 
 	@FXML
 	private TableColumn<Prenotazione, String> luogoTableColumn;
@@ -74,22 +69,14 @@ public class ElencoEventiPersonaliElettoreController implements Initializable, D
 	// vista.
 	// Il problema è: sono tutte stringhe oppure c'è qualche
 	// bottone?
+
 	@FXML
 	private TableColumn<Prenotazione, TipoPrenotazione> prenotazioneTableColumn; // come prendo la prenotazione
 																					// relativa?
-
 	@FXML
 	private TableColumn<Prenotazione, Button> azioneTableColumn;
 
-	@FXML
-	private Button esciButton;
-
-	@FXML
-	private Button indietroButton;
-
 	private ViewDispatcher dispatcher;
-
-	private EventoService eventoService; // vedere service
 	
 	private PrenotazioneService prenotazioneService;
 	
@@ -98,7 +85,6 @@ public class ElencoEventiPersonaliElettoreController implements Initializable, D
 	public ElencoEventiPersonaliElettoreController() {
 		dispatcher = ViewDispatcher.getInstance();
 		UnivasaBusinessFactory factory = UnivasaBusinessFactory.getInstance(); // vedere business factory
-		eventoService = factory.getEventoService();
 		prenotazioneService = factory.getPrenotazioneService();
 	}
 
@@ -107,8 +93,6 @@ public class ElencoEventiPersonaliElettoreController implements Initializable, D
 		nomeTableColumn.setCellValueFactory(new PropertyValueFactory<>("nome"));
 		dataInizioTableColumn.setCellValueFactory(new PropertyValueFactory<>("dataInizio"));
 		dataFineTableColumn.setCellValueFactory(new PropertyValueFactory<>("dataFine"));
-		oraInizioTableColumn.setCellValueFactory(new PropertyValueFactory<>("oraInizio"));
-		oraFineTableColumn.setCellValueFactory(new PropertyValueFactory<>("oraFine"));
 		luogoTableColumn.setCellValueFactory(new PropertyValueFactory<>("luogo"));
 
 		regolamentoTableColumn.setStyle("-fx-alignment: CENTER;");
@@ -184,7 +168,7 @@ public class ElencoEventiPersonaliElettoreController implements Initializable, D
 	public void initializeData(Elettore elettore) {
 		try {
 			this.elettore = elettore;
-			List<Prenotazione> prenotazioni = prenotazioneService.trovaPrenotazioniElettore(elettore); 
+			List<Prenotazione> prenotazioni = prenotazioneService.trovaPrenotazioniElettore(elettore);
 			ObservableList<Prenotazione> prenotazioniData = FXCollections.observableArrayList(prenotazioni);
 			eventiPersonaliTable.setItems(prenotazioniData);
 		} catch (BusinessException e) {

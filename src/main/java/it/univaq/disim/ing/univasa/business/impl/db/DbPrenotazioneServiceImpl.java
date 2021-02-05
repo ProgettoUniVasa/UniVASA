@@ -72,7 +72,8 @@ public class DbPrenotazioneServiceImpl implements PrenotazioneService {
 
 	@Override
 	public List<Prenotazione> trovaPrenotazioniElettore(Elettore elettore) throws BusinessException {
-		return null;
+		List<Prenotazione> result = new ArrayList<>();
+		return result;
 	}
 
 	@Override
