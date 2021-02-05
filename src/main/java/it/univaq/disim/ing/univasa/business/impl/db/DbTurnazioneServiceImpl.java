@@ -64,6 +64,7 @@ public class DbTurnazioneServiceImpl implements TurnazioneService {
 		// Connessione al Database e richiamo query
 		try (Connection c = DriverManager.getConnection(url, user, password);) {
 
+			System.out.println(operatore.getId());
 			PreparedStatement ps = c.prepareStatement(visualizzaTurnazioni);
 			ps.setLong(1, operatore.getId());
 			r = ps.executeQuery();

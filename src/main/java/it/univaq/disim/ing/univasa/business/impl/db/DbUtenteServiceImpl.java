@@ -100,7 +100,7 @@ public class DbUtenteServiceImpl implements UtenteService {
 						// Conversione da Date a LocalDate
 						utente.setData_nascita(Instant.ofEpochMilli(r.getDate(8).getTime())
 								.atZone(ZoneId.systemDefault()).toLocalDate());
-						utente.setProfessione(Professione.valueOf(r.getString(9)));	// aaaaah
+						utente.setProfessione(Professione.valueOf(r.getString(9)));
 						utente.setNome_università(r.getString(10));
 						utente.setDipartimento(r.getString(11));
 						utente.setTelefono(r.getString(7));
