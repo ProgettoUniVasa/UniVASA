@@ -1,7 +1,6 @@
 package it.univaq.disim.ing.univasa.controller.elettorecontroller;
 
 import java.net.URL;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -13,6 +12,7 @@ import it.univaq.disim.ing.univasa.domain.Elettore;
 import it.univaq.disim.ing.univasa.domain.Evento;
 import it.univaq.disim.ing.univasa.view.ViewDispatcher;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -37,10 +37,10 @@ public class ElencoTuttiGliEventiElettoreController implements Initializable, Da
 	private TableColumn<Evento, String> nomeTableColumn;
 
 	@FXML
-	private TableColumn<Evento, LocalDateTime> dataOraInizioTableColumn;
+	private TableColumn<Evento, String> dataOraInizioTableColumn;
 
 	@FXML
-	private TableColumn<Evento, LocalDateTime> dataOraFineTableColumn;
+	private TableColumn<Evento, String> dataOraFineTableColumn;
 
 	@FXML
 	private TableColumn<Evento, String> luogoTableColumn;
@@ -69,8 +69,29 @@ public class ElencoTuttiGliEventiElettoreController implements Initializable, Da
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 		nomeTableColumn.setCellValueFactory(new PropertyValueFactory<>("nome"));
-		dataOraInizioTableColumn.setCellValueFactory(new PropertyValueFactory<>("dataOraInizio"));
-		dataOraFineTableColumn.setCellValueFactory(new PropertyValueFactory<>("dataOraFine"));
+		// dataOraInizioTableColumn.setCellValueFactory(new
+		// PropertyValueFactory<>("oraInizio"));
+		// dataOraFineTableColumn.setCellValueFactory(new
+		// PropertyValueFactory<>("oraFine"));
+
+		dataOraInizioTableColumn.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<Evento, String>, ObservableValue<String>>() {
+					@Override
+					public ObservableValue<String> call(CellDataFeatures<Evento, String> param) {
+						return new SimpleStringProperty(
+								param.getValue().getDataInizio().toString() + "\n ore: " + param.getValue().getOraInizio());
+					}
+				});
+
+		dataOraFineTableColumn.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<Evento, String>, ObservableValue<String>>() {
+					@Override
+					public ObservableValue<String> call(CellDataFeatures<Evento, String> param) {
+						return new SimpleStringProperty(
+								param.getValue().getDataFine().toString() + "\n ore: " + param.getValue().getOraFine());
+					}
+				});
+
 		luogoTableColumn.setCellValueFactory(new PropertyValueFactory<>("luogo"));
 
 		regolamentoTableColumn.setStyle("-fx-alignment: CENTER;");
@@ -146,7 +167,7 @@ public class ElencoTuttiGliEventiElettoreController implements Initializable, Da
 	public void indietroAction(ActionEvent event) {
 		dispatcher.renderView("homeElettore", elettore);
 	}
-	
+
 	@FXML
 	public void esciAction(MouseEvent event) {
 		dispatcher.logout();
