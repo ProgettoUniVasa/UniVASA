@@ -44,8 +44,8 @@
             <TableColumn fx:id="regolamentoTableColumn" prefWidth="113.0" text="Regolamento" />
             <TableColumn fx:id="dataInizioTableColumn" prefWidth="91.0" text="Data Inizio" />
             <TableColumn fx:id="dataFineTableColumn" prefWidth="84.0" text="Data Fine" />
-            <TableColumn fx:id="oraInizio" prefWidth="75.0" text="Ora Inizio" />
-            <TableColumn fx:id="oraFine" prefWidth="75.0" text="Ora Fine" />
+            <TableColumn fx:id="oraInizioTableColumn" prefWidth="75.0" text="Ora Inizio" />
+            <TableColumn fx:id="oraFineTableColumn" prefWidth="75.0" text="Ora Fine" />
             <TableColumn fx:id="luogoTableColumn" prefWidth="112.0" text="Luogo" />
             <TableColumn fx:id="report_risultatiTableColumn" prefWidth="119.0" text="Report Risultati" />
             <TableColumn fx:id="report_statisticheTableColumn" prefWidth="143.0" text="Report Statistiche" />

@@ -30,7 +30,7 @@
             </ImageView>
             <Button fx:id="aggiungiCandidatoButton" mnemonicParsing="false" onAction="#aggiungiCandidatoAction" prefHeight="37.0" prefWidth="140.0" text="Aggiungi Candidato">
                <HBox.margin>
-                  <Insets left="690.0" />
+                  <Insets left="680.0" />
                </HBox.margin>
             </Button>
          </children>
