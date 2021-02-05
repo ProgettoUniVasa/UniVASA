@@ -7,7 +7,10 @@ import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 
 import it.univaq.disim.ing.univasa.business.BusinessException;
+import it.univaq.disim.ing.univasa.business.UnivasaBusinessFactory;
+import it.univaq.disim.ing.univasa.business.UtenteService;
 import it.univaq.disim.ing.univasa.controller.DataInitializable;
+import it.univaq.disim.ing.univasa.domain.Amministratore;
 import it.univaq.disim.ing.univasa.domain.Elettore;
 import it.univaq.disim.ing.univasa.domain.Utente;
 import it.univaq.disim.ing.univasa.view.ViewDispatcher;
@@ -20,9 +23,16 @@ public class HomeElettoreController implements Initializable, DataInitializable<
 	
 	private ViewDispatcher dispatcher;
 	private Elettore elettore;
+	private UtenteService utenteService;
 	
 	public HomeElettoreController() {
+		dispatcher = ViewDispatcher.getInstance();
+		UnivasaBusinessFactory factory = UnivasaBusinessFactory.getInstance();
+		utenteService = factory.getUtenteService();
+	}
 
+	@Override
+	public void initializeData(Elettore elettore) {
 	}
 
 	@Override
@@ -39,7 +49,7 @@ public class HomeElettoreController implements Initializable, DataInitializable<
 	public void visualizzaProfiloAction(MouseEvent event) {
 		// vai a area riservata
 		dispatcher.renderView("areaRiservata", elettore);
-	};
+	}
 
 	@FXML
 	public void visualizzaEventiAction(ActionEvent event) {
@@ -51,16 +61,17 @@ public class HomeElettoreController implements Initializable, DataInitializable<
 	public void visualizzaEventiPersonaliAction(ActionEvent event) {
 		dispatcher.renderView("elencoEventiPersonaliElettore", elettore); //elencoEventiPersonaliElettore.fxml; nella tableView ci sarà la colonna di bottoni "azione per cambiare modalità" 
 																		  //che avrà eccezione in caso di stato.prenotazione_online, e porterà a "CambioModalitaVotazione" in caso di prenotazione in sede 
-		}
+	}
 	
 	@FXML
 	public void votaAction(ActionEvent event) {
 		dispatcher.renderView("votazioneOnline", elettore); // tableView con evento che è votabile ORA e bottone per votare che porta a "schermataVotazione"
-		}
+	}
+
 	@FXML
 	public void visualizzaReportAction(ActionEvent event) {
 		dispatcher.renderView("elencoReport", elettore); //elencoReport.fxml
-		}												 // tableView con evento (tutti anche quelli a cui l'elettore non si è prenotato? in tal caso 
+	}												 // tableView con evento (tutti anche quelli a cui l'elettore non si è prenotato? in tal caso
 													     // basta un metodo generico?) e bottone Visualizza per vedere i report del relativo evento.
 }															  
 

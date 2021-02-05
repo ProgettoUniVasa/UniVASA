@@ -91,7 +91,8 @@ public class AggiungiTurnazioneController implements Initializable, DataInitiali
 			turnazione.setOperatore((Operatore) utenteService.utenteDaEmail(email.getText()));
 			turnazione.setFascia(fascia.getValue());
 			turnazione.setData_turno(data_turno.getValue());
-			turnazione.setEvento(eventoService.eventodaNome(email.getText()));
+			turnazione.setEvento(eventoService.eventodaNome(nome_evento.getText()));
+			//turnazione.setEvento(eventoService.eventodaNome(luogo.getText()));
 
 			if (turnazione.getEvento()==null || turnazione.getOperatore()==null) {
 				// email o evento non esistenti

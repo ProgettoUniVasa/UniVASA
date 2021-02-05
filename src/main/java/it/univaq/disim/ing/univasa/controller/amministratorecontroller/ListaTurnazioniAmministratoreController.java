@@ -58,6 +58,9 @@ public class ListaTurnazioniAmministratoreController implements Initializable, D
 
 	@FXML
 	private Button aggiungiTurnoButton;
+	
+	@FXML
+	private Button indietroButton;
 
 	private ViewDispatcher dispatcher;
 
