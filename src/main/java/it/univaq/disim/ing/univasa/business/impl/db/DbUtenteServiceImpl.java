@@ -38,14 +38,14 @@ public class DbUtenteServiceImpl implements UtenteService {
 	// creaElettore
 	private static final String creaElettore = "insert into elettore (nome, cognome, email, username, password, telefono, data_nascita, professione, nome_universita, dipartimento, matricola, tipo_utente) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'elettore')";
 	// creaCandidato
-	private static final String creaCandidato = "insert into candidatura (id_utente,id_evento,voti_ricevuti) values (?,?,0)";
+	private static final String creaCandidato = "insert into candidato (nome,cognome,email,id_evento,voti_ricevuti) values (?,?,?,?,0)";
 	// accetta certificato & rifiutaCertificato
 	private static final String accettaCertificato = "update set stato='no' from prenotazione where id_evento=? and id_utente=?";
 	private static final String rifiutaCertificato = "delete from prenotazione where id_evento=? and id_utente=?";
 	// gestionePrenotazioni
 	private static final String gestionePrenotazioni = "select * from prenotazione where id_evento=? and (tipo='in presenza' or (tipo='online' and stato is not null))";
 	// visualizzaCandidati
-	private static final String visualizzaCandidati = "select * from utente u join candidatura c on u.id=c.id_utente where c.id_evento=?";
+	private static final String visualizzaCandidati = "select * from utente u join candidato c on u.email=c.email where c.id_evento=?";
 	// modificaAmministratore
 	private static final String modificaAmministratore = "update from amministratore set telefono=?, email=?, nome_universita=?, dipartimento=? where id=?";
 	// modificaOperatore
@@ -55,7 +55,7 @@ public class DbUtenteServiceImpl implements UtenteService {
 	// visualizzaPrenotatiInSede
 	private static final String visualizzaPrenotatiInSede = "select * from prenotazione where id_evento=? and tipo_prenotazione='in presenza'";
 	// vota
-	private static final String vota = "update from candidatura set voti_ricevuti=voti_ricevuti+1 where id_utente=? and id_evento=?";			// ciclica
+	private static final String vota = "update from candidato set voti_ricevuti=voti_ricevuti+1 where id_utente=? and id_evento=?";			// ciclica
 	private static final String aggiornaPrenotazione = "update from prenotazione set stato='si' where id_utente=? and id_evento=?";
 	// eliminaUtente
 	private static final String eliminaUtente = "delete from utente where id_utente=?";
@@ -492,7 +492,7 @@ public class DbUtenteServiceImpl implements UtenteService {
 
 	@Override
 	public void creaCandidato(Candidato candidato) throws BusinessException {
-			// Attualmente ingestibile
+
 	}
 
 	@Override

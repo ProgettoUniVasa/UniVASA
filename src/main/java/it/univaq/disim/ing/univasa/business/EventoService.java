@@ -27,4 +27,7 @@ public interface EventoService {
 	List<String> nomiEventi() throws BusinessException;
 
     Evento eventodaNome(String nome);
+
+    List<Evento> trovaEventiFinitiPrenotati (Elettore elettore) throws BusinessException;
+
 }
