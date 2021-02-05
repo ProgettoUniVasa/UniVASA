@@ -33,6 +33,7 @@ public class HomeElettoreController implements Initializable, DataInitializable<
 
 	@Override
 	public void initializeData(Elettore elettore) {
+		this.elettore = elettore;
 	}
 
 	@Override

@@ -15,7 +15,7 @@ import javafx.scene.input.MouseEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class DashboardOperatoreController implements Initializable, DataInitializable<Utente> {
+public class DashboardOperatoreController implements Initializable, DataInitializable<Operatore> {
 
     @FXML
     private Button eventiButton;
@@ -40,12 +40,12 @@ public class DashboardOperatoreController implements Initializable, DataInitiali
     }
 
     @Override
-    public void initializeData(Utente utente) {
+    public void initializeData(Operatore operatore) {
+        this.operatore = operatore;
     }
 
     @FXML
     public void mostraEventi(ActionEvent event) {
-
         dispatcher.renderView("listaEventiOperatore", operatore);
     }
 

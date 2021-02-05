@@ -50,6 +50,7 @@ public class DashboardAmministratoreController implements Initializable, DataIni
 
 	@Override
 	public void initializeData(Amministratore amministratore) {
+		this.amministratore = amministratore;
 	}
 
 	@FXML
