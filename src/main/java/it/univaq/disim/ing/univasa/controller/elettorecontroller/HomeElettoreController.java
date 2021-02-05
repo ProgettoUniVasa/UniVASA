@@ -48,8 +48,7 @@ public class HomeElettoreController implements Initializable, DataInitializable<
 
 	@FXML
 	public void visualizzaProfiloAction(MouseEvent event) {
-		// vai a area riservata
-		dispatcher.renderView("areaRiservata", elettore);
+		dispatcher.renderView("areaRiservataElettore", elettore);
 	}
 
 	@FXML

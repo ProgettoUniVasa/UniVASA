@@ -61,7 +61,7 @@ public class DashboardOperatoreController implements Initializable, DataInitiali
 
     @FXML
     public void visualizzaProfiloAction(MouseEvent event) {
-        dispatcher.renderView("areaRiservata", operatore);
+        dispatcher.renderView("areaRiservataOperatore", operatore);
     };
 
 
