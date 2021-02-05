@@ -99,7 +99,7 @@ public class ElencoReportController implements Initializable, DataInitializable<
 			this.elettore = elettore;
 			List<Evento> eventi = eventoService.trovaEventiFinitiPrenotati(elettore); // CREARE QUERY NEL SERVICE EVENTI FINITI A CUI UN UTENTE ERA PRENOTATO PER FARE SUCCESIVAMENTE IL REPORT
 			ObservableList<Evento> eventiData = FXCollections.observableArrayList(eventi);
-			trovaEventiFinitiPrenotati.setItems(eventiData);
+			eventiTerminatiTable.setItems(eventiData);
 		} catch (BusinessException e) {
 			dispatcher.renderError(e);
 		}
