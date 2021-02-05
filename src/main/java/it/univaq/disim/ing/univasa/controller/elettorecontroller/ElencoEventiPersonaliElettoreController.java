@@ -134,7 +134,7 @@ public class ElencoEventiPersonaliElettoreController implements Initializable, D
 								Prenotazione prenotazione = new Prenotazione();
 								Evento evento = prenotazione.getEvento();
 								if (prenotazione.getTipoPrenotazione().equals(TipoPrenotazione.IN_PRESENZA)
-										&& !(evento.getStatoEvento().equals(StatoEvento.TERMINATO))) {
+										&& !(evento.getStatoEvento().equals(StatoEvento.terminato))) {
 									dispatcher.renderView("cambioModalitaVotazione", param.getValue()); 
 								}
 								else ; //gestire eccezione quando clicco modifica e non potrei <----------------------------------------------------
