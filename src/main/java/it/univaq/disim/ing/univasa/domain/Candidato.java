@@ -3,45 +3,58 @@ package it.univaq.disim.ing.univasa.domain;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Candidato extends Elettore {
+public class Candidato {
 
-	private int voti_ricevuti;
-	private Set<SchedaElettorale> schedaElettorale = new HashSet<>();
-	private Set<Evento> evento_candidato = new HashSet<>();
+	private Long id;
+	private String nome, cognome, email;
+	private int votiRicevuti;
+	private Evento evento;
 
-	public Candidato(int voti_ricevuti, Set<SchedaElettorale> schedaElettorale, Set<Evento> evento_candidato) {
-		super();
-		this.voti_ricevuti = voti_ricevuti;
-		this.schedaElettorale = schedaElettorale;
-		this.evento_candidato = evento_candidato;
+	public Long getId() {
+		return id;
 	}
 
-	public Candidato() {
-		super();
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-	private int getVoti_ricevuti() {
-		return this.voti_ricevuti;
+	public String getNome() {
+		return nome;
 	}
 
-	private void setVoti_ricevuti(int voti_ricevuti) {
-		this.voti_ricevuti = voti_ricevuti;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
-	public Set<SchedaElettorale> getSchedaElettorale() {
-		return this.schedaElettorale;
+	public String getCognome() {
+		return cognome;
 	}
 
-	public void setSchedaElettorale(Set<SchedaElettorale> schedaElettorale) {
-		this.schedaElettorale = schedaElettorale;
+	public void setCognome(String cognome) {
+		this.cognome = cognome;
 	}
 
-	public Set<Evento> getEvento_Candidato() {
-		return this.evento_candidato;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setEvento_Candidato(Set<Evento> evento) {
-		this.evento_candidato = evento;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
+	public int getVotiRicevuti() {
+		return votiRicevuti;
+	}
+
+	public void setVotiRicevuti(int votiRicevuti) {
+		this.votiRicevuti = votiRicevuti;
+	}
+
+	public Evento getEvento() {
+		return evento;
+	}
+
+	public void setEvento(Evento evento) {
+		this.evento = evento;
+	}
 }

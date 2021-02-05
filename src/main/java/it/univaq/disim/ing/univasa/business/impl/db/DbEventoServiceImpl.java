@@ -34,6 +34,8 @@ public class DbEventoServiceImpl implements EventoService {
 	private static final String trovaNomiEventi = "select nome from evento";
 	private static final String eventoDaNome = "select * from evento where nome=?";
 	private static final String trovaEventiDaLuogo = "select * from evento where luogo=?";
+	private static final String trovaEventiDaPrenotare = "SELECT * from evento where id not in (select e.id from evento e join prenotazione p on e.id=p.id_evento where e.data_inizio>now() and p.id_utente=?)";
+	private static final String trovaEventiFinitiPrenotati = "select * from evento e join prenotazione p on e.id=p.id_evento where e.data_fine<now() and p.id_utente=?";
 
 	// si deve ripetere per ogni candidato che riceve voti
 	private static final String caricaRisultatiInPresenza = "update from candidatura set voti_ricevuti=voti_ricevuti+? where id_utente=? and id_evento=?";	// ciclica
@@ -85,7 +87,7 @@ public class DbEventoServiceImpl implements EventoService {
 
 	@Override
 	public void caricaRisultatiInPresenza(Evento evento) throws BusinessException {
-		// Riferito alla candidatura... UFF...
+		// ......
 	}
 
 	@Override
@@ -152,6 +154,45 @@ public class DbEventoServiceImpl implements EventoService {
 	@Override
 	public List<Evento> trovaEventiDaPrenotare(Elettore elettore) throws BusinessException {
 		List<Evento> result = new ArrayList<>();
+		ResultSet r = null;
+
+		// Connessione al Database e richiamo query
+		try (Connection c = DriverManager.getConnection(url, user, password);) {
+
+			PreparedStatement ps = c.prepareStatement(trovaEventiDaPrenotare);
+			r = ps.executeQuery();
+
+			while (r.next()) {
+				Evento evento = new Evento();
+				evento.setId(r.getLong(1));
+				evento.setNome(r.getString(2));
+				evento.setRegolamento(r.getString(3));
+				// Conversione da Date a LocalDateTime
+				evento.setDataInizio(
+						Instant.ofEpochMilli(r.getDate(4).getTime()).atZone(ZoneId.systemDefault()).toLocalDate());
+				evento.setDataFine(
+						Instant.ofEpochMilli(r.getDate(5).getTime()).atZone(ZoneId.systemDefault()).toLocalDate());
+				evento.setOraInizio(r.getString(6));
+				evento.setOraFine(r.getString(7));
+				evento.setLuogo(r.getString(8));
+				evento.setReport_risultati(r.getString(9));
+				evento.setReport_statistiche(r.getString(10));
+				evento.setNumero_preferenze_esprimibili(r.getInt(11));
+				result.add(evento);
+			}
+
+			r.close();
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		} finally {
+			if (r != null) {
+				try {
+					r.close();
+				} catch (SQLException ex) {
+					ex.printStackTrace();
+				}
+			}
+		}
 		return result;
 	}
 
@@ -316,6 +357,51 @@ public class DbEventoServiceImpl implements EventoService {
 			}
 		}
 		return evento;
+	}
+
+	@Override
+	public List<Evento> trovaEventiFinitiPrenotati(Elettore elettore) throws BusinessException {
+		List<Evento> result = new ArrayList<>();
+		ResultSet r = null;
+
+		// Connessione al Database e richiamo query
+		try (Connection c = DriverManager.getConnection(url, user, password);) {
+
+			PreparedStatement ps = c.prepareStatement(trovaEventiFinitiPrenotati);
+			r = ps.executeQuery();
+
+			while (r.next()) {
+				Evento evento = new Evento();
+				evento.setId(r.getLong(1));
+				evento.setNome(r.getString(2));
+				evento.setRegolamento(r.getString(3));
+				// Conversione da Date a LocalDateTime
+				evento.setDataInizio(
+						Instant.ofEpochMilli(r.getDate(4).getTime()).atZone(ZoneId.systemDefault()).toLocalDate());
+				evento.setDataFine(
+						Instant.ofEpochMilli(r.getDate(5).getTime()).atZone(ZoneId.systemDefault()).toLocalDate());
+				evento.setOraInizio(r.getString(6));
+				evento.setOraFine(r.getString(7));
+				evento.setLuogo(r.getString(8));
+				evento.setReport_risultati(r.getString(9));
+				evento.setReport_statistiche(r.getString(10));
+				evento.setNumero_preferenze_esprimibili(r.getInt(11));
+				result.add(evento);
+			}
+
+			r.close();
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		} finally {
+			if (r != null) {
+				try {
+					r.close();
+				} catch (SQLException ex) {
+					ex.printStackTrace();
+				}
+			}
+		}
+		return result;
 	}
 
 
