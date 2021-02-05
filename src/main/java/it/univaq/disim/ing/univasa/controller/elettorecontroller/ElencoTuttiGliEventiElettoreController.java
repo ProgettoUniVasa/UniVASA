@@ -78,8 +78,8 @@ public class ElencoTuttiGliEventiElettoreController implements Initializable, Da
 				new Callback<TableColumn.CellDataFeatures<Evento, String>, ObservableValue<String>>() {
 					@Override
 					public ObservableValue<String> call(CellDataFeatures<Evento, String> param) {
-						return new SimpleStringProperty(
-								param.getValue().getDataInizio().toString() + "\n ore: " + param.getValue().getOraInizio());
+						return new SimpleStringProperty(param.getValue().getDataInizio().toString() + "\n ore: "
+								+ param.getValue().getOraInizio());
 					}
 				});
 
@@ -123,7 +123,7 @@ public class ElencoTuttiGliEventiElettoreController implements Initializable, Da
 
 							@Override
 							public void handle(ActionEvent event) {
-								dispatcher.renderView("prenotazioneVotazioneInPresenza", param.getValue());
+								dispatcher.renderView("prenotazioneVotazioneInPresenzaElettore", param.getValue());
 							}
 						});
 						return new SimpleObjectProperty<Button>(prenotazioneInPresenzaButton);
@@ -141,7 +141,7 @@ public class ElencoTuttiGliEventiElettoreController implements Initializable, Da
 
 							@Override
 							public void handle(ActionEvent event) {
-								dispatcher.renderView("prenotazioneVotazioneOnline", param.getValue());
+								dispatcher.renderView("prenotazioneVotazioneOnlineElettore", param.getValue());
 							}
 						});
 						return new SimpleObjectProperty<Button>(prenotazioneOnlineButton);

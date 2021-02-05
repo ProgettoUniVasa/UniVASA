@@ -3,6 +3,7 @@ package it.univaq.disim.ing.univasa.controller.elettorecontroller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import it.univaq.disim.ing.univasa.business.BusinessException;
 import it.univaq.disim.ing.univasa.business.EventoService;
 import it.univaq.disim.ing.univasa.business.UnivasaBusinessFactory;
 import it.univaq.disim.ing.univasa.controller.DataInitializable;
@@ -16,7 +17,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 public class RegolamentoTuttiGliEventiController implements Initializable, DataInitializable<Evento> {
-	
+
 	@FXML
 	private TextField nome;
 
@@ -54,7 +55,7 @@ public class RegolamentoTuttiGliEventiController implements Initializable, DataI
 	}
 
 	@FXML
-	public void indietroAction(ActionEvent event) {
+	public void indietroAction(ActionEvent event) throws BusinessException {
 		dispatcher.renderView("elencoTuttiGliEventiElettore", elettore);
 	}
 }
