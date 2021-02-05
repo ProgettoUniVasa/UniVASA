@@ -4,6 +4,6 @@ INSERT INTO `univasa`.`utente` (`id`, `nome`, `cognome`, `email`, `username`, `p
 INSERT INTO `univasa`.`evento` (`id`, `nome`, `regolamento`, `data_inizio`, `data_fine`, `ora_inizio`, `ora_fine`, `luogo`, `numero_preferenze_esprimibili`, `stato`) VALUES ('1', 'RAPPRESENTANTI UNI', 'si vota una pesona per scheda elettorale', '2020-02-06', '2020-02-08', '8:00', '20:00', 'L\'Aquila', '1', 'programmato');
 INSERT INTO `univasa`.`prenotazione` (`id`, `id_utente`, `id_evento`, `tipo_prenotazione`, `stato`) VALUES ('1', '2', '1', 'in presenza', 'no');
 INSERT INTO `univasa`.`utente` (`id`, `nome`, `cognome`, `email`, `username`, `password`, `telefono`, `data_nascita`, `professione`, `nome_universita`, `dipartimento`, `matricola`, `tipo_utente`) VALUES ('4', 'e2', 'ele2', 'ded@gmail.com', 'e2', 'e2', '012', '2001-08-04', 'studente', 'AQ', 'disim', '260', 'elettore');
-INSERT INTO `univasa`.`prenotazione` (`id`, `id_utente`, `id_evento`, `tipo_prenotazione`, `stato`, `certificato`) VALUES ('2', '4', '1', 'online', 'no', ?);
 INSERT INTO `univasa`.`candidato` (`id`, `nome`, `cognome`, `email`, `voti_ricevuti`, `id_evento`) VALUES ('1', 'e', 'e', 'aba@gmail.com', '0', '1');
 INSERT INTO `univasa`.`turnazione` (`id`, `id_utente`, `id_evento`, `fascia`, `data_giorno`) VALUES ('1', '3', '1', 'mattina', '2020-02-06');
+INSERT INTO `univasa`.`prenotazione` (`id`, `id_utente`, `id_evento`, `tipo_prenotazione`, `stato`, `certificato`) VALUES ('2', '4', '1', 'online', 'no', '');
