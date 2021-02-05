@@ -53,12 +53,6 @@ public class ElencoTuttiGliEventiElettoreController implements Initializable, Da
 
 	@FXML
 	private TableColumn<Evento, Button> prenotazioneOnlineTableColumn;
-	
-	@FXML
-	private Button indietroButton;
-
-	@FXML
-	private Button esciButton;
 
 	private ViewDispatcher dispatcher;
 
