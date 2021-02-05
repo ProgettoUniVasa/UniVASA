@@ -13,6 +13,7 @@ import java.util.List;
 
 import it.univaq.disim.ing.univasa.business.BusinessException;
 import it.univaq.disim.ing.univasa.business.EventoService;
+import it.univaq.disim.ing.univasa.domain.Candidato;
 import it.univaq.disim.ing.univasa.domain.Elettore;
 import it.univaq.disim.ing.univasa.domain.Evento;
 
@@ -36,6 +37,7 @@ public class DbEventoServiceImpl implements EventoService {
 	private static final String trovaEventiDaLuogo = "select * from evento where luogo=?";
 	private static final String trovaEventiDaPrenotare = "SELECT * from evento where id not in (select e.id from evento e join prenotazione p on e.id=p.id_evento where e.data_inizio>now() and p.id_utente=?)";
 	private static final String trovaEventiFinitiPrenotati = "select * from evento e join prenotazione p on e.id=p.id_evento where e.data_fine<now() and p.id_utente=?";
+	private static final String visualizzaCandidati = "select * from utente u join candidato c on u.email=c.email where c.id_evento=?";
 
 	// si deve ripetere per ogni candidato che riceve voti
 	private static final String caricaRisultatiInPresenza = "update from candidatura set voti_ricevuti=voti_ricevuti+? where id_utente=? and id_evento=?";	// ciclica
@@ -149,6 +151,36 @@ public class DbEventoServiceImpl implements EventoService {
 			}
 		}
 		return result;
+	}
+
+	@Override
+	public List<Candidato> visualizzaCandidati(Evento evento) throws BusinessException {
+		List<Candidato> candidati = new ArrayList<Candidato>();
+		ResultSet r = null;
+
+		// Connessione al Database e richiamo query
+		try (Connection c = DriverManager.getConnection(url, user, password);) {
+
+			PreparedStatement ps = c.prepareStatement(visualizzaCandidati);
+			ps.setLong(1, evento.getId());
+			r = ps.executeQuery();
+
+			while (r.next()) {
+				Candidato candidato = new Candidato();
+				candidato.setId(r.getLong(1));
+				candidato.setNome(r.getString(2));
+				candidato.setCognome(r.getString(3));
+				candidato.setEmail(r.getString(4));
+				candidato.setVotiRicevuti(r.getInt(5));
+				candidato.setEvento(evento);
+				candidati.add(candidato);
+			}
+
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+
+		return candidati;
 	}
 
 	@Override

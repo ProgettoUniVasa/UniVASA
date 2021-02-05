@@ -4,6 +4,8 @@ import java.sql.Blob;
 
 public class Prenotazione {
 
+	private Long id;
+
 	private Evento evento;
 
 	private Elettore elettore;
@@ -33,6 +35,16 @@ public class Prenotazione {
 		this.stato = stato;
 		Certificato = certificato;
 	}
+
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 
 	public Evento getEvento() {
 		return evento;

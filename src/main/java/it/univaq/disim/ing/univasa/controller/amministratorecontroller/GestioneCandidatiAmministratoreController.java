@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import it.univaq.disim.ing.univasa.business.BusinessException;
+import it.univaq.disim.ing.univasa.business.EventoService;
 import it.univaq.disim.ing.univasa.business.UnivasaBusinessFactory;
 import it.univaq.disim.ing.univasa.business.UtenteService;
 import it.univaq.disim.ing.univasa.controller.DataInitializable;
@@ -70,7 +71,7 @@ public class GestioneCandidatiAmministratoreController implements Initializable,
 
 	private ViewDispatcher dispatcher;
 
-	private UtenteService utenteService;
+	private EventoService eventoService;
 
 	private Candidato candidato;
 
@@ -81,7 +82,7 @@ public class GestioneCandidatiAmministratoreController implements Initializable,
 	public GestioneCandidatiAmministratoreController() {
 		dispatcher = ViewDispatcher.getInstance();
 		UnivasaBusinessFactory factory = UnivasaBusinessFactory.getInstance();
-		utenteService = factory.getUtenteService();
+		eventoService = factory.getEventoService();
 	}
 
 	@Override
@@ -118,7 +119,7 @@ public class GestioneCandidatiAmministratoreController implements Initializable,
 	@Override
 	public void initializeData(Amministratore amministratore) {
 		try {
-			List<Candidato> candidati = utenteService.visualizzaCandidati(evento);
+			List<Candidato> candidati = eventoService.visualizzaCandidati(evento);
 			ObservableList<Candidato> candidatiData = FXCollections.observableArrayList(candidati);
 			candidatiTable.setItems(candidatiData);
 		} catch (BusinessException e) {

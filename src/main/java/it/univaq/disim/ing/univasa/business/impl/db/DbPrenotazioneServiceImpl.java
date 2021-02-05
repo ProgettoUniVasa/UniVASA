@@ -4,10 +4,7 @@ import it.univaq.disim.ing.univasa.business.BusinessException;
 import it.univaq.disim.ing.univasa.business.EventoService;
 import it.univaq.disim.ing.univasa.business.PrenotazioneService;
 import it.univaq.disim.ing.univasa.business.UtenteService;
-import it.univaq.disim.ing.univasa.domain.Elettore;
-import it.univaq.disim.ing.univasa.domain.ElettoreInSede;
-import it.univaq.disim.ing.univasa.domain.Evento;
-import it.univaq.disim.ing.univasa.domain.Prenotazione;
+import it.univaq.disim.ing.univasa.domain.*;
 
 import java.sql.*;
 import java.time.Instant;
@@ -29,7 +26,7 @@ public class DbPrenotazioneServiceImpl implements PrenotazioneService {
 	// creaElettoreInSede & creaElettoreOnline
 	private static final String prenotazioneInSede = "insert into prenotazione (id_utente,id_evento,tipo_prenotazione,stato) values (?,?,'in presenza','no')";
 	private static final String prenotazioneOnline = "insert into prenotazione (id_utente,id_evento,tipo_prenotazione) values (?,?,'online')";
-
+	private static final String trovaPrenotazioniElettore = "select * from prenotazione where id_utente=?";
 
 	public DbPrenotazioneServiceImpl(EventoService eventoService, UtenteService utenteService) {
 		this.eventoService=eventoService;
@@ -72,21 +69,38 @@ public class DbPrenotazioneServiceImpl implements PrenotazioneService {
 
 	@Override
 	public List<Prenotazione> trovaPrenotazioniElettore(Elettore elettore) throws BusinessException {
-		List<Prenotazione> result = new ArrayList<>();
-		return result;
+		List<Prenotazione> prenotazioni = new ArrayList<Prenotazione>();
+		ResultSet r = null;
+
+		// Connessione al Database e richiamo query
+		try (Connection c = DriverManager.getConnection(url, user, pwd);) {
+
+			PreparedStatement ps = c.prepareStatement(trovaPrenotazioniElettore);
+			ps.setLong(1, elettore.getId());
+			r = ps.executeQuery();
+
+			while (r.next()) {
+				Prenotazione prenotazione = new Prenotazione();
+				prenotazione.setId(r.getLong(1));
+				prenotazione.setElettore(elettore);
+				prenotazione.setEvento(eventoService.trovaEventoDaId(r.getLong(3)));
+				prenotazione.setTipoPrenotazione(TipoPrenotazione.valueOf(r.getString(4)));		// tipologia
+				prenotazione.setStato(Stato.valueOf(r.getString(5)));	// stato
+				prenotazione.setCertificato(r.getBlob(6));	// certificato
+				prenotazioni.add(prenotazione);
+			}
+
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+
+		return prenotazioni;
 	}
 
-	@Override
+	@Override			// DA FARE
 	public List<Prenotazione> trovaPrenotazioniOnlineInCorso(Elettore elettore) {
-		return null;
+		List<Prenotazione> prenotazioni = new ArrayList<Prenotazione>();
+		return prenotazioni;
 	}
-
-	/* -------------------------------------------------------------------------------------------------------------------------------------------- */
-
-	// Definizione query in Java
-
-
-
-
 
 }

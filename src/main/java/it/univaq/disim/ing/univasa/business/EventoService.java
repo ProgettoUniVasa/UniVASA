@@ -2,6 +2,7 @@ package it.univaq.disim.ing.univasa.business;
 
 import java.util.List;
 
+import it.univaq.disim.ing.univasa.domain.Candidato;
 import it.univaq.disim.ing.univasa.domain.Elettore;
 import it.univaq.disim.ing.univasa.domain.Evento;
 
@@ -29,5 +30,7 @@ public interface EventoService {
     Evento eventodaNome(String nome);
 
     List<Evento> trovaEventiFinitiPrenotati (Elettore elettore) throws BusinessException;
+
+	List<Candidato> visualizzaCandidati(Evento evento) throws BusinessException;
 
 }

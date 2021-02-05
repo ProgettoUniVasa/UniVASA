@@ -44,8 +44,6 @@ public class DbUtenteServiceImpl implements UtenteService {
 	private static final String rifiutaCertificato = "delete from prenotazione where id_evento=? and id_utente=?";
 	// gestionePrenotazioni
 	private static final String gestionePrenotazioni = "select * from prenotazione where id_evento=? and (tipo='in presenza' or (tipo='online' and stato is not null))";
-	// visualizzaCandidati
-	private static final String visualizzaCandidati = "select * from utente u join candidato c on u.email=c.email where c.id_evento=?";
 	// modificaAmministratore
 	private static final String modificaAmministratore = "update from amministratore set telefono=?, email=?, nome_universita=?, dipartimento=? where id=?";
 	// modificaOperatore
@@ -492,7 +490,21 @@ public class DbUtenteServiceImpl implements UtenteService {
 
 	@Override
 	public void creaCandidato(Candidato candidato) throws BusinessException {
+		// Connessione al Database e richiamo query
+		try (Connection c = DriverManager.getConnection(url, user, pwd);) {
 
+			PreparedStatement ps = c.prepareStatement(creaCandidato);
+
+			ps.setString(1, candidato.getNome());
+			ps.setString(2, candidato.getCognome());
+			ps.setString(3, candidato.getEmail());
+			ps.setLong(4, candidato.getEvento().getId());
+			ps.setInt(5, candidato.getVotiRicevuti());
+
+			ps.executeUpdate();
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
 	}
 
 	@Override
@@ -531,12 +543,6 @@ public class DbUtenteServiceImpl implements UtenteService {
 		}
 
 		return elettori;
-	}
-
-	@Override
-	public List<Candidato> visualizzaCandidati(Evento evento) throws BusinessException {
-		// Anche questa ingestibile, forse servirà Candidatura piuttosto che Candidato
-		return null;
 	}
 
 	@Override
