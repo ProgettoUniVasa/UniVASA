@@ -38,8 +38,6 @@ public interface UtenteService {
 	void modificaOperatore(Operatore operatore) throws BusinessException;
 	void modificaAmministratore(Amministratore amministratore) throws BusinessException;
 
-	// Operatore
-	List<Elettore> visualizzaPrenotatiInSede(Evento evento) throws BusinessException;
 
 	// ElettoreOnline
 	void vota(ElettoreOnline elettoreOnline, Evento evento) throws BusinessException;

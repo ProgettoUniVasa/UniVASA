@@ -125,4 +125,9 @@ public class ListaEventiOperatoreController implements Initializable, DataInitia
         }
     }
 
+    @FXML
+    public void indietroAction(ActionEvent event) throws BusinessException {
+        dispatcher.renderView("dashboardOperatore", operatore);
+    }
+
 }

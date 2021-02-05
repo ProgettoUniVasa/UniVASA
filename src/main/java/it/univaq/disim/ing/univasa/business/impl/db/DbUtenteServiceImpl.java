@@ -50,8 +50,6 @@ public class DbUtenteServiceImpl implements UtenteService {
 	private static final String modificaOperatore = "update from utente set telefono=?, email=?, nome_universita=?, dipartimento=? where id=?";
 	// visualizzaTurnazioni
 	private static final String visualizzaTurnazioni = "select * from turnazione where id_utente=?";
-	// visualizzaPrenotatiInSede
-	private static final String visualizzaPrenotatiInSede = "select * from prenotazione where id_evento=? and tipo_prenotazione='in presenza'";
 	// vota
 	private static final String vota = "update from candidato set voti_ricevuti=voti_ricevuti+1 where id_utente=? and id_evento=?";			// ciclica
 	private static final String aggiornaPrenotazione = "update from prenotazione set stato='si' where id_utente=? and id_evento=?";
@@ -591,44 +589,6 @@ public class DbUtenteServiceImpl implements UtenteService {
 	@Override
 	public void rifiutaCertificato(String certificato) throws BusinessException {
 		// Ehi qui mi serve la Prenotazione, abbiamo questa magnifica classe????
-	}
-
-	@Override
-	public List<Elettore> visualizzaPrenotatiInSede(Evento evento) throws BusinessException {
-		List<Elettore> elettori = new ArrayList<Elettore>();
-		ResultSet r = null;
-
-		// Connessione al Database e richiamo query
-		try (Connection c = DriverManager.getConnection(url, user, pwd);) {
-
-			PreparedStatement ps = c.prepareStatement(visualizzaPrenotatiInSede);
-			ps.setLong(1, evento.getId());
-			r = ps.executeQuery();
-
-			while (r.next()) {
-				Elettore elettore = new Elettore();
-				elettore.setId(r.getLong(1));
-				elettore.setNome(r.getString(2));
-				elettore.setCognome(r.getString(3));
-				elettore.setEmail(r.getString(4));
-				elettore.setUsername(r.getString(5));
-				elettore.setPassword(r.getString(6));
-				elettore.setTelefono(r.getString(7));
-				// Conversione da Date a LocalDate
-				elettore.setData_nascita(
-						Instant.ofEpochMilli(r.getDate(8).getTime()).atZone(ZoneId.systemDefault()).toLocalDate());
-				elettore.setProfessione(Professione.valueOf(r.getString(9)));
-				elettore.setNome_università(r.getString(10));
-				elettore.setDipartimento(r.getString(11));
-				elettore.setMatricola(r.getString(12));
-				elettori.add(elettore);
-			}
-
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-		}
-
-		return elettori;
 	}
 
 

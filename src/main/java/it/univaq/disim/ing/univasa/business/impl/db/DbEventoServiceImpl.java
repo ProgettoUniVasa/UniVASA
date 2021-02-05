@@ -16,6 +16,7 @@ import it.univaq.disim.ing.univasa.business.EventoService;
 import it.univaq.disim.ing.univasa.domain.Candidato;
 import it.univaq.disim.ing.univasa.domain.Elettore;
 import it.univaq.disim.ing.univasa.domain.Evento;
+import it.univaq.disim.ing.univasa.domain.Professione;
 
 //aggiungere l'ora
 public class DbEventoServiceImpl implements EventoService {
@@ -38,6 +39,8 @@ public class DbEventoServiceImpl implements EventoService {
 	private static final String trovaEventiDaPrenotare = "SELECT * from evento where id not in (select e.id from evento e join prenotazione p on e.id=p.id_evento where e.data_inizio>now() and p.id_utente=?)";
 	private static final String trovaEventiFinitiPrenotati = "select * from evento e join prenotazione p on e.id=p.id_evento where e.data_fine<now() and p.id_utente=?";
 	private static final String visualizzaCandidati = "select * from utente u join candidato c on u.email=c.email where c.id_evento=?";
+	// visualizzaPrenotatiInSede
+	private static final String visualizzaPrenotatiInSede = "select * from utente u join prenotazione p on p.id_utente=u.id where id_evento=? and tipo_prenotazione='in presenza'";
 
 	// si deve ripetere per ogni candidato che riceve voti
 	private static final String caricaRisultatiInPresenza = "update from candidatura set voti_ricevuti=voti_ricevuti+? where id_utente=? and id_evento=?";	// ciclica
@@ -91,6 +94,46 @@ public class DbEventoServiceImpl implements EventoService {
 	public void caricaRisultatiInPresenza(Evento evento) throws BusinessException {
 		// ......
 	}
+
+	@Override
+	public List<Elettore> visualizzaPrenotatiInSede(Evento evento) throws BusinessException {
+		List<Elettore> elettori = new ArrayList<Elettore>();
+		ResultSet r = null;
+
+		// Connessione al Database e richiamo query
+		try (Connection c = DriverManager.getConnection(url, user, password);) {
+
+			PreparedStatement ps = c.prepareStatement(visualizzaPrenotatiInSede);
+			ps.setLong(1, evento.getId());
+			r = ps.executeQuery();
+
+			while (r.next()) {
+				Elettore elettore = new Elettore();
+				elettore.setId(r.getLong(1));
+				elettore.setNome(r.getString(2));
+				elettore.setCognome(r.getString(3));
+				elettore.setEmail(r.getString(4));
+				elettore.setUsername(r.getString(5));
+				elettore.setPassword(r.getString(6));
+				elettore.setTelefono(r.getString(7));
+				// Conversione da Date a LocalDate
+				elettore.setData_nascita(
+						Instant.ofEpochMilli(r.getDate(8).getTime()).atZone(ZoneId.systemDefault()).toLocalDate());
+				elettore.setProfessione(Professione.valueOf(r.getString(9)));
+				elettore.setNome_università(r.getString(10));
+				elettore.setDipartimento(r.getString(11));
+				elettore.setMatricola(r.getString(12));
+				elettori.add(elettore);
+			}
+
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+
+		return elettori;
+	}
+
+
 
 	@Override
 	public void eliminaEvento(Evento evento) throws BusinessException {
@@ -237,7 +280,6 @@ public class DbEventoServiceImpl implements EventoService {
 		try (Connection c = DriverManager.getConnection(url, user, password);) {
 
 			PreparedStatement ps = c.prepareStatement(trovaEventoDaId);
-
 			ps.setLong(1, id);
 			r = ps.executeQuery();
 

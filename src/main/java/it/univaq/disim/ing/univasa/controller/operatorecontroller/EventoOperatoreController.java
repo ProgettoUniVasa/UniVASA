@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 import it.univaq.disim.ing.univasa.business.BusinessException;
+import it.univaq.disim.ing.univasa.business.EventoService;
 import it.univaq.disim.ing.univasa.business.UnivasaBusinessFactory;
 import it.univaq.disim.ing.univasa.business.UtenteService;
 import it.univaq.disim.ing.univasa.controller.DataInitializable;
@@ -48,12 +49,12 @@ public class EventoOperatoreController implements Initializable, DataInitializab
 
     private ViewDispatcher dispatcher;
 
-    private UtenteService utenteService;
+    private EventoService eventoService;
 
     public EventoOperatoreController() {
         dispatcher = ViewDispatcher.getInstance();
         UnivasaBusinessFactory factory = UnivasaBusinessFactory.getInstance();
-        utenteService = factory.getUtenteService();
+        eventoService = factory.getEventoService();
     }
 
     @Override
@@ -89,7 +90,7 @@ public class EventoOperatoreController implements Initializable, DataInitializab
     public void initializeData(Evento evento) {
         try {
             this.evento = evento;
-            List<Elettore> elettoriInSede = utenteService.visualizzaPrenotatiInSede(evento);
+            List<Elettore> elettoriInSede = eventoService.visualizzaPrenotatiInSede(evento);
             ObservableList<Elettore> elettoriInSedeData = FXCollections.observableArrayList(elettoriInSede);
             eventoTable.setItems(elettoriInSedeData);
         } catch (BusinessException e) {
@@ -99,7 +100,7 @@ public class EventoOperatoreController implements Initializable, DataInitializab
 
     @FXML
     public void indietroAction(ActionEvent event) throws BusinessException {
-        dispatcher.renderView("dashboardOperatore", operatore);
+        dispatcher.renderView("listaEventiOperatore", operatore);
     }
 
 }

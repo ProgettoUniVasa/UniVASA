@@ -27,7 +27,7 @@ public class DbTurnazioneServiceImpl implements TurnazioneService {
 
 	// Definizione query in Java
 	private static final String creaTurnazione = "insert into turnazione(id_utente, id_evento, fascia, data_giorno) values(?,?,?,?)";
-	private static final String visualizzaTurnazioni = "select * from turnazione where id_utente=?";
+	private static final String visualizzaTurnazioni = "SELECT t.id, e.id, t.data_giorno, t.fascia FROM turnazione t join evento e on e.id=t.id_evento where t.id_utente=?";
 	private static final String eliminaTurnazione = "delete from turnazione where id=?";
 
 	public DbTurnazioneServiceImpl(EventoService eventoService, UtenteService utenteService) {
@@ -65,17 +65,18 @@ public class DbTurnazioneServiceImpl implements TurnazioneService {
 		try (Connection c = DriverManager.getConnection(url, user, password);) {
 
 			PreparedStatement ps = c.prepareStatement(visualizzaTurnazioni);
+			ps.setLong(1, operatore.getId());
 			r = ps.executeQuery();
 
 			while (r.next()) {
 
 				Turnazione turnazione = new Turnazione();
 				turnazione.setId(r.getLong(1));
-				turnazione.setOperatore((Operatore) utenteService.trovaUtenteDaId(r.getLong(2)));
-				turnazione.setEvento(eventoService.trovaEventoDaId(r.getLong(3)));
+				turnazione.setOperatore(operatore);
+				turnazione.setEvento(eventoService.trovaEventoDaId(r.getLong(2)));
 				turnazione.setFascia(TipologiaTurno.valueOf(r.getString(4)));
 				turnazione.setData_turno(
-						Instant.ofEpochMilli(r.getDate(5).getTime()).atZone(ZoneId.systemDefault()).toLocalDate());
+						Instant.ofEpochMilli(r.getDate(3).getTime()).atZone(ZoneId.systemDefault()).toLocalDate());
 				result.add(turnazione);
 			}
 
