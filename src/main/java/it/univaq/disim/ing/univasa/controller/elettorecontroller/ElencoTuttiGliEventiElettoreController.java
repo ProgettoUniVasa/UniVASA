@@ -131,6 +131,7 @@ public class ElencoTuttiGliEventiElettoreController implements Initializable, Da
 
 	@Override
 	public void initializeData(Elettore elettore) {
+
 		try {
 			this.elettore = elettore;
 			List<Evento> eventi = eventoService.trovaEventiDaPrenotare(elettore);
@@ -142,13 +143,13 @@ public class ElencoTuttiGliEventiElettoreController implements Initializable, Da
 	}
 
 	@FXML
-	public void indietroAction(MouseEvent event) {
+	public void indietroAction(ActionEvent event) {
 		dispatcher.renderView("homeElettore", elettore);
 	}
 	
 	@FXML
 	public void esciAction(MouseEvent event) {
 		dispatcher.logout();
-	};
+	}
 
 }

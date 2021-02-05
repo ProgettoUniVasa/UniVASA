@@ -151,7 +151,8 @@ public class DbEventoServiceImpl implements EventoService {
 
 	@Override
 	public List<Evento> trovaEventiDaPrenotare(Elettore elettore) throws BusinessException {
-		return null;
+		List<Evento> result = new ArrayList<>();
+		return result;
 	}
 
 	@Override
