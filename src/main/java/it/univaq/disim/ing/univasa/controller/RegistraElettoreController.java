@@ -96,10 +96,11 @@ public class RegistraElettoreController implements Initializable, DataInitializa
 	public void registraElettoreAction(ActionEvent event) {
 		try {
 			int c = 0;
+			// Controllo sull'elettore
 			for (Elettore e : utenteService.trovaTuttiElettori()) {
 				if (e.getUsername().equals(username.getText()) || e.getEmail().equals(email.getText())) {
 					c++;
-					JOptionPane.showMessageDialog(null, " Questo nome utente è gia esistente", "Errore",
+					JOptionPane.showMessageDialog(null, "Questo nome utente è gia esistente!", "Errore",
 							JOptionPane.ERROR_MESSAGE);
 					break;
 				}
@@ -136,6 +137,6 @@ public class RegistraElettoreController implements Initializable, DataInitializa
 
 	@FXML
 	public void annullaAction(ActionEvent event) {
-		dispatcher.registratiAction(elettore);
+		dispatcher.logout();
 	}
 }

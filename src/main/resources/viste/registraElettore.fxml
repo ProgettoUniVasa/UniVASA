@@ -16,7 +16,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="659.0" prefWidth="671.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.RegistraElettoreController">
    <top>
-      <VBox prefHeight="573.0" prefWidth="682.0" style="-fx-background-color: #0ABAB5;" BorderPane.alignment="CENTER">
+      <VBox prefHeight="573.0" prefWidth="682.0" style="-fx-background-color: orange;" BorderPane.alignment="CENTER">
          <children>
             <Label alignment="CENTER" prefHeight="39.0" prefWidth="702.0" text="Registrazione">
                <font>
@@ -121,7 +121,7 @@
       </VBox>
    </top>
    <bottom>
-      <HBox prefHeight="84.0" prefWidth="678.0" style="-fx-background-color: #0ABAB5;" BorderPane.alignment="CENTER">
+      <HBox prefHeight="84.0" prefWidth="678.0" style="-fx-background-color: orange;" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="registraButton" mnemonicParsing="false" onAction="#registraElettoreAction" prefHeight="38.0" prefWidth="91.0" text="Registrati">
                <HBox.margin>
