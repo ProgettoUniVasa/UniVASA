@@ -128,7 +128,7 @@ public class ElencoReportController implements Initializable, DataInitializable<
 	}
 	
 	@FXML
-	public void indietroAction(MouseEvent event) {
+	public void indietroAction(ActionEvent event) {
 		dispatcher.renderView("homeElettore", elettore);
 	}
 	
