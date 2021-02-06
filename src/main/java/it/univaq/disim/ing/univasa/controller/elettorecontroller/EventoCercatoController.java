@@ -1,10 +1,11 @@
-package it.univaq.disim.ing.univasa.controller;
+package it.univaq.disim.ing.univasa.controller.elettorecontroller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import it.univaq.disim.ing.univasa.business.EventoService;
 import it.univaq.disim.ing.univasa.business.UnivasaBusinessFactory;
+import it.univaq.disim.ing.univasa.controller.DataInitializable;
 import it.univaq.disim.ing.univasa.domain.Elettore;
 import it.univaq.disim.ing.univasa.domain.Evento;
 import it.univaq.disim.ing.univasa.view.ViewDispatcher;

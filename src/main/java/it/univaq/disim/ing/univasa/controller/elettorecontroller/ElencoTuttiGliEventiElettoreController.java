@@ -174,9 +174,9 @@ public class ElencoTuttiGliEventiElettoreController implements Initializable, Da
 	private void cercaAction(ActionEvent event) {
 		try {
 			String eventoCercato = cercaEvento.getText();
-			
+			//se metto qui una println me la stampa
 			for (Evento e : eventoService.trovaEventiDaPrenotare(elettore)) {
-
+				//se metto qui una println NON me la stampa
 				if (e.getNome().equals(eventoCercato)) {
 
 					evento = e;
