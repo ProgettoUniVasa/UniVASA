@@ -7,3 +7,4 @@ INSERT INTO `univasa`.`utente` (`id`, `nome`, `cognome`, `email`, `username`, `p
 INSERT INTO `univasa`.`candidato` (`id`, `nome`, `cognome`, `email`, `voti_ricevuti`, `id_evento`) VALUES ('1', 'e', 'e', 'aba@gmail.com', '0', '1');
 INSERT INTO `univasa`.`turnazione` (`id`, `id_utente`, `id_evento`, `fascia`, `data_giorno`) VALUES ('1', '3', '1', 'mattina', '2020-02-06');
 INSERT INTO `univasa`.`prenotazione` (`id`, `id_utente`, `id_evento`, `tipo_prenotazione`, `stato`, `certificato`) VALUES ('2', '4', '1', 'online', 'no', '');
+INSERT INTO `univasa`.`utente` (`id`, `nome`, `cognome`, `email`, `username`, `password`, `telefono`, `data_nascita`, `professione`, `nome_universita`, `dipartimento`, `matricola`, `tipo_utente`) VALUES ('5', 'e3', 'ele3', 'efe@gmail', 'e3', 'e3', '345', '2002-03-04', 'studente', 'AQ', 'disim', '230', 'elettore');
