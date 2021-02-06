@@ -21,13 +21,14 @@
             <Insets bottom="10.0" left="5.0" right="10.0" />
          </padding>
          <children>
-            <TableView fx:id="listaEventiTable" prefHeight="489.0" prefWidth="792.0" style="-fx-background-color: #0ABAB5;">
+            <TableView fx:id="listaEventiTable" prefHeight="489.0" prefWidth="803.0" style="-fx-background-color: #0ABAB5;">
                <columns>
-                  <TableColumn fx:id="nomeTableColumn" prefWidth="169.0" text="Nome" />
-                  <TableColumn fx:id="aperturaSeggioTableColumn" prefWidth="156.0" text="Apertura seggio" />
-                  <TableColumn fx:id="chiusuraSeggioTableColumn" prefWidth="154.0" text="Chiusura seggio" />
-                  <TableColumn fx:id="luogoTableColumn" prefWidth="158.0" text="Luogo" />
-                  <TableColumn fx:id="azioneTableColumn" prefWidth="95.0" text="Azione" />
+                  <TableColumn fx:id="nomeTableColumn" prefWidth="125.0" text="Nome" />
+                  <TableColumn fx:id="aperturaSeggioTableColumn" prefWidth="150.0" text="Apertura seggio" />
+                  <TableColumn fx:id="chiusuraSeggioTableColumn" prefWidth="137.0" text="Chiusura seggio" />
+                  <TableColumn fx:id="luogoTableColumn" prefWidth="120.0" text="Luogo" />
+                  <TableColumn fx:id="azioneTableColumn" prefWidth="103.0" text="Azione" />
+                  <TableColumn fx:id="votiTableColumn" prefWidth="192.0" text="Caricamento voti" />
                </columns>
             </TableView>
          </children>

@@ -27,12 +27,12 @@ public class DbPrenotazioneServiceImpl implements PrenotazioneService {
 	private static final String prenotazioneInSede = "insert into prenotazione (id_utente,id_evento,tipo_prenotazione,stato) values (?,?,'in presenza','no')";
 	private static final String prenotazioneOnline = "insert into prenotazione (id_utente,id_evento,tipo_prenotazione) values (?,?,'online')";
 	private static final String trovaPrenotazioniElettore = "select * from prenotazione where id_utente=?";
+	private static final String trovaPrenotazioneDaId = "select * from prenotazione where id=?";
 
 	public DbPrenotazioneServiceImpl(EventoService eventoService, UtenteService utenteService) {
 		this.eventoService=eventoService;
 		this.utenteService=utenteService;
 	}
-
 
 	@Override
 	public void prenotazioneInSede(Elettore elettore, Evento evento) throws BusinessException {
@@ -66,6 +66,40 @@ public class DbPrenotazioneServiceImpl implements PrenotazioneService {
 		}
 	}
 
+	@Override
+	public Prenotazione trovaPrenotazioneDaId(Long id) throws BusinessException {
+		Prenotazione prenotazione = new Prenotazione();
+		ResultSet r = null;
+
+		// Connessione al Database e richiamo query
+		try (Connection c = DriverManager.getConnection(url, user, pwd);) {
+
+			PreparedStatement ps = c.prepareStatement(trovaPrenotazioneDaId);
+			ps.setLong(1, id);
+			r = ps.executeQuery();
+
+			while (r.next()) {
+				prenotazione.setId(id);
+				prenotazione.setElettore((Elettore) utenteService.trovaUtenteDaId(r.getLong(2)));
+				prenotazione.setEvento(eventoService.trovaEventoDaId(r.getLong(3)));
+				prenotazione.setTipoPrenotazione(TipoPrenotazione.valueOf(r.getString(4)));
+				prenotazione.setStato(Stato.valueOf(r.getString(5)));
+				prenotazione.setCertificato(r.getBlob(6));
+
+			}
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		} finally {
+			if (r != null) {
+				try {
+					r.close();
+				} catch (SQLException ex) {
+					ex.printStackTrace();
+				}
+			}
+		}
+		return prenotazione;
+	}
 
 	@Override
 	public List<Prenotazione> trovaPrenotazioniElettore(Elettore elettore) throws BusinessException {
@@ -81,12 +115,7 @@ public class DbPrenotazioneServiceImpl implements PrenotazioneService {
 
 			while (r.next()) {
 				Prenotazione prenotazione = new Prenotazione();
-				prenotazione.setId(r.getLong(1));
-				prenotazione.setElettore(elettore);
-				prenotazione.setEvento(eventoService.trovaEventoDaId(r.getLong(3)));
-				prenotazione.setTipoPrenotazione(TipoPrenotazione.valueOf(r.getString(4)));		// tipologia
-				prenotazione.setStato(Stato.valueOf(r.getString(5)));	// stato
-				prenotazione.setCertificato(r.getBlob(6));	// certificato
+				prenotazione = trovaPrenotazioneDaId(r.getLong(1));
 				prenotazioni.add(prenotazione);
 			}
 

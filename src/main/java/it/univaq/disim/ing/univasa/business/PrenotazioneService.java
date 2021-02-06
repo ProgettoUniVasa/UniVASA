@@ -10,6 +10,6 @@ public interface PrenotazioneService {
 	void prenotazioneOnline(Elettore elettore, Evento evento) throws BusinessException;
 
 	List<Prenotazione> trovaPrenotazioniElettore(Elettore elettore) throws BusinessException;
-
+	Prenotazione trovaPrenotazioneDaId(Long id) throws  BusinessException;
 	List<Prenotazione> trovaPrenotazioniOnlineInCorso(Elettore elettore);
 }

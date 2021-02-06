@@ -150,7 +150,7 @@ public class ElencoEventiInCorsoController implements Initializable, DataInitial
 							public void handle(ActionEvent event) {
 								Prenotazione prenotazione = new Prenotazione();
 								Evento evento = prenotazione.getEvento();
-								if (prenotazione.getTipoPrenotazione().equals(TipoPrenotazione.ONLINE)
+								if (prenotazione.getTipoPrenotazione().equals(TipoPrenotazione.online)
 										&& (evento.getStatoEvento().equals(StatoEvento.in_corso))) {
 									dispatcher.renderView("votazioneOnline", param.getValue());
 								} else

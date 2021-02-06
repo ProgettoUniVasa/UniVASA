@@ -48,6 +48,9 @@ public class ListaEventiOperatoreController implements Initializable, DataInitia
     @FXML
     private TableColumn<Evento, Button> azioneTableColumn;
 
+    @FXML
+    private TableColumn<Evento, Button> votiTableColumn;
+
     private Operatore operatore;
 
     private ViewDispatcher dispatcher;
@@ -104,6 +107,21 @@ public class ListaEventiOperatoreController implements Initializable, DataInitia
                             @Override
                             public void handle(ActionEvent event) {
                                 dispatcher.renderView("eventoOperatore", param.getValue());
+                            }
+                        });
+                        return new SimpleObjectProperty<Button>(azioneButton);
+                    }
+                });
+
+        votiTableColumn.setCellValueFactory(
+                new Callback<TableColumn.CellDataFeatures<Evento, Button>, ObservableValue<Button>>() {
+                    @Override
+                    public ObservableValue<Button> call(CellDataFeatures<Evento, Button> param) {
+                        final Button azioneButton = new Button("Carica spoglio");
+                        azioneButton.setOnAction(new EventHandler<ActionEvent>() {
+                            @Override
+                            public void handle(ActionEvent event) {
+                                dispatcher.renderView("caricamentoVotiOperatore", param.getValue());
                             }
                         });
                         return new SimpleObjectProperty<Button>(azioneButton);

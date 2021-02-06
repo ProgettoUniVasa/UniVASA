@@ -90,11 +90,34 @@ public class ElencoEventiPersonaliElettoreController implements Initializable, D
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
-		nomeTableColumn.setCellValueFactory(new PropertyValueFactory<>("nome"));
-		dataInizioTableColumn.setCellValueFactory(new PropertyValueFactory<>("dataInizio"));
-		dataFineTableColumn.setCellValueFactory(new PropertyValueFactory<>("dataFine"));
-		luogoTableColumn.setCellValueFactory(new PropertyValueFactory<>("luogo"));
-
+		nomeTableColumn.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<Prenotazione, String>, ObservableValue<String>>() {
+					@Override
+					public ObservableValue<String> call(CellDataFeatures<Prenotazione, String> param) {
+						return new SimpleObjectProperty<String>(param.getValue().getEvento().getNome());
+					}
+				});
+		dataInizioTableColumn.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<Prenotazione, LocalDate>, ObservableValue<LocalDate>>() {
+					@Override
+					public ObservableValue<LocalDate> call(CellDataFeatures<Prenotazione, LocalDate> param) {
+						return new SimpleObjectProperty<LocalDate>(param.getValue().getEvento().getDataInizio());
+					}
+				});
+		dataFineTableColumn.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<Prenotazione, LocalDate>, ObservableValue<LocalDate>>() {
+					@Override
+					public ObservableValue<LocalDate> call(CellDataFeatures<Prenotazione, LocalDate> param) {
+						return new SimpleObjectProperty<LocalDate>(param.getValue().getEvento().getDataFine());
+					}
+				});
+		luogoTableColumn.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<Prenotazione, String>, ObservableValue<String>>() {
+					@Override
+					public ObservableValue<String> call(CellDataFeatures<Prenotazione, String> param) {
+						return new SimpleObjectProperty<String>(param.getValue().getEvento().getLuogo());
+					}
+				});
 		regolamentoTableColumn.setStyle("-fx-alignment: CENTER;");
 		regolamentoTableColumn.setCellValueFactory(
 				new Callback<TableColumn.CellDataFeatures<Prenotazione, Button>, ObservableValue<Button>>() {
@@ -106,7 +129,7 @@ public class ElencoEventiPersonaliElettoreController implements Initializable, D
 
 							@Override
 							public void handle(ActionEvent event) {
-								dispatcher.renderView("regolamentoEventoPersonale", param.getValue()); // creare vista
+								dispatcher.renderView("regolamentoEventoPersonale", param.getValue().getEvento()); // creare vista
 								// regolamentoEvento
 							}
 						});
@@ -115,11 +138,20 @@ public class ElencoEventiPersonaliElettoreController implements Initializable, D
 				});
 
 		statoEventoTableColumn.setStyle("-fx-alignment: CENTER;");
-		statoEventoTableColumn.setCellValueFactory(new PropertyValueFactory<>("statoEvento")); // non esiste come
-																								// attributo di
-		// Evento, si potrebbe mettere uno
-		// stato votazione/stato evento?
-		prenotazioneTableColumn.setCellValueFactory(new PropertyValueFactory<>("tipoPrenotazione"));
+		statoEventoTableColumn.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<Prenotazione, StatoEvento>, ObservableValue<StatoEvento>>() {
+					@Override
+					public ObservableValue<StatoEvento> call(CellDataFeatures<Prenotazione, StatoEvento> param) {
+						return new SimpleObjectProperty<StatoEvento>(param.getValue().getEvento().getStatoEvento());
+					}
+				});
+		prenotazioneTableColumn.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<Prenotazione, TipoPrenotazione>, ObservableValue<TipoPrenotazione>>() {
+					@Override
+					public ObservableValue<TipoPrenotazione> call(CellDataFeatures<Prenotazione, TipoPrenotazione> param) {
+						return new SimpleObjectProperty<TipoPrenotazione>(param.getValue().getTipoPrenotazione());
+					}
+				});
 		azioneTableColumn.setStyle("-fx-alignment: CENTER;");
 		azioneTableColumn.setCellValueFactory(
 				new Callback<TableColumn.CellDataFeatures<Prenotazione, Button>, ObservableValue<Button>>() {
@@ -133,7 +165,7 @@ public class ElencoEventiPersonaliElettoreController implements Initializable, D
 							public void handle(ActionEvent event) {
 								Prenotazione prenotazione = new Prenotazione();
 								Evento evento = prenotazione.getEvento();
-								if (prenotazione.getTipoPrenotazione().equals(TipoPrenotazione.IN_PRESENZA)
+								if (prenotazione.getTipoPrenotazione().equals(TipoPrenotazione.in_presenza)
 										&& !(evento.getStatoEvento().equals(StatoEvento.terminato))) {
 									dispatcher.renderView("cambioModalitaVotazione", param.getValue()); 
 								}

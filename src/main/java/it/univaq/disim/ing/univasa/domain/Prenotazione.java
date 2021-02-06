@@ -10,7 +10,7 @@ public class Prenotazione {
 
 	private Elettore elettore;
 
-	private TipoPrenotazione tipoPrenotazione = TipoPrenotazione.IN_PRESENZA;
+	private TipoPrenotazione tipoPrenotazione = TipoPrenotazione.in_presenza;
 
 	private Stato stato = Stato.no; // votazione_effettuata
 

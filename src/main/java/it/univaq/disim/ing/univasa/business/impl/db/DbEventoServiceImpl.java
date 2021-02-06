@@ -13,10 +13,7 @@ import java.util.List;
 
 import it.univaq.disim.ing.univasa.business.BusinessException;
 import it.univaq.disim.ing.univasa.business.EventoService;
-import it.univaq.disim.ing.univasa.domain.Candidato;
-import it.univaq.disim.ing.univasa.domain.Elettore;
-import it.univaq.disim.ing.univasa.domain.Evento;
-import it.univaq.disim.ing.univasa.domain.Professione;
+import it.univaq.disim.ing.univasa.domain.*;
 
 //aggiungere l'ora
 public class DbEventoServiceImpl implements EventoService {
@@ -164,20 +161,7 @@ public class DbEventoServiceImpl implements EventoService {
 
 			while (r.next()) {
 				Evento evento = new Evento();
-				evento.setId(r.getLong(1));
-				evento.setNome(r.getString(2));
-				evento.setRegolamento(r.getString(3));
-				// Conversione da Date a LocalDateTime
-				evento.setDataInizio(
-						Instant.ofEpochMilli(r.getDate(4).getTime()).atZone(ZoneId.systemDefault()).toLocalDate());
-				evento.setDataFine(
-						Instant.ofEpochMilli(r.getDate(5).getTime()).atZone(ZoneId.systemDefault()).toLocalDate());
-				evento.setOraInizio(r.getString(6));
-				evento.setOraFine(r.getString(7));
-				evento.setLuogo(r.getString(8));
-				evento.setReport_risultati(r.getString(9));
-				evento.setReport_statistiche(r.getString(10));
-				evento.setNumero_preferenze_esprimibili(r.getInt(11));
+				evento = trovaEventoDaId(r.getLong(1));
 				result.add(evento);
 			}
 
@@ -299,6 +283,7 @@ public class DbEventoServiceImpl implements EventoService {
 				evento.setReport_risultati(r.getString(9));
 				evento.setReport_statistiche(r.getString(10));
 				evento.setNumero_preferenze_esprimibili(r.getInt(11));
+				evento.setStatoEvento(StatoEvento.valueOf(r.getString(12)));
 			}
 		} catch (SQLException ex) {
 			ex.printStackTrace();
