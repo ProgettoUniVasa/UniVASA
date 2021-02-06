@@ -34,9 +34,9 @@ public class DbUtenteServiceImpl implements UtenteService {
 	// creaAmministratore
 	private static final String creaAmministratore = "insert into utente (nome, cognome, email, username, password, telefono, data_nascita, professione, nome_universita, dipartimento, tipo_utente) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'amministratore')";
 	// creaOperatore
-	private static final String creaOperatore = "insert into operatore (nome, cognome, email, username, password, telefono, data_nascita, professione, nome_universita, dipartimento, tipo_utente) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'operatore')";
+	private static final String creaOperatore = "insert into utente (nome, cognome, email, username, password, telefono, data_nascita, professione, nome_universita, dipartimento, tipo_utente) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'operatore')";
 	// creaElettore
-	private static final String creaElettore = "insert into elettore (nome, cognome, email, username, password, telefono, data_nascita, professione, nome_universita, dipartimento, matricola, tipo_utente) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'elettore')";
+	private static final String creaElettore = "insert into utente (nome, cognome, email, username, password, telefono, data_nascita, professione, nome_universita, dipartimento, matricola, tipo_utente) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'elettore')";
 	// creaCandidato
 	private static final String creaCandidato = "insert into candidato (nome,cognome,email,id_evento,voti_ricevuti) values (?,?,?,?,0)";
 	// accetta certificato & rifiutaCertificato
@@ -419,13 +419,14 @@ public class DbUtenteServiceImpl implements UtenteService {
 
 			ps.setString(1, amministratore.getNome());
 			ps.setString(2, amministratore.getCognome());
-			ps.setString(3, amministratore.getUsername());
-			ps.setString(4, amministratore.getPassword());
-			ps.setString(5, amministratore.getTelefono());
-			ps.setDate(6, data);
-			ps.setString(7, String.valueOf(amministratore.getProfessione()));
-			ps.setString(8, amministratore.getNome_università());
-			ps.setString(9, amministratore.getDipartimento());
+			ps.setString(3, amministratore.getEmail());
+			ps.setString(4, amministratore.getUsername());
+			ps.setString(5, amministratore.getPassword());
+			ps.setString(6, amministratore.getTelefono());
+			ps.setDate(7, data);
+			ps.setString(8, String.valueOf(amministratore.getProfessione()));
+			ps.setString(9, amministratore.getNome_università());
+			ps.setString(10, amministratore.getDipartimento());
 
 			ps.executeUpdate();
 		} catch (SQLException ex) {
@@ -445,13 +446,14 @@ public class DbUtenteServiceImpl implements UtenteService {
 
 			ps.setString(1, operatore.getNome());
 			ps.setString(2, operatore.getCognome());
-			ps.setString(3, operatore.getUsername());
-			ps.setString(4, operatore.getPassword());
-			ps.setString(5, operatore.getTelefono());
-			ps.setDate(6, data);
-			ps.setString(7, String.valueOf(operatore.getProfessione()));
-			ps.setString(8, operatore.getNome_università());
-			ps.setString(9, operatore.getDipartimento());
+			ps.setString(3, operatore.getEmail());
+			ps.setString(4, operatore.getUsername());
+			ps.setString(5, operatore.getPassword());
+			ps.setString(6, operatore.getTelefono());
+			ps.setDate(7, data);
+			ps.setString(8, String.valueOf(operatore.getProfessione()));
+			ps.setString(9, operatore.getNome_università());
+			ps.setString(10, operatore.getDipartimento());
 
 			ps.executeUpdate();
 		} catch (SQLException ex) {
@@ -471,14 +473,15 @@ public class DbUtenteServiceImpl implements UtenteService {
 
 			ps.setString(1, elettore.getNome());
 			ps.setString(2, elettore.getCognome());
-			ps.setString(3, elettore.getUsername());
-			ps.setString(4, elettore.getPassword());
-			ps.setString(5, elettore.getTelefono());
-			ps.setDate(6, data);
-			ps.setString(7, String.valueOf(elettore.getProfessione()));
-			ps.setString(8, elettore.getNome_università());
-			ps.setString(9, elettore.getDipartimento());
-			ps.setString(10, elettore.getMatricola());
+			ps.setString(3, elettore.getEmail());
+			ps.setString(4, elettore.getUsername());
+			ps.setString(5, elettore.getPassword());
+			ps.setString(6, elettore.getTelefono());
+			ps.setDate(7, data);
+			ps.setString(8, String.valueOf(elettore.getProfessione()));
+			ps.setString(9, elettore.getNome_università());
+			ps.setString(10, elettore.getDipartimento());
+			ps.setString(11, elettore.getMatricola());
 
 			ps.executeUpdate();
 		} catch (SQLException ex) {
