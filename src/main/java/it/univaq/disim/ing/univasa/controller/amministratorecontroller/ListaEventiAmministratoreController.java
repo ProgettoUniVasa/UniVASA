@@ -204,8 +204,7 @@ public class ListaEventiAmministratoreController implements Initializable, DataI
 
 	@FXML
 	public void aggiungiEventoAction(ActionEvent event) {
-		
-		dispatcher.renderView("aggiungiEvento", evento);
+		dispatcher.renderView("aggiungiEvento", amministratore);
 	}
 
 	@FXML

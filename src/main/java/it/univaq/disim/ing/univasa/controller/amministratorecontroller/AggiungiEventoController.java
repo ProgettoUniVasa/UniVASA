@@ -17,7 +17,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
-public class AggiungiEventoController implements Initializable, DataInitializable<Evento> {
+public class AggiungiEventoController implements Initializable, DataInitializable<Amministratore> {
 
 	@FXML
 	private TextField nome;
@@ -53,7 +53,6 @@ public class AggiungiEventoController implements Initializable, DataInitializabl
 
 	private EventoService eventoService;
 
-	private Evento evento;
 
 	private Amministratore amministratore;
 
@@ -68,16 +67,8 @@ public class AggiungiEventoController implements Initializable, DataInitializabl
 	}
 
 	@Override
-	public void initializeData(Evento evento) {
-		this.evento = evento;
-		this.nome.setText(evento.getNome());
-		this.regolamento.setText(evento.getRegolamento());
-		this.dataInizio.setValue(evento.getDataInizio());
-		this.dataFine.setValue(evento.getDataFine());
-		this.oraInizio.setText(evento.getOraInizio());
-		this.oraFine.setText(evento.getOraFine());
-		this.luogo.setText(evento.getLuogo());
-		this.numero_preferenze_esprimibili.setText("" + evento.getNumero_preferenze_esprimibili());
+	public void initializeData(Amministratore amministratore) {
+		this.amministratore = amministratore;
 
 		// Si disabilita il bottone se i campi di seguito non rispettano le proprietà
 		// definite
@@ -92,6 +83,8 @@ public class AggiungiEventoController implements Initializable, DataInitializabl
 	@FXML
 	public void salvaAction(ActionEvent event) {
 		try {
+
+			 Evento evento = new Evento();
 			evento.setNome(nome.getText());
 			evento.setRegolamento(regolamento.getText());
 			evento.setDataInizio(dataInizio.getValue());
@@ -101,10 +94,8 @@ public class AggiungiEventoController implements Initializable, DataInitializabl
 			evento.setLuogo(luogo.getText());
 			evento.setNumero_preferenze_esprimibili(Integer.parseInt(numero_preferenze_esprimibili.getText()));
 
-			if (evento.getId() == null) {
-				eventoService.creaEvento(evento);
+			eventoService.creaEvento(evento);
 
-			}
 
 			dispatcher.renderView("listaEventiAmministratore", amministratore);
 
