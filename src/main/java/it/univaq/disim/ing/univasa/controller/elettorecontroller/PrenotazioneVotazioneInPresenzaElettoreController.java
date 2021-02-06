@@ -58,7 +58,7 @@ public class PrenotazioneVotazioneInPresenzaElettoreController implements Initia
 	}
 
 	@FXML
-	public void annullaPrenotazioneInPresenzaAction(ActionEvent event) throws BusinessException {
+	public void annullaPrenotazioneInPresenzaAction(ActionEvent event){
 		dispatcher.renderView("elencoTuttiGliEventiElettore", elettore);
 	}
 }
