@@ -368,7 +368,7 @@ public class DbUtenteServiceImpl implements UtenteService {
 		// Connessione al Database e richiamo query
 		try (Connection c = DriverManager.getConnection(url, user, pwd);) {
 
-			PreparedStatement ps = c.prepareStatement(trovaTuttiAmministratori);
+			PreparedStatement ps = c.prepareStatement(trovaTuttiElettori);
 			r = ps.executeQuery();
 
 			while (r.next()) {
