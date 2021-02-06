@@ -80,21 +80,13 @@ public class AggiungiTurnazioneController implements Initializable, DataInitiali
 	@Override
 	public void initializeData(Turnazione turnazione) {
 		this.turnazione = turnazione;
-		System.out.println(turnazione);
-		/*
-		 * this.email.setText("" + turnazione.getOperatore().getEmail());
-		 * this.fascia.setValue(turnazione.getFascia());
-		 * this.data_turno.setValue(turnazione.getData_turno());
-		 * this.nome_evento.setText("" + turnazione.getEvento().getNome());
-		 * this.luogo.setText("" + turnazione.getEvento().getLuogo());
-		 * 
-		 * // Si disabilita il bottone se i campi di seguito non rispettano le proprietà
-		 * // definite salvaButton.disableProperty()
-		 * .bind((email.textProperty().isEmpty()
-		 * .or(fascia.valueProperty().isNull().or(data_turno.valueProperty().isNull())
-		 * .or(nome_evento.textProperty().isEmpty().or(luogo.textProperty().isEmpty())))
-		 * ));
-		 */
+		// Si disabilita il bottone se i campi di seguito non rispettano le proprietà
+		// definite
+		salvaButton.disableProperty()
+				.bind((email.textProperty().isEmpty()
+						.or(fascia.valueProperty().isNull().or(data_turno.valueProperty().isNull())
+								.or(nome_evento.textProperty().isEmpty().or(luogo.textProperty().isEmpty())))));
+
 	}
 
 	@FXML

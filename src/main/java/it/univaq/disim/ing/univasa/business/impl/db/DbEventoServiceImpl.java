@@ -27,8 +27,6 @@ public class DbEventoServiceImpl implements EventoService {
 
 	// Definizione query in Java
 	private static final String creaEvento = "insert into evento (nome, regolamento, data_inizio, data_fine, ora_inizio, ora_fine, luogo, numero_preferenze_esprimibili,stato) values (?,?,?,?,?,?,?,?,'programmato') ";
-	// private static final String modificaReport = "update from evento set
-	// report_risultati=? and report_statistiche=? where id=?";
 	private static final String modificaReport = "update evento set report_risultati=?, report_statistiche=? where id=? ";
 	private static final String eliminaEvento = "delete from evento where id=?";
 	private static final String trovaTuttiEventi = "select * from evento";
@@ -41,9 +39,8 @@ public class DbEventoServiceImpl implements EventoService {
 	private static final String visualizzaCandidati = "select * from utente u join candidato c on u.email=c.email where c.id_evento=?";
 	// visualizzaPrenotatiInSede
 	private static final String visualizzaPrenotatiInSede = "select * from utente u join prenotazione p on p.id_utente=u.id where id_evento=? and tipo_prenotazione='in presenza'";
-
 	// si deve ripetere per ogni candidato che riceve voti
-	private static final String caricaRisultatiInPresenza = "update from candidatura set voti_ricevuti=voti_ricevuti+? where id_utente=? and id_evento=?"; // ciclica
+	private static final String caricaRisultatiInPresenza = "update candidato set voti_ricevuti=voti_ricevuti+? where id_utente=? and id_evento=?"; // ciclica
 	private static final String trovaEventiPrenotatiElettore = "select * from evento e join prenotazione p on e.id=p.id_utente";
 
 	@Override

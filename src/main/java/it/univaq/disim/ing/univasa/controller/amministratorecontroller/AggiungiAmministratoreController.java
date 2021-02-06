@@ -109,7 +109,7 @@ public class AggiungiAmministratoreController implements Initializable, DataInit
 			for (Amministratore a : utenteService.trovaTuttiAmministratori()) {
 				if (a.getEmail().equals(email.getText()) || a.getTelefono().equals(telefono.getText())) {
 					c++;
-					JOptionPane.showMessageDialog(null, "Esiste già questo operatore", "Errore",
+					JOptionPane.showMessageDialog(null, "Esiste già questo amministratore", "Errore",
 							JOptionPane.ERROR_MESSAGE);
 					break;
 				}
@@ -123,7 +123,7 @@ public class AggiungiAmministratoreController implements Initializable, DataInit
 			} else {
 				if (c == 0 && amministratore.getId() == null) {
 					utenteService.creaAmministratore(amministratore);
-					dispatcher.renderView("gestioneOperatoriAmministratore", amministratore);
+					dispatcher.renderView("gestioneAmministratoriAmministratore", amministratore);
 				}
 			}
 

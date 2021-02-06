@@ -54,18 +54,19 @@ public class DbUtenteServiceImpl implements UtenteService {
 	private static final String accettaCertificato = "update set stato='no' from prenotazione where id_evento=? and id_utente=?";
 	private static final String rifiutaCertificato = "delete from prenotazione where id_evento=? and id_utente=?";
 	// gestionePrenotazioni
-	private static final String gestionePrenotazioni = "select * from prenotazione where id_evento=? and (tipo='in presenza' or (tipo='online' and stato is not null))";
+	private static final String gestionePrenotazioni = "select utente.id, utente.nome, utente.cognome, utente.email, utente.username, utente.password, utente.telefono, utente.data_nascita, utente.professione, utente.nome_universita, utente.dipartimento, utente.matricola\r\n" + 
+			" from prenotazione join utente on prenotazione.id_utente = utente.id join evento on prenotazione.id_evento = evento.id where id_evento=? and (tipo_prenotazione='in presenza' or (tipo_prenotazione='online' and prenotazione.stato is not null))";
 	// modificaAmministratore
-	private static final String modificaAmministratore = "update from amministratore set telefono=?, email=?, nome_universita=?, dipartimento=? where id=?";
+	private static final String modificaAmministratore = "update utente set telefono=?, email=?, nome_universita=?, dipartimento=? where id=?";
 	// modificaOperatore
-	private static final String modificaOperatore = "update from utente set telefono=?, email=?, nome_universita=?, dipartimento=? where id=?";
+	private static final String modificaOperatore = "update utente set telefono=?, email=?, nome_universita=?, dipartimento=? where id=?";
 	// visualizzaTurnazioni
 	private static final String visualizzaTurnazioni = "select * from turnazione where id_utente=?";
 	// vota
 	private static final String vota = "update from candidato set voti_ricevuti=voti_ricevuti+1 where id_utente=? and id_evento=?"; // ciclica
-	private static final String aggiornaPrenotazione = "update from prenotazione set stato='si' where id_utente=? and id_evento=?";
+	private static final String aggiornaPrenotazione = "update prenotazione set stato='si' where id_utente=? and id_evento=?";
 	// eliminaUtente
-	private static final String eliminaUtente = "delete from utente where id_utente=?";
+	private static final String eliminaUtente = "delete from utente where id=?";
 	// utenteDaEmail
 	private static final String utenteDaEmail = "select * from utente where email=?";
 

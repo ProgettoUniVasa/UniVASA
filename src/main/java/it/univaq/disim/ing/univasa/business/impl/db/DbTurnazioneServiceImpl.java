@@ -1,18 +1,23 @@
 package it.univaq.disim.ing.univasa.business.impl.db;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.Instant;
-import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.google.protobuf.Value;
 import it.univaq.disim.ing.univasa.business.BusinessException;
 import it.univaq.disim.ing.univasa.business.EventoService;
 import it.univaq.disim.ing.univasa.business.TurnazioneService;
 import it.univaq.disim.ing.univasa.business.UtenteService;
-import it.univaq.disim.ing.univasa.domain.*;
+import it.univaq.disim.ing.univasa.domain.Operatore;
+import it.univaq.disim.ing.univasa.domain.TipologiaTurno;
+import it.univaq.disim.ing.univasa.domain.Turnazione;
 
 public class DbTurnazioneServiceImpl implements TurnazioneService {
 
@@ -23,7 +28,10 @@ public class DbTurnazioneServiceImpl implements TurnazioneService {
 	private static final String user = "root";
 	private static final String password = "";
 
-	/* -------------------------------------------------------------------------------------------------------------------------------------------- */
+	/*
+	 * -----------------------------------------------------------------------------
+	 * ---------------------------------------------------------------
+	 */
 
 	// Definizione query in Java
 	private static final String creaTurnazione = "insert into turnazione(id_utente, id_evento, fascia, data_giorno) values(?,?,?,?)";
@@ -46,8 +54,8 @@ public class DbTurnazioneServiceImpl implements TurnazioneService {
 		try (Connection c = DriverManager.getConnection(url, user, password);) {
 
 			PreparedStatement ps = c.prepareStatement(creaTurnazione);
-			ps.setLong(1, turnazione.getEvento().getId());
-			ps.setLong(2, turnazione.getOperatore().getId());
+			ps.setLong(1, turnazione.getOperatore().getId());
+			ps.setLong(2, turnazione.getEvento().getId());
 			ps.setString(3, String.valueOf(turnazione.getFascia()));
 			ps.setDate(4, data_giorno);
 
