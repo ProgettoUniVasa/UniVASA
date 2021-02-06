@@ -12,8 +12,6 @@ public interface EventoService {
 
 	void eliminaEvento(Evento evento) throws BusinessException;
 
-	void creaReport(Evento evento) throws BusinessException;
-
 	void caricaRisultatiInPresenza(Evento evento) throws  BusinessException;
 
 	void modificaReport(Evento evento) throws BusinessException;

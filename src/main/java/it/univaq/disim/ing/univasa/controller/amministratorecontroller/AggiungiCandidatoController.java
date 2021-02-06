@@ -9,8 +9,8 @@ import it.univaq.disim.ing.univasa.business.BusinessException;
 import it.univaq.disim.ing.univasa.business.UnivasaBusinessFactory;
 import it.univaq.disim.ing.univasa.business.UtenteService;
 import it.univaq.disim.ing.univasa.controller.DataInitializable;
-import it.univaq.disim.ing.univasa.domain.Amministratore;
 import it.univaq.disim.ing.univasa.domain.Candidato;
+import it.univaq.disim.ing.univasa.domain.Evento;
 import it.univaq.disim.ing.univasa.view.ViewDispatcher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,7 +18,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
-public class AggiungiCandidatoController implements Initializable, DataInitializable<Candidato> {
+public class AggiungiCandidatoController implements Initializable, DataInitializable<Evento> {
 
 	@FXML
 	private TextField nome;
@@ -39,7 +39,9 @@ public class AggiungiCandidatoController implements Initializable, DataInitializ
 
 	private UtenteService utenteService;
 
-	private Candidato candidato = new Candidato();
+	private Candidato candidato;
+
+	private Evento evento;
 
 	public AggiungiCandidatoController() {
 		dispatcher = ViewDispatcher.getInstance();
@@ -52,7 +54,7 @@ public class AggiungiCandidatoController implements Initializable, DataInitializ
 	}
 
 	@Override
-	public void initializeData(Candidato candidato) {
+	public void initializeData(Evento evento) {
 		// Si disabilita il bottone se i campi di seguito non rispettano le proprietà
 		// definite
 		aggiungiCandidatoButton.disableProperty().bind((nome.textProperty().isEmpty()
@@ -63,15 +65,14 @@ public class AggiungiCandidatoController implements Initializable, DataInitializ
 	public void aggiungiCandidatoAction(ActionEvent event) {
 		try {
 
-			// Variabile che conta il numero di operatori con email o telefono che si vuole
-			// inserire
+			// Variabile che conta il numero di candidati con email che si vuole inserire
 			int c = 0;
 			candidato.setNome(nome.getText());
 			candidato.setCognome(cognome.getText());
 			candidato.setEmail(email.getText());
 
-			for (Amministratore a : utenteService.trovaTuttiAmministratori()) {
-				if (a.getEmail().equals(email.getText())) {
+			for (Candidato ca : utenteService.trovaTuttiCandidati(evento)) {
+				if (ca.getEmail().equals(email.getText())) {
 					c++;
 					JOptionPane.showMessageDialog(null, "Esiste già questo candidato", "Errore",
 							JOptionPane.ERROR_MESSAGE);
@@ -80,8 +81,8 @@ public class AggiungiCandidatoController implements Initializable, DataInitializ
 			}
 
 			if (c == 0 && candidato.getId() == null) {
-				utenteService.creaCandidato(candidato);
-				dispatcher.renderView("gestioneCandidatiAmministratore", candidato);
+				utenteService.creaCandidato(candidato, evento);
+				dispatcher.renderView("gestioneCandidatiAmministratore", evento);
 			}
 
 		} catch (BusinessException e) {
@@ -92,7 +93,7 @@ public class AggiungiCandidatoController implements Initializable, DataInitializ
 
 	@FXML
 	public void annullaAction(ActionEvent event) {
-		dispatcher.renderView("gestioneCandidatiAmministratore", candidato);
+		dispatcher.renderView("gestioneCandidatiAmministratore", evento);
 	}
 
 }

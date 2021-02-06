@@ -2,9 +2,13 @@ package it.univaq.disim.ing.univasa.business;
 
 import java.util.List;
 
-import it.univaq.disim.ing.univasa.domain.*;
-
-import javax.swing.text.Element;
+import it.univaq.disim.ing.univasa.domain.Amministratore;
+import it.univaq.disim.ing.univasa.domain.Candidato;
+import it.univaq.disim.ing.univasa.domain.Elettore;
+import it.univaq.disim.ing.univasa.domain.ElettoreOnline;
+import it.univaq.disim.ing.univasa.domain.Evento;
+import it.univaq.disim.ing.univasa.domain.Operatore;
+import it.univaq.disim.ing.univasa.domain.Utente;
 
 public interface UtenteService {
 
@@ -12,6 +16,7 @@ public interface UtenteService {
 	Utente autenticazione(String username, String password) throws UtenteNotFoundException, BusinessException;
 
 	Utente trovaUtenteDaId(Long id) throws BusinessException;
+
 	List<Utente> trovaTuttiUtenti() throws BusinessException;
 
 	// Metodo che restituisce una lista di tutti gli amministratorei
@@ -29,20 +34,26 @@ public interface UtenteService {
 
 	void creaElettore(Elettore elettore) throws BusinessException;
 
-	void creaCandidato(Candidato candidato) throws BusinessException;
+	void creaCandidato(Candidato candidato, Evento evento) throws BusinessException;
+
+	List<Candidato> trovaTuttiCandidati(Evento evento) throws BusinessException;
 
 	// Amministratore
 	void accettaCertificato(String certificato) throws BusinessException;
-	void rifiutaCertificato(String certificato) throws BusinessException;
-	List<Elettore> gestionePrenotazioni(Evento evento) throws BusinessException;
-	void modificaOperatore(Operatore operatore) throws BusinessException;
-	void modificaAmministratore(Amministratore amministratore) throws BusinessException;
 
+	void rifiutaCertificato(String certificato) throws BusinessException;
+
+	List<Elettore> gestionePrenotazioni(Evento evento) throws BusinessException;
+
+	void modificaOperatore(Operatore operatore) throws BusinessException;
+
+	void modificaAmministratore(Amministratore amministratore) throws BusinessException;
 
 	// ElettoreOnline
 	void vota(ElettoreOnline elettoreOnline, Evento evento) throws BusinessException;
 
 	void eliminaUtente(Utente utente) throws UtenteNotFoundException, BusinessException;
 
-    Utente utenteDaEmail(String email) throws UtenteNotFoundException, BusinessException;
+	Utente utenteDaEmail(String email) throws UtenteNotFoundException, BusinessException;
+
 }

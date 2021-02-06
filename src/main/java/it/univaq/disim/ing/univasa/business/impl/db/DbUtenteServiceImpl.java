@@ -14,7 +14,14 @@ import java.util.List;
 import it.univaq.disim.ing.univasa.business.BusinessException;
 import it.univaq.disim.ing.univasa.business.UtenteNotFoundException;
 import it.univaq.disim.ing.univasa.business.UtenteService;
-import it.univaq.disim.ing.univasa.domain.*;
+import it.univaq.disim.ing.univasa.domain.Amministratore;
+import it.univaq.disim.ing.univasa.domain.Candidato;
+import it.univaq.disim.ing.univasa.domain.Elettore;
+import it.univaq.disim.ing.univasa.domain.ElettoreOnline;
+import it.univaq.disim.ing.univasa.domain.Evento;
+import it.univaq.disim.ing.univasa.domain.Operatore;
+import it.univaq.disim.ing.univasa.domain.Professione;
+import it.univaq.disim.ing.univasa.domain.Utente;
 
 public class DbUtenteServiceImpl implements UtenteService {
 
@@ -22,7 +29,10 @@ public class DbUtenteServiceImpl implements UtenteService {
 	private static final String user = "root";
 	private static final String pwd = "";
 
-	/* -------------------------------------------------------------------------------------------------------------------------------------------- */
+	/*
+	 * -----------------------------------------------------------------------------
+	 * ---------------------------------------------------------------
+	 */
 
 	// trovaUtenteById --- dobbiamo sapere che tipo di utente si tratta
 	private static final String trovaUtenteDaId = "select * from utente where id=?";
@@ -31,6 +41,7 @@ public class DbUtenteServiceImpl implements UtenteService {
 	private static final String trovaTuttiAmministratori = "select * from utente where tipo_utente='amministratore'";
 	private static final String trovaTuttiOperatori = "select * from utente where tipo_utente='operatore'";
 	private static final String trovaTuttiElettori = "select * from utente where tipo_utente='elettore'";
+	private static final String trovaTuttiCandidati = "select * from candidato where id_evento=?";
 	// creaAmministratore
 	private static final String creaAmministratore = "insert into utente (nome, cognome, email, username, password, telefono, data_nascita, professione, nome_universita, dipartimento, tipo_utente) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'amministratore')";
 	// creaOperatore
@@ -51,13 +62,12 @@ public class DbUtenteServiceImpl implements UtenteService {
 	// visualizzaTurnazioni
 	private static final String visualizzaTurnazioni = "select * from turnazione where id_utente=?";
 	// vota
-	private static final String vota = "update from candidato set voti_ricevuti=voti_ricevuti+1 where id_utente=? and id_evento=?";			// ciclica
+	private static final String vota = "update from candidato set voti_ricevuti=voti_ricevuti+1 where id_utente=? and id_evento=?"; // ciclica
 	private static final String aggiornaPrenotazione = "update from prenotazione set stato='si' where id_utente=? and id_evento=?";
 	// eliminaUtente
 	private static final String eliminaUtente = "delete from utente where id_utente=?";
 	// utenteDaEmail
 	private static final String utenteDaEmail = "select * from utente where email=?";
-
 
 	@Override
 	public Utente autenticazione(String username, String password) throws UtenteNotFoundException, BusinessException {
@@ -239,9 +249,9 @@ public class DbUtenteServiceImpl implements UtenteService {
 				utente.setCognome(r.getString(3));
 				utente.setEmail(r.getString(4));
 				// Conversione da Date a LocalDate
-				utente.setData_nascita(Instant.ofEpochMilli(r.getDate(8).getTime())
-						.atZone(ZoneId.systemDefault()).toLocalDate());
-				utente.setProfessione(Professione.valueOf(r.getString(9)));	// aaaaah
+				utente.setData_nascita(
+						Instant.ofEpochMilli(r.getDate(8).getTime()).atZone(ZoneId.systemDefault()).toLocalDate());
+				utente.setProfessione(Professione.valueOf(r.getString(9))); // aaaaah
 				utente.setNome_università(r.getString(10));
 				utente.setDipartimento(r.getString(11));
 				utente.setTelefono(r.getString(7));
@@ -289,9 +299,9 @@ public class DbUtenteServiceImpl implements UtenteService {
 				amministratore.setCognome(r.getString(3));
 				amministratore.setEmail(r.getString(4));
 				// Conversione da Date a LocalDate
-				amministratore.setData_nascita(Instant.ofEpochMilli(r.getDate(8).getTime())
-						.atZone(ZoneId.systemDefault()).toLocalDate());
-				amministratore.setProfessione(Professione.valueOf(r.getString(9)));	// aaaaah
+				amministratore.setData_nascita(
+						Instant.ofEpochMilli(r.getDate(8).getTime()).atZone(ZoneId.systemDefault()).toLocalDate());
+				amministratore.setProfessione(Professione.valueOf(r.getString(9))); // aaaaah
 				amministratore.setNome_università(r.getString(10));
 				amministratore.setDipartimento(r.getString(11));
 				amministratore.setTelefono(r.getString(7));
@@ -335,9 +345,9 @@ public class DbUtenteServiceImpl implements UtenteService {
 				operatore.setCognome(r.getString(3));
 				operatore.setEmail(r.getString(4));
 				// Conversione da Date a LocalDate
-				operatore.setData_nascita(Instant.ofEpochMilli(r.getDate(8).getTime())
-						.atZone(ZoneId.systemDefault()).toLocalDate());
-				operatore.setProfessione(Professione.valueOf(r.getString(9)));	// aaaaah
+				operatore.setData_nascita(
+						Instant.ofEpochMilli(r.getDate(8).getTime()).atZone(ZoneId.systemDefault()).toLocalDate());
+				operatore.setProfessione(Professione.valueOf(r.getString(9))); // aaaaah
 				operatore.setNome_università(r.getString(10));
 				operatore.setDipartimento(r.getString(11));
 				operatore.setTelefono(r.getString(7));
@@ -381,8 +391,8 @@ public class DbUtenteServiceImpl implements UtenteService {
 				elettore.setCognome(r.getString(3));
 				elettore.setEmail(r.getString(4));
 				// Conversione da Date a LocalDate
-				elettore.setData_nascita(Instant.ofEpochMilli(r.getDate(8).getTime())
-						.atZone(ZoneId.systemDefault()).toLocalDate());
+				elettore.setData_nascita(
+						Instant.ofEpochMilli(r.getDate(8).getTime()).atZone(ZoneId.systemDefault()).toLocalDate());
 				elettore.setProfessione(Professione.valueOf(r.getString(9)));
 				elettore.setNome_università(r.getString(10));
 				elettore.setDipartimento(r.getString(11));
@@ -490,7 +500,7 @@ public class DbUtenteServiceImpl implements UtenteService {
 	}
 
 	@Override
-	public void creaCandidato(Candidato candidato) throws BusinessException {
+	public void creaCandidato(Candidato candidato, Evento evento) throws BusinessException {
 		// Connessione al Database e richiamo query
 		try (Connection c = DriverManager.getConnection(url, user, pwd);) {
 
@@ -499,8 +509,8 @@ public class DbUtenteServiceImpl implements UtenteService {
 			ps.setString(1, candidato.getNome());
 			ps.setString(2, candidato.getCognome());
 			ps.setString(3, candidato.getEmail());
-			ps.setLong(4, candidato.getEvento().getId());
-			ps.setInt(5, candidato.getVotiRicevuti());
+			ps.setLong(4, evento.getId());
+			ps.setInt(5, candidato.getVotiRicevuti()); // 0 quando lo crei
 
 			ps.executeUpdate();
 		} catch (SQLException ex) {
@@ -594,10 +604,9 @@ public class DbUtenteServiceImpl implements UtenteService {
 		// Ehi qui mi serve la Prenotazione, abbiamo questa magnifica classe????
 	}
 
-
 	@Override
 	public void vota(ElettoreOnline elettoreOnline, Evento evento) throws BusinessException {
-			// Da vedere bene, ho bisogno di controllare la Vista e il Controller associato.
+		// Da vedere bene, ho bisogno di controllare la Vista e il Controller associato.
 	}
 
 	@Override
@@ -704,6 +713,42 @@ public class DbUtenteServiceImpl implements UtenteService {
 			}
 		}
 		return null;
+	}
+
+	@Override
+	public List<Candidato> trovaTuttiCandidati(Evento evento) throws BusinessException {
+		List<Candidato> candidati = new ArrayList<>();
+		ResultSet r = null;
+
+		// Connessione al Database e richiamo query
+		try (Connection c = DriverManager.getConnection(url, user, pwd);) {
+
+			PreparedStatement ps = c.prepareStatement(trovaTuttiCandidati);
+
+			ps.setLong(1, evento.getId());
+			r = ps.executeQuery();
+
+			while (r.next()) {
+				Candidato candidato = new Candidato();
+				candidato.setId(r.getLong(1));
+				candidato.setNome(r.getString(2));
+				candidato.setCognome(r.getString(3));
+				candidato.setEmail(r.getString(4));
+				candidato.setEvento(evento);
+				candidati.add(candidato);
+			}
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		} finally {
+			if (r != null) {
+				try {
+					r.close();
+				} catch (SQLException ex) {
+					ex.printStackTrace();
+				}
+			}
+		}
+		return candidati;
 	}
 
 }

@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 import it.univaq.disim.ing.univasa.business.BusinessException;
 import it.univaq.disim.ing.univasa.business.EventoService;
 import it.univaq.disim.ing.univasa.business.UnivasaBusinessFactory;
+import it.univaq.disim.ing.univasa.business.UtenteService;
 import it.univaq.disim.ing.univasa.controller.DataInitializable;
 import it.univaq.disim.ing.univasa.domain.Amministratore;
 import it.univaq.disim.ing.univasa.domain.Candidato;
@@ -67,13 +68,15 @@ public class GestioneCandidatiAmministratoreController implements Initializable,
 
 	@FXML
 	private Button aggiungiCandidatoButton;
-	
+
 	@FXML
 	private Button indietroButton;
 
 	private ViewDispatcher dispatcher;
 
 	private EventoService eventoService;
+
+	private UtenteService utenteService;
 
 	private Candidato candidato;
 
@@ -85,6 +88,7 @@ public class GestioneCandidatiAmministratoreController implements Initializable,
 		dispatcher = ViewDispatcher.getInstance();
 		UnivasaBusinessFactory factory = UnivasaBusinessFactory.getInstance();
 		eventoService = factory.getEventoService();
+		utenteService = factory.getUtenteService();
 	}
 
 	@Override
@@ -93,7 +97,7 @@ public class GestioneCandidatiAmministratoreController implements Initializable,
 		cognomeTableColumn.setCellValueFactory(new PropertyValueFactory<>("cognome"));
 		emailTableColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
 		telefonoTableColumn.setCellValueFactory(new PropertyValueFactory<>("telefono"));
-		dataNascitaTableColumn.setCellValueFactory(new PropertyValueFactory<>("dataNascita"));
+		dataNascitaTableColumn.setCellValueFactory(new PropertyValueFactory<>("data_nascita"));
 		professioneTableColumn.setCellValueFactory(new PropertyValueFactory<>("professione"));
 		nomeUniversitàTableColumn.setCellValueFactory(new PropertyValueFactory<>("nome_università"));
 		dipartimentoTableColumn.setCellValueFactory(new PropertyValueFactory<>("dipartimento"));
@@ -121,6 +125,8 @@ public class GestioneCandidatiAmministratoreController implements Initializable,
 	@Override
 	public void initializeData(Evento evento) {
 		try {
+			this.evento = evento;
+			//Amministratore amministratore = utenteService.trovaUtenteDaId(evento.getAmministratori());
 			List<Candidato> candidati = eventoService.visualizzaCandidati(evento);
 			ObservableList<Candidato> candidatiData = FXCollections.observableArrayList(candidati);
 			candidatiTable.setItems(candidatiData);
@@ -131,9 +137,14 @@ public class GestioneCandidatiAmministratoreController implements Initializable,
 
 	@FXML
 	public void aggiungiCandidatoAction(ActionEvent event) {
-		dispatcher.renderView("aggiungiCandidato", evento.getCandidati());
+		dispatcher.renderView("aggiungiCandidato", evento);
 	}
-
+	
+	/*@FXML
+	public void indietroAction(ActionEvent event) {
+		dispatcher.renderView("prescrizioniMedico", prescrizione.getMedico());
+	}*/
+	
 	@FXML
 	public void indietroAction(ActionEvent event) {
 		dispatcher.renderView("listaEventiAmministratore", evento.getAmministratori());

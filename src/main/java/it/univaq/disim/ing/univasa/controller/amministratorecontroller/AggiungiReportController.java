@@ -95,9 +95,8 @@ public class AggiungiReportController implements Initializable, DataInitializabl
 			evento.setReport_risultati(report_risultati.getText());
 			evento.setReport_statistiche(report_statistiche.getText());
 
-			if (evento.getId() == null) {
-				eventoService.creaEvento(evento);
-
+			if (evento.getId() != null) {
+				eventoService.modificaReport(evento);
 			}
 
 			dispatcher.renderView("listaReportAmministratore", amministratore);

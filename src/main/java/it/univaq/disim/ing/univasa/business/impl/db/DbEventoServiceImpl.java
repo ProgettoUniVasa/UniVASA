@@ -19,29 +19,24 @@ import it.univaq.disim.ing.univasa.domain.Evento;
 import it.univaq.disim.ing.univasa.domain.Professione;
 import it.univaq.disim.ing.univasa.domain.StatoEvento;
 
-//aggiungere l'ora
 public class DbEventoServiceImpl implements EventoService {
 
 	private static final String url = "jdbc:mysql://localhost:3306/univasa?noAccessToProcedureBodies=true&serverTimezone=Europe/Rome";
 	private static final String user = "root";
 	private static final String password = "";
 
-	// Aggiungere query e implementare metodo modificaReport
-	/*
-	 * -----------------------------------------------------------------------------
-	 * ---------------------------------------------------------------
-	 */
-
 	// Definizione query in Java
 	private static final String creaEvento = "insert into evento (nome, regolamento, data_inizio, data_fine, ora_inizio, ora_fine, luogo, numero_preferenze_esprimibili,stato) values (?,?,?,?,?,?,?,?,'programmato') ";
-	private static final String creaReport = "insert into evento (report_risultati, report_statistiche) values (?,?) where id=?";
+	// private static final String modificaReport = "update from evento set
+	// report_risultati=? and report_statistiche=? where id=?";
+	private static final String modificaReport = "update evento set report_risultati=?, report_statistiche=? where id=? ";
 	private static final String eliminaEvento = "delete from evento where id=?";
 	private static final String trovaTuttiEventi = "select * from evento";
 	private static final String trovaEventoDaId = "select * from evento where id=?";
 	private static final String trovaNomiEventi = "select nome from evento";
 	private static final String eventoDaNome = "select * from evento where nome=?";
 	private static final String trovaEventiDaLuogo = "select * from evento where luogo=?";
-	private static final String trovaEventiDaPrenotare = "SELECT * from evento where id not in (select e.id from evento e join prenotazione p on e.id=p.id_evento where e.data_inizio>now() and p.id_utente=?)";
+	private static final String trovaEventiDaPrenotare = "select * from evento where data_inizio>now() and id not in (select e.id from prenotazione as p join evento as e on p.id_evento=e.id where p.id_utente=?)";
 	private static final String trovaEventiFinitiPrenotati = "select * from evento e join prenotazione p on e.id=p.id_evento where e.data_fine<now() and p.id_utente=?";
 	private static final String visualizzaCandidati = "select * from utente u join candidato c on u.email=c.email where c.id_evento=?";
 	// visualizzaPrenotatiInSede
@@ -78,14 +73,15 @@ public class DbEventoServiceImpl implements EventoService {
 	}
 
 	@Override
-	public void creaReport(Evento evento) throws BusinessException {
+	public void modificaReport(Evento evento) throws BusinessException {
 		// Connessione al Database e richiamo query
 		try (Connection c = DriverManager.getConnection(url, user, password);) {
 
-			PreparedStatement ps = c.prepareStatement(creaReport);
+			PreparedStatement ps = c.prepareStatement(modificaReport);
+
+			ps.setLong(3, evento.getId());
 			ps.setString(1, evento.getReport_risultati());
 			ps.setString(2, evento.getReport_statistiche());
-			ps.setLong(3, evento.getId());
 
 			ps.executeUpdate();
 
@@ -468,12 +464,6 @@ public class DbEventoServiceImpl implements EventoService {
 			}
 		}
 		return result;
-	}
-
-	@Override
-	public void modificaReport(Evento evento) {
-		// TODO Auto-generated method stub
-
 	}
 
 }
