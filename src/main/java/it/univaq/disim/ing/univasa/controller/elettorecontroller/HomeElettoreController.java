@@ -19,7 +19,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
 
-public class HomeElettoreController implements Initializable, DataInitializable<Elettore> { //DataInitializable<Elettore>?
+public class HomeElettoreController implements Initializable, DataInitializable<Elettore> {
 	
 	private ViewDispatcher dispatcher;
 	private Elettore elettore;

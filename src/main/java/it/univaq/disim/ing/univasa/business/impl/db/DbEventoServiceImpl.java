@@ -428,6 +428,7 @@ public class DbEventoServiceImpl implements EventoService {
 		try (Connection c = DriverManager.getConnection(url, user, password);) {
 
 			PreparedStatement ps = c.prepareStatement(trovaEventiFinitiPrenotati);
+			ps.setLong(1, elettore.getId());
 			r = ps.executeQuery();
 
 			while (r.next()) {

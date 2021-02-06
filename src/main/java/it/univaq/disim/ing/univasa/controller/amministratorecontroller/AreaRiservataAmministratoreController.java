@@ -3,6 +3,8 @@ package it.univaq.disim.ing.univasa.controller.amministratorecontroller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import it.univaq.disim.ing.univasa.business.UnivasaBusinessFactory;
+import it.univaq.disim.ing.univasa.business.UtenteService;
 import it.univaq.disim.ing.univasa.controller.DataInitializable;
 import it.univaq.disim.ing.univasa.domain.Amministratore;
 import it.univaq.disim.ing.univasa.view.ViewDispatcher;
@@ -40,8 +42,14 @@ public class AreaRiservataAmministratoreController implements Initializable, Dat
 	private ViewDispatcher dispatcher;
 
 	private Amministratore amministratore;
+	
+	private UtenteService utenteService;
+
 
 	public AreaRiservataAmministratoreController() {
+		dispatcher = ViewDispatcher.getInstance();
+		UnivasaBusinessFactory factory = UnivasaBusinessFactory.getInstance();
+		utenteService = factory.getUtenteService();
 	}
 
 	@Override

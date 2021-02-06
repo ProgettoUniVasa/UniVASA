@@ -14,6 +14,7 @@ import it.univaq.disim.ing.univasa.domain.Elettore;
 import it.univaq.disim.ing.univasa.domain.Evento;
 import it.univaq.disim.ing.univasa.view.ViewDispatcher;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -38,10 +39,10 @@ public class ElencoReportController implements Initializable, DataInitializable<
 	private TableColumn<Evento, String> nomeTableColumn;
 	
 	@FXML
-	private TableColumn<Evento, LocalDateTime> dataOraInizioTableColumn;
+	private TableColumn<Evento, String> dataOraInizioTableColumn;
 	
 	@FXML
-	private TableColumn<Evento, LocalDateTime> dataOraFineTableColumn;
+	private TableColumn<Evento, String> dataOraFineTableColumn;
 	
 	@FXML
 	private TableColumn<Evento, String> luogoTableColumn;
@@ -70,8 +71,28 @@ public class ElencoReportController implements Initializable, DataInitializable<
 	@Override
 	public void initialize (URL url, ResourceBundle resourceBundle) {
 		nomeTableColumn.setCellValueFactory(new PropertyValueFactory<>("nome"));
-		dataOraInizioTableColumn.setCellValueFactory(new PropertyValueFactory<>("dataOraInizio"));
-		dataOraFineTableColumn.setCellValueFactory(new PropertyValueFactory<>("dataOraFine"));
+		
+		dataOraInizioTableColumn.setStyle("-fx-alignment: CENTER;");
+		dataOraInizioTableColumn.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<Evento, String>, ObservableValue<String>>() {
+					@Override
+					public ObservableValue<String> call(CellDataFeatures<Evento, String> param) {
+						return new SimpleStringProperty(param.getValue().getDataInizio().toString() + "\n ore: "
+								+ param.getValue().getOraInizio());
+					}
+				});
+		
+		dataOraFineTableColumn.setStyle("-fx-alignment: CENTER;");
+		dataOraFineTableColumn.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<Evento, String>, ObservableValue<String>>() {
+					@Override
+					public ObservableValue<String> call(CellDataFeatures<Evento, String> param) {
+						return new SimpleStringProperty(
+								param.getValue().getDataFine().toString() + "\n ore: " + param.getValue().getOraFine());
+					}
+				});
+		
+		luogoTableColumn.setStyle("-fx-alignment: CENTER;");
 		luogoTableColumn.setCellValueFactory(new PropertyValueFactory<>("luogo"));
 		
 		reportTableColumn.setStyle("-fx-alignment: CENTER;");
@@ -91,6 +112,7 @@ public class ElencoReportController implements Initializable, DataInitializable<
 						return new SimpleObjectProperty<Button>(reportButton);
 					}
 				});
+	
 	}
 	
 	@Override

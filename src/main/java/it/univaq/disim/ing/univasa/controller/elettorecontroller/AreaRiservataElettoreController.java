@@ -3,6 +3,8 @@ package it.univaq.disim.ing.univasa.controller.elettorecontroller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import it.univaq.disim.ing.univasa.business.UnivasaBusinessFactory;
+import it.univaq.disim.ing.univasa.business.UtenteService;
 import it.univaq.disim.ing.univasa.controller.DataInitializable;
 import it.univaq.disim.ing.univasa.domain.Elettore;
 import it.univaq.disim.ing.univasa.view.ViewDispatcher;
@@ -15,6 +17,7 @@ public class AreaRiservataElettoreController implements Initializable, DataIniti
 	
 	private ViewDispatcher dispatcher;
 	private Elettore elettore;
+	private UtenteService utenteService;
 
 	@FXML
 	private Label nomeLabel;
@@ -44,6 +47,9 @@ public class AreaRiservataElettoreController implements Initializable, DataIniti
 	private Label usernameLabel;
 
 	public AreaRiservataElettoreController() {
+		dispatcher = ViewDispatcher.getInstance();
+		UnivasaBusinessFactory factory = UnivasaBusinessFactory.getInstance();
+		utenteService = factory.getUtenteService();
 	}
 
 	@Override
@@ -52,6 +58,7 @@ public class AreaRiservataElettoreController implements Initializable, DataIniti
 
 	@Override
 	public void initializeData(Elettore elettore) {
+		
 		this.elettore = elettore;
 		this.nomeLabel.setText(elettore.getNome());
 		this.cognomeLabel.setText(elettore.getCognome());
@@ -63,12 +70,12 @@ public class AreaRiservataElettoreController implements Initializable, DataIniti
 		this.matricolaLabel.setText(elettore.getMatricola());
 		
 		this.usernameLabel.setText(elettore.getUsername());
-
+		
 	}
 	
 	@FXML
 	public void indietroAction(ActionEvent event) {
-			dispatcher.renderView("homeElettore", elettore);
+		dispatcher.renderView("homeElettore", elettore);
 	}
 
 

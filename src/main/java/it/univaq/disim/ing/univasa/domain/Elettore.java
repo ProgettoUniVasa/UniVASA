@@ -10,8 +10,6 @@ public class Elettore extends Utente {
 	private boolean certificato;
 	private Set<Evento> evento = new HashSet<>();
 
-	
-
 	public Elettore() {
 		super();
 	}
@@ -50,13 +48,14 @@ public class Elettore extends Utente {
 		this.evento = evento;
 	}
 
-	
-	// Operations
-	/*
-	 * public candidatura() { //TODO }
-	 * 
-	 * public prenotazioneInSede() { //TODO }
-	 * 
-	 * public prenotazioneOnline() { //TODO }
-	 */
+	@Override
+	public String toString() {
+		return "Elettore [Id=" + getId() + ", Nome=" + getNome() + ", Cognome=" + getCognome() + ", Email=" + getEmail()
+				+ ", Username=" + getUsername() + ", Password=" + getPassword() + ", Telefono=" + getTelefono()
+				+ ", Data_nascita=" + getData_nascita() + ", Professione=" + getProfessione() + ", Nome_università="
+				+ getNome_università() + ", Dipartimento=" + getDipartimento() + ", matricola=" + matricola
+				+ ", certificato=" + certificato + ", evento=" + evento + ", getClass()=" + getClass() + ", hashCode()="
+				+ hashCode() + ", toString()=" + super.toString() + "]";
+	}
+
 }

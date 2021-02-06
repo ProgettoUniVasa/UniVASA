@@ -3,6 +3,8 @@ package it.univaq.disim.ing.univasa.controller.operatorecontroller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import it.univaq.disim.ing.univasa.business.UnivasaBusinessFactory;
+import it.univaq.disim.ing.univasa.business.UtenteService;
 import it.univaq.disim.ing.univasa.controller.DataInitializable;
 import it.univaq.disim.ing.univasa.domain.Operatore;
 import it.univaq.disim.ing.univasa.domain.Utente;
@@ -16,6 +18,7 @@ public class AreaRiservataOperatoreController implements Initializable, DataInit
 	
 	private ViewDispatcher dispatcher;
 	private Utente utente;
+	private UtenteService utenteService;
 
 	@FXML
 	private Label nomeLabel;
@@ -43,6 +46,9 @@ public class AreaRiservataOperatoreController implements Initializable, DataInit
 
 
 	public AreaRiservataOperatoreController() {
+		dispatcher = ViewDispatcher.getInstance();
+		UnivasaBusinessFactory factory = UnivasaBusinessFactory.getInstance();
+		utenteService = factory.getUtenteService();
 	}
 
 
