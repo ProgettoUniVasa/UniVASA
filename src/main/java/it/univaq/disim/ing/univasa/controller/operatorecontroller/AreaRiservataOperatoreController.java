@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import it.univaq.disim.ing.univasa.business.UnivasaBusinessFactory;
 import it.univaq.disim.ing.univasa.business.UtenteService;
 import it.univaq.disim.ing.univasa.controller.DataInitializable;
+import it.univaq.disim.ing.univasa.domain.Amministratore;
 import it.univaq.disim.ing.univasa.domain.Operatore;
 import it.univaq.disim.ing.univasa.domain.Utente;
 import it.univaq.disim.ing.univasa.view.ViewDispatcher;
@@ -14,10 +15,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 
-public class AreaRiservataOperatoreController implements Initializable, DataInitializable<Utente> {
+public class AreaRiservataOperatoreController implements Initializable, DataInitializable<Operatore> {
 	
 	private ViewDispatcher dispatcher;
-	private Utente utente;
+	private Operatore operatore;
 	private UtenteService utenteService;
 
 	@FXML
@@ -57,22 +58,23 @@ public class AreaRiservataOperatoreController implements Initializable, DataInit
 	}
 
 	@Override
-	public void initializeData(Utente utente) {
+	public void initializeData(Operatore operatore) {
+		this.operatore = operatore;
 
-		this.nomeLabel.setText(utente.getNome());
-		this.cognomeLabel.setText(utente.getCognome());
-		this.emailLabel.setText(utente.getEmail());
-		this.data_nascitaLabel.setText("" + utente.getData_nascita());
-		this.telefonoLabel.setText(utente.getTelefono());
-		this.nome_universitàLabel.setText(utente.getNome_università());
-		this.dipartimentoLabel.setText(utente.getDipartimento());
-		this.usernameLabel.setText(utente.getUsername());
+		this.nomeLabel.setText(operatore.getNome());
+		this.cognomeLabel.setText(operatore.getCognome());
+		this.emailLabel.setText(operatore.getEmail());
+		this.data_nascitaLabel.setText("" + operatore.getData_nascita());
+		this.telefonoLabel.setText(operatore.getTelefono());
+		this.nome_universitàLabel.setText(operatore.getNome_università());
+		this.dipartimentoLabel.setText(operatore.getDipartimento());
+		this.usernameLabel.setText(operatore.getUsername());
 
 	}
 	
 	@FXML
 	public void indietroAction(ActionEvent event) {
-			dispatcher.renderView("dashboardOperatore", utente);
+			dispatcher.renderView("dashboardOperatore", operatore);
 	}
 
 }
