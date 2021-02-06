@@ -135,6 +135,7 @@ public class GestioneOperatoriAmministratoreController implements Initializable,
 	@Override
 	public void initializeData(Amministratore amministratore) {
 		try {
+			this.amministratore = amministratore;
 			List<Operatore> operatori = utenteService.trovaTuttiOperatori();
 			ObservableList<Operatore> operatoriData = FXCollections.observableArrayList(operatori);
 			operatoriTable.setItems(operatoriData);

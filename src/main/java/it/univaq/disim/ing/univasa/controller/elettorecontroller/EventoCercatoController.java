@@ -64,6 +64,7 @@ public class EventoCercatoController implements Initializable, DataInitializable
 
 	@Override
 	public void initializeData(Evento evento) {
+		this.elettore = elettore;
 		this.evento = evento;
 		this.nome.setText(evento.getNome());
 		this.dataInizio.setValue(evento.getDataInizio());

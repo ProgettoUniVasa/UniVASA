@@ -57,6 +57,7 @@ public class AreaRiservataAmministratoreController implements Initializable, Dat
 
 	@Override
 	public void initializeData(Amministratore amministratore) {
+		this.amministratore = amministratore;
 		this.nomeLabel.setText(amministratore.getNome());
 		this.cognomeLabel.setText(amministratore.getCognome());
 		this.emailLabel.setText(amministratore.getEmail());

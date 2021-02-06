@@ -38,6 +38,7 @@ public class VotazioneOnlineController implements Initializable, DataInitializab
 	@Override
 	public void initializeData(Evento evento) {
 		try {
+			this.elettore = elettore;
 			List<Candidato> candidati = eventoService.visualizzaCandidati(evento);
 			ObservableList<Candidato> candidatiData = FXCollections.observableArrayList(candidati);
 			//candidatiGrid   ??????? .setItems(candidatiData);

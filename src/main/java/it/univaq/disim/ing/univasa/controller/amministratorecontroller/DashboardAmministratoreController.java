@@ -85,7 +85,8 @@ public class DashboardAmministratoreController implements Initializable, DataIni
 
 	@FXML
 	public void visualizzaProfiloAction(MouseEvent event) {
+		System.out.println(amministratore);
 		dispatcher.renderView("areaRiservataAmministratore", amministratore);
-	};
+	}
 
 }

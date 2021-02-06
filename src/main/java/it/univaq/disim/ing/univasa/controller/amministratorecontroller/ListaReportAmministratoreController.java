@@ -132,9 +132,9 @@ public class ListaReportAmministratoreController implements Initializable, DataI
 	@Override
 	public void initializeData(Amministratore amministratore) {
 		try {
+			this.amministratore = amministratore;
 			List<Evento> evento = eventoService.trovaTuttiEventi();
 			ObservableList<Evento> eventiData = FXCollections.observableArrayList(evento);
-
 			reportTable.setItems(eventiData);
 
 		} catch (BusinessException e) {

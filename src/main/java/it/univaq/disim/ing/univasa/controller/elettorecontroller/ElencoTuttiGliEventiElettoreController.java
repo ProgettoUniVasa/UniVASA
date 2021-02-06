@@ -10,6 +10,7 @@ import it.univaq.disim.ing.univasa.business.UnivasaBusinessFactory;
 import it.univaq.disim.ing.univasa.controller.DataInitializable;
 import it.univaq.disim.ing.univasa.domain.Elettore;
 import it.univaq.disim.ing.univasa.domain.Evento;
+import it.univaq.disim.ing.univasa.domain.Prenotazione;
 import it.univaq.disim.ing.univasa.view.ViewDispatcher;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -162,6 +163,7 @@ public class ElencoTuttiGliEventiElettoreController implements Initializable, Da
 	@Override
 	public void initializeData(Elettore elettore) {
 		try {
+			this.elettore = elettore;
 			List<Evento> eventi = eventoService.trovaEventiDaPrenotare(elettore);
 			ObservableList<Evento> eventiData = FXCollections.observableArrayList(eventi);
 			tuttiGliEventiTable.setItems(eventiData);

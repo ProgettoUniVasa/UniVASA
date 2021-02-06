@@ -47,8 +47,8 @@
             <TableColumn fx:id="dataOraFineTableColumn" prefWidth="118.40003967285156" text="Data e ora fine" />
             <TableColumn fx:id="luogoTableColumn" prefWidth="118.4000244140625" text="Luogo" />
             <TableColumn fx:id="regolamentoTableColumn" prefWidth="118.39996337890625" text="Regolamento" />
-            <TableColumn fx:id="prenotazioneInPresenzaTableColumn" prefWidth="150.4000244140625" text="Prenotazione in presenza" />
-            <TableColumn fx:id="prenotazioneOnlineTableColumn" prefWidth="124.79998779296875" text="Prenotazione Online" />
+            <TableColumn fx:id="prenotazioneInPresenzaTableColumn" prefWidth="148.80010986328125" text="Prenotazione in presenza" />
+            <TableColumn fx:id="prenotazioneOnlineTableColumn" prefWidth="119.19997558593752" text="Prenotazione Online" />
         </columns>
          <VBox.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" />

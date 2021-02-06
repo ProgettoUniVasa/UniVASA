@@ -1,11 +1,15 @@
 package it.univaq.disim.ing.univasa.controller.elettorecontroller;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import it.univaq.disim.ing.univasa.controller.DataInitializable;
 import it.univaq.disim.ing.univasa.domain.Elettore;
+import it.univaq.disim.ing.univasa.domain.Prenotazione;
 import it.univaq.disim.ing.univasa.view.ViewDispatcher;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -27,11 +31,16 @@ public class CambioModalitaVotazioneController implements Initializable, DataIni
 
 
 	public CambioModalitaVotazioneController() {
+
 	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-
+	}
+	
+	@Override
+	public void initializeData(Elettore elettore) {
+		this.elettore = elettore;
 	}
 
 	@FXML

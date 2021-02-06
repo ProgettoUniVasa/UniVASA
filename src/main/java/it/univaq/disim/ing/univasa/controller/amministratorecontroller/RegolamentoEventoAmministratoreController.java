@@ -1,4 +1,4 @@
-package it.univaq.disim.ing.univasa.controller.elettorecontroller;
+package it.univaq.disim.ing.univasa.controller.amministratorecontroller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import it.univaq.disim.ing.univasa.business.EventoService;
 import it.univaq.disim.ing.univasa.business.UnivasaBusinessFactory;
 import it.univaq.disim.ing.univasa.controller.DataInitializable;
+import it.univaq.disim.ing.univasa.domain.Amministratore;
 import it.univaq.disim.ing.univasa.domain.Elettore;
 import it.univaq.disim.ing.univasa.domain.Evento;
 import it.univaq.disim.ing.univasa.view.ViewDispatcher;
@@ -15,7 +16,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
-public class RegolamentoEventoPersonaleController implements Initializable, DataInitializable<Evento> {
+public class RegolamentoEventoAmministratoreController implements Initializable, DataInitializable<Evento>{
+
 
 	@FXML
 	private TextField nome;
@@ -32,9 +34,9 @@ public class RegolamentoEventoPersonaleController implements Initializable, Data
 
 	private Evento evento;
 
-	private Elettore elettore;
+	private Amministratore amministratore;
 
-	public RegolamentoEventoPersonaleController() {
+	public RegolamentoEventoAmministratoreController() {
 		dispatcher = ViewDispatcher.getInstance();
 		UnivasaBusinessFactory factory = UnivasaBusinessFactory.getInstance();
 		eventoService = factory.getEventoService();
@@ -46,7 +48,6 @@ public class RegolamentoEventoPersonaleController implements Initializable, Data
 
 	@Override
 	public void initializeData(Evento evento) {
-		this.elettore = elettore;
 		this.evento = evento;
 		this.nome.setText(evento.getNome());
 		this.regolamento.setText(evento.getRegolamento());
@@ -56,6 +57,7 @@ public class RegolamentoEventoPersonaleController implements Initializable, Data
 
 	@FXML
 	public void indietroAction(ActionEvent event) {
-		dispatcher.renderView("elencoEventiPersonaliElettore", elettore);
+		dispatcher.renderView("listaEventiAmministratore", amministratore);
 	}
+
 }

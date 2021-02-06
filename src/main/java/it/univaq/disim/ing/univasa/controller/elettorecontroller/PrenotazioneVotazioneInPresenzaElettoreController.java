@@ -13,7 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 
-public class PrenotazioneVotazioneInPresenzaElettoreController implements Initializable, DataInitializable<Evento> {
+public class PrenotazioneVotazioneInPresenzaElettoreController implements Initializable, DataInitializable<Evento> { //<T> deve essere la prenotazione....
 
 	@FXML
 	private Button prenotatiInPresenzaButton;
@@ -44,6 +44,7 @@ public class PrenotazioneVotazioneInPresenzaElettoreController implements Initia
 
 	@Override
 	public void initializeData(Evento evento) {
+		this.elettore = elettore;
 	}
 
 	@FXML

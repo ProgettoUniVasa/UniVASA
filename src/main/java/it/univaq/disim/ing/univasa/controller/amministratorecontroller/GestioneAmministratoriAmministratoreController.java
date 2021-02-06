@@ -131,6 +131,7 @@ public class GestioneAmministratoriAmministratoreController
 	@Override
 	public void initializeData(Amministratore amministratore) {
 		try {
+			this.amministratore = amministratore;
 			List<Amministratore> amministratori = utenteService.trovaTuttiAmministratori();
 			ObservableList<Amministratore> amministratoriData = FXCollections.observableArrayList(amministratori);
 			amministratoriTable.setItems(amministratoriData);
