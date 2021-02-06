@@ -11,7 +11,7 @@
 
 <VBox prefHeight="582.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.amministratorecontroller.ListaEventiAmministratoreController">
    <children>
-      <Label fx:id="eventiLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="39.0" prefWidth="873.0" text="Lista Eventi" textAlignment="CENTER" textFill="#0abab5">
+      <Label fx:id="eventiLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="39.0" prefWidth="873.0" text="Lista Eventi" textAlignment="CENTER" textFill="ORANGE">
          <font>
             <Font name="Palatino Linotype Bold" size="30.0" />
          </font>

@@ -11,7 +11,7 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="1031.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.amministratorecontroller.GestioneOperatoriAmministratoreController">
    <children>
-      <Label alignment="CENTER" prefHeight="39.0" prefWidth="1107.0" text="Gestione Operatori di Seggio" textFill="#0abab5">
+      <Label alignment="CENTER" prefHeight="39.0" prefWidth="1107.0" text="Gestione Operatori di Seggio" textFill="ORANGE">
          <font>
             <Font name="Palatino Linotype Bold" size="30.0" />
          </font>
@@ -36,7 +36,7 @@
             </Button>
          </children>
       </HBox>
-      <TableView fx:id="operatoriTable" prefHeight="472.0" prefWidth="698.0" style="-fx-background-color: #0ABAB5;">
+      <TableView fx:id="operatoriTable" prefHeight="472.0" prefWidth="698.0" style="-fx-background-color: orange;">
          <columns>
             <TableColumn fx:id="nomeTableColumn" prefWidth="88.0" text="Nome" />
             <TableColumn fx:id="cognomeTableColumn" prefWidth="102.0" text="Cognome" />

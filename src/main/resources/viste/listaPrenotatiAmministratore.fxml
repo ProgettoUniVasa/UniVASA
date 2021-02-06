@@ -11,7 +11,7 @@
 
 <VBox prefHeight="507.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.amministratorecontroller.ListaPrenotatiAmministratoreController">
    <children>
-      <Label fx:id="prenotatiLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="39.0" prefWidth="766.0" text="Lista Prenotati" textAlignment="CENTER" textFill="#0abab5">
+      <Label fx:id="prenotatiLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="39.0" prefWidth="766.0" text="Lista Prenotati" textAlignment="CENTER" textFill="ORANGE">
          <font>
             <Font name="Palatino Linotype Bold" size="30.0" />
          </font>
@@ -24,7 +24,7 @@
             <Button fx:id="indietroButton" mnemonicParsing="false" onAction="#indietroAction" prefHeight="39.0" prefWidth="92.0" text="Indietro" />
          </children>
       </HBox>
-      <TableView fx:id="prenotatiTable" prefHeight="463.0" prefWidth="599.0" style="-fx-background-color: #0ABAB5;">
+      <TableView fx:id="prenotatiTable" prefHeight="463.0" prefWidth="599.0" style="-fx-background-color: orange;">
         <columns>
           <TableColumn fx:id="nomeTableColumn" prefWidth="117.0" text="Nome" />
             <TableColumn fx:id="cognomeTableColumn" prefWidth="134.0" text="Cognome" />

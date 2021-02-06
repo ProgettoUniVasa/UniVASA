@@ -11,7 +11,7 @@
 
 <VBox prefHeight="580.0" prefWidth="841.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.amministratorecontroller.ListaTurnazioniAmministratoreController">
    <children>
-      <Label fx:id="turniLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="39.0" prefWidth="766.0" text="Lista Turni" textAlignment="CENTER" textFill="#0abab5">
+      <Label fx:id="turniLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="39.0" prefWidth="766.0" text="Lista Turni" textAlignment="CENTER" textFill="ORANGE">
          <font>
             <Font name="Palatino Linotype Bold" size="30.0" />
          </font>
@@ -32,7 +32,7 @@
             </Button>
          </children>
       </HBox>
-      <TableView fx:id="turniTable" prefHeight="463.0" prefWidth="599.0" style="-fx-background-color: #0ABAB5;">
+      <TableView fx:id="turniTable" prefHeight="463.0" prefWidth="599.0" style="-fx-background-color: orange;">
         <columns>
           <TableColumn fx:id="emailTableColumn" prefWidth="215.0" text="Email operatore" />
             <TableColumn fx:id="fasciaTableColumn" prefWidth="88.0" text="Fascia Oraria" />

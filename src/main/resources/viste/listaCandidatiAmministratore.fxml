@@ -11,7 +11,7 @@
 
 <VBox prefHeight="576.0" prefWidth="1215.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.amministratorecontroller.GestioneCandidatiAmministratoreController">
    <children>
-      <Label fx:id="candidatiLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="39.0" prefWidth="1196.0" text="Lista Candidati" textAlignment="CENTER" textFill="#0abab5">
+      <Label fx:id="candidatiLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="39.0" prefWidth="1196.0" text="Lista Candidati" textAlignment="CENTER" textFill="ORANGE">
          <font>
             <Font name="Palatino Linotype Bold" size="30.0" />
          </font>
@@ -32,7 +32,7 @@
             </Button>
          </children>
       </HBox>
-      <TableView fx:id="candidatiTable" prefHeight="464.0" prefWidth="743.0" style="-fx-background-color: #0ABAB5;">
+      <TableView fx:id="candidatiTable" prefHeight="464.0" prefWidth="743.0" style="-fx-background-color: orange;">
         <columns>
           <TableColumn fx:id="nomeTableColumn" prefWidth="115.0" text="Nome" />
             <TableColumn fx:id="cognomeTableColumn" prefWidth="117.0" text="Cognome" />
