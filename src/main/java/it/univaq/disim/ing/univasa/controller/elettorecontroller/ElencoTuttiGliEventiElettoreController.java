@@ -174,6 +174,7 @@ public class ElencoTuttiGliEventiElettoreController implements Initializable, Da
 
 	@FXML
 	private void cercaAction(ActionEvent event) {
+
 		try {
 			String eventoCercato = cercaEvento.getText();
 			

@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="352.0" prefWidth="642.0" style="-fx-background-color: #0ABAB5;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.amministratorecontroller.ModificaOperatoreController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="352.0" prefWidth="642.0" style="-fx-background-color: orange;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.amministratorecontroller.ModificaOperatoreController">
    <children>
       <Label fx:id="titolo" alignment="CENTER" contentDisplay="CENTER" prefHeight="49.0" prefWidth="698.0" text="Modifica Operatore">
          <font>

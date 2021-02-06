@@ -27,10 +27,13 @@
       </Label>
       <HBox prefHeight="44.0" prefWidth="798.0">
          <children>
-            <Label prefHeight="40.0" prefWidth="386.0" textFill="RED">
+            <Label fx:id="ricercaErrorLabel" alignment="TOP_LEFT" prefHeight="40.0" prefWidth="243.0" textFill="RED">
                <HBox.margin>
-                  <Insets left="200.0" />
+                  <Insets left="350.0" />
                </HBox.margin>
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
             </Label>
             <TextField fx:id="cercaEvento" prefHeight="26.0" prefWidth="182.0">
                <HBox.margin>

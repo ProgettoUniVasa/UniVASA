@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="419.0" prefWidth="748.0" style="-fx-background-color: #0ABAB5;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.amministratorecontroller.EliminaAmministratoreController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="419.0" prefWidth="748.0" style="-fx-background-color: orange;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.amministratorecontroller.EliminaAmministratoreController">
    <children>
       <Label alignment="CENTER" prefHeight="70.0" prefWidth="807.0" text="Sei sicuro di voler eliminare questo Amministratore?">
          <font>
