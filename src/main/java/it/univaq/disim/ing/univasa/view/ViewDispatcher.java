@@ -52,11 +52,9 @@ public class ViewDispatcher {
 			layout = (BorderPane) layoutView.getView();
 			if (utente instanceof Amministratore) {
 				renderView("dashboardAmministratore", utente);
-			}
-			else if (utente instanceof Operatore) {
+			} else if (utente instanceof Operatore) {
 				renderView("dashboardOperatore", utente);
-			}
-			else if (utente instanceof Elettore) {
+			} else if (utente instanceof Elettore) {
 				renderView("homeElettore", utente);
 			}
 			Scene scene = new Scene(layout);
@@ -91,12 +89,12 @@ public class ViewDispatcher {
 		}
 	}
 
-	// Metodo per la registrazione di un utente
-	public void registratiAction(Utente utente) {
+	// Metodo per la registrazione di un elettore
+	public void registratiAction(Elettore elettore) {
 		try {
 			View<Utente> layoutView = loadView("registraElettore");
 			DataInitializable<Utente> layoutController = layoutView.getController();
-			layoutController.initializeData(utente);
+			layoutController.initializeData(elettore);
 
 			layout = (BorderPane) layoutView.getView();
 

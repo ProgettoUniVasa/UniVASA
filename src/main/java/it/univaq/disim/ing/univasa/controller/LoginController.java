@@ -7,6 +7,7 @@ import it.univaq.disim.ing.univasa.business.BusinessException;
 import it.univaq.disim.ing.univasa.business.UnivasaBusinessFactory;
 import it.univaq.disim.ing.univasa.business.UtenteNotFoundException;
 import it.univaq.disim.ing.univasa.business.UtenteService;
+import it.univaq.disim.ing.univasa.domain.Elettore;
 import it.univaq.disim.ing.univasa.domain.Utente;
 import it.univaq.disim.ing.univasa.view.ViewDispatcher;
 import javafx.event.ActionEvent;
@@ -56,7 +57,7 @@ public class LoginController implements Initializable, DataInitializable<Object>
 			Utente utente = utenteService.autenticazione(username.getText(), password.getText());
 			dispatcher.loggedIn(utente);
 		} catch (UtenteNotFoundException e) {
-			loginErrorLabel.setText("username e/o password errati");
+			loginErrorLabel.setText("Username e/o password errati!");
 		} catch (BusinessException e) {
 			dispatcher.renderError(e);
 		}
@@ -64,7 +65,7 @@ public class LoginController implements Initializable, DataInitializable<Object>
 
 	@FXML
 	private void registratiAction(MouseEvent click) {
-		Utente utente = new Utente();
-		dispatcher.registratiAction(utente);
+		Elettore elettore = new Elettore();
+		dispatcher.registraElettore(elettore);
 	}
 }
