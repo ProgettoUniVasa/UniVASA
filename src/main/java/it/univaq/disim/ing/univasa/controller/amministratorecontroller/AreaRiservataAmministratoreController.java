@@ -5,19 +5,13 @@ import java.util.ResourceBundle;
 
 import it.univaq.disim.ing.univasa.controller.DataInitializable;
 import it.univaq.disim.ing.univasa.domain.Amministratore;
-import it.univaq.disim.ing.univasa.domain.Elettore;
-import it.univaq.disim.ing.univasa.domain.Operatore;
-import it.univaq.disim.ing.univasa.domain.Utente;
 import it.univaq.disim.ing.univasa.view.ViewDispatcher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 
-public class AreaRiservataAmministratoreController implements Initializable, DataInitializable<Utente> {
-	
-	private ViewDispatcher dispatcher;
-	private Utente utente;
+public class AreaRiservataAmministratoreController implements Initializable, DataInitializable<Amministratore> {
 
 	@FXML
 	private Label nomeLabel;
@@ -43,6 +37,10 @@ public class AreaRiservataAmministratoreController implements Initializable, Dat
 	@FXML
 	private Label usernameLabel;
 
+	private ViewDispatcher dispatcher;
+
+	private Amministratore amministratore;
+
 	public AreaRiservataAmministratoreController() {
 	}
 
@@ -51,22 +49,20 @@ public class AreaRiservataAmministratoreController implements Initializable, Dat
 	}
 
 	@Override
-	public void initializeData(Utente utente) {
-
-		this.nomeLabel.setText(utente.getNome());
-		this.cognomeLabel.setText(utente.getCognome());
-		this.emailLabel.setText(utente.getEmail());
-		this.data_nascitaLabel.setText("" + utente.getData_nascita());
-		this.telefonoLabel.setText(utente.getTelefono());
-		this.nome_universitàLabel.setText(utente.getNome_università());
-		this.dipartimentoLabel.setText(utente.getDipartimento());
-		this.usernameLabel.setText(utente.getUsername());
-
+	public void initializeData(Amministratore amministratore) {
+		this.nomeLabel.setText(amministratore.getNome());
+		this.cognomeLabel.setText(amministratore.getCognome());
+		this.emailLabel.setText(amministratore.getEmail());
+		this.data_nascitaLabel.setText("" + amministratore.getData_nascita());
+		this.telefonoLabel.setText(amministratore.getTelefono());
+		this.nome_universitàLabel.setText(amministratore.getNome_università());
+		this.dipartimentoLabel.setText(amministratore.getDipartimento());
+		this.usernameLabel.setText(amministratore.getUsername());
 	}
-	
+
 	@FXML
 	public void indietroAction(ActionEvent event) {
-			dispatcher.renderView("dashboardAmministratore", utente);
+		dispatcher.renderView("dashboardAmministratore", amministratore);
 	}
 
 }

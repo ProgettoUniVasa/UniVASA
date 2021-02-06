@@ -10,6 +10,8 @@ import it.univaq.disim.ing.univasa.business.EventoService;
 import it.univaq.disim.ing.univasa.business.UnivasaBusinessFactory;
 import it.univaq.disim.ing.univasa.controller.DataInitializable;
 import it.univaq.disim.ing.univasa.domain.Amministratore;
+import it.univaq.disim.ing.univasa.domain.Candidato;
+import it.univaq.disim.ing.univasa.domain.Elettore;
 import it.univaq.disim.ing.univasa.domain.Evento;
 import it.univaq.disim.ing.univasa.view.ViewDispatcher;
 import javafx.beans.property.SimpleObjectProperty;
@@ -67,24 +69,24 @@ public class ListaEventiAmministratoreController implements Initializable, DataI
 	private TableColumn<Evento, Integer> numero_preferenze_esprimibiliTableColumn;
 
 	@FXML
-	private TableColumn<Evento, Button> azioniTableColumn;
+	private TableColumn<Candidato, Button> azioniTableColumn;
 
 	@FXML
-	private TableColumn<Evento, Button> azioni2TableColumn;
+	private TableColumn<Elettore, Button> azioni2TableColumn;
 
 	@FXML
 	private TableColumn<Evento, Button> eliminaTableColumn;
 
 	@FXML
 	private Button aggiungiEventoButton;
-	
+
 	@FXML
 	private Button indietroButton;
 
 	private ViewDispatcher dispatcher;
 
 	private EventoService eventoService;
-	
+
 	private Amministratore amministratore;
 
 	public ListaEventiAmministratoreController() {
@@ -109,10 +111,10 @@ public class ListaEventiAmministratoreController implements Initializable, DataI
 
 		azioniTableColumn.setStyle("-fx-alignment: CENTER;");
 		azioniTableColumn.setCellValueFactory(
-				new Callback<TableColumn.CellDataFeatures<Evento, Button>, ObservableValue<Button>>() {
+				new Callback<TableColumn.CellDataFeatures<Candidato, Button>, ObservableValue<Button>>() {
 
 					@Override
-					public ObservableValue<Button> call(CellDataFeatures<Evento, Button> param) {
+					public ObservableValue<Button> call(CellDataFeatures<Candidato, Button> param) {
 						final Button visualizzaButton = new Button("Visualizza Candidati");
 						visualizzaButton.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -127,10 +129,10 @@ public class ListaEventiAmministratoreController implements Initializable, DataI
 
 		azioni2TableColumn.setStyle("-fx-alignment: CENTER;");
 		azioni2TableColumn.setCellValueFactory(
-				new Callback<TableColumn.CellDataFeatures<Evento, Button>, ObservableValue<Button>>() {
+				new Callback<TableColumn.CellDataFeatures<Elettore, Button>, ObservableValue<Button>>() {
 
 					@Override
-					public ObservableValue<Button> call(CellDataFeatures<Evento, Button> param) {
+					public ObservableValue<Button> call(CellDataFeatures<Elettore, Button> param) {
 						final Button visualizzaButton = new Button("Visualizza Prenotati");
 						visualizzaButton.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -179,7 +181,7 @@ public class ListaEventiAmministratoreController implements Initializable, DataI
 		Evento evento = new Evento();
 		dispatcher.renderView("aggiungiEvento", evento);
 	}
-	
+
 	@FXML
 	public void indietroAction(ActionEvent event) {
 		dispatcher.renderView("dashboardAmministratore", amministratore);
