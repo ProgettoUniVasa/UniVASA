@@ -61,9 +61,6 @@ public class ListaReportAmministratoreController implements Initializable, DataI
 	private TableColumn<Evento, Button> modificaTableColumn;
 
 	@FXML
-	private TableColumn<Evento, Button> eliminaTableColumn;
-
-	@FXML
 	private Button aggiungiReportButton;
 
 	@FXML
@@ -106,24 +103,6 @@ public class ListaReportAmministratoreController implements Initializable, DataI
 							}
 						});
 						return new SimpleObjectProperty<Button>(modificaButton);
-					}
-				});
-
-		eliminaTableColumn.setStyle("-fx-alignment: CENTER;");
-		eliminaTableColumn.setCellValueFactory(
-				new Callback<TableColumn.CellDataFeatures<Evento, Button>, ObservableValue<Button>>() {
-
-					@Override
-					public ObservableValue<Button> call(CellDataFeatures<Evento, Button> param) {
-						final Button eliminaButton = new Button("Elimina");
-						eliminaButton.setOnAction(new EventHandler<ActionEvent>() {
-
-							@Override
-							public void handle(ActionEvent event) {
-								dispatcher.renderView("eliminaReport", param.getValue());
-							}
-						});
-						return new SimpleObjectProperty<Button>(eliminaButton);
 					}
 				});
 

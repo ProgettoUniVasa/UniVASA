@@ -34,8 +34,7 @@
             <TableColumn fx:id="report_risultatiTableColumn" prefWidth="128.0" text="Report Risultati" />
             <TableColumn fx:id="report_statisticheTableColumn" prefWidth="131.0" text="Report Statistiche" />
             <TableColumn fx:id="modificaTableColumn" prefWidth="136.0" text="Aggiungi Report" />
-            <TableColumn fx:id="eliminaTableColumn" minWidth="0.0" prefWidth="65.0" text="Elimina" />
-        </columns>
+           </columns>
          <VBox.margin>
             <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
          </VBox.margin>
