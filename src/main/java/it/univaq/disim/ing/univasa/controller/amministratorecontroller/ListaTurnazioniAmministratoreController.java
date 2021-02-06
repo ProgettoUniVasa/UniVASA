@@ -9,10 +9,7 @@ import it.univaq.disim.ing.univasa.business.BusinessException;
 import it.univaq.disim.ing.univasa.business.TurnazioneService;
 import it.univaq.disim.ing.univasa.business.UnivasaBusinessFactory;
 import it.univaq.disim.ing.univasa.controller.DataInitializable;
-import it.univaq.disim.ing.univasa.domain.Amministratore;
-import it.univaq.disim.ing.univasa.domain.Evento;
-import it.univaq.disim.ing.univasa.domain.Operatore;
-import it.univaq.disim.ing.univasa.domain.Turnazione;
+import it.univaq.disim.ing.univasa.domain.*;
 import it.univaq.disim.ing.univasa.view.ViewDispatcher;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ObservableValue;
@@ -39,7 +36,7 @@ public class ListaTurnazioniAmministratoreController implements Initializable, D
 	private TableView<Turnazione> turnoTable;
 
 	@FXML
-	private TableColumn<Operatore, String> emailTableColumn;
+	private TableColumn<Turnazione, String> emailTableColumn;
 
 	@FXML
 	private TableColumn<Turnazione, String> fasciaTableColumn;
@@ -48,10 +45,10 @@ public class ListaTurnazioniAmministratoreController implements Initializable, D
 	private TableColumn<Turnazione, LocalDate> data_turnoTableColumn;
 
 	@FXML
-	private TableColumn<Evento, String> nome_eventoTableColumn;
+	private TableColumn<Turnazione, String> nome_eventoTableColumn;
 
 	@FXML
-	private TableColumn<Evento, String> luogoTableColumn;
+	private TableColumn<Turnazione, String> luogoTableColumn;
 
 	@FXML
 	private TableColumn<Turnazione, Button> eliminaTableColumn;
@@ -76,12 +73,30 @@ public class ListaTurnazioniAmministratoreController implements Initializable, D
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
-		emailTableColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
+
+		emailTableColumn.setCellValueFactory(
+			new Callback<TableColumn.CellDataFeatures<Turnazione, String>, ObservableValue<String>>() {
+				@Override
+				public ObservableValue<String> call(CellDataFeatures<Turnazione, String> param) {
+					return new SimpleObjectProperty<String>(param.getValue().getOperatore().getEmail());
+				}
+			});
 		fasciaTableColumn.setCellValueFactory(new PropertyValueFactory<>("fascia"));
 		data_turnoTableColumn.setCellValueFactory(new PropertyValueFactory<>("data_turno"));
-		nome_eventoTableColumn.setCellValueFactory(new PropertyValueFactory<>("data_turno"));
-		luogoTableColumn.setCellValueFactory(new PropertyValueFactory<>("data_turno"));
-
+		nome_eventoTableColumn.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<Turnazione, String>, ObservableValue<String>>() {
+					@Override
+					public ObservableValue<String> call(CellDataFeatures<Turnazione, String> param) {
+						return new SimpleObjectProperty<String>(param.getValue().getEvento().getNome());
+					}
+				});
+		luogoTableColumn.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<Turnazione, String>, ObservableValue<String>>() {
+					@Override
+					public ObservableValue<String> call(CellDataFeatures<Turnazione, String> param) {
+						return new SimpleObjectProperty<String>(param.getValue().getEvento().getLuogo());
+					}
+				});
 		eliminaTableColumn.setStyle("-fx-alignment: CENTER;");
 		eliminaTableColumn.setCellValueFactory(
 				new Callback<TableColumn.CellDataFeatures<Turnazione, Button>, ObservableValue<Button>>() {
