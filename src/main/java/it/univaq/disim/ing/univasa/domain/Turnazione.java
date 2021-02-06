@@ -61,5 +61,13 @@ public class Turnazione {
 	public void setOperatore(Operatore operatore) {
 		this.operatore = operatore;
 	}
+	
+	@Override
+	public String toString() {
+		return "Turnazione [id=" + id + ", evento=" + evento + ", operatore=" + operatore + ", fascia=" + fascia
+				+ ", data_turno=" + data_turno + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
+				+ ", toString()=" + super.toString() + "]";
+	}
+
 
 }

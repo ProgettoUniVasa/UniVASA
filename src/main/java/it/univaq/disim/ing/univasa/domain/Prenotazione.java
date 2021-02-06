@@ -86,4 +86,10 @@ public class Prenotazione {
 		Certificato = certificato;
 	}
 
+	@Override
+	public String toString() {
+		return "Prenotazione [id=" + id + ", evento=" + evento + ", elettore=" + elettore + ", tipoPrenotazione="
+				+ tipoPrenotazione + ", stato=" + stato + ", Certificato=" + Certificato + ", getClass()=" + getClass()
+				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
+	}
 }

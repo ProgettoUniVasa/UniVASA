@@ -136,6 +136,15 @@ public class Utente {
 		this.dipartimento = dipartimento;
 	}
 
+	@Override
+	public String toString() {
+		return "Utente [id=" + id + ", nome=" + nome + ", cognome=" + cognome + ", email=" + email + ", username="
+				+ username + ", password=" + password + ", telefono=" + telefono + ", data_nascita=" + data_nascita
+				+ ", professione=" + professione + ", nome_università=" + nome_università + ", dipartimento="
+				+ dipartimento + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
+				+ super.toString() + "]";
+	}
+
 	// operations
 	/*
 	 * public logIn() { //TODO }

@@ -57,4 +57,11 @@ public class Candidato {
 	public void setEvento(Evento evento) {
 		this.evento = evento;
 	}
+
+	@Override
+	public String toString() {
+		return "Candidato [id=" + id + ", nome=" + nome + ", cognome=" + cognome + ", email=" + email
+				+ ", votiRicevuti=" + votiRicevuti + ", evento=" + evento + ", getClass()=" + getClass()
+				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
+	}
 }

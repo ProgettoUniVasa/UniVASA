@@ -27,6 +27,18 @@ public class Amministratore extends Utente {
 	public void setEvento(Set<Evento> evento) {
 		this.evento = evento;
 	}
+
+	@Override
+	public String toString() {
+		return "Amministratore [evento=" + evento + ", getId()=" + getId() + ", getNome()=" + getNome()
+				+ ", getCognome()=" + getCognome() + ", getEmail()=" + getEmail() + ", getUsername()=" + getUsername()
+				+ ", getPassword()=" + getPassword() + ", getTelefono()=" + getTelefono() + ", getData_nascita()="
+				+ getData_nascita() + ", getProfessione()=" + getProfessione() + ", getNome_università()="
+				+ getNome_università() + ", getDipartimento()=" + getDipartimento() + ", toString()=" + super.toString()
+				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + "]";
+	}
+	
+	
 	// Operations
 
 	/*

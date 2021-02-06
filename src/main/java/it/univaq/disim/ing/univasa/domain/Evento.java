@@ -200,6 +200,18 @@ public class Evento {
 	public void setElettoriInSede(Set<ElettoreInSede> elettoriInSede) {
 		this.elettoriInSede = elettoriInSede;
 	}
+
+	@Override
+	public String toString() {
+		return "Evento [id=" + id + ", nome=" + nome + ", regolamento=" + regolamento + ", dataInizio=" + dataInizio
+				+ ", dataFine=" + dataFine + ", oraInizio=" + oraInizio + ", oraFine=" + oraFine + ", luogo=" + luogo
+				+ ", report_risultati=" + report_risultati + ", report_statistiche=" + report_statistiche
+				+ ", numero_preferenze_esprimibili=" + numero_preferenze_esprimibili + ", statoEvento=" + statoEvento
+				+ ", amministratori=" + amministratori + ", candidati=" + candidati + ", operatori=" + operatori
+				+ ", schedeOnline=" + schedeOnline + ", elettoriInSede=" + elettoriInSede + ", getClass()=" + getClass()
+				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
+	}
+	
 // operations
 	/*
 	 * 
