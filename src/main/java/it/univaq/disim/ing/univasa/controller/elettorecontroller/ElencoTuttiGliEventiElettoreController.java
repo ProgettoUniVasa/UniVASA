@@ -176,7 +176,7 @@ public class ElencoTuttiGliEventiElettoreController implements Initializable, Da
 			String eventoCercato = cercaEvento.getText();
 			
 			for (Evento e : eventoService.trovaEventiDaPrenotare(elettore)) {
-				System.out.println("nel metodo     " + elettore.getId());
+
 				if (e.getNome().equals(eventoCercato)) {
 
 					evento = e;
