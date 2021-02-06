@@ -71,19 +71,20 @@ public class EliminaCandidatoController implements Initializable, DataInitializa
 	@FXML
 	public void eliminaAction(ActionEvent event) {
 
-		//try {
+		try {
 
-			//utenteService.eliminaCandidato(candidato);
-			//dispatcher.renderView("gestioneCandidatiAmministratore", amministratore);
+			utenteService.eliminaCandidato(candidato);
+			dispatcher.renderView("listaCandidatiAmministratore", candidato.getEvento());
 
-		//} catch (BusinessException e) {
+		} catch (BusinessException e) {
 			//e.printStackTrace();
-		//}
+		}
 
 	}
 
 	@FXML
 	public void annullaAction(ActionEvent event) {
-		dispatcher.renderView("gestioneCandidatiAmministratore", amministratore);
+		dispatcher.renderView("listaCandidatiAmministratore", candidato.getEvento());
 	}
+
 }

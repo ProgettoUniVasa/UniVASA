@@ -95,12 +95,7 @@ public class GestioneCandidatiAmministratoreController implements Initializable,
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 		nomeTableColumn.setCellValueFactory(new PropertyValueFactory<>("nome"));
 		cognomeTableColumn.setCellValueFactory(new PropertyValueFactory<>("cognome"));
-		emailTableColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
-		telefonoTableColumn.setCellValueFactory(new PropertyValueFactory<>("telefono"));
-		dataNascitaTableColumn.setCellValueFactory(new PropertyValueFactory<>("data_nascita"));
-		professioneTableColumn.setCellValueFactory(new PropertyValueFactory<>("professione"));
-		nomeUniversitàTableColumn.setCellValueFactory(new PropertyValueFactory<>("nome_università"));
-		dipartimentoTableColumn.setCellValueFactory(new PropertyValueFactory<>("dipartimento"));
+		emailTableColumn.setCellValueFactory(new PropertyValueFactory<>("email"));;
 
 		eliminaTableColumn.setStyle("-fx-alignment: CENTER;");
 		eliminaTableColumn.setCellValueFactory(
@@ -147,6 +142,6 @@ public class GestioneCandidatiAmministratoreController implements Initializable,
 	
 	@FXML
 	public void indietroAction(ActionEvent event) {
-		dispatcher.renderView("listaEventiAmministratore", evento.getAmministratori());
+		dispatcher.renderView("listaEventiAmministratore", amministratore);
 	}
 }

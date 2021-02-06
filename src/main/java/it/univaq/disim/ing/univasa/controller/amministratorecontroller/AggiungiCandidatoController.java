@@ -39,7 +39,7 @@ public class AggiungiCandidatoController implements Initializable, DataInitializ
 
 	private UtenteService utenteService;
 
-	private Candidato candidato;
+
 
 	private Evento evento;
 
@@ -55,6 +55,7 @@ public class AggiungiCandidatoController implements Initializable, DataInitializ
 
 	@Override
 	public void initializeData(Evento evento) {
+		this.evento = evento;
 		// Si disabilita il bottone se i campi di seguito non rispettano le proprietà
 		// definite
 		aggiungiCandidatoButton.disableProperty().bind((nome.textProperty().isEmpty()
@@ -64,7 +65,7 @@ public class AggiungiCandidatoController implements Initializable, DataInitializ
 	@FXML
 	public void aggiungiCandidatoAction(ActionEvent event) {
 		try {
-
+			 Candidato candidato = new Candidato();
 			// Variabile che conta il numero di candidati con email che si vuole inserire
 			int c = 0;
 			candidato.setNome(nome.getText());
@@ -82,7 +83,7 @@ public class AggiungiCandidatoController implements Initializable, DataInitializ
 
 			if (c == 0 && candidato.getId() == null) {
 				utenteService.creaCandidato(candidato, evento);
-				dispatcher.renderView("gestioneCandidatiAmministratore", evento);
+				dispatcher.renderView("listaCandidatiAmministratore", evento);
 			}
 
 		} catch (BusinessException e) {
@@ -93,7 +94,7 @@ public class AggiungiCandidatoController implements Initializable, DataInitializ
 
 	@FXML
 	public void annullaAction(ActionEvent event) {
-		dispatcher.renderView("gestioneCandidatiAmministratore", evento);
+		dispatcher.renderView("listaCandidatiAmministratore", evento);
 	}
 
 }

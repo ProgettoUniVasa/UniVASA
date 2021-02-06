@@ -67,6 +67,7 @@ public class DbUtenteServiceImpl implements UtenteService {
 	private static final String aggiornaPrenotazione = "update prenotazione set stato='si' where id_utente=? and id_evento=?";
 	// eliminaUtente
 	private static final String eliminaUtente = "delete from utente where id=?";
+	private static final String eliminaCandidato = "delete from candidato where email=?";
 	// utenteDaEmail
 	private static final String utenteDaEmail = "select * from utente where email=?";
 
@@ -511,7 +512,6 @@ public class DbUtenteServiceImpl implements UtenteService {
 			ps.setString(2, candidato.getCognome());
 			ps.setString(3, candidato.getEmail());
 			ps.setLong(4, evento.getId());
-			ps.setInt(5, candidato.getVotiRicevuti()); // 0 quando lo crei
 
 			ps.executeUpdate();
 		} catch (SQLException ex) {
@@ -714,6 +714,23 @@ public class DbUtenteServiceImpl implements UtenteService {
 			}
 		}
 		return null;
+	}
+
+	@Override
+	public void eliminaCandidato(Candidato candidato) throws BusinessException {
+		// Connessione al Database e richiamo query
+		try (Connection c = DriverManager.getConnection(url, user, pwd);) {
+
+			PreparedStatement ps = c.prepareStatement(eliminaCandidato);
+
+			System.out.println(candidato.getId());
+			ps.setString(1, candidato.getEmail());
+
+			ps.executeUpdate();
+
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
 	}
 
 	@Override
