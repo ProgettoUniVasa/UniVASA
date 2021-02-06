@@ -13,7 +13,11 @@ import java.util.List;
 
 import it.univaq.disim.ing.univasa.business.BusinessException;
 import it.univaq.disim.ing.univasa.business.EventoService;
-import it.univaq.disim.ing.univasa.domain.*;
+import it.univaq.disim.ing.univasa.domain.Candidato;
+import it.univaq.disim.ing.univasa.domain.Elettore;
+import it.univaq.disim.ing.univasa.domain.Evento;
+import it.univaq.disim.ing.univasa.domain.Professione;
+import it.univaq.disim.ing.univasa.domain.StatoEvento;
 
 //aggiungere l'ora
 public class DbEventoServiceImpl implements EventoService {
@@ -22,7 +26,11 @@ public class DbEventoServiceImpl implements EventoService {
 	private static final String user = "root";
 	private static final String password = "";
 
-	/* -------------------------------------------------------------------------------------------------------------------------------------------- */
+	// Aggiungere query e implementare metodo modificaReport
+	/*
+	 * -----------------------------------------------------------------------------
+	 * ---------------------------------------------------------------
+	 */
 
 	// Definizione query in Java
 	private static final String creaEvento = "insert into evento (nome, regolamento, data_inizio, data_fine, ora_inizio, ora_fine, luogo, numero_preferenze_esprimibili,stato) values (?,?,?,?,?,?,?,?,'programmato') ";
@@ -40,9 +48,8 @@ public class DbEventoServiceImpl implements EventoService {
 	private static final String visualizzaPrenotatiInSede = "select * from utente u join prenotazione p on p.id_utente=u.id where id_evento=? and tipo_prenotazione='in presenza'";
 
 	// si deve ripetere per ogni candidato che riceve voti
-	private static final String caricaRisultatiInPresenza = "update from candidatura set voti_ricevuti=voti_ricevuti+? where id_utente=? and id_evento=?";	// ciclica
+	private static final String caricaRisultatiInPresenza = "update from candidatura set voti_ricevuti=voti_ricevuti+? where id_utente=? and id_evento=?"; // ciclica
 	private static final String trovaEventiPrenotatiElettore = "select * from evento e join prenotazione p on e.id=p.id_utente";
-
 
 	@Override
 	public void creaEvento(Evento evento) throws BusinessException {
@@ -129,8 +136,6 @@ public class DbEventoServiceImpl implements EventoService {
 
 		return elettori;
 	}
-
-
 
 	@Override
 	public void eliminaEvento(Evento evento) throws BusinessException {
@@ -219,7 +224,7 @@ public class DbEventoServiceImpl implements EventoService {
 		try (Connection c = DriverManager.getConnection(url, user, password);) {
 
 			PreparedStatement ps = c.prepareStatement(trovaEventiDaPrenotare);
-			ps.setLong(1,elettore.getId());
+			ps.setLong(1, elettore.getId());
 			r = ps.executeQuery();
 
 			while (r.next()) {
@@ -465,5 +470,10 @@ public class DbEventoServiceImpl implements EventoService {
 		return result;
 	}
 
+	@Override
+	public void modificaReport(Evento evento) {
+		// TODO Auto-generated method stub
+
+	}
 
 }

@@ -112,7 +112,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="nome_universitàLabel" prefHeight="41.0" prefWidth="434.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
+            <Label fx:id="nome_universitaLabel" prefHeight="41.0" prefWidth="434.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
                <font>
                   <Font size="18.0" />
                </font>

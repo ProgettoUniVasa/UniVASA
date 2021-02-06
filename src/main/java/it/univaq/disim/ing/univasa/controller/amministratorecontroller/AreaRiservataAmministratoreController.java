@@ -31,7 +31,7 @@ public class AreaRiservataAmministratoreController implements Initializable, Dat
 	private Label telefonoLabel;
 
 	@FXML
-	private Label nome_universitàLabel;
+	private Label nome_universitaLabel;
 
 	@FXML
 	private Label dipartimentoLabel;
@@ -42,9 +42,8 @@ public class AreaRiservataAmministratoreController implements Initializable, Dat
 	private ViewDispatcher dispatcher;
 
 	private Amministratore amministratore;
-	
-	private UtenteService utenteService;
 
+	private UtenteService utenteService;
 
 	public AreaRiservataAmministratoreController() {
 		dispatcher = ViewDispatcher.getInstance();
@@ -63,7 +62,7 @@ public class AreaRiservataAmministratoreController implements Initializable, Dat
 		this.emailLabel.setText(amministratore.getEmail());
 		this.data_nascitaLabel.setText("" + amministratore.getData_nascita());
 		this.telefonoLabel.setText(amministratore.getTelefono());
-		this.nome_universitàLabel.setText(amministratore.getNome_università());
+		this.nome_universitaLabel.setText(amministratore.getNome_università());
 		this.dipartimentoLabel.setText(amministratore.getDipartimento());
 		this.usernameLabel.setText(amministratore.getUsername());
 	}

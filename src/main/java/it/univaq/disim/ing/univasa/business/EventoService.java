@@ -16,6 +16,8 @@ public interface EventoService {
 
 	void caricaRisultatiInPresenza(Evento evento) throws  BusinessException;
 
+	void modificaReport(Evento evento) throws BusinessException;
+
 	List<Evento> trovaTuttiEventi() throws BusinessException;
 
 	List<Evento> trovaEventiDaPrenotare(Elettore elettore) throws  BusinessException;

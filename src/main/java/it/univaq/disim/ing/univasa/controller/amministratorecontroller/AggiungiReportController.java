@@ -23,6 +23,9 @@ public class AggiungiReportController implements Initializable, DataInitializabl
 	private TextField nomeEvento;
 
 	@FXML
+	private TextField regolamentoEvento;
+
+	@FXML
 	private DatePicker dataInizio;
 
 	@FXML
@@ -65,6 +68,7 @@ public class AggiungiReportController implements Initializable, DataInitializabl
 	public void initializeData(Evento evento) {
 		this.evento = evento;
 		this.nomeEvento.setText(evento.getNome());
+		this.regolamentoEvento.setText(evento.getRegolamento());
 		this.dataInizio.setValue(evento.getDataInizio());
 		this.dataFine.setValue(evento.getDataFine());
 		this.luogo.setText(evento.getLuogo());
@@ -73,15 +77,18 @@ public class AggiungiReportController implements Initializable, DataInitializabl
 
 		// Si disabilita il bottone se i campi di seguito non rispettano le proprietà
 		// definite
-		salvaButton.disableProperty().bind((nomeEvento.textProperty().isEmpty().or((dataInizio.valueProperty().isNull())
-				.or(dataFine.valueProperty().isNull().or(luogo.textProperty().isEmpty().or(
-						report_risultati.textProperty().isEmpty().or(report_statistiche.textProperty().isEmpty())))))));
+		salvaButton.disableProperty()
+				.bind((nomeEvento.textProperty().isEmpty().or(regolamentoEvento.textProperty().isEmpty())
+						.or((dataInizio.valueProperty().isNull()).or(
+								dataFine.valueProperty().isNull().or(luogo.textProperty().isEmpty().or(report_risultati
+										.textProperty().isEmpty().or(report_statistiche.textProperty().isEmpty())))))));
 	}
 
 	@FXML
 	public void salvaAction(ActionEvent event) {
 		try {
 			evento.setNome(nomeEvento.getText());
+			evento.setRegolamento(regolamentoEvento.getText());
 			evento.setDataInizio(dataInizio.getValue());
 			evento.setDataFine(dataFine.getValue());
 			evento.setLuogo(luogo.getText());

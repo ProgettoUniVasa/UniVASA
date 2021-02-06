@@ -35,6 +35,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
             <Label alignment="CENTER" prefHeight="148.0" prefWidth="346.0" text="Nome:">
@@ -42,22 +43,22 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" prefHeight="146.0" prefWidth="696.0" text="Data Inizio:" GridPane.rowIndex="1">
+            <Label alignment="CENTER" prefHeight="146.0" prefWidth="696.0" text="Data Inizio:" GridPane.rowIndex="2">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" prefHeight="146.0" prefWidth="696.0" text="Data Fine:" GridPane.rowIndex="2">
+            <Label alignment="CENTER" prefHeight="146.0" prefWidth="696.0" text="Data Fine:" GridPane.rowIndex="3">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" prefHeight="232.0" prefWidth="567.0" text="Luogo:" GridPane.rowIndex="3">
+            <Label alignment="CENTER" prefHeight="232.0" prefWidth="567.0" text="Luogo:" GridPane.rowIndex="4">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" prefHeight="232.0" prefWidth="567.0" text="Report Risultati:" GridPane.rowIndex="4">
+            <Label alignment="CENTER" prefHeight="232.0" prefWidth="567.0" text="Report Risultati:" GridPane.rowIndex="5">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
@@ -67,28 +68,38 @@
                   <Insets right="20.0" />
                </GridPane.margin>
             </TextField>
-            <DatePicker fx:id="dataInizio" editable="false" prefHeight="35.0" prefWidth="423.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <DatePicker fx:id="dataFine" editable="false" prefHeight="35.0" prefWidth="435.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <DatePicker fx:id="dataInizio" editable="false" prefHeight="35.0" prefWidth="423.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <DatePicker fx:id="dataFine" editable="false" prefHeight="35.0" prefWidth="435.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets right="20.0" />
                </GridPane.margin>
             </DatePicker>
-            <TextField fx:id="luogo" editable="false" prefHeight="35.0" prefWidth="435.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <TextField fx:id="luogo" editable="false" prefHeight="35.0" prefWidth="435.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <GridPane.margin>
                   <Insets right="20.0" />
                </GridPane.margin>
             </TextField>
-            <TextField fx:id="report_risultati" editable="false" prefHeight="35.0" prefWidth="435.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <TextField fx:id="report_risultati" editable="false" prefHeight="35.0" prefWidth="435.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                <GridPane.margin>
                   <Insets right="20.0" />
                </GridPane.margin>
             </TextField>
-            <Label alignment="CENTER" prefHeight="232.0" prefWidth="567.0" text="Report Statistiche:" GridPane.rowIndex="5">
+            <Label alignment="CENTER" prefHeight="232.0" prefWidth="567.0" text="Report Statistiche:" GridPane.rowIndex="6">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <TextField fx:id="report_statistiche" editable="false" prefHeight="35.0" prefWidth="395.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+            <TextField fx:id="report_statistiche" editable="false" prefHeight="35.0" prefWidth="395.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+               <GridPane.margin>
+                  <Insets right="20.0" />
+               </GridPane.margin>
+            </TextField>
+            <Label alignment="CENTER" prefHeight="148.0" prefWidth="346.0" text="Regolamento" GridPane.rowIndex="1">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <TextField fx:id="regolamento" editable="false" prefHeight="33.0" prefWidth="414.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets right="20.0" />
                </GridPane.margin>

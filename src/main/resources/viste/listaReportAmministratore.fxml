@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="563.0" prefWidth="748.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.amministratorecontroller.ListaReportAmministratoreController">
+<VBox prefHeight="594.0" prefWidth="1051.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.amministratorecontroller.ListaReportAmministratoreController">
    <children>
       <Label fx:id="reportLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="39.0" prefWidth="1185.0" text="Lista Report" textAlignment="CENTER" textFill="#0abab5">
          <font>
@@ -19,28 +19,22 @@
             <Insets top="10.0" />
          </VBox.margin>
       </Label>
-      <HBox prefHeight="100.0" prefWidth="200.0">
+      <HBox prefHeight="61.0" prefWidth="1031.0">
          <children>
             <Button fx:id="indietroButton" mnemonicParsing="false" onAction="#indietroAction" prefHeight="42.0" prefWidth="85.0" text="Indietro" />
-            <Button fx:id="aggiungiReportButton" mnemonicParsing="false" onAction="#aggiungiReportAction" prefHeight="37.0" prefWidth="156.0" text="Aggiungi Report">
-               <font>
-                  <Font size="16.0" />
-               </font>
-               <HBox.margin>
-                  <Insets left="500.0" />
-               </HBox.margin>
-            </Button>
          </children>
       </HBox>
       <TableView fx:id="reportTable" prefHeight="464.0" prefWidth="743.0" style="-fx-background-color: #0ABAB5;">
         <columns>
-          <TableColumn fx:id="nomeTableColumn" prefWidth="87.0" text="Nome Evento" />
-            <TableColumn fx:id="dataInizioTableColumn" prefWidth="96.0" text="Data Inizio" />
-            <TableColumn fx:id="dataFineTableColumn" prefWidth="97.0" text="Data Fine" />
-            <TableColumn fx:id="luogoTableColumn" prefWidth="84.0" text="Luogo" />
-            <TableColumn fx:id="report_risultatiTableColumn" prefWidth="119.0" text="Report Risultati" />
-            <TableColumn fx:id="report_statisticheTableColumn" prefWidth="143.0" text="Report Statistiche" />
-            <TableColumn fx:id="eliminaTableColumn" minWidth="0.0" prefWidth="91.0" text="Elimina" />
+          <TableColumn fx:id="nomeTableColumn" prefWidth="106.0" text="Nome Evento" />
+            <TableColumn fx:id="regolamentoTableColumn" prefWidth="211.0" text="Regolamento" />
+            <TableColumn fx:id="dataInizioTableColumn" prefWidth="71.0" text="Data Inizio" />
+            <TableColumn fx:id="dataFineTableColumn" prefWidth="65.0" text="Data Fine" />
+            <TableColumn fx:id="luogoTableColumn" prefWidth="107.0" text="Luogo" />
+            <TableColumn fx:id="report_risultatiTableColumn" prefWidth="128.0" text="Report Risultati" />
+            <TableColumn fx:id="report_statisticheTableColumn" prefWidth="131.0" text="Report Statistiche" />
+            <TableColumn fx:id="modificaTableColumn" prefWidth="136.0" text="Aggiungi Report" />
+            <TableColumn fx:id="eliminaTableColumn" minWidth="0.0" prefWidth="65.0" text="Elimina" />
         </columns>
          <VBox.margin>
             <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />

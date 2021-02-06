@@ -40,6 +40,9 @@ public class ListaReportAmministratoreController implements Initializable, DataI
 	private TableColumn<Evento, String> nomeTableColumn;
 
 	@FXML
+	private TableColumn<Evento, String> regolamentoTableColumn;
+
+	@FXML
 	private TableColumn<Evento, LocalDate> dataInizioTableColumn;
 
 	@FXML
@@ -55,11 +58,14 @@ public class ListaReportAmministratoreController implements Initializable, DataI
 	private TableColumn<Evento, String> report_statisticheTableColumn;
 
 	@FXML
+	private TableColumn<Evento, Button> modificaTableColumn;
+
+	@FXML
 	private TableColumn<Evento, Button> eliminaTableColumn;
 
 	@FXML
 	private Button aggiungiReportButton;
-	
+
 	@FXML
 	private Button indietroButton;
 
@@ -78,11 +84,30 @@ public class ListaReportAmministratoreController implements Initializable, DataI
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 		nomeTableColumn.setCellValueFactory(new PropertyValueFactory<>("nome"));
+		regolamentoTableColumn.setCellValueFactory(new PropertyValueFactory<>("regolamento"));
 		dataInizioTableColumn.setCellValueFactory(new PropertyValueFactory<>("dataInizio"));
 		dataFineTableColumn.setCellValueFactory(new PropertyValueFactory<>("dataFine"));
 		luogoTableColumn.setCellValueFactory(new PropertyValueFactory<>("luogo"));
 		report_risultatiTableColumn.setCellValueFactory(new PropertyValueFactory<>("report_risultati"));
 		report_statisticheTableColumn.setCellValueFactory(new PropertyValueFactory<>("report_statistiche"));
+
+		modificaTableColumn.setStyle("-fx-alignment: CENTER;");
+		modificaTableColumn.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<Evento, Button>, ObservableValue<Button>>() {
+
+					@Override
+					public ObservableValue<Button> call(CellDataFeatures<Evento, Button> param) {
+						final Button modificaButton = new Button("Aggiungi Report");
+						modificaButton.setOnAction(new EventHandler<ActionEvent>() {
+
+							@Override
+							public void handle(ActionEvent event) {
+								dispatcher.renderView("aggiungiReport", param.getValue());
+							}
+						});
+						return new SimpleObjectProperty<Button>(modificaButton);
+					}
+				});
 
 		eliminaTableColumn.setStyle("-fx-alignment: CENTER;");
 		eliminaTableColumn.setCellValueFactory(
@@ -115,12 +140,6 @@ public class ListaReportAmministratoreController implements Initializable, DataI
 		} catch (BusinessException e) {
 			dispatcher.renderError(e);
 		}
-	}
-
-	@FXML
-	public void aggiungiReportAction(ActionEvent event) {
-		Evento evento = new Evento();
-		dispatcher.renderView("aggiungiReport", evento);
 	}
 
 	@FXML
