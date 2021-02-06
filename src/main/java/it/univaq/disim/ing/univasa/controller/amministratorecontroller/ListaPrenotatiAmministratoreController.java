@@ -93,6 +93,6 @@ public class ListaPrenotatiAmministratoreController implements Initializable, Da
 
 	@FXML
 	public void indietroAction(ActionEvent event) {
-		dispatcher.renderView("listaEventiAmministratore", evento.getAmministratori());
+		dispatcher.renderView("listaEventiAmministratore", evento);
 	}
 }
