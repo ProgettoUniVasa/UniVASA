@@ -12,7 +12,7 @@ public interface EventoService {
 
 	void eliminaEvento(Evento evento) throws BusinessException;
 
-	void caricaRisultatiInPresenza(Evento evento) throws  BusinessException;
+	void caricaRisultatiInPresenza(Candidato candidato, int votiRicevuti) throws  BusinessException;
 
 	void modificaReport(Evento evento) throws BusinessException;
 

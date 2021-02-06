@@ -121,7 +121,7 @@ public class ListaEventiOperatoreController implements Initializable, DataInitia
                         azioneButton.setOnAction(new EventHandler<ActionEvent>() {
                             @Override
                             public void handle(ActionEvent event) {
-                                dispatcher.renderView("caricamentoVotiOperatore", param.getValue());
+                                dispatcher.renderView("caricaVotiOperatore", param.getValue());
                             }
                         });
                         return new SimpleObjectProperty<Button>(azioneButton);
