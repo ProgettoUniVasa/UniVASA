@@ -5,11 +5,12 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="477.0" prefWidth="797.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.elettorecontroller.ElencoTuttiGliEventiElettoreController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="570.0" prefWidth="855.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.elettorecontroller.ElencoTuttiGliEventiElettoreController">
    <children>
       <HBox prefHeight="37.0" prefWidth="798.0">
          <children>
@@ -19,20 +20,35 @@
                </HBox.margin>
             </Button>
          </children></HBox>
-      <Label alignment="TOP_CENTER" prefHeight="46.0" prefWidth="734.0" text="Tutti gli eventi" textFill="ORANGE">
+      <Label alignment="TOP_CENTER" prefHeight="46.0" prefWidth="851.0" text="Tutti gli eventi" textFill="ORANGE">
          <font>
             <Font name="Palatino Linotype Bold" size="30.0" />
          </font>
       </Label>
-      <TableView fx:id="tuttiGliEventiTable" prefHeight="386.0" prefWidth="788.0" style="-fx-background-color: orange;">
+      <HBox prefHeight="44.0" prefWidth="798.0">
+         <children>
+            <Label prefHeight="40.0" prefWidth="386.0" textFill="RED">
+               <HBox.margin>
+                  <Insets left="200.0" />
+               </HBox.margin>
+            </Label>
+            <TextField fx:id="cercaEvento" prefHeight="26.0" prefWidth="182.0">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </TextField>
+            <Button fx:id="cercaButton" mnemonicParsing="false" onAction="#cercaAction" prefHeight="26.0" prefWidth="64.0" text="Cerca" />
+         </children>
+      </HBox>
+      <TableView fx:id="tuttiGliEventiTable" prefHeight="450.0" prefWidth="796.0" style="-fx-background-color: orange;">
         <columns>
-          <TableColumn fx:id="nomeTableColumn" prefWidth="87.19997823238373" text="Nome" />
-          <TableColumn fx:id="dataOraInizioTableColumn" prefWidth="111.20004272460938" text="Data e ora inizio" />
-            <TableColumn fx:id="dataOraFineTableColumn" prefWidth="122.40005493164062" text="Data e ora fine" />
-            <TableColumn fx:id="luogoTableColumn" prefWidth="101.5999755859375" text="Luogo" />
-            <TableColumn fx:id="regolamentoTableColumn" prefWidth="95.19992065429688" text="Regolamento" />
-            <TableColumn fx:id="prenotazioneInPresenzaTableColumn" prefWidth="147.2000732421875" text="Prenotazione in presenza" />
-            <TableColumn fx:id="prenotazioneOnlineTableColumn" prefWidth="120.0" text="Prenotazione Online" />
+          <TableColumn fx:id="nomeTableColumn" prefWidth="115.19997864961624" text="Nome" />
+          <TableColumn fx:id="dataOraInizioTableColumn" prefWidth="103.20001220703125" text="Data e ora inizio" />
+            <TableColumn fx:id="dataOraFineTableColumn" prefWidth="118.40003967285156" text="Data e ora fine" />
+            <TableColumn fx:id="luogoTableColumn" prefWidth="118.4000244140625" text="Luogo" />
+            <TableColumn fx:id="regolamentoTableColumn" prefWidth="118.39996337890625" text="Regolamento" />
+            <TableColumn fx:id="prenotazioneInPresenzaTableColumn" prefWidth="150.4000244140625" text="Prenotazione in presenza" />
+            <TableColumn fx:id="prenotazioneOnlineTableColumn" prefWidth="124.79998779296875" text="Prenotazione Online" />
         </columns>
          <VBox.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" />

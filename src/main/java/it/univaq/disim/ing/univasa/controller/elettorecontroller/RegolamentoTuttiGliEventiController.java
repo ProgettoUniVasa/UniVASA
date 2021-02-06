@@ -55,7 +55,7 @@ public class RegolamentoTuttiGliEventiController implements Initializable, DataI
 	}
 
 	@FXML
-	public void indietroAction(ActionEvent event) throws BusinessException {
+	public void indietroAction(ActionEvent event){
 		dispatcher.renderView("elencoTuttiGliEventiElettore", elettore);
 	}
 }

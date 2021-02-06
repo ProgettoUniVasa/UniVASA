@@ -21,9 +21,11 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
@@ -54,9 +56,20 @@ public class ElencoTuttiGliEventiElettoreController implements Initializable, Da
 	@FXML
 	private TableColumn<Evento, Button> prenotazioneOnlineTableColumn;
 
+	@FXML
+	private TextField cercaEvento;
+
+	@FXML
+	private Label ricercaErrorLabel;
+
+	@FXML
+	private Button cercaButton;
+
 	private ViewDispatcher dispatcher;
 
 	private EventoService eventoService;
+	
+	private Evento evento;
 
 	private Elettore elettore;
 
@@ -69,10 +82,6 @@ public class ElencoTuttiGliEventiElettoreController implements Initializable, Da
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 		nomeTableColumn.setCellValueFactory(new PropertyValueFactory<>("nome"));
-		// dataOraInizioTableColumn.setCellValueFactory(new
-		// PropertyValueFactory<>("oraInizio"));
-		// dataOraFineTableColumn.setCellValueFactory(new
-		// PropertyValueFactory<>("oraFine"));
 
 		dataOraInizioTableColumn.setCellValueFactory(
 				new Callback<TableColumn.CellDataFeatures<Evento, String>, ObservableValue<String>>() {
@@ -152,12 +161,32 @@ public class ElencoTuttiGliEventiElettoreController implements Initializable, Da
 
 	@Override
 	public void initializeData(Elettore elettore) {
-
 		try {
-			this.elettore = elettore;
 			List<Evento> eventi = eventoService.trovaEventiDaPrenotare(elettore);
 			ObservableList<Evento> eventiData = FXCollections.observableArrayList(eventi);
 			tuttiGliEventiTable.setItems(eventiData);
+		} catch (BusinessException e) {
+			dispatcher.renderError(e);
+		}
+	}
+
+	@FXML
+	private void cercaAction(ActionEvent event) {
+		try {
+			String eventoCercato = cercaEvento.getText();
+			
+			for (Evento e : eventoService.trovaEventiDaPrenotare(elettore)) {
+				System.out.println("nel metodo     " + elettore.getId());
+				if (e.getNome().equals(eventoCercato)) {
+
+					evento = e;
+
+					dispatcher.renderView("eventoCercato", evento);
+				} else {
+					ricercaErrorLabel.setText("l'evento cercato non esiste!");
+				}
+
+			}
 		} catch (BusinessException e) {
 			dispatcher.renderError(e);
 		}
