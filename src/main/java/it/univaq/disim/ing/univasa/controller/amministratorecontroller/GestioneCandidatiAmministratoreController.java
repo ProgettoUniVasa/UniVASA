@@ -8,7 +8,6 @@ import java.util.ResourceBundle;
 import it.univaq.disim.ing.univasa.business.BusinessException;
 import it.univaq.disim.ing.univasa.business.EventoService;
 import it.univaq.disim.ing.univasa.business.UnivasaBusinessFactory;
-import it.univaq.disim.ing.univasa.business.UtenteService;
 import it.univaq.disim.ing.univasa.controller.DataInitializable;
 import it.univaq.disim.ing.univasa.domain.Amministratore;
 import it.univaq.disim.ing.univasa.domain.Candidato;
@@ -31,7 +30,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 
-public class GestioneCandidatiAmministratoreController implements Initializable, DataInitializable<Amministratore> {
+public class GestioneCandidatiAmministratoreController implements Initializable, DataInitializable<Evento> {
 
 	@FXML
 	private Label candidatiLabel;
@@ -68,6 +67,9 @@ public class GestioneCandidatiAmministratoreController implements Initializable,
 
 	@FXML
 	private Button aggiungiCandidatoButton;
+	
+	@FXML
+	private Button indietroButton;
 
 	private ViewDispatcher dispatcher;
 
@@ -76,7 +78,7 @@ public class GestioneCandidatiAmministratoreController implements Initializable,
 	private Candidato candidato;
 
 	private Evento evento;
-	
+
 	private Amministratore amministratore;
 
 	public GestioneCandidatiAmministratoreController() {
@@ -117,7 +119,7 @@ public class GestioneCandidatiAmministratoreController implements Initializable,
 	}
 
 	@Override
-	public void initializeData(Amministratore amministratore) {
+	public void initializeData(Evento evento) {
 		try {
 			List<Candidato> candidati = eventoService.visualizzaCandidati(evento);
 			ObservableList<Candidato> candidatiData = FXCollections.observableArrayList(candidati);
@@ -129,11 +131,11 @@ public class GestioneCandidatiAmministratoreController implements Initializable,
 
 	@FXML
 	public void aggiungiCandidatoAction(ActionEvent event) {
-		dispatcher.renderView("aggiungiCandidato", candidato);
+		dispatcher.renderView("aggiungiCandidato", evento.getCandidati());
 	}
-	
+
 	@FXML
 	public void indietroAction(ActionEvent event) {
-		dispatcher.renderView("listaEventiAmministratore", amministratore);
+		dispatcher.renderView("listaEventiAmministratore", evento.getAmministratori());
 	}
 }

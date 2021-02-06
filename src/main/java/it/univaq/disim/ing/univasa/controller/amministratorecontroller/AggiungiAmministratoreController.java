@@ -47,6 +47,12 @@ public class AggiungiAmministratoreController implements Initializable, DataInit
 	private TextField dipartimento;
 
 	@FXML
+	private TextField username;
+
+	@FXML
+	private TextField password;
+
+	@FXML
 	private Button aggiungiAmministratoreButton;
 
 	@FXML
@@ -73,12 +79,13 @@ public class AggiungiAmministratoreController implements Initializable, DataInit
 	public void initializeData(Amministratore amministratore) {
 		// Si disabilita il bottone se i campi di seguito non rispettano le proprietà
 		// definite
-		aggiungiAmministratoreButton.disableProperty().bind((nome.textProperty().isEmpty().or(cognome.textProperty()
-				.isEmpty()
-				.or(email.textProperty().isEmpty().or(telefono.textProperty().isEmpty()
-						.or(dataNascita.valueProperty().isNull()
-								.or(professione.accessibleTextProperty().isEqualTo(professione).or(nome_università
-										.textProperty().isEmpty().or(dipartimento.textProperty().isEmpty())))))))));
+		aggiungiAmministratoreButton.disableProperty().bind((nome.textProperty().isEmpty()
+				.or(cognome.textProperty().isEmpty().or(email.textProperty().isEmpty()
+						.or(telefono.textProperty().isEmpty().or(dataNascita.valueProperty().isNull()
+								.or(professione.accessibleTextProperty().isEqualTo(professione)
+										.or(nome_università.textProperty().isEmpty()
+												.or(dipartimento.textProperty().isEmpty().or(username.textProperty()
+														.isEmpty().or(password.textProperty().isEmpty())))))))))));
 	}
 
 	@FXML
@@ -96,6 +103,8 @@ public class AggiungiAmministratoreController implements Initializable, DataInit
 			amministratore.setProfessione(professione.getValue());
 			amministratore.setNome_università(nome_università.getText());
 			amministratore.setDipartimento(dipartimento.getText());
+			amministratore.setUsername(username.getText());
+			amministratore.setPassword(password.getText());
 
 			for (Amministratore a : utenteService.trovaTuttiAmministratori()) {
 				if (a.getEmail().equals(email.getText()) || a.getTelefono().equals(telefono.getText())) {

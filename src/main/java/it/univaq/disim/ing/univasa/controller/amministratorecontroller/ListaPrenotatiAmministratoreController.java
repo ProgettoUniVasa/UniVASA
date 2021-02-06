@@ -23,7 +23,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-public class ListaPrenotatiAmministratoreController implements Initializable, DataInitializable<Amministratore> {
+public class ListaPrenotatiAmministratoreController implements Initializable, DataInitializable<Evento> {
 
 	@FXML
 	private Label prenotatiLabel;
@@ -51,6 +51,9 @@ public class ListaPrenotatiAmministratoreController implements Initializable, Da
 
 	@FXML
 	private Button aggiungiElettoreButton;
+	
+	@FXML
+	private Button indietroButton;
 
 	private ViewDispatcher dispatcher;
 
@@ -75,11 +78,10 @@ public class ListaPrenotatiAmministratoreController implements Initializable, Da
 		emailTableColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
 		telefonoTableColumn.setCellValueFactory(new PropertyValueFactory<>("telefono"));
 		matricolaTableColumn.setCellValueFactory(new PropertyValueFactory<>("matricola"));
-
 	}
 
 	@Override
-	public void initializeData(Amministratore amministratore) {
+	public void initializeData(Evento evento) {
 		try {
 			List<Elettore> elettori = utenteService.gestionePrenotazioni(evento);
 			ObservableList<Elettore> elettoriData = FXCollections.observableArrayList(elettori);
@@ -91,6 +93,6 @@ public class ListaPrenotatiAmministratoreController implements Initializable, Da
 
 	@FXML
 	public void indietroAction(ActionEvent event) {
-		dispatcher.renderView("listaEventiAmministratore", amministratore);
+		dispatcher.renderView("listaEventiAmministratore", evento.getAmministratori());
 	}
 }

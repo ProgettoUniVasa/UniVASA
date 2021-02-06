@@ -83,8 +83,6 @@ public class EliminaEventoController implements Initializable, DataInitializable
 		this.oraInizio.setText(evento.getOraInizio());
 		this.oraFine.setText(evento.getOraFine());
 		this.luogo.setText(evento.getLuogo());
-		this.report_risultati.setText(evento.getReport_risultati());
-		this.report_statistiche.setText(evento.getReport_statistiche());
 		this.numero_preferenze_esprimibili.setText("" + evento.getNumero_preferenze_esprimibili());
 
 		// Si disabilita il bottone se i campi di seguito non rispettano le proprietà
@@ -93,9 +91,7 @@ public class EliminaEventoController implements Initializable, DataInitializable
 				.or(regolamento.textProperty().isEmpty().or(dataInizio.valueProperty().isNull())
 						.or(dataFine.valueProperty().isNull().or(oraInizio.textProperty().isEmpty()
 								.or(oraFine.textProperty().isEmpty().or(luogo.textProperty().isEmpty()
-										.or(report_risultati.textProperty().isEmpty().or(report_statistiche
-												.textProperty().isEmpty()
-												.or(numero_preferenze_esprimibili.textProperty().isEmpty()))))))))));
+												.or(numero_preferenze_esprimibili.textProperty().isEmpty()))))))));
 	}
 
 	@FXML

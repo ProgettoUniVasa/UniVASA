@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="564.0" prefWidth="1356.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.amministratorecontroller.ListaEventiAmministratoreController">
+<VBox prefHeight="582.0" prefWidth="1568.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.amministratorecontroller.ListaEventiAmministratoreController">
    <children>
-      <Label fx:id="eventiLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="39.0" prefWidth="1386.0" text="Lista Eventi" textAlignment="CENTER" textFill="#0abab5">
+      <Label fx:id="eventiLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="39.0" prefWidth="2023.0" text="Lista Eventi" textAlignment="CENTER" textFill="#0abab5">
          <font>
             <Font name="Palatino Linotype Bold" size="30.0" />
          </font>
@@ -21,7 +21,7 @@
       </Label>
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Button fx:id="indietroButton" mnemonicParsing="false" onAction="#indietroAction" prefHeight="36.0" prefWidth="80.0" text="Indietro" />
+            <Button fx:id="indietroButton" mnemonicParsing="false" onAction="#indietroAction" prefHeight="36.0" prefWidth="103.0" text="Indietro" />
             <Button fx:id="aggiungiEventoButton" mnemonicParsing="false" onAction="#aggiungiEventoAction" prefHeight="37.0" prefWidth="156.0" text="Aggiungi Evento">
                <font>
                   <Font size="16.0" />
@@ -32,21 +32,19 @@
             </Button>
          </children>
       </HBox>
-      <TableView fx:id="eventiTable" prefHeight="464.0" prefWidth="743.0" style="-fx-background-color: #0ABAB5;">
+      <TableView fx:id="eventiTable" prefHeight="461.0" prefWidth="1952.0" style="-fx-background-color: #0ABAB5;">
         <columns>
-          <TableColumn fx:id="nomeTableColumn" prefWidth="77.0" text="Nome" />
-            <TableColumn fx:id="regolamentoTableColumn" prefWidth="113.0" text="Regolamento" />
-            <TableColumn fx:id="dataInizioTableColumn" prefWidth="91.0" text="Data Inizio" />
-            <TableColumn fx:id="dataFineTableColumn" prefWidth="84.0" text="Data Fine" />
-            <TableColumn fx:id="oraInizioTableColumn" prefWidth="75.0" text="Ora Inizio" />
-            <TableColumn fx:id="oraFineTableColumn" prefWidth="75.0" text="Ora Fine" />
-            <TableColumn fx:id="luogoTableColumn" prefWidth="112.0" text="Luogo" />
-            <TableColumn fx:id="report_risultatiTableColumn" prefWidth="119.0" text="Report Risultati" />
-            <TableColumn fx:id="report_statisticheTableColumn" prefWidth="143.0" text="Report Statistiche" />
-            <TableColumn fx:id="numero_preferenze_esprimibiliTableColumn" prefWidth="188.0" text="Numero preferenze esprimibili" />
-            <TableColumn fx:id="azioniTableColumn" prefWidth="97.0" text="Candidati" />
-            <TableColumn fx:id="azioni2TableColumn" prefWidth="82.0" text="Prenotati" />
-            <TableColumn fx:id="eliminaTableColumn" minWidth="0.0" prefWidth="69.0" text="Elimina" />
+          <TableColumn fx:id="nomeTableColumn" prefWidth="162.0" text="Nome" />
+            <TableColumn fx:id="regolamentoTableColumn" prefWidth="385.0" text="Regolamento" />
+            <TableColumn fx:id="dataInizioTableColumn" minWidth="0.0" prefWidth="90.0" text="Data Inizio" />
+            <TableColumn fx:id="dataFineTableColumn" prefWidth="73.0" text="Data Fine" />
+            <TableColumn fx:id="oraInizioTableColumn" prefWidth="65.0" text="Ora Inizio" />
+            <TableColumn fx:id="oraFineTableColumn" prefWidth="60.0" text="Ora Fine" />
+            <TableColumn fx:id="luogoTableColumn" prefWidth="144.0" text="Luogo" />
+            <TableColumn fx:id="numero_preferenze_esprimibiliTableColumn" prefWidth="183.0" text="Numero preferenze esprimibili" />
+            <TableColumn fx:id="azioniTableColumn" prefWidth="151.0" text="Candidati" />
+            <TableColumn fx:id="azioni2TableColumn" prefWidth="145.0" text="Prenotati" />
+            <TableColumn fx:id="eliminaTableColumn" minWidth="0.0" prefWidth="79.0" text="Elimina" />
         </columns>
          <VBox.margin>
             <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />

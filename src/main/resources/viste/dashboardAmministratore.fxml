@@ -20,15 +20,15 @@
                   <Insets left="10.0" top="10.0" />
                </HBox.margin>
             </ImageView>
-            <ImageView fx:id="profiloButton" fitHeight="37.0" fitWidth="37.0" onMouseClicked="#visualizzaProfiloAction">
+            <ImageView fx:id="profiloButton" fitHeight="53.0" fitWidth="53.0" onMouseClicked="#visualizzaProfiloAction">
                <image>
                   <Image url="@username.png" />
                </image>
                <HBox.margin>
-                  <Insets left="520.0" top="5.0" />
+                  <Insets left="500.0" top="5.0" />
                </HBox.margin>
             </ImageView>
-            <ImageView fx:id="esciButton" fitHeight="37.0" fitWidth="60.0" onMouseClicked="#esciAction">
+            <ImageView fx:id="esciButton" fitHeight="41.0" fitWidth="68.0" onMouseClicked="#esciAction">
                <image>
                   <Image url="@logout.png" />
                </image>
@@ -48,15 +48,31 @@
       </Button>
       <HBox prefHeight="100.0" prefWidth="579.0">
          <children>
-            <Button fx:id="turniButton" mnemonicParsing="false" onAction="#associazioneTurniAction" prefHeight="94.0" prefWidth="301.0" text="Turni Operatori">
+            <Button fx:id="turniButton" mnemonicParsing="false" onAction="#associazioneTurniAction" prefHeight="90.0" prefWidth="736.0" text="Turni Operatori">
                <HBox.margin>
-                  <Insets bottom="5.0" left="15.0" right="5.0" top="5.0" />
+                  <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />
                </HBox.margin>
                <font>
                   <Font name="Ebrima Bold" size="24.0" />
                </font>
             </Button>
-            <Button fx:id="operatoriButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#gestioneOperatoriAction" prefHeight="90.0" prefWidth="343.0" text="Gestione Operatori">
+         </children>
+      </HBox>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Button fx:id="reportButton" mnemonicParsing="false" onAction="#creazioneReportAction" prefHeight="95.0" prefWidth="699.0" text="Crea Report Eventi Conclusi">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />
+               </HBox.margin>
+               <font>
+                  <Font name="Ebrima Bold" size="24.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Button fx:id="operatoriButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#gestioneOperatoriAction" prefHeight="90.0" prefWidth="391.0" text="Gestione Operatori">
                <font>
                   <Font name="Ebrima Bold" size="24.0" />
                </font>
@@ -64,31 +80,15 @@
                   <Insets left="10.0" />
                </padding>
                <HBox.margin>
-                  <Insets bottom="5.0" left="15.0" right="5.0" top="5.0" />
+                  <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />
                </HBox.margin>
             </Button>
-         </children>
-      </HBox>
-      <HBox prefHeight="100.0" prefWidth="200.0">
-         <children>
-            <Button fx:id="reportButton" mnemonicParsing="false" onAction="#creazioneReportAction" prefHeight="100.0" prefWidth="663.0" text="Crea Report Eventi Conclusi">
-               <HBox.margin>
-                  <Insets left="15.0" right="5.0" top="5.0" />
-               </HBox.margin>
-               <font>
-                  <Font name="Ebrima Bold" size="24.0" />
-               </font>
-            </Button>
-         </children>
-      </HBox>
-      <HBox prefHeight="100.0" prefWidth="200.0">
-         <children>
-            <Button fx:id="amministratoriButton" mnemonicParsing="false" onAction="#gestioneAmministratoriAction" prefHeight="117.0" prefWidth="326.0" text="Gestione Amministratori">
+            <Button fx:id="amministratoriButton" mnemonicParsing="false" onAction="#gestioneAmministratoriAction" prefHeight="90.0" prefWidth="394.0" text="Gestione Amministratori">
                <font>
                   <Font name="Ebrima Bold" size="24.0" />
                </font>
                <HBox.margin>
-                  <Insets bottom="5.0" left="15.0" right="5.0" top="5.0" />
+                  <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />
                </HBox.margin>
             </Button>
          </children>

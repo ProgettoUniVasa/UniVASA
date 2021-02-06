@@ -10,8 +10,6 @@ import it.univaq.disim.ing.univasa.business.EventoService;
 import it.univaq.disim.ing.univasa.business.UnivasaBusinessFactory;
 import it.univaq.disim.ing.univasa.controller.DataInitializable;
 import it.univaq.disim.ing.univasa.domain.Amministratore;
-import it.univaq.disim.ing.univasa.domain.Candidato;
-import it.univaq.disim.ing.univasa.domain.Elettore;
 import it.univaq.disim.ing.univasa.domain.Evento;
 import it.univaq.disim.ing.univasa.view.ViewDispatcher;
 import javafx.beans.property.SimpleObjectProperty;
@@ -60,19 +58,13 @@ public class ListaEventiAmministratoreController implements Initializable, DataI
 	private TableColumn<Evento, String> luogoTableColumn;
 
 	@FXML
-	private TableColumn<Evento, String> report_risultatiTableColumn;
-
-	@FXML
-	private TableColumn<Evento, String> report_statisticheTableColumn;
-
-	@FXML
 	private TableColumn<Evento, Integer> numero_preferenze_esprimibiliTableColumn;
 
 	@FXML
-	private TableColumn<Candidato, Button> azioniTableColumn;
+	private TableColumn<Evento, Button> azioniTableColumn;
 
 	@FXML
-	private TableColumn<Elettore, Button> azioni2TableColumn;
+	private TableColumn<Evento, Button> azioni2TableColumn;
 
 	@FXML
 	private TableColumn<Evento, Button> eliminaTableColumn;
@@ -104,17 +96,15 @@ public class ListaEventiAmministratoreController implements Initializable, DataI
 		oraInizioTableColumn.setCellValueFactory(new PropertyValueFactory<>("oraInizio"));
 		oraFineTableColumn.setCellValueFactory(new PropertyValueFactory<>("oraFine"));
 		luogoTableColumn.setCellValueFactory(new PropertyValueFactory<>("luogo"));
-		report_risultatiTableColumn.setCellValueFactory(new PropertyValueFactory<>("report_risultati"));
-		report_statisticheTableColumn.setCellValueFactory(new PropertyValueFactory<>("report_statistiche"));
 		numero_preferenze_esprimibiliTableColumn
 				.setCellValueFactory(new PropertyValueFactory<>("numero_preferenze_esprimibili"));
 
 		azioniTableColumn.setStyle("-fx-alignment: CENTER;");
 		azioniTableColumn.setCellValueFactory(
-				new Callback<TableColumn.CellDataFeatures<Candidato, Button>, ObservableValue<Button>>() {
+				new Callback<TableColumn.CellDataFeatures<Evento, Button>, ObservableValue<Button>>() {
 
 					@Override
-					public ObservableValue<Button> call(CellDataFeatures<Candidato, Button> param) {
+					public ObservableValue<Button> call(CellDataFeatures<Evento, Button> param) {
 						final Button visualizzaButton = new Button("Visualizza Candidati");
 						visualizzaButton.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -129,10 +119,10 @@ public class ListaEventiAmministratoreController implements Initializable, DataI
 
 		azioni2TableColumn.setStyle("-fx-alignment: CENTER;");
 		azioni2TableColumn.setCellValueFactory(
-				new Callback<TableColumn.CellDataFeatures<Elettore, Button>, ObservableValue<Button>>() {
+				new Callback<TableColumn.CellDataFeatures<Evento, Button>, ObservableValue<Button>>() {
 
 					@Override
-					public ObservableValue<Button> call(CellDataFeatures<Elettore, Button> param) {
+					public ObservableValue<Button> call(CellDataFeatures<Evento, Button> param) {
 						final Button visualizzaButton = new Button("Visualizza Prenotati");
 						visualizzaButton.setOnAction(new EventHandler<ActionEvent>() {
 

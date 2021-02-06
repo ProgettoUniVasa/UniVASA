@@ -9,7 +9,8 @@ import it.univaq.disim.ing.univasa.business.BusinessException;
 import it.univaq.disim.ing.univasa.business.TurnazioneService;
 import it.univaq.disim.ing.univasa.business.UnivasaBusinessFactory;
 import it.univaq.disim.ing.univasa.controller.DataInitializable;
-import it.univaq.disim.ing.univasa.domain.*;
+import it.univaq.disim.ing.univasa.domain.Amministratore;
+import it.univaq.disim.ing.univasa.domain.Turnazione;
 import it.univaq.disim.ing.univasa.view.ViewDispatcher;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ObservableValue;
@@ -33,7 +34,7 @@ public class ListaTurnazioniAmministratoreController implements Initializable, D
 	private Label turniLabel;
 
 	@FXML
-	private TableView<Turnazione> turnoTable;
+	private TableView<Turnazione> turniTable;
 
 	@FXML
 	private TableColumn<Turnazione, String> emailTableColumn;
@@ -55,7 +56,7 @@ public class ListaTurnazioniAmministratoreController implements Initializable, D
 
 	@FXML
 	private Button aggiungiTurnoButton;
-	
+
 	@FXML
 	private Button indietroButton;
 
@@ -75,12 +76,12 @@ public class ListaTurnazioniAmministratoreController implements Initializable, D
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 
 		emailTableColumn.setCellValueFactory(
-			new Callback<TableColumn.CellDataFeatures<Turnazione, String>, ObservableValue<String>>() {
-				@Override
-				public ObservableValue<String> call(CellDataFeatures<Turnazione, String> param) {
-					return new SimpleObjectProperty<String>(param.getValue().getOperatore().getEmail());
-				}
-			});
+				new Callback<TableColumn.CellDataFeatures<Turnazione, String>, ObservableValue<String>>() {
+					@Override
+					public ObservableValue<String> call(CellDataFeatures<Turnazione, String> param) {
+						return new SimpleObjectProperty<String>(param.getValue().getOperatore().getEmail());
+					}
+				});
 		fasciaTableColumn.setCellValueFactory(new PropertyValueFactory<>("fascia"));
 		data_turnoTableColumn.setCellValueFactory(new PropertyValueFactory<>("data_turno"));
 		nome_eventoTableColumn.setCellValueFactory(
@@ -108,7 +109,7 @@ public class ListaTurnazioniAmministratoreController implements Initializable, D
 
 							@Override
 							public void handle(ActionEvent event) {
-								dispatcher.renderView("eliminaTurno", param.getValue());
+								dispatcher.renderView("eliminaTurnazione", param.getValue());
 							}
 						});
 						return new SimpleObjectProperty<Button>(eliminaButton);
@@ -123,7 +124,7 @@ public class ListaTurnazioniAmministratoreController implements Initializable, D
 			this.amministratore = amministratore;
 			List<Turnazione> turnazione = turnazioneService.visualizzaTutteLeTurnazioni();
 			ObservableList<Turnazione> turnazioniData = FXCollections.observableArrayList(turnazione);
-			turnoTable.setItems(turnazioniData);
+			turniTable.setItems(turnazioniData);
 		} catch (BusinessException e) {
 			dispatcher.renderError(e);
 		}

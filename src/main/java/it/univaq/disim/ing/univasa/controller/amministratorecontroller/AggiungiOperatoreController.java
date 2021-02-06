@@ -48,6 +48,12 @@ public class AggiungiOperatoreController implements Initializable, DataInitializ
 	private TextField dipartimento;
 
 	@FXML
+	private TextField username;
+
+	@FXML
+	private TextField password;
+
+	@FXML
 	private Button aggiungiOperatoreButton;
 
 	@FXML
@@ -76,12 +82,13 @@ public class AggiungiOperatoreController implements Initializable, DataInitializ
 	public void initializeData(Operatore operatore) {
 		// Si disabilita il bottone se i campi di seguito non rispettano le proprietà
 		// definite
-		aggiungiOperatoreButton.disableProperty().bind((nome.textProperty().isEmpty().or(cognome.textProperty()
-				.isEmpty()
-				.or(email.textProperty().isEmpty().or(telefono.textProperty().isEmpty()
-						.or(dataNascita.valueProperty().isNull()
-								.or(professione.accessibleTextProperty().isEqualTo(professione).or(nome_università
-										.textProperty().isEmpty().or(dipartimento.textProperty().isEmpty())))))))));
+		aggiungiOperatoreButton.disableProperty().bind((nome.textProperty().isEmpty()
+				.or(cognome.textProperty().isEmpty().or(email.textProperty().isEmpty()
+						.or(telefono.textProperty().isEmpty().or(dataNascita.valueProperty().isNull()
+								.or(professione.accessibleTextProperty().isEqualTo(professione)
+										.or(nome_università.textProperty().isEmpty()
+												.or(dipartimento.textProperty().isEmpty().or(username.textProperty()
+														.isEmpty().or(password.textProperty().isEmpty())))))))))));
 	}
 
 	@FXML
@@ -99,6 +106,8 @@ public class AggiungiOperatoreController implements Initializable, DataInitializ
 			operatore.setProfessione(professione.getValue());
 			operatore.setNome_università(nome_università.getText());
 			operatore.setDipartimento(dipartimento.getText());
+			operatore.setUsername(username.getText());
+			operatore.setPassword(password.getText());
 
 			for (Operatore f : utenteService.trovaTuttiOperatori()) {
 				if (f.getEmail().equals(email.getText()) || f.getTelefono().equals(telefono.getText())) {

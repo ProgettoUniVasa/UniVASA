@@ -35,6 +35,8 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
             <Label alignment="CENTER" prefHeight="288.0" prefWidth="814.0" text="Nome : ">
@@ -112,6 +114,26 @@
                </GridPane.margin>
             </TextField>
             <ComboBox fx:id="professione" prefHeight="25.0" prefWidth="312.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Label alignment="CENTER" prefHeight="143.0" prefWidth="425.0" text="Username :" GridPane.rowIndex="8">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="143.0" prefWidth="425.0" text="Password :" GridPane.rowIndex="9">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <TextField fx:id="username" prefHeight="25.0" prefWidth="295.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
+               <GridPane.margin>
+                  <Insets right="10.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField fx:id="password" prefHeight="25.0" prefWidth="295.0" GridPane.columnIndex="1" GridPane.rowIndex="9">
+               <GridPane.margin>
+                  <Insets right="10.0" />
+               </GridPane.margin>
+            </TextField>
          </children>
       </GridPane>
       <Separator prefHeight="42.0" prefWidth="661.0" />

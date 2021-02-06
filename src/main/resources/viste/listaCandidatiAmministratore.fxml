@@ -5,10 +5,11 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="563.0" prefWidth="1177.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.amministratorecontroller.GestioneCandidatiAmministratoreController">
+<VBox prefHeight="576.0" prefWidth="1215.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.amministratorecontroller.GestioneCandidatiAmministratoreController">
    <children>
       <Label fx:id="candidatiLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="39.0" prefWidth="1196.0" text="Lista Candidati" textAlignment="CENTER" textFill="#0abab5">
          <font>
@@ -18,25 +19,30 @@
             <Insets top="10.0" />
          </VBox.margin>
       </Label>
-      <Button fx:id="aggiungiCandidatoButton" mnemonicParsing="false" onAction="#aggiungiCandidatoAction" prefHeight="37.0" prefWidth="198.0" text="Aggiungi Candidato">
-         <VBox.margin>
-            <Insets bottom="10.0" left="960.0" right="5.0" />
-         </VBox.margin>
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Button>
-      <TableView fx:id="eventiTable" prefHeight="464.0" prefWidth="743.0" style="-fx-background-color: #0ABAB5;">
+      <HBox prefHeight="81.0" prefWidth="904.0">
+         <children>
+            <Button fx:id="indietroButton" mnemonicParsing="false" onAction="#indietroAction" prefHeight="34.0" prefWidth="91.0" text="Indietro" />
+            <Button fx:id="aggiungiCandidatoButton" mnemonicParsing="false" onAction="#aggiungiCandidatoAction" prefHeight="37.0" prefWidth="198.0" text="Aggiungi Candidato">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="950.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <TableView fx:id="candidatiTable" prefHeight="464.0" prefWidth="743.0" style="-fx-background-color: #0ABAB5;">
         <columns>
-          <TableColumn fx:id="nomeTableColumn" prefWidth="146.0" text="Nome" />
-            <TableColumn fx:id="cognomeTableColumn" prefWidth="135.0" text="Cognome" />
-            <TableColumn fx:id="emailTableColumn" prefWidth="142.0" text="Email" />
-            <TableColumn fx:id="telefonoTableColumn" prefWidth="120.0" text="Telefono" />
-            <TableColumn fx:id="dataNascitaTableColumn" prefWidth="127.0" text="Data Di Nascita" />
-            <TableColumn fx:id="professioneTableColumn" prefWidth="140.0" text="Professione" />
-            <TableColumn fx:id="nomeUniversitàTableColumn" minWidth="8.0" prefWidth="142.0" text="Nome Università" />
-            <TableColumn fx:id="dipartimentoTableColumn" prefWidth="130.0" text="Dipartimento" />
-            <TableColumn fx:id="eliminaTableColumn" minWidth="0.0" prefWidth="64.0" text="Elimina" />
+          <TableColumn fx:id="nomeTableColumn" prefWidth="115.0" text="Nome" />
+            <TableColumn fx:id="cognomeTableColumn" prefWidth="117.0" text="Cognome" />
+            <TableColumn fx:id="emailTableColumn" prefWidth="167.0" text="Email" />
+            <TableColumn fx:id="telefonoTableColumn" prefWidth="176.0" text="Telefono" />
+            <TableColumn fx:id="dataNascitaTableColumn" prefWidth="95.0" text="Data Di Nascita" />
+            <TableColumn fx:id="professioneTableColumn" prefWidth="145.0" text="Professione" />
+            <TableColumn fx:id="nomeUniversitàTableColumn" minWidth="8.0" prefWidth="172.0" text="Nome Università" />
+            <TableColumn fx:id="dipartimentoTableColumn" prefWidth="135.0" text="Dipartimento" />
+            <TableColumn fx:id="eliminaTableColumn" minWidth="0.0" prefWidth="62.0" text="Elimina" />
         </columns>
          <VBox.margin>
             <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />

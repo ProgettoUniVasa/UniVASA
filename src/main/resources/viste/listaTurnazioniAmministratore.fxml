@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="568.0" prefWidth="761.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.amministratorecontroller.ListaTurnazioniAmministratoreController">
+<VBox prefHeight="580.0" prefWidth="841.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.amministratorecontroller.ListaTurnazioniAmministratoreController">
    <children>
       <Label fx:id="turniLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="39.0" prefWidth="766.0" text="Lista Turni" textAlignment="CENTER" textFill="#0abab5">
          <font>
@@ -27,19 +27,19 @@
                   <Font size="16.0" />
                </font>
                <HBox.margin>
-                  <Insets left="520.0" />
+                  <Insets left="580.0" />
                </HBox.margin>
             </Button>
          </children>
       </HBox>
-      <TableView fx:id="turnoTable" prefHeight="463.0" prefWidth="599.0" style="-fx-background-color: #0ABAB5;">
+      <TableView fx:id="turniTable" prefHeight="463.0" prefWidth="599.0" style="-fx-background-color: #0ABAB5;">
         <columns>
-          <TableColumn fx:id="emailTableColumn" prefWidth="201.0" text="Email operatore" />
-            <TableColumn fx:id="fasciaTableColumn" prefWidth="99.0" text="Fascia Oraria" />
-            <TableColumn fx:id="data_turnoTableColumn" prefWidth="108.0" text="Data Turno" />
-            <TableColumn fx:id="nome_eventoTableColumn" prefWidth="119.0" text="Nome Evento" />
-            <TableColumn fx:id="luogoTableColumn" prefWidth="112.0" text="Luogo" />
-            <TableColumn fx:id="eliminaTableColumn" minWidth="0.0" prefWidth="91.0" text="Elimina" />
+          <TableColumn fx:id="emailTableColumn" prefWidth="215.0" text="Email operatore" />
+            <TableColumn fx:id="fasciaTableColumn" prefWidth="88.0" text="Fascia Oraria" />
+            <TableColumn fx:id="data_turnoTableColumn" prefWidth="86.0" text="Data Turno" />
+            <TableColumn fx:id="nome_eventoTableColumn" prefWidth="195.0" text="Nome Evento" />
+            <TableColumn fx:id="luogoTableColumn" prefWidth="142.0" text="Luogo" />
+            <TableColumn fx:id="eliminaTableColumn" minWidth="0.0" prefWidth="84.0" text="Elimina" />
         </columns>
          <VBox.margin>
             <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />

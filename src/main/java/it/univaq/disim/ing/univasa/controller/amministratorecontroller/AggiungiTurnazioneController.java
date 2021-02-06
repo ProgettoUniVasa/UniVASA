@@ -3,7 +3,11 @@ package it.univaq.disim.ing.univasa.controller.amministratorecontroller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import it.univaq.disim.ing.univasa.business.*;
+import it.univaq.disim.ing.univasa.business.BusinessException;
+import it.univaq.disim.ing.univasa.business.EventoService;
+import it.univaq.disim.ing.univasa.business.TurnazioneService;
+import it.univaq.disim.ing.univasa.business.UnivasaBusinessFactory;
+import it.univaq.disim.ing.univasa.business.UtenteService;
 import it.univaq.disim.ing.univasa.controller.DataInitializable;
 import it.univaq.disim.ing.univasa.domain.Amministratore;
 import it.univaq.disim.ing.univasa.domain.Evento;
@@ -45,7 +49,9 @@ public class AggiungiTurnazioneController implements Initializable, DataInitiali
 	private ViewDispatcher dispatcher;
 
 	private TurnazioneService turnazioneService;
+
 	private UtenteService utenteService;
+
 	private EventoService eventoService;
 
 	private Turnazione turnazione;
@@ -71,11 +77,11 @@ public class AggiungiTurnazioneController implements Initializable, DataInitiali
 	@Override
 	public void initializeData(Turnazione turnazione) {
 		this.turnazione = turnazione;
-		this.email.setText(turnazione.getOperatore().getEmail());
+		this.email.setText("" + turnazione.getOperatore().getEmail());
 		this.fascia.setValue(turnazione.getFascia());
 		this.data_turno.setValue(turnazione.getData_turno());
-		this.nome_evento.setText(turnazione.getEvento().getNome());
-		this.luogo.setText(turnazione.getEvento().getLuogo());
+		this.nome_evento.setText("" + turnazione.getEvento().getNome());
+		this.luogo.setText("" + turnazione.getEvento().getLuogo());
 
 		// Si disabilita il bottone se i campi di seguito non rispettano le proprietà
 		// definite
@@ -88,21 +94,30 @@ public class AggiungiTurnazioneController implements Initializable, DataInitiali
 	@FXML
 	public void salvaAction(ActionEvent event) {
 		try {
-			turnazione.setOperatore((Operatore) utenteService.utenteDaEmail(email.getText()));
+			this.operatore = turnazione.getOperatore();
+
 			turnazione.setFascia(fascia.getValue());
 			turnazione.setData_turno(data_turno.getValue());
-			turnazione.setEvento(eventoService.eventodaNome(nome_evento.getText()));
-			//turnazione.setEvento(eventoService.eventodaNome(luogo.getText()));
 
-			if (turnazione.getEvento()==null || turnazione.getOperatore()==null) {
-				// email o evento non esistenti
-			}else {
-				if (turnazione.getId() == null) {
-					turnazioneService.creaTurnazione(turnazione);
+			String emailOperatore = email.getText();
+			String nomeEvento = nome_evento.getText();
+			String luogoEvento = luogo.getText();
+			Long idOperatore;
+			int c = 0;
+
+			for (Evento e : eventoService.trovaTuttiEventi()) {
+
+				if (e.getNome().equals(nomeEvento) && e.getLuogo().equals(luogoEvento)) {
+
+					idOperatore = e.getId();
+					turnazione.setOperatore((Operatore) utenteService.trovaUtenteDaId(idOperatore));
+					c++;
+					if (turnazione.getId() == null) {
+						turnazioneService.creaTurnazione(turnazione);
+					}
 				}
 			}
 			dispatcher.renderView("listaTurnazioniAmministratore", amministratore);
-
 		} catch (BusinessException e) {
 			dispatcher.renderError(e);
 		}

@@ -5,13 +5,11 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="904.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.amministratorecontroller.GestioneCandidatiAmministratoreController">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="521.0" prefWidth="968.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.amministratorecontroller.GestioneCandidatiAmministratoreController">
    <children>
       <Label fx:id="candidatiTable" alignment="CENTER" prefHeight="39.0" prefWidth="898.0" text="Gestione Candidati" textFill="#0abab5">
          <font>
@@ -23,19 +21,15 @@
       </Label>
       <HBox prefHeight="81.0" prefWidth="904.0">
          <children>
-            <ImageView fitHeight="66.0" fitWidth="81.0" onMouseClicked="#indietroAction">
-               <image>
-                  <Image url="@back.png" />
-               </image>
-            </ImageView>
+            <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="91.0" text="Indietro" />
             <Button fx:id="aggiungiCandidatoButton" mnemonicParsing="false" onAction="#aggiungiCandidatoAction" prefHeight="37.0" prefWidth="140.0" text="Aggiungi Candidato">
                <HBox.margin>
-                  <Insets left="680.0" />
+                  <Insets left="660.0" />
                </HBox.margin>
             </Button>
          </children>
       </HBox>
-      <TableView fx:id="mediciTable" prefHeight="430.0" prefWidth="753.0" style="-fx-background-color: #0ABAB5;">
+      <TableView fx:id="candidatiTable" prefHeight="430.0" prefWidth="753.0" style="-fx-background-color: #0ABAB5;">
         <columns>
           <TableColumn fx:id="nomeTableColumn" prefWidth="62.0" text="Nome" />
           <TableColumn fx:id="cognomeTableColumn" prefWidth="70.0" text="Cognome" />
@@ -43,9 +37,9 @@
             <TableColumn fx:id="telefonoTableColumn" text="Telefono" />
             <TableColumn fx:id="dataNascitaTableColumn" prefWidth="116.0" text="Data di Nascita" />
             <TableColumn fx:id="professioneTableColumn" prefWidth="111.0" text="Professione" />
-            <TableColumn fx:id="nome_universitàTableColumn" prefWidth="147.0" text="Nome Università" />
-            <TableColumn fx:id="dipartimentoTableColumn" prefWidth="117.0" text="Dipartimento" />
-            <TableColumn fx:id="eliminaTableColumn" prefWidth="78.0" text="Elimina" />
+            <TableColumn fx:id="nome_universitàTableColumn" prefWidth="197.0" text="Nome Università" />
+            <TableColumn fx:id="dipartimentoTableColumn" prefWidth="142.0" text="Dipartimento" />
+            <TableColumn fx:id="eliminaTableColumn" prefWidth="67.0" text="Elimina" />
         </columns>
          <VBox.margin>
             <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
