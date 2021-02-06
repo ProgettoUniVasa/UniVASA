@@ -27,8 +27,10 @@ public class DbTurnazioneServiceImpl implements TurnazioneService {
 
 	// Definizione query in Java
 	private static final String creaTurnazione = "insert into turnazione(id_utente, id_evento, fascia, data_giorno) values(?,?,?,?)";
-	private static final String visualizzaTurnazioni = "SELECT t.id, e.id, t.data_giorno, t.fascia FROM turnazione t join evento e on e.id=t.id_evento where t.id_utente=?";
+	private static final String visualizzaTurnazioni = "select * from turnazione where id_utente=?";
 	private static final String eliminaTurnazione = "delete from turnazione where id=?";
+	private static final String visualizzaTutteLeTurnazioni = "select * from turnazione";
+	private static final String trovaTurnazioneDaId = "select * from turnazione where id=?";
 
 	public DbTurnazioneServiceImpl(EventoService eventoService, UtenteService utenteService) {
 		this.eventoService = eventoService;
@@ -73,10 +75,10 @@ public class DbTurnazioneServiceImpl implements TurnazioneService {
 				Turnazione turnazione = new Turnazione();
 				turnazione.setId(r.getLong(1));
 				turnazione.setOperatore(operatore);
-				turnazione.setEvento(eventoService.trovaEventoDaId(r.getLong(2)));
+				turnazione.setEvento(eventoService.trovaEventoDaId(r.getLong(3)));
 				turnazione.setFascia(TipologiaTurno.valueOf(r.getString(4)));
 				turnazione.setData_turno(
-						Instant.ofEpochMilli(r.getDate(3).getTime()).atZone(ZoneId.systemDefault()).toLocalDate());
+						Instant.ofEpochMilli(r.getDate(5).getTime()).atZone(ZoneId.systemDefault()).toLocalDate());
 				result.add(turnazione);
 			}
 
@@ -112,8 +114,70 @@ public class DbTurnazioneServiceImpl implements TurnazioneService {
 	}
 
 	@Override
+	public Turnazione trovaTurnazioneDaId(Long id) throws BusinessException {
+		Turnazione turnazione = new Turnazione();
+		ResultSet r = null;
+
+		// Connessione al Database e richiamo query
+		try (Connection c = DriverManager.getConnection(url, user, password);) {
+
+			PreparedStatement ps = c.prepareStatement(trovaTurnazioneDaId);
+			ps.setLong(1, id);
+			r = ps.executeQuery();
+
+			while (r.next()) {
+				turnazione.setId(id);
+				turnazione.setOperatore((Operatore) utenteService.trovaUtenteDaId(r.getLong(2)));
+				turnazione.setEvento(eventoService.trovaEventoDaId(r.getLong(3)));
+				turnazione.setFascia(TipologiaTurno.valueOf(r.getString(4)));
+				turnazione.setData_turno(
+						Instant.ofEpochMilli(r.getDate(5).getTime()).atZone(ZoneId.systemDefault()).toLocalDate());
+			}
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		} finally {
+			if (r != null) {
+				try {
+					r.close();
+				} catch (SQLException ex) {
+					ex.printStackTrace();
+				}
+			}
+		}
+		return turnazione;
+	}
+
+	@Override
 	public List<Turnazione> visualizzaTutteLeTurnazioni() {
-		return null;
+		List<Turnazione> result = new ArrayList<>();
+		ResultSet r = null;
+
+		// Connessione al Database e richiamo query
+		try (Connection c = DriverManager.getConnection(url, user, password);) {
+
+			PreparedStatement ps = c.prepareStatement(visualizzaTutteLeTurnazioni);
+			r = ps.executeQuery();
+
+			while (r.next()) {
+
+				Turnazione turnazione = new Turnazione();
+				turnazione = trovaTurnazioneDaId(r.getLong(1));
+				result.add(turnazione);
+			}
+
+			r.close();
+		} catch (SQLException | BusinessException ex) {
+			ex.printStackTrace();
+		} finally {
+			if (r != null) {
+				try {
+					r.close();
+				} catch (SQLException ex) {
+					ex.printStackTrace();
+				}
+			}
+		}
+		return result;
 	}
 
 }
