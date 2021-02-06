@@ -17,4 +17,5 @@ public interface TurnazioneService {
 	void eliminaTurnazione(Turnazione turnazione) throws BusinessException;
 
 
+    List<Turnazione> visualizzaTutteLeTurnazioni() throws BusinessException;
 }

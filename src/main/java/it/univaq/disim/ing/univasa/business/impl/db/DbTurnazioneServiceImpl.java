@@ -111,4 +111,9 @@ public class DbTurnazioneServiceImpl implements TurnazioneService {
 		}
 	}
 
+	@Override
+	public List<Turnazione> visualizzaTutteLeTurnazioni() {
+		return null;
+	}
+
 }

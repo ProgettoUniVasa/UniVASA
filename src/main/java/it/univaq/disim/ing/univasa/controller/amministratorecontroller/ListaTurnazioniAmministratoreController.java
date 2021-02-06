@@ -66,8 +66,6 @@ public class ListaTurnazioniAmministratoreController implements Initializable, D
 
 	private TurnazioneService turnazioneService;
 
-	private Operatore operatore;
-
 	private Amministratore amministratore;
 
 	public ListaTurnazioniAmministratoreController() {
@@ -107,11 +105,10 @@ public class ListaTurnazioniAmministratoreController implements Initializable, D
 	@Override
 	public void initializeData(Amministratore amministratore) {
 		try {
-			List<Turnazione> turnazione = turnazioneService.visualizzaTurnazioni(operatore);
+			this.amministratore = amministratore;
+			List<Turnazione> turnazione = turnazioneService.visualizzaTutteLeTurnazioni();
 			ObservableList<Turnazione> turnazioniData = FXCollections.observableArrayList(turnazione);
-
 			turnoTable.setItems(turnazioniData);
-
 		} catch (BusinessException e) {
 			dispatcher.renderError(e);
 		}
