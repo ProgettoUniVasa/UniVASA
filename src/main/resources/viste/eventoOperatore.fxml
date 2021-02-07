@@ -20,9 +20,11 @@
          <children>
             <TableView fx:id="eventoTable" prefHeight="487.0" prefWidth="632.0" style="-fx-background-color: #0ABAB5;">
                <columns>
-                  <TableColumn fx:id="nomeTableColumn" prefWidth="255.0" text="Nome" />
-                  <TableColumn fx:id="cognomeTableColumn" prefWidth="266.0" text="Cognome" />
-                  <TableColumn fx:id="matricolaTableColumn" prefWidth="211.0" text="Matricola" />
+                  <TableColumn fx:id="nomeTableColumn" prefWidth="159.0" text="Nome" />
+                  <TableColumn fx:id="cognomeTableColumn" prefWidth="178.0" text="Cognome" />
+                  <TableColumn fx:id="emailTableColumn" prefWidth="169.0" text="Email" />
+                  <TableColumn fx:id="matricolaTableColumn" prefWidth="111.0" text="Matricola" />
+                  <TableColumn fx:id="segnaVotazioneTableColumn" prefWidth="115.0" text="Segna votazione" />
                </columns>
                <VBox.margin>
                   <Insets bottom="10.0" left="5.0" right="10.0" top="10.0" />

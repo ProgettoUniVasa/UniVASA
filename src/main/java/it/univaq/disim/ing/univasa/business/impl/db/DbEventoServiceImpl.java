@@ -18,6 +18,7 @@ import it.univaq.disim.ing.univasa.domain.Elettore;
 import it.univaq.disim.ing.univasa.domain.Evento;
 import it.univaq.disim.ing.univasa.domain.Professione;
 import it.univaq.disim.ing.univasa.domain.StatoEvento;
+import javafx.event.ActionEvent;
 
 public class DbEventoServiceImpl implements EventoService {
 
@@ -44,6 +45,8 @@ public class DbEventoServiceImpl implements EventoService {
 	// si deve ripetere per ogni candidato che riceve voti
 	private static final String caricaRisultatiInPresenza = "update candidato set voti_ricevuti=voti_ricevuti+? where id=?"; // ciclica
 	private static final String trovaEventiDaVotare = "select * from evento e join prenotazione p on e.id=p.id_evento where p.stato='no' and p.tipo_prenotazione='online' and e.data_inizio<=now() and e.data_fine>=now() and p.id_utente=?";
+	private static final String verificaHaVotato = "select * from prenotazione where id_evento=? and id_utente=? and stato='no'";
+	private static final String votaInPresenza = "update prenotazione set stato='si' where id_evento=? and id_utente=?";
 
 	@Override
 	public void creaEvento(Evento evento) throws BusinessException {
@@ -319,6 +322,47 @@ public class DbEventoServiceImpl implements EventoService {
 			}
 		}
 		return result;
+	}
+
+	@Override
+	public boolean verificaHaVotato(Evento evento, Elettore elettore) throws BusinessException {
+		ResultSet r = null;
+
+		// Connessione al Database e richiamo query
+		try (Connection c = DriverManager.getConnection(url, user, password);) {
+
+			PreparedStatement ps = c.prepareStatement(verificaHaVotato);
+			ps.setLong(1, evento.getId());
+			ps.setLong(2, elettore.getId());
+			r = ps.executeQuery();
+
+			if (r.next()) {
+				return true;
+			}else{
+				return false;
+			}
+
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+		return false;
+	}
+
+	@Override
+	public void votaInPresenza(Evento evento, Elettore elettore) throws BusinessException {
+		// Connessione al Database e richiamo query
+		try (Connection c = DriverManager.getConnection(url, user, password);) {
+
+			PreparedStatement ps = c.prepareStatement(votaInPresenza);
+
+			ps.setLong(1, evento.getId());
+			ps.setLong(2, elettore.getId());
+
+			ps.executeUpdate();
+
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
 	}
 
 	@Override

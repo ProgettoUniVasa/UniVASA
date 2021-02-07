@@ -16,6 +16,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -39,7 +40,13 @@ public class EventoOperatoreController implements Initializable, DataInitializab
     private TableColumn<Elettore, String> cognomeTableColumn;
 
     @FXML
+    private TableColumn<Elettore, String> emailTableColumn;
+
+    @FXML
     private TableColumn<Elettore, String> matricolaTableColumn;
+
+    @FXML
+    private TableColumn<Elettore, Button> segnaVotazioneTableColumn;
 
     private Evento evento;
     private Operatore operatore;
@@ -74,6 +81,14 @@ public class EventoOperatoreController implements Initializable, DataInitializab
                     }
                 });
 
+        emailTableColumn.setCellValueFactory(
+                new Callback<TableColumn.CellDataFeatures<Elettore, String>, ObservableValue<String>>() {
+                    @Override
+                    public ObservableValue<String> call(CellDataFeatures<Elettore, String> param) {
+                        return new SimpleObjectProperty<String>(param.getValue().getEmail());
+                    }
+                });
+
         matricolaTableColumn.setCellValueFactory(
                 new Callback<TableColumn.CellDataFeatures<Elettore, String>, ObservableValue<String>>() {
                     @Override
@@ -82,6 +97,34 @@ public class EventoOperatoreController implements Initializable, DataInitializab
                     }
                 });
 
+        segnaVotazioneTableColumn.setCellValueFactory(
+                new Callback<TableColumn.CellDataFeatures<Elettore, Button>, ObservableValue<Button>>() {
+                    @Override
+                    public ObservableValue<Button> call(CellDataFeatures<Elettore, Button> param) {
+                        try {
+                            if (eventoService.verificaHaVotato(evento, param.getValue())) {
+                                final Button azioneButton = new Button("Segna voto");
+                                azioneButton.setOnAction(new EventHandler<ActionEvent>() {
+                                    @Override
+                                    public void handle(ActionEvent event) {
+                                        try {
+                                            eventoService.votaInPresenza(evento, param.getValue());
+                                        } catch (BusinessException e) {
+                                            e.printStackTrace();
+                                        }
+                                        dispatcher.renderView("eventoOperatore", turnazione);
+                                    }
+                                });
+                                return new SimpleObjectProperty<Button>(azioneButton);
+                            } else {
+                                return null;
+                            }
+                        } catch (BusinessException e) {
+                            e.printStackTrace();
+                        }
+                        return null;
+                    }
+                });
     }
 
     @Override
