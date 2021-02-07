@@ -65,7 +65,7 @@ public class HomeElettoreController implements Initializable, DataInitializable<
 	
 	@FXML
 	public void votaAction(ActionEvent event) {
-		dispatcher.renderView("votazioneOnline", elettore); // tableView con evento che è votabile ORA e bottone per votare che porta a "schermataVotazione"
+		dispatcher.renderView("elencoEventiInCorso", elettore); // tableView con evento che è votabile ORA e bottone per votare che porta a "schermataVotazione"
 	}
 
 	@FXML

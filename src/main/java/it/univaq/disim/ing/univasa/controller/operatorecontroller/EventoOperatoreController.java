@@ -8,10 +8,7 @@ import it.univaq.disim.ing.univasa.business.EventoService;
 import it.univaq.disim.ing.univasa.business.UnivasaBusinessFactory;
 import it.univaq.disim.ing.univasa.business.UtenteService;
 import it.univaq.disim.ing.univasa.controller.DataInitializable;
-import it.univaq.disim.ing.univasa.domain.Elettore;
-import it.univaq.disim.ing.univasa.domain.ElettoreInSede;
-import it.univaq.disim.ing.univasa.domain.Evento;
-import it.univaq.disim.ing.univasa.domain.Operatore;
+import it.univaq.disim.ing.univasa.domain.*;
 import it.univaq.disim.ing.univasa.view.ViewDispatcher;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -27,7 +24,7 @@ import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.util.Callback;
 
-public class EventoOperatoreController implements Initializable, DataInitializable<Evento> {
+public class EventoOperatoreController implements Initializable, DataInitializable<Turnazione> {
 
     @FXML
     private Button indietroButton;
@@ -46,6 +43,7 @@ public class EventoOperatoreController implements Initializable, DataInitializab
 
     private Evento evento;
     private Operatore operatore;
+    private Turnazione turnazione;
 
     private ViewDispatcher dispatcher;
 
@@ -87,9 +85,11 @@ public class EventoOperatoreController implements Initializable, DataInitializab
     }
 
     @Override
-    public void initializeData(Evento evento) {
+    public void initializeData(Turnazione turnazione) {
         try {
-            this.evento = evento;
+            this.turnazione = turnazione;
+            this.evento = turnazione.getEvento();
+            this.operatore = turnazione.getOperatore();
             List<Elettore> elettoriInSede = eventoService.visualizzaPrenotatiInSede(evento);
             ObservableList<Elettore> elettoriInSedeData = FXCollections.observableArrayList(elettoriInSede);
             eventoTable.setItems(elettoriInSedeData);

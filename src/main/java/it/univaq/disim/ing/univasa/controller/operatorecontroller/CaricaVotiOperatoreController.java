@@ -4,10 +4,7 @@ import it.univaq.disim.ing.univasa.business.BusinessException;
 import it.univaq.disim.ing.univasa.business.EventoService;
 import it.univaq.disim.ing.univasa.business.UnivasaBusinessFactory;
 import it.univaq.disim.ing.univasa.controller.DataInitializable;
-import it.univaq.disim.ing.univasa.domain.Candidato;
-import it.univaq.disim.ing.univasa.domain.Elettore;
-import it.univaq.disim.ing.univasa.domain.Evento;
-import it.univaq.disim.ing.univasa.domain.Operatore;
+import it.univaq.disim.ing.univasa.domain.*;
 import it.univaq.disim.ing.univasa.view.ViewDispatcher;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -29,7 +26,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class CaricaVotiOperatoreController implements Initializable, DataInitializable<Evento> {
+public class CaricaVotiOperatoreController implements Initializable, DataInitializable<Turnazione> {
 
     @FXML
     private TableView<Candidato> votiTable;
@@ -48,6 +45,7 @@ public class CaricaVotiOperatoreController implements Initializable, DataInitial
 
     private Evento evento;
     private Operatore operatore;
+    private Turnazione turnazione;
 
     private ViewDispatcher dispatcher;
 
@@ -104,9 +102,11 @@ public class CaricaVotiOperatoreController implements Initializable, DataInitial
     }
 
     @Override
-    public void initializeData(Evento evento) {
+    public void initializeData(Turnazione turnazione) {
         try {
-            this.evento = evento;
+            this.turnazione = turnazione;
+            this.evento = turnazione.getEvento();
+            this.operatore = turnazione.getOperatore();
             List<Candidato> candidati = eventoService.visualizzaCandidati(evento);
             ObservableList<Candidato> candidatiData = FXCollections.observableArrayList(candidati);
             votiTable.setItems(candidatiData);

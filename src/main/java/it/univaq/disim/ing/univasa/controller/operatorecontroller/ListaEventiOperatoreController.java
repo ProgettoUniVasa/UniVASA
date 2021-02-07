@@ -12,6 +12,8 @@ import it.univaq.disim.ing.univasa.business.UtenteService;
 import it.univaq.disim.ing.univasa.controller.DataInitializable;
 import it.univaq.disim.ing.univasa.domain.Evento;
 import it.univaq.disim.ing.univasa.domain.Operatore;
+import it.univaq.disim.ing.univasa.domain.Prenotazione;
+import it.univaq.disim.ing.univasa.domain.Turnazione;
 import it.univaq.disim.ing.univasa.view.ViewDispatcher;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -106,7 +108,10 @@ public class ListaEventiOperatoreController implements Initializable, DataInitia
                         azioneButton.setOnAction(new EventHandler<ActionEvent>() {
                             @Override
                             public void handle(ActionEvent event) {
-                                dispatcher.renderView("eventoOperatore", param.getValue());
+                                Turnazione turnazione = new Turnazione();
+                                turnazione.setEvento(param.getValue());
+                                turnazione.setOperatore(operatore);
+                                dispatcher.renderView("eventoOperatore", turnazione);
                             }
                         });
                         return new SimpleObjectProperty<Button>(azioneButton);
@@ -121,7 +126,10 @@ public class ListaEventiOperatoreController implements Initializable, DataInitia
                         azioneButton.setOnAction(new EventHandler<ActionEvent>() {
                             @Override
                             public void handle(ActionEvent event) {
-                                dispatcher.renderView("caricaVotiOperatore", param.getValue());
+                                Turnazione turnazione = new Turnazione();
+                                turnazione.setEvento(param.getValue());
+                                turnazione.setOperatore(operatore);
+                                dispatcher.renderView("caricaVotiOperatore", turnazione);
                             }
                         });
                         return new SimpleObjectProperty<Button>(azioneButton);

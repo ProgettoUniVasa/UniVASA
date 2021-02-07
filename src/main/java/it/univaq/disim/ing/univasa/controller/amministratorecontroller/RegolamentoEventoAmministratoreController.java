@@ -10,6 +10,7 @@ import it.univaq.disim.ing.univasa.controller.DataInitializable;
 import it.univaq.disim.ing.univasa.domain.Amministratore;
 import it.univaq.disim.ing.univasa.domain.Evento;
 import it.univaq.disim.ing.univasa.view.ViewDispatcher;
+import it.univaq.disim.ing.univasa.view.ViewException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -60,7 +61,7 @@ public class RegolamentoEventoAmministratoreController implements Initializable,
 	}
 
 	@FXML
-	public void indietroAction(ActionEvent event) {
+	public void indietroAction(ActionEvent event) throws ViewException {
 		dispatcher.renderView("listaEventiAmministratore", amministratore);
 	}
 }
