@@ -46,7 +46,7 @@ public class RegolamentoEventoPersonaleController implements Initializable, Data
 
 	@Override
 	public void initializeData(Evento evento) {
-		this.elettore = elettore;
+		//this.elettore = elettore;
 		this.evento = evento;
 		this.nome.setText(evento.getNome());
 		this.regolamento.setText(evento.getRegolamento());

@@ -82,7 +82,10 @@ public class DbPrenotazioneServiceImpl implements PrenotazioneService {
 				prenotazione.setId(id);
 				prenotazione.setElettore((Elettore) utenteService.trovaUtenteDaId(r.getLong(2)));
 				prenotazione.setEvento(eventoService.trovaEventoDaId(r.getLong(3)));
-				prenotazione.setTipoPrenotazione(TipoPrenotazione.valueOf(r.getString(4)));
+				if (r.getString(4).equals("in presenza"))
+					prenotazione.setTipoPrenotazione(TipoPrenotazione.valueOf("in_presenza"));
+				else
+					prenotazione.setTipoPrenotazione(TipoPrenotazione.valueOf(r.getString(4)));
 				prenotazione.setStato(Stato.valueOf(r.getString(5)));
 				prenotazione.setCertificato(r.getBlob(6));
 
