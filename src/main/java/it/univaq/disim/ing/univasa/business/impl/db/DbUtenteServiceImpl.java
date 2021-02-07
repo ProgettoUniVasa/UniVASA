@@ -17,7 +17,6 @@ import it.univaq.disim.ing.univasa.business.UtenteService;
 import it.univaq.disim.ing.univasa.domain.Amministratore;
 import it.univaq.disim.ing.univasa.domain.Candidato;
 import it.univaq.disim.ing.univasa.domain.Elettore;
-import it.univaq.disim.ing.univasa.domain.ElettoreOnline;
 import it.univaq.disim.ing.univasa.domain.Evento;
 import it.univaq.disim.ing.univasa.domain.Operatore;
 import it.univaq.disim.ing.univasa.domain.Professione;
@@ -609,11 +608,6 @@ public class DbUtenteServiceImpl implements UtenteService {
 	@Override
 	public void rifiutaCertificato(String certificato) throws BusinessException {
 		// Ehi qui mi serve la Prenotazione, abbiamo questa magnifica classe????
-	}
-
-	@Override
-	public void vota(ElettoreOnline elettoreOnline, Evento evento) throws BusinessException {
-		// Da vedere bene, ho bisogno di controllare la Vista e il Controller associato.
 	}
 
 	@Override

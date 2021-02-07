@@ -5,7 +5,6 @@ import java.util.List;
 import it.univaq.disim.ing.univasa.domain.Amministratore;
 import it.univaq.disim.ing.univasa.domain.Candidato;
 import it.univaq.disim.ing.univasa.domain.Elettore;
-import it.univaq.disim.ing.univasa.domain.ElettoreOnline;
 import it.univaq.disim.ing.univasa.domain.Evento;
 import it.univaq.disim.ing.univasa.domain.Operatore;
 import it.univaq.disim.ing.univasa.domain.Utente;
@@ -48,9 +47,6 @@ public interface UtenteService {
 	void modificaOperatore(Operatore operatore) throws BusinessException;
 
 	void modificaAmministratore(Amministratore amministratore) throws BusinessException;
-
-	// ElettoreOnline
-	void vota(ElettoreOnline elettoreOnline, Evento evento) throws BusinessException;
 
 	void eliminaUtente(Utente utente) throws UtenteNotFoundException, BusinessException;
 
