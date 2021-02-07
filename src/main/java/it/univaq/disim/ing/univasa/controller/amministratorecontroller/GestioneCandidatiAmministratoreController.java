@@ -55,13 +55,7 @@ public class GestioneCandidatiAmministratoreController implements Initializable,
 	private TableColumn<Candidato, LocalDate> dataNascitaTableColumn;
 
 	@FXML
-	private TableColumn<Candidato, Professione> professioneTableColumn;
-
-	@FXML
-	private TableColumn<Candidato, String> nomeUniversitàTableColumn;
-
-	@FXML
-	private TableColumn<Candidato, String> dipartimentoTableColumn;
+	private TableColumn<Candidato, String> nomeUniversitaTableColumn;
 
 	@FXML
 	private TableColumn<Candidato, Button> eliminaTableColumn;
@@ -96,7 +90,9 @@ public class GestioneCandidatiAmministratoreController implements Initializable,
 		nomeTableColumn.setCellValueFactory(new PropertyValueFactory<>("nome"));
 		cognomeTableColumn.setCellValueFactory(new PropertyValueFactory<>("cognome"));
 		emailTableColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
-		;
+		telefonoTableColumn.setCellValueFactory(new PropertyValueFactory<>("telefono"));
+		dataNascitaTableColumn.setCellValueFactory(new PropertyValueFactory<>("dataNascita"));
+		nomeUniversitaTableColumn.setCellValueFactory(new PropertyValueFactory<>("nomeUniversita"));
 
 		eliminaTableColumn.setStyle("-fx-alignment: CENTER;");
 		eliminaTableColumn.setCellValueFactory(

@@ -34,15 +34,13 @@
       </HBox>
       <TableView fx:id="candidatiTable" prefHeight="464.0" prefWidth="743.0" style="-fx-background-color: orange;">
         <columns>
-          <TableColumn fx:id="nomeTableColumn" prefWidth="115.0" text="Nome" />
-            <TableColumn fx:id="cognomeTableColumn" prefWidth="117.0" text="Cognome" />
-            <TableColumn fx:id="emailTableColumn" prefWidth="167.0" text="Email" />
-            <TableColumn fx:id="telefonoTableColumn" prefWidth="176.0" text="Telefono" />
-            <TableColumn fx:id="dataNascitaTableColumn" prefWidth="95.0" text="Data Di Nascita" />
-            <TableColumn fx:id="professioneTableColumn" prefWidth="145.0" text="Professione" />
-            <TableColumn fx:id="nomeUniversitàTableColumn" minWidth="8.0" prefWidth="172.0" text="Nome Università" />
-            <TableColumn fx:id="dipartimentoTableColumn" prefWidth="135.0" text="Dipartimento" />
-            <TableColumn fx:id="eliminaTableColumn" minWidth="0.0" prefWidth="62.0" text="Elimina" />
+          <TableColumn fx:id="nomeTableColumn" prefWidth="158.0" text="Nome" />
+            <TableColumn fx:id="cognomeTableColumn" prefWidth="171.0" text="Cognome" />
+            <TableColumn fx:id="emailTableColumn" prefWidth="194.0" text="Email" />
+            <TableColumn fx:id="telefonoTableColumn" prefWidth="178.0" text="Telefono" />
+            <TableColumn fx:id="dataNascitaTableColumn" minWidth="8.0" prefWidth="166.0" text="Data Di Nascita" />
+            <TableColumn fx:id="nomeUniversitaTableColumn" minWidth="8.0" prefWidth="189.0" text="Nome Università" />
+            <TableColumn fx:id="eliminaTableColumn" minWidth="0.0" prefWidth="128.0" text="Elimina" />
         </columns>
          <VBox.margin>
             <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />

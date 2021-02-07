@@ -1,12 +1,15 @@
 package it.univaq.disim.ing.univasa.domain;
 
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
 public class Candidato {
 
 	private Long id;
-	private String nome, cognome, email;
+	private String nome, cognome, email, telefono, nomeUniversita;
+	private LocalDate dataNascita;
+
 	private int votiRicevuti;
 	private Evento evento;
 
@@ -56,6 +59,30 @@ public class Candidato {
 
 	public void setEvento(Evento evento) {
 		this.evento = evento;
+	}
+
+	public String getTelefono() {
+		return telefono;
+	}
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+
+	public LocalDate getDataNascita() {
+		return dataNascita;
+	}
+
+	public void setDataNascita(LocalDate dataNascita) {
+		this.dataNascita = dataNascita;
+	}
+
+	public String getNomeUniversita() {
+		return nomeUniversita;
+	}
+
+	public void setNomeUniversita(String nomeUniversita) {
+		this.nomeUniversita = nomeUniversita;
 	}
 
 	@Override

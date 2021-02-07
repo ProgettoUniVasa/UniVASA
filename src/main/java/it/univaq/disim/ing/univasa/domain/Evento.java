@@ -30,11 +30,8 @@ public class Evento {
 
 	private StatoEvento statoEvento;
 
-	private Set<Amministratore> amministratori = new HashSet<>();
 	private Set<Candidato> candidati = new HashSet<>();
 	private Set<Operatore> operatori = new HashSet<>();
-	private Set<SchedaElettorale> schedeOnline = new HashSet<>(); // elettori online
-	private Set<ElettoreInSede> elettoriInSede = new HashSet<>();
 
 	public Evento() {
 		super();
@@ -58,11 +55,8 @@ public class Evento {
 		this.report_statistiche = report_statistiche;
 		this.numero_preferenze_esprimibili = numero_preferenze_esprimibili;
 		this.statoEvento = statoEvento;
-		this.amministratori = amministratori;
 		this.candidati = candidati;
 		this.operatori = operatori;
-		this.schedeOnline = schedeOnline;
-		this.elettoriInSede = elettoriInSede;
 	}
 
 	public Long getId() {
@@ -109,10 +103,6 @@ public class Evento {
 		return numero_preferenze_esprimibili;
 	}
 
-	public Set<Amministratore> getAmministratori() {
-		return amministratori;
-	}
-
 	public Set<Candidato> getCandidati() {
 		return candidati;
 	}
@@ -121,13 +111,6 @@ public class Evento {
 		return operatori;
 	}
 
-	public Set<SchedaElettorale> getSchedeOnline() {
-		return schedeOnline;
-	}
-
-	public Set<ElettoreInSede> getElettoriInSede() {
-		return elettoriInSede;
-	}
 
 	public void setId(Long id) {
 		this.id = id;
@@ -181,9 +164,6 @@ public class Evento {
 		this.statoEvento = statoEvento;
 	}
 
-	public void setAmministratori(Set<Amministratore> amministratori) {
-		this.amministratori = amministratori;
-	}
 
 	public void setCandidati(Set<Candidato> candidati) {
 		this.candidati = candidati;
@@ -193,15 +173,8 @@ public class Evento {
 		this.operatori = operatori;
 	}
 
-	public void setSchedeOnline(Set<SchedaElettorale> schedeOnline) {
-		this.schedeOnline = schedeOnline;
-	}
 
-	public void setElettoriInSede(Set<ElettoreInSede> elettoriInSede) {
-		this.elettoriInSede = elettoriInSede;
-	}
-
-	@Override
+	/*@Override
 	public String toString() {
 		return "Evento [id=" + id + ", nome=" + nome + ", regolamento=" + regolamento + ", dataInizio=" + dataInizio
 				+ ", dataFine=" + dataFine + ", oraInizio=" + oraInizio + ", oraFine=" + oraFine + ", luogo=" + luogo
@@ -210,7 +183,7 @@ public class Evento {
 				+ ", amministratori=" + amministratori + ", candidati=" + candidati + ", operatori=" + operatori
 				+ ", schedeOnline=" + schedeOnline + ", elettoriInSede=" + elettoriInSede + ", getClass()=" + getClass()
 				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
-	}
+	}*/
 	
 // operations
 	/*

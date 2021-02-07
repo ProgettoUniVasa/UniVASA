@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 import it.univaq.disim.ing.univasa.business.BusinessException;
 import it.univaq.disim.ing.univasa.business.EventoService;
+import it.univaq.disim.ing.univasa.business.PrenotazioneService;
 import it.univaq.disim.ing.univasa.business.UnivasaBusinessFactory;
 import it.univaq.disim.ing.univasa.controller.DataInitializable;
 import it.univaq.disim.ing.univasa.domain.Elettore;
@@ -68,6 +69,7 @@ public class ElencoTuttiGliEventiElettoreController implements Initializable, Da
 
 	private ViewDispatcher dispatcher;
 
+	private PrenotazioneService prenotazioneService;
 	private EventoService eventoService;
 	
 	private Evento evento;
@@ -78,6 +80,7 @@ public class ElencoTuttiGliEventiElettoreController implements Initializable, Da
 		dispatcher = ViewDispatcher.getInstance();
 		UnivasaBusinessFactory factory = UnivasaBusinessFactory.getInstance();
 		eventoService = factory.getEventoService();
+		prenotazioneService = factory.getPrenotazioneService();
 	}
 
 	@Override
@@ -112,10 +115,13 @@ public class ElencoTuttiGliEventiElettoreController implements Initializable, Da
 					public ObservableValue<Button> call(CellDataFeatures<Evento, Button> param) {
 						final Button regolamentoButton = new Button("Visualizza");
 						regolamentoButton.setOnAction(new EventHandler<ActionEvent>() {
-
+							// E' na cosa fittizia per portarci dietro sia elettore sia evento
 							@Override
 							public void handle(ActionEvent event) {
-								dispatcher.renderView("regolamentoTuttiGliEventi", param.getValue());
+								Prenotazione prenotazione = new Prenotazione();
+								prenotazione.setEvento(param.getValue());
+								prenotazione.setElettore(elettore);
+								dispatcher.renderView("regolamentoTuttiGliEventi", prenotazione);
 							}
 						});
 						return new SimpleObjectProperty<Button>(regolamentoButton);
@@ -133,7 +139,10 @@ public class ElencoTuttiGliEventiElettoreController implements Initializable, Da
 
 							@Override
 							public void handle(ActionEvent event) {
-								dispatcher.renderView("prenotazioneVotazioneInPresenzaElettore", param.getValue());
+								Prenotazione prenotazione1 = new Prenotazione();
+								prenotazione1.setEvento(param.getValue());
+								prenotazione1.setElettore(elettore);
+								dispatcher.renderView("prenotazioneVotazioneInPresenzaElettore", prenotazione1);
 							}
 						});
 						return new SimpleObjectProperty<Button>(prenotazioneInPresenzaButton);
@@ -151,7 +160,10 @@ public class ElencoTuttiGliEventiElettoreController implements Initializable, Da
 
 							@Override
 							public void handle(ActionEvent event) {
-								dispatcher.renderView("prenotazioneVotazioneOnlineElettore", param.getValue());
+								Prenotazione prenotazione = new Prenotazione();
+								prenotazione.setEvento(param.getValue());
+								prenotazione.setElettore(elettore);
+								dispatcher.renderView("prenotazioneVotazioneOnlineElettore", prenotazione);
 							}
 						});
 						return new SimpleObjectProperty<Button>(prenotazioneOnlineButton);

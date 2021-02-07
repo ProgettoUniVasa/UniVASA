@@ -14,6 +14,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
 public class EliminaCandidatoController implements Initializable, DataInitializable<Candidato> {
@@ -31,10 +32,10 @@ public class EliminaCandidatoController implements Initializable, DataInitializa
 	private TextField telefono;
 
 	@FXML
-	private TextField nome_università;
+	private DatePicker dataNascita;
 
 	@FXML
-	private TextField dipartimento;
+	private TextField nome_università;
 
 	@FXML
 	private Button eliminaButton;
@@ -66,6 +67,9 @@ public class EliminaCandidatoController implements Initializable, DataInitializa
 		this.nome.setText(candidato.getNome());
 		this.cognome.setText(candidato.getCognome());
 		this.email.setText(candidato.getEmail());
+		this.telefono.setText(candidato.getTelefono());
+		this.dataNascita.setValue(candidato.getDataNascita());
+		this.nome_università.setText(candidato.getNomeUniversita());
 	}
 
 	@FXML

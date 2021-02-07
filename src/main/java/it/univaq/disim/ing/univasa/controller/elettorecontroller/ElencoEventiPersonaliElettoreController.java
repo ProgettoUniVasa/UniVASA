@@ -129,7 +129,7 @@ public class ElencoEventiPersonaliElettoreController implements Initializable, D
 
 							@Override
 							public void handle(ActionEvent event) {
-								dispatcher.renderView("regolamentoEventoPersonale", param.getValue().getEvento()); // creare vista
+								dispatcher.renderView("regolamentoEventoPersonale", param.getValue()); // creare vista
 								// regolamentoEvento
 							}
 						});

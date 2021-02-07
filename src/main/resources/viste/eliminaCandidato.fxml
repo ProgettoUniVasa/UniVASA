@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
@@ -83,16 +84,19 @@
                   <Insets right="20.0" />
                </GridPane.margin>
             </TextField>
-            <Label alignment="CENTER" prefHeight="232.0" prefWidth="567.0" text="Dipartimento :" GridPane.rowIndex="5">
+            <Label alignment="CENTER" prefHeight="232.0" prefWidth="567.0" text="Data di nascita :" GridPane.rowIndex="5">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <TextField fx:id="dipartimento" editable="false" prefHeight="35.0" prefWidth="435.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+            <DatePicker fx:id="dataNascita" prefHeight="25.0" prefWidth="447.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
                <GridPane.margin>
                   <Insets right="20.0" />
                </GridPane.margin>
-            </TextField>
+            </DatePicker>
          </children>
       </GridPane>
       <Separator prefHeight="39.0" prefWidth="694.0" />

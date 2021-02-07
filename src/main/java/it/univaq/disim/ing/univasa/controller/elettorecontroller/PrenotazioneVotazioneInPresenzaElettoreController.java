@@ -7,13 +7,14 @@ import it.univaq.disim.ing.univasa.business.*;
 import it.univaq.disim.ing.univasa.controller.DataInitializable;
 import it.univaq.disim.ing.univasa.domain.Elettore;
 import it.univaq.disim.ing.univasa.domain.Evento;
+import it.univaq.disim.ing.univasa.domain.Prenotazione;
 import it.univaq.disim.ing.univasa.view.ViewDispatcher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 
-public class PrenotazioneVotazioneInPresenzaElettoreController implements Initializable, DataInitializable<Evento> { //<T> deve essere la prenotazione....
+public class PrenotazioneVotazioneInPresenzaElettoreController implements Initializable, DataInitializable<Prenotazione> { //<T> deve essere la prenotazione....
 
 	@FXML
 	private Button prenotatiInPresenzaButton;
@@ -23,12 +24,11 @@ public class PrenotazioneVotazioneInPresenzaElettoreController implements Initia
 
 	private ViewDispatcher dispatcher;
 
+	private PrenotazioneService prenotazioneService;
 	private EventoService eventoService;
 
 	private Evento evento;
-
-	private PrenotazioneService prenotazioneService;
-
+	private Prenotazione prenotazione;
 	private Elettore elettore;
 
 	public PrenotazioneVotazioneInPresenzaElettoreController() {
@@ -43,16 +43,16 @@ public class PrenotazioneVotazioneInPresenzaElettoreController implements Initia
 	}
 
 	@Override
-	public void initializeData(Evento evento) {
-		this.elettore = elettore;
-		this.evento = evento;
+	public void initializeData(Prenotazione prenotazione) {
+		this.elettore = prenotazione.getElettore();
+		this.evento = prenotazione.getEvento();
+		this.prenotazione = prenotazione;
 	}
 
 	@FXML
 	public void prenotatiInPresenzaAction(ActionEvent event) throws BusinessException {
 		try {
 			prenotazioneService.prenotazioneInSede(elettore, evento);
-
 			dispatcher.renderView("elencoTuttiGliEventiElettore", elettore);
 		} catch (BusinessException e) {
 			e.printStackTrace();

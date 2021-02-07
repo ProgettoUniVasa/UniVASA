@@ -1,6 +1,7 @@
 package it.univaq.disim.ing.univasa.controller.amministratorecontroller;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
@@ -16,6 +17,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
 public class AggiungiCandidatoController implements Initializable, DataInitializable<Evento> {
@@ -30,6 +32,15 @@ public class AggiungiCandidatoController implements Initializable, DataInitializ
 	private TextField email;
 
 	@FXML
+	private TextField telefono;
+
+	@FXML
+	private DatePicker dataNascita;
+
+	@FXML
+	private TextField nomeUniversita;
+
+	@FXML
 	private Button aggiungiCandidatoButton;
 
 	@FXML
@@ -38,8 +49,6 @@ public class AggiungiCandidatoController implements Initializable, DataInitializ
 	private ViewDispatcher dispatcher;
 
 	private UtenteService utenteService;
-
-
 
 	private Evento evento;
 
@@ -58,8 +67,8 @@ public class AggiungiCandidatoController implements Initializable, DataInitializ
 		this.evento = evento;
 		// Si disabilita il bottone se i campi di seguito non rispettano le proprietà
 		// definite
-		aggiungiCandidatoButton.disableProperty().bind((nome.textProperty().isEmpty()
-				.or(cognome.textProperty().isEmpty().or(email.textProperty().isEmpty()))));
+		aggiungiCandidatoButton.disableProperty().bind((nome.textProperty().isEmpty().or(telefono.textProperty().isEmpty().or(nomeUniversita.textProperty().isEmpty().or(dataNascita.valueProperty().isNull()
+				.or(cognome.textProperty().isEmpty().or(email.textProperty().isEmpty())))))));
 	}
 
 	@FXML
@@ -71,6 +80,9 @@ public class AggiungiCandidatoController implements Initializable, DataInitializ
 			candidato.setNome(nome.getText());
 			candidato.setCognome(cognome.getText());
 			candidato.setEmail(email.getText());
+			candidato.setTelefono(telefono.getText());
+			candidato.setNomeUniversita(nomeUniversita.getText());
+			candidato.setDataNascita(dataNascita.getValue());
 
 			for (Candidato ca : utenteService.trovaTuttiCandidati(evento)) {
 				if (ca.getEmail().equals(email.getText())) {

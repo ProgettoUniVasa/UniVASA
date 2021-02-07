@@ -134,7 +134,7 @@ public class ListaEventiOperatoreController implements Initializable, DataInitia
     public void initializeData(Operatore operatore) {
         try {
             this.operatore = operatore;
-            List<Evento> eventiOperatore = eventoService.trovaEventiInCorso();
+            List<Evento> eventiOperatore = eventoService.trovaEventiFiniti();
             ObservableList<Evento> eventiOperatoreData = FXCollections
                     .observableArrayList(eventiOperatore);
             listaEventiTable.setItems(eventiOperatoreData);

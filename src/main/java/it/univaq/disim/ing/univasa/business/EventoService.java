@@ -36,4 +36,7 @@ public interface EventoService {
 
 	List<Candidato> visualizzaCandidati(Evento evento) throws BusinessException;
 
+	List<Evento> trovaEventiFiniti() throws  BusinessException;
+
+	List<Evento> trovaEventiDaVotare(Elettore elettore) throws  BusinessException;
 }

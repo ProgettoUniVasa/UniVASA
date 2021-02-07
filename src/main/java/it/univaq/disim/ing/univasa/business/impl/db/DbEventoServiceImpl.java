@@ -31,18 +31,19 @@ public class DbEventoServiceImpl implements EventoService {
 	private static final String eliminaEvento = "delete from evento where id=?";
 	private static final String trovaTuttiEventi = "select * from evento";
 	private static final String trovaEventiInCorso = "select * from evento where data_inizio<=now() and data_fine>=now()";
+	private static final String trovaEventiFiniti = "select * from evento where data_fine<=now()";
 	private static final String trovaEventoDaId = "select * from evento where id=?";
 	private static final String trovaNomiEventi = "select nome from evento";
 	private static final String eventoDaNome = "select * from evento where nome=?";
 	private static final String trovaEventiDaLuogo = "select * from evento where luogo=?";
 	private static final String trovaEventiDaPrenotare = "select * from evento where data_inizio>now() and id not in (select e.id from prenotazione p join evento e on p.id_evento=e.id where p.id_utente=?)";
 	private static final String trovaEventiFinitiPrenotati = "select * from evento e join prenotazione p on e.id=p.id_evento where e.data_fine<now() and p.id_utente=?";
-	private static final String visualizzaCandidati = "select u.id,u.nome,u.cognome,u.email,c.voti_ricevuti from utente u join candidato c on u.email=c.email where c.id_evento=?";
+	private static final String visualizzaCandidati = "select u.id,u.nome,u.cognome,u.email,u.telefono,u.data_nascita,u.nome_universita,c.voti_ricevuti from utente u join candidato c on u.email=c.email where c.id_evento=?";
 	// visualizzaPrenotatiInSede
 	private static final String visualizzaPrenotatiInSede = "select * from utente u join prenotazione p on p.id_utente=u.id where id_evento=? and tipo_prenotazione='in presenza'";
 	// si deve ripetere per ogni candidato che riceve voti
 	private static final String caricaRisultatiInPresenza = "update candidato set voti_ricevuti=voti_ricevuti+? where id=?"; // ciclica
-	private static final String trovaEventiPrenotatiElettore = "select * from evento e join prenotazione p on e.id=p.id_utente";
+	private static final String trovaEventiDaVotare = "select * from evento e join prenotazione p on e.id=p.id_evento where p.stato='no' and p.tipo_prenotazione='online' and e.data_inizio<=now() and e.data_fine>=now() and p.id_utente=?";
 
 	@Override
 	public void creaEvento(Evento evento) throws BusinessException {
@@ -241,7 +242,10 @@ public class DbEventoServiceImpl implements EventoService {
 				candidato.setNome(r.getString(2));
 				candidato.setCognome(r.getString(3));
 				candidato.setEmail(r.getString(4));
-				candidato.setVotiRicevuti(r.getInt(5));
+				candidato.setTelefono(r.getString(5));
+				candidato.setDataNascita(Instant.ofEpochMilli(r.getDate(6).getTime()).atZone(ZoneId.systemDefault()).toLocalDate());
+				candidato.setNomeUniversita(r.getString(7));
+				candidato.setVotiRicevuti(r.getInt(8));
 				candidato.setEvento(evento);
 				candidati.add(candidato);
 			}
@@ -251,6 +255,70 @@ public class DbEventoServiceImpl implements EventoService {
 		}
 
 		return candidati;
+	}
+
+	@Override
+	public List<Evento> trovaEventiFiniti() throws BusinessException {
+		List<Evento> result = new ArrayList<>();
+		ResultSet r = null;
+
+		// Connessione al Database e richiamo query
+		try (Connection c = DriverManager.getConnection(url, user, password);) {
+
+			PreparedStatement ps = c.prepareStatement(trovaEventiFiniti);
+			r = ps.executeQuery();
+
+			while (r.next()) {
+				Evento evento = new Evento();
+				evento = trovaEventoDaId(r.getLong(1));
+				result.add(evento);
+			}
+
+			r.close();
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		} finally {
+			if (r != null) {
+				try {
+					r.close();
+				} catch (SQLException ex) {
+					ex.printStackTrace();
+				}
+			}
+		}
+		return result;
+	}
+
+	@Override
+	public List<Evento> trovaEventiDaVotare(Elettore elettore) throws BusinessException {
+		List<Evento> result = new ArrayList<>();
+		ResultSet r = null;
+
+		// Connessione al Database e richiamo query
+		try (Connection c = DriverManager.getConnection(url, user, password);) {
+
+			PreparedStatement ps = c.prepareStatement(trovaEventiDaVotare);
+			r = ps.executeQuery();
+
+			while (r.next()) {
+				Evento evento = new Evento();
+				evento = trovaEventoDaId(r.getLong(1));
+				result.add(evento);
+			}
+
+			r.close();
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		} finally {
+			if (r != null) {
+				try {
+					r.close();
+				} catch (SQLException ex) {
+					ex.printStackTrace();
+				}
+			}
+		}
+		return result;
 	}
 
 	@Override

@@ -49,7 +49,7 @@ public class DbUtenteServiceImpl implements UtenteService {
 	// creaElettore
 	private static final String creaElettore = "insert into utente (nome, cognome, email, username, password, telefono, data_nascita, professione, nome_universita, dipartimento, matricola, tipo_utente) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'elettore')";
 	// creaCandidato
-	private static final String creaCandidato = "insert into candidato (nome,cognome,email,id_evento,voti_ricevuti) values (?,?,?,?,0)";
+	private static final String creaCandidato = "insert into candidato (nome,cognome,email,telefono,nome_universita,data_nascita,id_evento,voti_ricevuti) values (?,?,?,?,?,?,?,0)";
 	// accetta certificato & rifiutaCertificato
 	private static final String accettaCertificato = "update set stato='no' from prenotazione where id_evento=? and id_utente=?";
 	private static final String rifiutaCertificato = "delete from prenotazione where id_evento=? and id_utente=?";
@@ -508,10 +508,16 @@ public class DbUtenteServiceImpl implements UtenteService {
 
 			PreparedStatement ps = c.prepareStatement(creaCandidato);
 
+			// Conversione da LocalDate a Date
+			Date data = java.sql.Date.valueOf(candidato.getDataNascita());
+
 			ps.setString(1, candidato.getNome());
 			ps.setString(2, candidato.getCognome());
 			ps.setString(3, candidato.getEmail());
-			ps.setLong(4, evento.getId());
+			ps.setString(4, candidato.getTelefono());
+			ps.setString(5, candidato.getNomeUniversita());
+			ps.setDate(6, data);
+			ps.setLong(7, evento.getId());
 
 			ps.executeUpdate();
 		} catch (SQLException ex) {
