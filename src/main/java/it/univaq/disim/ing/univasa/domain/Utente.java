@@ -46,7 +46,6 @@ public class Utente {
 		super();
 	}
 
-	// Operations
 
 	public Long getId() {
 		return id;
@@ -144,14 +143,5 @@ public class Utente {
 				+ dipartimento + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
 				+ super.toString() + "]";
 	}
-
-	// operations
-	/*
-	 * public logIn() { //TODO }
-	 * 
-	 * public logOut() { //TODO }
-	 * 
-	 * public signUp() { //TODO }
-	 */
 
 }

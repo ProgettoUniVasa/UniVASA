@@ -4,18 +4,20 @@ import java.time.LocalDate;
 
 public class Turnazione {
 
-	// Questa association???? Ci andrebbe Operatore, ma a che mi serve se l'Operatore ha un set dei suoi turni?
 	private Long id;
 	private Evento evento;
 	private Operatore operatore;
 	private TipologiaTurno fascia;
 	private LocalDate data_turno;
 
-	public Turnazione(Long id, TipologiaTurno fascia, Evento evento) {
+
+	public Turnazione(Long id, Evento evento, Operatore operatore, TipologiaTurno fascia, LocalDate data_turno) {
 		super();
 		this.id = id;
-		this.fascia = fascia;
 		this.evento = evento;
+		this.operatore = operatore;
+		this.fascia = fascia;
+		this.data_turno = data_turno;
 	}
 
 	public Turnazione() {

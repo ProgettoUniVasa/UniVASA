@@ -30,10 +30,6 @@ public class Evento {
 
 	private StatoEvento statoEvento;
 
-	private Set<Candidato> candidati = new HashSet<>();
-	private Set<Operatore> operatori = new HashSet<>();
-
-
 	public Evento() {
 		super();
 	}
@@ -81,15 +77,6 @@ public class Evento {
 	public int getNumero_preferenze_esprimibili() {
 		return numero_preferenze_esprimibili;
 	}
-
-	public Set<Candidato> getCandidati() {
-		return candidati;
-	}
-
-	public Set<Operatore> getOperatori() {
-		return operatori;
-	}
-
 
 	public void setId(Long id) {
 		this.id = id;
@@ -143,35 +130,13 @@ public class Evento {
 		this.statoEvento = statoEvento;
 	}
 
-
-	public void setCandidati(Set<Candidato> candidati) {
-		this.candidati = candidati;
-	}
-
-	public void setOperatori(Set<Operatore> operatori) {
-		this.operatori = operatori;
-	}
-
-
-	/*@Override
+	@Override
 	public String toString() {
 		return "Evento [id=" + id + ", nome=" + nome + ", regolamento=" + regolamento + ", dataInizio=" + dataInizio
 				+ ", dataFine=" + dataFine + ", oraInizio=" + oraInizio + ", oraFine=" + oraFine + ", luogo=" + luogo
 				+ ", report_risultati=" + report_risultati + ", report_statistiche=" + report_statistiche
 				+ ", numero_preferenze_esprimibili=" + numero_preferenze_esprimibili + ", statoEvento=" + statoEvento
-				+ ", amministratori=" + amministratori + ", candidati=" + candidati + ", operatori=" + operatori
-				+ ", schedeOnline=" + schedeOnline + ", elettoriInSede=" + elettoriInSede + ", getClass()=" + getClass()
-				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
-	}*/
-	
-// operations
-	/*
-	 * 
-	 * public prenotazioneInSede() { //TODO }
-	 * 
-	 * public prenotazioneOnline() { //TODO }
-	 * 
-	 * public visualizzaAmministratori() { //TODO }
-	 */
+				+ "]";
+	}
 
 }

@@ -9,8 +9,8 @@ public class Candidato {
 	private Long id;
 	private String nome, cognome, email, telefono, nomeUniversita;
 	private LocalDate dataNascita;
-
 	private int votiRicevuti;
+	
 	private Evento evento;
 
 	public Long getId() {

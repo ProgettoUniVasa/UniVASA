@@ -18,7 +18,7 @@
          <children>
             <Button fx:id="indietroButton" mnemonicParsing="false" onAction="#indietroAction" prefHeight="26.0" prefWidth="74.0" text="Indietro">
                <HBox.margin>
-                  <Insets left="2.0" top="10.0" />
+                  <Insets left="50.0" top="10.0" />
                </HBox.margin>
             </Button>
             <ImageView fx:id="esciButton" fitHeight="37.0" fitWidth="60.0" onMouseClicked="#esciAction">
@@ -42,8 +42,8 @@
       <TableView fx:id="eventiPersonaliTable" prefHeight="319.0" prefWidth="575.0" style="-fx-background-color: orange;">
          <columns>
             <TableColumn fx:id="nomeTableColumn" minWidth="-1.0" prefWidth="87.19997823238373" resizable="false" text="Nome" />
-            <TableColumn fx:id="dataOraInizioTableColumn" minWidth="-1.0" prefWidth="100.80000305175781" resizable="false" text="Inizio dell'evento" />
-            <TableColumn fx:id="dataOraFineTableColumn" prefWidth="105.5999755859375" resizable="false" text="Fine dell'evento" />
+            <TableColumn fx:id="dataInizioTableColumn" minWidth="-1.0" prefWidth="100.80000305175781" resizable="false" text="Inizio dell'evento" />
+            <TableColumn fx:id="dataFineTableColumn" prefWidth="105.5999755859375" resizable="false" text="Fine dell'evento" />
             <TableColumn fx:id="luogoTableColumn" prefWidth="97.5999755859375" resizable="false" text="Luogo" />
             <TableColumn fx:id="regolamentoTableColumn" prefWidth="101.60003662109375" resizable="false" text="Regolamento" />
             <TableColumn fx:id="prenotazioneTableColumn" prefWidth="94.39990234375" resizable="false" text="Prenotazione" />

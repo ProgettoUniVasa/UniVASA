@@ -14,28 +14,31 @@ public class Prenotazione {
 
 	private Stato stato = Stato.no; // votazione_effettuata
 
-	private Blob Certificato; 
+	private Blob certificato;
+
+	private int votiEspressi = 0;
 
 	public Prenotazione() {
 	}
-	
+
 	public Prenotazione(Evento evento, Elettore elettore, TipoPrenotazione tipoPrenotazione) {
 		super();
 		this.evento = evento;
 		this.elettore = elettore;
 		this.tipoPrenotazione = tipoPrenotazione;
+
 	}
 
 	public Prenotazione(Evento evento, Elettore elettore, TipoPrenotazione tipoPrenotazione, Stato stato,
-			Blob certificato) {
+			Blob certificato, int votiEspressi) {
 		super();
 		this.evento = evento;
 		this.elettore = elettore;
 		this.tipoPrenotazione = tipoPrenotazione;
 		this.stato = stato;
-		Certificato = certificato;
+		this.certificato = certificato;
+		this.votiEspressi = votiEspressi;
 	}
-
 
 	public Long getId() {
 		return id;
@@ -44,7 +47,6 @@ public class Prenotazione {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 
 	public Evento getEvento() {
 		return evento;
@@ -79,17 +81,27 @@ public class Prenotazione {
 	}
 
 	public Blob getCertificato() {
-		return Certificato;
+		return certificato;
 	}
 
 	public void setCertificato(Blob certificato) {
-		Certificato = certificato;
+		this.certificato = certificato;
+	}
+
+	public int getVotiEspressi() {
+		return votiEspressi;
+	}
+
+	public void setVotiEspressi(int votiEspressi) {
+		this.votiEspressi = votiEspressi;
 	}
 
 	@Override
 	public String toString() {
 		return "Prenotazione [id=" + id + ", evento=" + evento + ", elettore=" + elettore + ", tipoPrenotazione="
-				+ tipoPrenotazione + ", stato=" + stato + ", Certificato=" + Certificato + ", getClass()=" + getClass()
-				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
+				+ tipoPrenotazione + ", stato=" + stato + ", certificato=" + certificato + ", votiEspressi="
+				+ votiEspressi + "]";
 	}
+
+	
 }

@@ -26,6 +26,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 
 public class ElencoEventiInCorsoController implements Initializable, DataInitializable<Elettore> {
@@ -37,10 +38,10 @@ public class ElencoEventiInCorsoController implements Initializable, DataInitial
 	private TableColumn<Prenotazione, String> nomeTableColumn;
 
 	@FXML
-	private TableColumn<Prenotazione, LocalDate> dataInizioTableColumn;
+	private TableColumn<Prenotazione, String> dataInizioTableColumn;
 
 	@FXML
-	private TableColumn<Prenotazione, LocalDate> dataFineTableColumn;
+	private TableColumn<Prenotazione, String> dataFineTableColumn;
 
 	@FXML
 	private TableColumn<Prenotazione, String> oraInizioTableColumn;
@@ -50,15 +51,15 @@ public class ElencoEventiInCorsoController implements Initializable, DataInitial
 
 	@FXML
 	private TableColumn<Prenotazione, String> luogoTableColumn;
+	
+	@FXML
+	private TableColumn<Prenotazione, String> prenotazioneTableColumn;
 
 	@FXML
 	private TableColumn<Prenotazione, Button> regolamentoTableColumn;
 
 	@FXML
 	private TableColumn<Prenotazione, Button> azioneTableColumn;
-
-	@FXML
-	private Button esciButton;
 
 	@FXML
 	private Button indietroButton;
@@ -84,31 +85,19 @@ public class ElencoEventiInCorsoController implements Initializable, DataInitial
 					}
 				});
 		dataInizioTableColumn.setCellValueFactory(
-				new Callback<TableColumn.CellDataFeatures<Prenotazione, LocalDate>, ObservableValue<LocalDate>>() {
+				new Callback<TableColumn.CellDataFeatures<Prenotazione, String>, ObservableValue<String>>() {
 					@Override
-					public ObservableValue<LocalDate> call(CellDataFeatures<Prenotazione, LocalDate> param) {
-						return new SimpleObjectProperty<LocalDate>(param.getValue().getEvento().getDataInizio());
+					public ObservableValue<String> call(CellDataFeatures<Prenotazione, String> param) {
+						return new SimpleStringProperty(param.getValue().getEvento().getDataInizio().toString() + "\n ore: "
+								+ param.getValue().getEvento().getOraInizio());
 					}
 				});
 		dataFineTableColumn.setCellValueFactory(
-				new Callback<TableColumn.CellDataFeatures<Prenotazione, LocalDate>, ObservableValue<LocalDate>>() {
-					@Override
-					public ObservableValue<LocalDate> call(CellDataFeatures<Prenotazione, LocalDate> param) {
-						return new SimpleObjectProperty<LocalDate>(param.getValue().getEvento().getDataFine());
-					}
-				});
-		oraInizioTableColumn.setCellValueFactory(
 				new Callback<TableColumn.CellDataFeatures<Prenotazione, String>, ObservableValue<String>>() {
 					@Override
 					public ObservableValue<String> call(CellDataFeatures<Prenotazione, String> param) {
-						return new SimpleStringProperty(param.getValue().getEvento().getOraInizio());
-					}
-				});
-		oraFineTableColumn.setCellValueFactory(
-				new Callback<TableColumn.CellDataFeatures<Prenotazione, String>, ObservableValue<String>>() {
-					@Override
-					public ObservableValue<String> call(CellDataFeatures<Prenotazione, String> param) {
-						return new SimpleStringProperty(param.getValue().getEvento().getOraFine());
+						return new SimpleStringProperty(param.getValue().getEvento().getDataFine().toString() + "\n ore: "
+								+ param.getValue().getEvento().getOraFine());
 					}
 				});
 		luogoTableColumn.setCellValueFactory(
@@ -134,6 +123,14 @@ public class ElencoEventiInCorsoController implements Initializable, DataInitial
 							}
 						});
 						return new SimpleObjectProperty<Button>(regolamentoButton);
+					}
+				});
+		
+		prenotazioneTableColumn.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<Prenotazione, String>, ObservableValue<String>>() {
+					@Override
+					public ObservableValue<String> call(CellDataFeatures<Prenotazione, String> param) {
+						return new SimpleStringProperty(param.getValue().getTipoPrenotazione().toString());
 					}
 				});
 
@@ -170,6 +167,11 @@ public class ElencoEventiInCorsoController implements Initializable, DataInitial
 		ObservableList<Prenotazione> prenotazioniData = FXCollections.observableArrayList(prenotazioni);
 		eventiPersonaliTable.setItems(prenotazioniData);
 	}
+	
+	@FXML
+	public void esciAction(MouseEvent event) {
+		dispatcher.logout();
+	};
 
 	@FXML
 	public void indietroAction(ActionEvent event) {
