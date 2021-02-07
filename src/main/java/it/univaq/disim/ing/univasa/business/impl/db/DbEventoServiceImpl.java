@@ -30,6 +30,7 @@ public class DbEventoServiceImpl implements EventoService {
 	private static final String modificaReport = "update evento set report_risultati=?, report_statistiche=? where id=? ";
 	private static final String eliminaEvento = "delete from evento where id=?";
 	private static final String trovaTuttiEventi = "select * from evento";
+	private static final String trovaEventiInCorso = "select * from evento where stato='in corso'";
 	private static final String trovaEventoDaId = "select * from evento where id=?";
 	private static final String trovaNomiEventi = "select nome from evento";
 	private static final String eventoDaNome = "select * from evento where nome=?";
@@ -191,6 +192,38 @@ public class DbEventoServiceImpl implements EventoService {
 	}
 
 	@Override
+	public List<Evento> trovaEventiInCorso() throws BusinessException {
+		List<Evento> result = new ArrayList<>();
+		ResultSet r = null;
+
+		// Connessione al Database e richiamo query
+		try (Connection c = DriverManager.getConnection(url, user, password);) {
+
+			PreparedStatement ps = c.prepareStatement(trovaEventiInCorso);
+			r = ps.executeQuery();
+
+			while (r.next()) {
+				Evento evento = new Evento();
+				evento = trovaEventoDaId(r.getLong(1));
+				result.add(evento);
+			}
+
+			r.close();
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		} finally {
+			if (r != null) {
+				try {
+					r.close();
+				} catch (SQLException ex) {
+					ex.printStackTrace();
+				}
+			}
+		}
+		return result;
+	}
+
+	@Override
 	public List<Candidato> visualizzaCandidati(Evento evento) throws BusinessException {
 		List<Candidato> candidati = new ArrayList<Candidato>();
 		ResultSet r = null;
@@ -293,7 +326,10 @@ public class DbEventoServiceImpl implements EventoService {
 				evento.setReport_risultati(r.getString(9));
 				evento.setReport_statistiche(r.getString(10));
 				evento.setNumero_preferenze_esprimibili(r.getInt(11));
-				evento.setStatoEvento(StatoEvento.valueOf(r.getString(12)));
+				if (r.getString(12).equals("in corso"))
+					evento.setStatoEvento(StatoEvento.valueOf("in_corso"));
+				else
+					evento.setStatoEvento(StatoEvento.valueOf(r.getString(12)));
 			}
 		} catch (SQLException ex) {
 			ex.printStackTrace();
