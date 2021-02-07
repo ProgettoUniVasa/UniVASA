@@ -146,7 +146,7 @@ ENGINE = InnoDB;
 -- event AggiornaStatoEvento
 -- -----------------------------------------------------
 drop event if exists aggiornaStatoEvento;
-create event aggiornaStatoEvento on schedule at '00:01' do call aggiornaStato;
+create event aggiornaStatoEvento on schedule every 30 second do call aggiornaStato;
 drop procedure if exists aggiornaStato;
 delimiter $$
 create procedure aggiornaStato() 

@@ -13,7 +13,7 @@ INSERT INTO `utente` (`id`, `nome`, `cognome`, `email`, `username`, `password`, 
 
 INSERT INTO `evento` (`id`, `nome`, `regolamento`, `data_inizio`, `data_fine`, `ora_inizio`, `ora_fine`, `luogo`, `report_risultati`, `report_statistiche`, `numero_preferenze_esprimibili`, `stato`) VALUES
 (1, 'RAPPRESENTANTI UNI', 'si vota una persona per scheda elettorale', '2021-03-10', '2021-03-11', '8:00', '20:00', 'L\'Aquila', NULL, NULL, 1, 'programmato'),
-(9, 'Rappresentanti Prof', 'Votate max 2 persone', '2021-02-03', '2021-02-06', '11:00', '18:00', 'Coppito 2', 'Ha vinto Samuel.', 'Martina ha preso 0 voti.', 2, 'terminato'),
+(9, 'Rappresentanti Prof', 'Votate max 2 persone', '2021-02-03', '2021-02-06', '11:00', '18:00', 'Coppito 2', 'Ha vinto Samuel.', 'Martina ha preso 0 voti.', 2, 'programmato'),
 (10, 'Elezione segreteria', 'Massimo 3 preferenze', '2021-02-17', '2021-02-22', '10:00', '23:00', 'Blocco 0', NULL, NULL, 3, 'programmato');
 
 
