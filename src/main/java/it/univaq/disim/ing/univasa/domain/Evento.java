@@ -33,30 +33,9 @@ public class Evento {
 	private Set<Candidato> candidati = new HashSet<>();
 	private Set<Operatore> operatori = new HashSet<>();
 
+
 	public Evento() {
 		super();
-	}
-
-	public Evento(Long id, String nome, String regolamento, LocalDate dataInizio, LocalDate dataFine, String oraInizio,
-			String oraFine, String luogo, String report_risultati, String report_statistiche,
-			int numero_preferenze_esprimibili, StatoEvento statoEvento, Set<Amministratore> amministratori,
-			Set<Candidato> candidati, Set<Operatore> operatori, Set<SchedaElettorale> schedeOnline,
-			Set<ElettoreInSede> elettoriInSede) {
-		super();
-		this.id = id;
-		this.nome = nome;
-		this.regolamento = regolamento;
-		this.dataInizio = dataInizio;
-		this.dataFine = dataFine;
-		this.oraInizio = oraInizio;
-		this.oraFine = oraFine;
-		this.luogo = luogo;
-		this.report_risultati = report_risultati;
-		this.report_statistiche = report_statistiche;
-		this.numero_preferenze_esprimibili = numero_preferenze_esprimibili;
-		this.statoEvento = statoEvento;
-		this.candidati = candidati;
-		this.operatori = operatori;
 	}
 
 	public Long getId() {

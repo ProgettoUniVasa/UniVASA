@@ -78,6 +78,6 @@ public class AggiungiVotiOperatoreController implements Initializable, DataIniti
 
 	@FXML
 	public void annullaAction(ActionEvent event) {
-		dispatcher.renderView("caricaVotiOperatore", evento);
+		dispatcher.renderView("eventoOperatore", evento);
 	}
 }
