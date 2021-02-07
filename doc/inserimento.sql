@@ -3,11 +3,11 @@ INSERT INTO `utente` (`id`, `nome`, `cognome`, `email`, `username`, `password`, 
 (2, 'Elena', 'Ricci', 'bcb@gmail.com', 'e', 'e', '4562222221', '2003-10-23', 'studente', 'AQ', 'DISIM', '255222', 'elettore'),
 (3, 'Chiara', 'Ferry', 'cdc@gmail.com', 'o', 'o', '7892222222', '2000-04-15', 'impiegato', 'AQ', 'DISCAB', NULL, 'operatore'),
 (13, 'Martina', 'Nolletti', 'martina@nolletti.org', 'martina', 'martina', '3459319859', '1999-05-24', 'impiegato', 'UniBocconi', 'DISIM', NULL, 'amministratore'),
-(14, 'Marco', 'Chiavaroli', 'marco@chiav.top', 'marco', 'marco', '3890459739', '1999-08-23', 'studente', 'Univaq', 'DISCAB', NULL, 'operatore'),
-(15, 'Samuel', 'Cipriani', 'samuel@cipciop.it', 'samuel', 'samuel', '3893833983', '2000-02-29', 'professore', 'Univaq', 'DISIM', '289282', 'elettore'),
-(16, 'Lorenzo', 'Solazzo', 'lollo@sola.it', 'lorenzo', 'lorenzo', '3859786959', '2000-05-11', 'professore', 'Univaq', 'DISIM', '989839', 'elettore'),
-(17, 'Enrico', 'Adamelli', 'enry@adams.it', 'enrico', 'enrico', '3980987695', '2000-01-16', 'impiegato', 'Univaq', 'DISIM', '123456', 'elettore'),
-(18, 'Andrea', 'Fonte', 'andrea@fonte.com', 'andrea', 'andrea', '1234567892', '1999-05-13', 'professore', 'Univaq', 'DISIM', '192948', 'elettore');
+(14, 'Marco', 'Chiavaroli', 'marco@chiav.top', 'marco', 'marco', '3890459739', '1999-08-23', 'studente', 'Univaq', 'DISCAB', '230746', 'operatore'),
+(15, 'Samuel', 'Cipriani', 'samuel@cipciop.it', 'samuel', 'samuel', '3893833983', '2000-02-29', 'professore', 'Univaq', 'DISIM', '', 'elettore'),
+(16, 'Lorenzo', 'Solazzo', 'lollo@sola.it', 'lorenzo', 'lorenzo', '3859786959', '2000-05-11', 'professore', 'Univaq', 'DISIM', '', 'elettore'),
+(17, 'Enrico', 'Adamelli', 'enry@adams.it', 'enrico', 'enrico', '3980987695', '2000-01-16', 'impiegato', 'Univaq', 'DISIM', '', 'elettore'),
+(18, 'Andrea', 'Fonte', 'andrea@fonte.com', 'andrea', 'andrea', '1234567892', '1999-05-13', 'professore', 'Univaq', 'DISIM', '', 'elettore');
 
 
 
