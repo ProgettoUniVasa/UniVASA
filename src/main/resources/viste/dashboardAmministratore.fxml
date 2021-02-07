@@ -20,20 +20,12 @@
                   <Insets left="10.0" top="10.0" />
                </HBox.margin>
             </ImageView>
-            <ImageView fx:id="profiloButton" fitHeight="53.0" fitWidth="53.0" onMouseClicked="#visualizzaProfiloAction">
-               <image>
-                  <Image url="@username.png" />
-               </image>
-               <HBox.margin>
-                  <Insets left="500.0" top="5.0" />
-               </HBox.margin>
-            </ImageView>
             <ImageView fx:id="esciButton" fitHeight="41.0" fitWidth="68.0" onMouseClicked="#esciAction">
                <image>
                   <Image url="@logout.png" />
                </image>
                <HBox.margin>
-                  <Insets left="20.0" top="5.0" />
+                  <Insets left="550.0" top="5.0" />
                </HBox.margin>
             </ImageView>
          </children>

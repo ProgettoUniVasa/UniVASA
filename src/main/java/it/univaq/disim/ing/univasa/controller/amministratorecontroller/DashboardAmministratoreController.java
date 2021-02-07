@@ -81,10 +81,4 @@ public class DashboardAmministratoreController implements Initializable, DataIni
 	public void esciAction(MouseEvent event) {
 		dispatcher.logout();
 	}
-
-	@FXML
-	public void visualizzaProfiloAction(MouseEvent event) {
-		dispatcher.renderView("areaRiservataAmministratore", amministratore);
-	}
-
 }
