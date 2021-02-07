@@ -69,8 +69,11 @@ public class AggiungiVotiOperatoreController implements Initializable, DataIniti
 	@FXML
 	public void confermaAction(ActionEvent event) {
 		try {
+			Turnazione turnazione = new Turnazione();
+			turnazione.setEvento(evento);
+			//turnazione.setOperatore();
 			eventoService.caricaRisultatiInPresenza(candidato, Integer.valueOf(voti.getText()));
-			dispatcher.renderView("caricaVotiOperatore", evento);
+			dispatcher.renderView("caricaVotiOperatore", turnazione);
 		} catch (BusinessException e) {
 			dispatcher.renderError(e);
 		}
@@ -78,6 +81,8 @@ public class AggiungiVotiOperatoreController implements Initializable, DataIniti
 
 	@FXML
 	public void annullaAction(ActionEvent event) {
-		dispatcher.renderView("eventoOperatore", evento);
+		Turnazione turnazione = new Turnazione();
+		turnazione.setEvento(evento);
+		dispatcher.renderView("caricaVotiOperatore", turnazione);
 	}
 }

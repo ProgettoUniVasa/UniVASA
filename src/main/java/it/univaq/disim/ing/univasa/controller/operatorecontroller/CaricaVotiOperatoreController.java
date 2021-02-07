@@ -92,6 +92,7 @@ public class CaricaVotiOperatoreController implements Initializable, DataInitial
                         azioneButton.setOnAction(new EventHandler<ActionEvent>() {
                             @Override
                             public void handle(ActionEvent event) {
+                                System.out.println(param.getValue());
                                 dispatcher.renderView("aggiungiVotiOperatore", param.getValue());
                             }
                         });
