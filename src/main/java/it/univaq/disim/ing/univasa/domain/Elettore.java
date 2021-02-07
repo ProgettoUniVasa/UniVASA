@@ -7,7 +7,7 @@ import java.util.Set;
 public class Elettore extends Utente {
 
 	private String matricola;
-	private boolean certificato;
+	
 	private Set<Evento> evento = new HashSet<>();
 
 	public Elettore() {
@@ -20,16 +20,11 @@ public class Elettore extends Utente {
 		super(id, nome, cognome, email, username, password, telefono, data_nascita, professione, nome_università,
 				dipartimento);
 		this.matricola = matricola;
-		this.certificato = certificato;
 		this.evento = evento;
 	}
 
 	public String getMatricola() {
 		return matricola;
-	}
-
-	public boolean isCertificato() {
-		return certificato;
 	}
 
 	public Set<Evento> getEvento() {
@@ -40,22 +35,19 @@ public class Elettore extends Utente {
 		this.matricola = matricola;
 	}
 
-	public void setCertificato(boolean certificato) {
-		this.certificato = certificato;
-	}
-
 	public void setEvento(Set<Evento> evento) {
 		this.evento = evento;
 	}
 
 	@Override
 	public String toString() {
-		return "Elettore [Id=" + getId() + ", Nome=" + getNome() + ", Cognome=" + getCognome() + ", Email=" + getEmail()
-				+ ", Username=" + getUsername() + ", Password=" + getPassword() + ", Telefono=" + getTelefono()
-				+ ", Data_nascita=" + getData_nascita() + ", Professione=" + getProfessione() + ", Nome_università="
-				+ getNome_università() + ", Dipartimento=" + getDipartimento() + ", matricola=" + matricola
-				+ ", certificato=" + certificato + ", evento=" + evento + ", getClass()=" + getClass() + ", hashCode()="
-				+ hashCode() + ", toString()=" + super.toString() + "]";
+		return "Elettore [matricola=" + matricola + ", evento=" + evento + ", getId()=" + getId() + ", getNome()="
+				+ getNome() + ", getCognome()=" + getCognome() + ", getEmail()=" + getEmail() + ", getUsername()="
+				+ getUsername() + ", getPassword()=" + getPassword() + ", getTelefono()=" + getTelefono()
+				+ ", getData_nascita()=" + getData_nascita() + ", getProfessione()=" + getProfessione()
+				+ ", getNome_università()=" + getNome_università() + ", getDipartimento()=" + getDipartimento()
+				+ ", toString()=" + super.toString() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
+				+ "]";
 	}
 
 }
