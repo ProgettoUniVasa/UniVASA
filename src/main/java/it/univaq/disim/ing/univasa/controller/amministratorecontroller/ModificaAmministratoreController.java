@@ -73,7 +73,7 @@ public class ModificaAmministratoreController implements Initializable, DataInit
 			} else
 			// controllo @ per email
 			if (!email.getText().contains("@")) {
-				JOptionPane.showMessageDialog(null, "Email non valida", "ATTENZIONE", JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Email non valida!", "ATTENZIONE", JOptionPane.WARNING_MESSAGE);
 			} else {
 				amministratore.setEmail(email.getText());
 				amministratore.setTelefono(telefono.getText());
@@ -81,7 +81,6 @@ public class ModificaAmministratoreController implements Initializable, DataInit
 				amministratore.setDipartimento(dipartimento.getText());
 
 				utenteService.modificaAmministratore(amministratore);
-
 				dispatcher.renderView("gestioneAmministratoriAmministratore", amministratore);
 			}
 		} catch (BusinessException e) {

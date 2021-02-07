@@ -65,7 +65,7 @@ public class GestioneOperatoriAmministratoreController implements Initializable,
 
 	@FXML
 	private Button aggiungiOperatoreButton;
-	
+
 	@FXML
 	private Button indietroButton;
 

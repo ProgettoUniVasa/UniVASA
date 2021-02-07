@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import it.univaq.disim.ing.univasa.business.BusinessException;
-import it.univaq.disim.ing.univasa.business.EventoService;
 import it.univaq.disim.ing.univasa.business.UnivasaBusinessFactory;
 import it.univaq.disim.ing.univasa.business.UtenteService;
 import it.univaq.disim.ing.univasa.controller.DataInitializable;
@@ -144,7 +143,7 @@ public class GestioneAmministratoriAmministratoreController
 	public void aggiungiAmministratoreAction(ActionEvent event) {
 		dispatcher.renderView("aggiungiAmministratore", amministratore);
 	}
-	
+
 	@FXML
 	public void indietroAction(ActionEvent event) {
 		dispatcher.renderView("dashboardAmministratore", amministratore);

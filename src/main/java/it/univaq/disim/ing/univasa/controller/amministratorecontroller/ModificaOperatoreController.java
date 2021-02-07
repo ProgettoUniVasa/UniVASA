@@ -76,7 +76,7 @@ public class ModificaOperatoreController implements Initializable, DataInitializ
 			} else
 			// controllo @ per email
 			if (!email.getText().contains("@")) {
-				JOptionPane.showMessageDialog(null, "Email non valida", "ATTENZIONE", JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Email non valida!", "ATTENZIONE", JOptionPane.WARNING_MESSAGE);
 			} else {
 				operatore.setEmail(email.getText());
 				operatore.setTelefono(telefono.getText());
@@ -84,7 +84,6 @@ public class ModificaOperatoreController implements Initializable, DataInitializ
 				operatore.setDipartimento(dipartimento.getText());
 
 				utenteService.modificaOperatore(operatore);
-
 				dispatcher.renderView("gestioneOperatoriAmministratore", amministratore);
 			}
 		} catch (BusinessException e) {

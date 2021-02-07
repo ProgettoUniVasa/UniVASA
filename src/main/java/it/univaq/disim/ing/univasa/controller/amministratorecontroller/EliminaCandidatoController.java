@@ -77,7 +77,7 @@ public class EliminaCandidatoController implements Initializable, DataInitializa
 			dispatcher.renderView("listaCandidatiAmministratore", candidato.getEvento());
 
 		} catch (BusinessException e) {
-			//e.printStackTrace();
+			e.printStackTrace();
 		}
 
 	}

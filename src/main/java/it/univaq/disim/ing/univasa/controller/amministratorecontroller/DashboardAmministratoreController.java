@@ -7,7 +7,6 @@ import it.univaq.disim.ing.univasa.business.UnivasaBusinessFactory;
 import it.univaq.disim.ing.univasa.business.UtenteService;
 import it.univaq.disim.ing.univasa.controller.DataInitializable;
 import it.univaq.disim.ing.univasa.domain.Amministratore;
-import it.univaq.disim.ing.univasa.domain.Utente;
 import it.univaq.disim.ing.univasa.view.ViewDispatcher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -85,7 +84,6 @@ public class DashboardAmministratoreController implements Initializable, DataIni
 
 	@FXML
 	public void visualizzaProfiloAction(MouseEvent event) {
-		System.out.println(amministratore);
 		dispatcher.renderView("areaRiservataAmministratore", amministratore);
 	}
 

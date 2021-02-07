@@ -84,7 +84,7 @@ public class AggiungiEventoController implements Initializable, DataInitializabl
 	public void salvaAction(ActionEvent event) {
 		try {
 
-			 Evento evento = new Evento();
+			Evento evento = new Evento();
 			evento.setNome(nome.getText());
 			evento.setRegolamento(regolamento.getText());
 			evento.setDataInizio(dataInizio.getValue());
@@ -96,8 +96,8 @@ public class AggiungiEventoController implements Initializable, DataInitializabl
 
 			eventoService.creaEvento(evento);
 			// vanno settati gli eventi per l'amministratore e viceversa
-			evento.getAmministratori().add(amministratore);
-			amministratore.getEvento().add(evento);
+			/*evento.getAmministratori().add(amministratore);
+			amministratore.getEvento().add(evento);*/
 			//
 			dispatcher.renderView("listaEventiAmministratore", amministratore);
 

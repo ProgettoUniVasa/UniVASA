@@ -1,7 +1,6 @@
 package it.univaq.disim.ing.univasa.controller.amministratorecontroller;
 
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -43,7 +42,7 @@ public class ListaEventiAmministratoreController implements Initializable, DataI
 
 	@FXML
 	private TableColumn<Evento, Button> regolamentoTableColumn;
-	
+
 	@FXML
 	private TableColumn<Evento, String> oraInizioTableColumn;
 
@@ -75,7 +74,7 @@ public class ListaEventiAmministratoreController implements Initializable, DataI
 
 	private EventoService eventoService;
 	private UtenteService utenteService;
-	
+
 	private Amministratore amministratore;
 	private Evento evento;
 
@@ -89,7 +88,7 @@ public class ListaEventiAmministratoreController implements Initializable, DataI
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 		nomeTableColumn.setCellValueFactory(new PropertyValueFactory<>("nome"));
-		
+
 		regolamentoTableColumn.setStyle("-fx-alignment: CENTER;");
 		regolamentoTableColumn.setCellValueFactory(
 				new Callback<TableColumn.CellDataFeatures<Evento, Button>, ObservableValue<Button>>() {
@@ -106,7 +105,7 @@ public class ListaEventiAmministratoreController implements Initializable, DataI
 						});
 						return new SimpleObjectProperty<Button>(regolamentoButton);
 					}
-				});		
+				});
 		oraInizioTableColumn.setStyle("-fx-alignment: CENTER;");
 		oraInizioTableColumn.setCellValueFactory(
 				new Callback<TableColumn.CellDataFeatures<Evento, String>, ObservableValue<String>>() {
@@ -116,7 +115,7 @@ public class ListaEventiAmministratoreController implements Initializable, DataI
 								+ param.getValue().getOraInizio());
 					}
 				});
-		
+
 		oraFineTableColumn.setStyle("-fx-alignment: CENTER;");
 		oraFineTableColumn.setCellValueFactory(
 				new Callback<TableColumn.CellDataFeatures<Evento, String>, ObservableValue<String>>() {
@@ -128,7 +127,7 @@ public class ListaEventiAmministratoreController implements Initializable, DataI
 				});
 		luogoTableColumn.setStyle("-fx-alignment: CENTER;");
 		luogoTableColumn.setCellValueFactory(new PropertyValueFactory<>("luogo"));
-		
+
 		numero_preferenze_esprimibiliTableColumn.setStyle("-fx-alignment: CENTER;");
 		numero_preferenze_esprimibiliTableColumn
 				.setCellValueFactory(new PropertyValueFactory<>("numero_preferenze_esprimibili"));
@@ -192,7 +191,6 @@ public class ListaEventiAmministratoreController implements Initializable, DataI
 	public void initializeData(Amministratore amministratore) {
 		try {
 			this.amministratore = amministratore;
-			System.out.println(amministratore);
 			List<Evento> evento = eventoService.trovaTuttiEventi();
 			ObservableList<Evento> eventiData = FXCollections.observableArrayList(evento);
 			eventiTable.setItems(eventiData);
@@ -208,7 +206,6 @@ public class ListaEventiAmministratoreController implements Initializable, DataI
 
 	@FXML
 	public void indietroAction(ActionEvent event) {
-		System.out.println(amministratore);
 		dispatcher.renderView("dashboardAmministratore", amministratore);
 	}
 }

@@ -51,7 +51,7 @@ public class ListaPrenotatiAmministratoreController implements Initializable, Da
 
 	@FXML
 	private Button aggiungiElettoreButton;
-	
+
 	@FXML
 	private Button indietroButton;
 

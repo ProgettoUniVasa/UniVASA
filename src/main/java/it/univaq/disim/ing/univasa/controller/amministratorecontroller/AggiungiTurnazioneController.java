@@ -138,27 +138,6 @@ public class AggiungiTurnazioneController implements Initializable, DataInitiali
 		} catch (BusinessException e) {
 			dispatcher.renderError(e);
 		}
-
-		/*
-		 * try { this.operatore = turnazione.getOperatore();
-		 * 
-		 * turnazione.setFascia(fascia.getValue());
-		 * turnazione.setData_turno(data_turno.getValue());
-		 * 
-		 * String emailOperatore = email.getText(); String nomeEvento =
-		 * nome_evento.getText(); String luogoEvento = luogo.getText(); Long
-		 * idOperatore; int c = 0;
-		 * 
-		 * for (Evento e : eventoService.trovaTuttiEventi()) {
-		 * 
-		 * if (e.getNome().equals(nomeEvento) && e.getLuogo().equals(luogoEvento)) {
-		 * 
-		 * idOperatore = e.getId(); turnazione.setOperatore((Operatore)
-		 * utenteService.trovaUtenteDaId(idOperatore)); c++; if (turnazione.getId() ==
-		 * null) { turnazioneService.creaTurnazione(turnazione); } } }
-		 * dispatcher.renderView("listaTurnazioniAmministratore", amministratore); }
-		 * catch (BusinessException e) { dispatcher.renderError(e); }
-		 */
 	}
 
 	@FXML

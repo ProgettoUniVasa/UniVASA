@@ -95,7 +95,8 @@ public class GestioneCandidatiAmministratoreController implements Initializable,
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 		nomeTableColumn.setCellValueFactory(new PropertyValueFactory<>("nome"));
 		cognomeTableColumn.setCellValueFactory(new PropertyValueFactory<>("cognome"));
-		emailTableColumn.setCellValueFactory(new PropertyValueFactory<>("email"));;
+		emailTableColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
+		;
 
 		eliminaTableColumn.setStyle("-fx-alignment: CENTER;");
 		eliminaTableColumn.setCellValueFactory(
@@ -121,7 +122,6 @@ public class GestioneCandidatiAmministratoreController implements Initializable,
 	public void initializeData(Evento evento) {
 		try {
 			this.evento = evento;
-			//Amministratore amministratore = utenteService.trovaUtenteDaId(evento.getAmministratori());
 			List<Candidato> candidati = eventoService.visualizzaCandidati(evento);
 			ObservableList<Candidato> candidatiData = FXCollections.observableArrayList(candidati);
 			candidatiTable.setItems(candidatiData);
@@ -134,12 +134,7 @@ public class GestioneCandidatiAmministratoreController implements Initializable,
 	public void aggiungiCandidatoAction(ActionEvent event) {
 		dispatcher.renderView("aggiungiCandidato", evento);
 	}
-	
-	/*@FXML
-	public void indietroAction(ActionEvent event) {
-		dispatcher.renderView("prescrizioniMedico", prescrizione.getMedico());
-	}*/
-	
+
 	@FXML
 	public void indietroAction(ActionEvent event) {
 		dispatcher.renderView("listaEventiAmministratore", amministratore);
