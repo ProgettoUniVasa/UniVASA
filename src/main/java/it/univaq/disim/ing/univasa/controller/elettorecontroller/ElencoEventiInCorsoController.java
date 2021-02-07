@@ -163,9 +163,15 @@ public class ElencoEventiInCorsoController implements Initializable, DataInitial
 	@Override
 	public void initializeData(Elettore elettore) {
 		this.elettore = elettore;
-		List<Prenotazione> prenotazioni = prenotazioneService.trovaPrenotazioniOnlineInCorso(elettore);
-		ObservableList<Prenotazione> prenotazioniData = FXCollections.observableArrayList(prenotazioni);
-		eventiPersonaliTable.setItems(prenotazioniData);
+		List<Prenotazione> prenotazioni;
+		try {
+			prenotazioni = prenotazioneService.trovaPrenotazioniOnlineInCorso(elettore);
+			ObservableList<Prenotazione> prenotazioniData = FXCollections.observableArrayList(prenotazioni);
+			eventiPersonaliTable.setItems(prenotazioniData);
+		} catch (BusinessException e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
 	@FXML

@@ -142,7 +142,18 @@ CREATE TABLE IF NOT EXISTS `univasa`.`candidato` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
-
+-- -----------------------------------------------------
+-- event AggiornaStatoEvento
+-- -----------------------------------------------------
+drop event if exists aggiornaStatoEvento;
+create event aggiornaStatoEvento on schedule at '00:01' do call aggiornaStato;
+drop procedure if exists aggiornaStato;
+delimiter $$
+create procedure aggiornaStato() 
+begin update evento e set e.stato = 'in corso' where e.data_inizio<=now() and e.data_fine>=now();
+update evento e set e.stato = 'terminato' where e.data_fine<now(); 
+end $$
+delimiter ;
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

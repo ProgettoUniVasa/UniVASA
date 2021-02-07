@@ -28,7 +28,9 @@ public class DbPrenotazioneServiceImpl implements PrenotazioneService {
 	private static final String prenotazioneOnline = "insert into prenotazione (id_utente,id_evento,tipo_prenotazione) values (?,?,'online')";
 	private static final String trovaPrenotazioniElettore = "select * from prenotazione where id_utente=?";
 	private static final String trovaPrenotazioneDaId = "select * from prenotazione where id=?";
+	private static final String trovaPrenotazioneOnlineElettore = "select * from prenotazione p join evento e on p.id_evento = e.id where p.id_utente=? and p.tipo_prenotazione='online' and e.stato='in corso'";
 
+	
 	public DbPrenotazioneServiceImpl(EventoService eventoService, UtenteService utenteService) {
 		this.eventoService=eventoService;
 		this.utenteService=utenteService;
@@ -130,8 +132,27 @@ public class DbPrenotazioneServiceImpl implements PrenotazioneService {
 	}
 
 	@Override			// DA FARE
-	public List<Prenotazione> trovaPrenotazioniOnlineInCorso(Elettore elettore) {
+	public List<Prenotazione> trovaPrenotazioniOnlineInCorso(Elettore elettore) throws BusinessException {
 		List<Prenotazione> prenotazioni = new ArrayList<Prenotazione>();
+		ResultSet r = null;
+
+		try (Connection c = DriverManager.getConnection(url, user, pwd);) {
+
+			PreparedStatement ps = c.prepareStatement(trovaPrenotazioneOnlineElettore);
+			
+			ps.setLong(1, elettore.getId());
+			r = ps.executeQuery();
+
+			while (r.next()) {
+				Prenotazione prenotazione = new Prenotazione();
+				prenotazione = trovaPrenotazioneDaId(r.getLong(1));
+				prenotazioni.add(prenotazione);
+			}
+			
+			ps.executeQuery();
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
 		return prenotazioni;
 	}
 

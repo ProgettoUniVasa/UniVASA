@@ -58,8 +58,9 @@ public class ElencoEventiPersonaliElettoreController implements Initializable, D
 	private TableColumn<Prenotazione, Button> regolamentoTableColumn;
 
 	@FXML
-	private TableColumn<Prenotazione, StatoEvento> statoEventoTableColumn; // uso String per visualizzare la mia modalità di
-																		// voto (in
+	private TableColumn<Prenotazione, StatoEvento> statoEventoTableColumn; // uso String per visualizzare la mia
+																			// modalità di
+																			// voto (in
 	// presenza / online) se la prenotazione è stata effettuata.
 	// Se sono in presenza, devo poter cliccare il tasto per
 	// cambiare modalità di voto ed accedere alla vista che
@@ -77,9 +78,9 @@ public class ElencoEventiPersonaliElettoreController implements Initializable, D
 	private TableColumn<Prenotazione, Button> azioneTableColumn;
 
 	private ViewDispatcher dispatcher;
-	
+
 	private PrenotazioneService prenotazioneService;
-	
+
 	private Elettore elettore;
 
 	public ElencoEventiPersonaliElettoreController() {
@@ -148,7 +149,8 @@ public class ElencoEventiPersonaliElettoreController implements Initializable, D
 		prenotazioneTableColumn.setCellValueFactory(
 				new Callback<TableColumn.CellDataFeatures<Prenotazione, TipoPrenotazione>, ObservableValue<TipoPrenotazione>>() {
 					@Override
-					public ObservableValue<TipoPrenotazione> call(CellDataFeatures<Prenotazione, TipoPrenotazione> param) {
+					public ObservableValue<TipoPrenotazione> call(
+							CellDataFeatures<Prenotazione, TipoPrenotazione> param) {
 						return new SimpleObjectProperty<TipoPrenotazione>(param.getValue().getTipoPrenotazione());
 					}
 				});
@@ -167,33 +169,15 @@ public class ElencoEventiPersonaliElettoreController implements Initializable, D
 								Evento evento = prenotazione.getEvento();
 								if (prenotazione.getTipoPrenotazione().equals(TipoPrenotazione.in_presenza)
 										&& !(evento.getStatoEvento().equals(StatoEvento.terminato))) {
-									dispatcher.renderView("cambioModalitaVotazione", param.getValue()); 
-								}
-								else ; //gestire eccezione quando clicco modifica e non potrei <----------------------------------------------------
+									dispatcher.renderView("cambioModalitaVotazione", param.getValue());
+								} else
+									; // gestire eccezione quando clicco modifica e non potrei
+										// <----------------------------------------------------
 							}
 						});
 						return new SimpleObjectProperty<Button>(azioneButton);
 					}
 				});
-		/*
-		 * statoEventoTableColumn.setCellFactory(new Callback<TableColumn<Evento,
-		 * String>, TableCell<Evento, String>>() { public TableCell<Evento, String>
-		 * call(TableColumn<Evento, String> param) { return new TableCell<Evento,
-		 * String>() {
-		 * 
-		 * @Override public void updateItem(String item, boolean empty) {
-		 * super.updateItem(item, empty); if (!isEmpty()) { if
-		 * (item.contains(StatoEvento.IN_CORSO.toString())) { this.setText("in corso");
-		 * this.setTextFill(Color.GREEN); } else if
-		 * (item.contains(StatoEvento.PROGRAMMATO.toString())) {
-		 * this.setText("programmato"); this.setTextFill(Color.ORANGE); } else if
-		 * (item.contains(StatoEvento.TERMINATO.toString())) {
-		 * this.setText("Evento terminato"); this.setTextFill(Color.RED); }
-		 * setText(item);
-		 * 
-		 * } } }; } });
-		 */
-
 	}
 
 	@Override

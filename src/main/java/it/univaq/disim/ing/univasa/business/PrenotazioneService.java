@@ -11,5 +11,5 @@ public interface PrenotazioneService {
 
 	List<Prenotazione> trovaPrenotazioniElettore(Elettore elettore) throws BusinessException;
 	Prenotazione trovaPrenotazioneDaId(Long id) throws  BusinessException;
-	List<Prenotazione> trovaPrenotazioniOnlineInCorso(Elettore elettore);
+	List<Prenotazione> trovaPrenotazioniOnlineInCorso(Elettore elettore) throws BusinessException;
 }
