@@ -45,6 +45,7 @@ public class PrenotazioneVotazioneInPresenzaElettoreController implements Initia
 	@Override
 	public void initializeData(Evento evento) {
 		this.elettore = elettore;
+		this.evento = evento;
 	}
 
 	@FXML
