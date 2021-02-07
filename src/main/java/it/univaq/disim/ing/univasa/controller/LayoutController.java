@@ -29,6 +29,7 @@ public class LayoutController implements Initializable, DataInitializable<Utente
 
 	@Override
 	public void initializeData(Utente utente) {
+		this.utente = utente;
 	}
 
 	@FXML

@@ -95,8 +95,10 @@ public class AggiungiEventoController implements Initializable, DataInitializabl
 			evento.setNumero_preferenze_esprimibili(Integer.parseInt(numero_preferenze_esprimibili.getText()));
 
 			eventoService.creaEvento(evento);
-
-
+			// vanno settati gli eventi per l'amministratore e viceversa
+			evento.getAmministratori().add(amministratore);
+			amministratore.getEvento().add(evento);
+			//
 			dispatcher.renderView("listaEventiAmministratore", amministratore);
 
 		} catch (BusinessException e) {

@@ -196,7 +196,6 @@ public class ListaEventiAmministratoreController implements Initializable, DataI
 			List<Evento> evento = eventoService.trovaTuttiEventi();
 			ObservableList<Evento> eventiData = FXCollections.observableArrayList(evento);
 			eventiTable.setItems(eventiData);
-			System.out.println(amministratore);
 		} catch (BusinessException e) {
 			dispatcher.renderError(e);
 		}

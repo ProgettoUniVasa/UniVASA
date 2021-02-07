@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 
 import it.univaq.disim.ing.univasa.business.EventoService;
 import it.univaq.disim.ing.univasa.business.UnivasaBusinessFactory;
+import it.univaq.disim.ing.univasa.business.UtenteService;
 import it.univaq.disim.ing.univasa.controller.DataInitializable;
 import it.univaq.disim.ing.univasa.domain.Amministratore;
 import it.univaq.disim.ing.univasa.domain.Elettore;
@@ -31,6 +32,8 @@ public class RegolamentoEventoAmministratoreController implements Initializable,
 	private ViewDispatcher dispatcher;
 
 	private EventoService eventoService;
+	private UtenteService utenteService;
+
 
 	private Evento evento;
 
@@ -40,6 +43,7 @@ public class RegolamentoEventoAmministratoreController implements Initializable,
 		dispatcher = ViewDispatcher.getInstance();
 		UnivasaBusinessFactory factory = UnivasaBusinessFactory.getInstance();
 		eventoService = factory.getEventoService();
+		utenteService = factory.getUtenteService();
 	}
 
 	@Override
@@ -49,6 +53,7 @@ public class RegolamentoEventoAmministratoreController implements Initializable,
 	@Override
 	public void initializeData(Evento evento) {
 		this.evento = evento;
+		//this.amministratore = utenteService.trovaUtenteDaId(evento.getAmministratore().getId());
 		this.nome.setText(evento.getNome());
 		this.regolamento.setText(evento.getRegolamento());
 		this.nome.setEditable(false);

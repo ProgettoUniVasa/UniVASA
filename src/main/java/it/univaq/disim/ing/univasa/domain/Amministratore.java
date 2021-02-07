@@ -30,7 +30,7 @@ public class Amministratore extends Utente {
 
 	@Override
 	public String toString() {
-		return "Amministratore [evento=" + evento + ", getId()=" + getId() + ", getNome()=" + getNome()
+		return "Amministratore [evento=" + evento.isEmpty() + ", getId()=" + getId() + ", getNome()=" + getNome()
 				+ ", getCognome()=" + getCognome() + ", getEmail()=" + getEmail() + ", getUsername()=" + getUsername()
 				+ ", getPassword()=" + getPassword() + ", getTelefono()=" + getTelefono() + ", getData_nascita()="
 				+ getData_nascita() + ", getProfessione()=" + getProfessione() + ", getNome_università()="
