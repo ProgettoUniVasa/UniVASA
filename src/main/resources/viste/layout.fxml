@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.RadialGradient?>
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
@@ -34,4 +35,7 @@
          </children>
       </HBox>
    </top>
+   <left>
+      <VBox fx:id="menuBar" prefHeight="587.0" prefWidth="158.0" style="-fx-background-color: orange;" BorderPane.alignment="CENTER" />
+   </left>
 </BorderPane>
