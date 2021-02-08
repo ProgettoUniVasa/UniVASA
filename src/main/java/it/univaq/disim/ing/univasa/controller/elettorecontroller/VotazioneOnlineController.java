@@ -82,11 +82,6 @@ public class VotazioneOnlineController implements Initializable, DataInitializab
 			}
 	}
 
-	/*@FXML
-	public void indietroAction(ActionEvent event) {
-		dispatcher.renderView("homeElettore", elettore);
-	}*/
-
 	private void inizializzaCheckBox(List candidatiList) {
 		candidati.addAll(candidatiList);
 		checkboxList.add(candidato1);

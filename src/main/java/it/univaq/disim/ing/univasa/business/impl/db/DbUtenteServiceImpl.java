@@ -74,34 +74,26 @@ public class DbUtenteServiceImpl implements UtenteService {
 	public Utente autenticazione(String username, String password) throws UtenteNotFoundException, BusinessException {
 		ResultSet r = null;
 		Utente utente = null;
-
 		// Connessione al Database e richiamo query
 		try (Connection c = DriverManager.getConnection(url, user, pwd);) {
-
 			PreparedStatement ps = c.prepareStatement(trovaTuttiUtenti);
 			r = ps.executeQuery();
-
 			while (r.next()) {
-
 				if (r.getString(5).equals(username) && r.getString(6).equals(password)) {
-
 					switch (r.getString(13)) {
-
-					case "elettore":
-						utente = new Elettore();
-						break;
-					case "operatore":
-						utente = new Operatore();
-						break;
-					case "amministratore":
-						utente = new Amministratore();
-						break;
-					default:
-						break;
+						case "elettore":
+							utente = new Elettore();
+							break;
+						case "operatore":
+							utente = new Operatore();
+							break;
+						case "amministratore":
+							utente = new Amministratore();
+							break;
+						default:
+							break;
 					}
-
 					if (utente != null) {
-
 						utente.setId(r.getLong(1));
 						utente.setUsername(username);
 						utente.setPassword(password);
