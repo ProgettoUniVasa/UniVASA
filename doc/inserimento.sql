@@ -29,10 +29,10 @@ INSERT INTO `candidato` (`id`, `nome`, `cognome`, `email`, `telefono`, `data_nas
 
 
 
-INSERT INTO `prenotazione` (`id`, `id_utente`, `id_evento`, `tipo_prenotazione`, `stato`, `certificato`, `voti_espressi`) VALUES
-(1, 2, 1, 'online', 'no', NULL, 0),
-(11, 17, 10, 'in presenza', 'no', NULL, 0),
-(12, 17, 1, 'online', 'no', NULL, 0);
+INSERT INTO `prenotazione` (`id`, `id_utente`, `id_evento`, `tipo_prenotazione`, `stato`, `certificato`) VALUES
+(1, 2, 1, 'online', 'no', NULL),
+(11, 17, 10, 'in presenza', 'no', NULL),
+(12, 17, 1, 'online', 'no', NULL);
 
 
 INSERT INTO `turnazione` (`id`, `id_utente`, `id_evento`, `fascia`, `data_giorno`) VALUES
