@@ -192,10 +192,10 @@ public class ElencoTuttiGliEventiElettoreController implements Initializable, Da
 			
 			for (Evento e : eventoService.trovaEventiDaPrenotare(elettore)) {
 				if (e.getNome().equals(eventoCercato)) {
-
-					evento = e;
-
-					dispatcher.renderView("eventoCercato", evento);
+					Prenotazione prenotazione = new Prenotazione();
+					prenotazione.setEvento(e);
+					prenotazione.setElettore(elettore);
+					dispatcher.renderView("eventoCercato", prenotazione);
 				} else {
 					ricercaErrorLabel.setText("l'evento cercato non esiste!");
 				}

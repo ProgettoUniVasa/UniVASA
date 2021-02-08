@@ -34,7 +34,7 @@
             <TableColumn fx:id="regolamentoTableColumn" prefWidth="113.0" resizable="false" text="Regolamento" />
             <TableColumn fx:id="statoEventoTableColumn" prefWidth="73.0" resizable="false" text="Stato" />
             <TableColumn fx:id="prenotazioneTableColumn" prefWidth="136.0" resizable="false" text="Prenotazione" />
-            <TableColumn fx:id="azioneTableColumn" maxWidth="500.0" prefWidth="99.0" resizable="false" text="Azione" />
+            <TableColumn fx:id="azioneTableColumn" maxWidth="500.0" prefWidth="99.0" resizable="false" text="Cambio Modalità" />
             <TableColumn fx:id="eliminaTableColumn" prefWidth="70.0" text="Elimina" />
          </columns>
          <VBox.margin>

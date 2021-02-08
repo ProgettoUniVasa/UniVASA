@@ -165,22 +165,27 @@ public class ElencoEventiPersonaliElettoreController implements Initializable, D
 
 					@Override
 					public ObservableValue<Button> call(CellDataFeatures<Prenotazione, Button> param) {
-						final Button azioneButton = new Button("Modifica");
-						azioneButton.setOnAction(new EventHandler<ActionEvent>() {
+						try {
+							if (eventoService.verificaHaVotato(param.getValue().getEvento(), param.getValue().getElettore()) && param.getValue().getTipoPrenotazione().equals(TipoPrenotazione.in_presenza)) {
+								final Button azioneButton = new Button("Modifica");
+								azioneButton.setOnAction(new EventHandler<ActionEvent>() {
 
-							@Override
-							public void handle(ActionEvent event) {
-								Prenotazione prenotazione = new Prenotazione();
-								Evento evento = prenotazione.getEvento();
-								if (prenotazione.getTipoPrenotazione().equals(TipoPrenotazione.in_presenza)
-										&& !(evento.getStatoEvento().equals(StatoEvento.terminato))) {
-									dispatcher.renderView("cambioModalitaVotazione", param.getValue());
-								} else
-									; // gestire eccezione quando clicco modifica e non potrei
-										// <----------------------------------------------------
+									@Override
+									public void handle(ActionEvent event) {
+										try {
+											prenotazioneService.cambioModalita(param.getValue());
+										} catch (BusinessException e) {
+											e.printStackTrace();
+										}
+										dispatcher.renderView("elencoEventiPersonaliElettore", param.getValue().getElettore());
+									}
+								});
+								return new SimpleObjectProperty<Button>(azioneButton);
 							}
-						});
-						return new SimpleObjectProperty<Button>(azioneButton);
+						} catch (BusinessException e) {
+							e.printStackTrace();
+						}
+						return null;
 					}
 				});
 		eliminaTableColumn.setStyle("-fx-alignment: CENTER;");

@@ -12,6 +12,7 @@ import it.univaq.disim.ing.univasa.business.UnivasaBusinessFactory;
 import it.univaq.disim.ing.univasa.controller.DataInitializable;
 import it.univaq.disim.ing.univasa.domain.Elettore;
 import it.univaq.disim.ing.univasa.domain.Evento;
+import it.univaq.disim.ing.univasa.domain.Prenotazione;
 import it.univaq.disim.ing.univasa.view.ViewDispatcher;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -106,7 +107,10 @@ public class ElencoReportController implements Initializable, DataInitializable<
 
 							@Override
 							public void handle(ActionEvent event) {
-								dispatcher.renderView("reportEvento", param.getValue()); // FARE VISTA REPORT EVENTO
+								Prenotazione prenotazione = new Prenotazione();
+								prenotazione.setElettore(elettore);
+								prenotazione.setEvento(param.getValue());
+								dispatcher.renderView("reportEvento", prenotazione); // FARE VISTA REPORT EVENTO
 							}
 						});
 						return new SimpleObjectProperty<Button>(reportButton);

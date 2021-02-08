@@ -14,4 +14,6 @@ public interface PrenotazioneService {
 	List<Prenotazione> trovaPrenotazioniOnlineInCorso(Elettore elettore) throws BusinessException;
 
     void eliminaPrenotazione(Prenotazione prenotazione) throws BusinessException;
+
+	void cambioModalita(Prenotazione prenotazione) throws BusinessException;
 }
