@@ -15,7 +15,7 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="391.0" prefWidth="641.0" style="-fx-background-color: orange;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.amministratorecontroller.AggiungiReportController">
    <children>
-      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="49.0" prefWidth="665.0" text="Aggiungi Report">
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="49.0" prefWidth="665.0" text="Aggiungi Report Statistiche">
          <font>
             <Font name="Palatino Linotype Bold" size="30.0" />
          </font>
@@ -35,7 +35,6 @@
           <RowConstraints maxHeight="32.00000228881835" minHeight="10.0" prefHeight="32.00000228881835" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="32.00000228881835" minHeight="10.0" prefHeight="32.00000228881835" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="34.40000610351562" minHeight="0.0" prefHeight="32.8" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="65.59999999999998" minHeight="10.0" prefHeight="32.79999999999998" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="65.59999999999998" minHeight="10.0" prefHeight="32.79999999999998" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
@@ -68,14 +67,6 @@
                   <Insets />
                </GridPane.margin>
             </Label>
-            <Label alignment="CENTER" layoutX="10.0" layoutY="143.0" prefHeight="66.0" prefWidth="309.0" text="Report Risultati :" GridPane.rowIndex="5">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-            </Label>
             <TextField fx:id="nomeEvento" prefHeight="26.0" prefWidth="325.0" GridPane.columnIndex="1">
                <GridPane.margin>
                   <Insets right="20.0" />
@@ -88,20 +79,16 @@
                <GridPane.margin>
                   <Insets right="20.0" />
                </GridPane.margin></TextField>
-            <TextField fx:id="report_risultati" prefHeight="26.0" prefWidth="325.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
-               <GridPane.margin>
-                  <Insets right="20.0" />
-               </GridPane.margin></TextField>
             <DatePicker fx:id="dataInizio" prefHeight="26.0" prefWidth="312.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets right="20.0" />
                </GridPane.margin></DatePicker>
-            <Label alignment="CENTER" prefHeight="66.0" prefWidth="309.0" text="Report Statistiche :" GridPane.rowIndex="6">
+            <Label alignment="CENTER" prefHeight="66.0" prefWidth="309.0" text="Report Statistiche :" GridPane.rowIndex="5">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <TextField fx:id="report_statistiche" prefHeight="26.0" prefWidth="310.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+            <TextField fx:id="report_statistiche" prefHeight="26.0" prefWidth="310.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                <GridPane.margin>
                   <Insets right="20.0" />
                </GridPane.margin></TextField>
