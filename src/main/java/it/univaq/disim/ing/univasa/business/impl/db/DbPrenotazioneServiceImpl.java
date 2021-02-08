@@ -28,9 +28,10 @@ public class DbPrenotazioneServiceImpl implements PrenotazioneService {
 	private static final String prenotazioneOnline = "insert into prenotazione (id_utente,id_evento,tipo_prenotazione,stato,voti_espressi) values (?,?,'online','no',0)";
 	private static final String trovaPrenotazioniElettore = "select * from prenotazione where id_utente=?";
 	private static final String trovaPrenotazioneDaId = "select * from prenotazione where id=?";
-	private static final String trovaPrenotazioneOnlineElettore = "select * from prenotazione p join evento e on p.id_evento = e.id where p.id_utente=? and p.tipo_prenotazione='online' and e.stato='in corso'";
+	private static final String trovaPrenotazioneOnlineElettore = "select * from prenotazione p join evento e on p.id_evento = e.id where p.id_utente=? and p.tipo_prenotazione='online' and e.data_inizio<=now() and e.data_fine>=now() and p.stato='no'";
 	private static final String eliminaPrenotazione = "delete from prenotazione where id=?";
 	private static final String cambioModalita = "update prenotazione set tipo_prenotazione='online' where id=?";
+	private static final String vota = "update prenotazione set stato='si' where id_evento=? and id_utente=?";
 
 	public DbPrenotazioneServiceImpl(EventoService eventoService, UtenteService utenteService) {
 		this.eventoService=eventoService;
@@ -105,6 +106,23 @@ public class DbPrenotazioneServiceImpl implements PrenotazioneService {
 			}
 		}
 		return prenotazione;
+	}
+
+	@Override
+	public void vota(Evento evento, Elettore elettore) throws BusinessException {
+		// Connessione al Database e richiamo query
+		try (Connection c = DriverManager.getConnection(url, user, pwd);) {
+
+			PreparedStatement ps = c.prepareStatement(vota);
+
+			ps.setLong(1, evento.getId());
+			ps.setLong(2, elettore.getId());
+
+			ps.executeUpdate();
+
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
 	}
 
 	@Override

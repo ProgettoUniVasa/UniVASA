@@ -3,10 +3,8 @@ package it.univaq.disim.ing.univasa.controller.operatorecontroller;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
-import it.univaq.disim.ing.univasa.business.BusinessException;
-import it.univaq.disim.ing.univasa.business.EventoService;
-import it.univaq.disim.ing.univasa.business.UnivasaBusinessFactory;
-import it.univaq.disim.ing.univasa.business.UtenteService;
+
+import it.univaq.disim.ing.univasa.business.*;
 import it.univaq.disim.ing.univasa.controller.DataInitializable;
 import it.univaq.disim.ing.univasa.domain.*;
 import it.univaq.disim.ing.univasa.view.ViewDispatcher;
@@ -55,10 +53,12 @@ public class EventoOperatoreController implements Initializable, DataInitializab
     private ViewDispatcher dispatcher;
 
     private EventoService eventoService;
+    private PrenotazioneService prenotazioneService;
 
     public EventoOperatoreController() {
         dispatcher = ViewDispatcher.getInstance();
         UnivasaBusinessFactory factory = UnivasaBusinessFactory.getInstance();
+        prenotazioneService = factory.getPrenotazioneService();
         eventoService = factory.getEventoService();
     }
 
@@ -108,7 +108,7 @@ public class EventoOperatoreController implements Initializable, DataInitializab
                                     @Override
                                     public void handle(ActionEvent event) {
                                         try {
-                                            eventoService.votaInPresenza(evento, param.getValue());
+                                            prenotazioneService.vota(evento, param.getValue());
                                         } catch (BusinessException e) {
                                             e.printStackTrace();
                                         }

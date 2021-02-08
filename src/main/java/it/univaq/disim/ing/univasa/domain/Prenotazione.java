@@ -16,8 +16,6 @@ public class Prenotazione {
 
 	private Blob certificato;
 
-	private int votiEspressi = 0;
-
 	public Prenotazione() {
 	}
 
@@ -37,7 +35,6 @@ public class Prenotazione {
 		this.tipoPrenotazione = tipoPrenotazione;
 		this.stato = stato;
 		this.certificato = certificato;
-		this.votiEspressi = votiEspressi;
 	}
 
 	public Long getId() {
@@ -87,21 +84,7 @@ public class Prenotazione {
 	public void setCertificato(Blob certificato) {
 		this.certificato = certificato;
 	}
-
-	public int getVotiEspressi() {
-		return votiEspressi;
-	}
-
-	public void setVotiEspressi(int votiEspressi) {
-		this.votiEspressi = votiEspressi;
-	}
-
-	@Override
-	public String toString() {
-		return "Prenotazione [id=" + id + ", evento=" + evento + ", elettore=" + elettore + ", tipoPrenotazione="
-				+ tipoPrenotazione + ", stato=" + stato + ", certificato=" + certificato + ", votiEspressi="
-				+ votiEspressi + "]";
-	}
+	
 
 	
 }

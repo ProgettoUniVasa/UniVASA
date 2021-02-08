@@ -118,8 +118,7 @@ public class ElencoEventiInCorsoController implements Initializable, DataInitial
 
 							@Override
 							public void handle(ActionEvent event) {
-								dispatcher.renderView("regolamentoEventoPersonale", param.getValue().getEvento()); // creare vista
-								// regolamentoEvento
+								dispatcher.renderView("regolamentoEventoInCorso", param.getValue());
 							}
 						});
 						return new SimpleObjectProperty<Button>(regolamentoButton);
@@ -145,14 +144,7 @@ public class ElencoEventiInCorsoController implements Initializable, DataInitial
 
 							@Override
 							public void handle(ActionEvent event) {
-								Prenotazione prenotazione = new Prenotazione();
-								Evento evento = prenotazione.getEvento();
-								if (prenotazione.getTipoPrenotazione().equals(TipoPrenotazione.online)
-										&& (evento.getStatoEvento().equals(StatoEvento.in_corso))) {
-									dispatcher.renderView("votazioneOnline", param.getValue());
-								} else
-									; // gestire eccezione quando clicco vota e non potrei
-										// <----------------------------------------------------
+								dispatcher.renderView("votazioneOnline", param.getValue());
 							}
 						});
 						return new SimpleObjectProperty<Button>(azioneButton);

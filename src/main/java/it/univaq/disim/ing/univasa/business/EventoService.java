@@ -44,6 +44,5 @@ public interface EventoService {
 
     boolean verificaHaVotato(Evento evento, Elettore elettore) throws BusinessException;
 
-	void votaInPresenza(Evento evento, Elettore elettore) throws BusinessException;
-
+	void aggiungiVoto (Candidato candidato) throws BusinessException;
 }

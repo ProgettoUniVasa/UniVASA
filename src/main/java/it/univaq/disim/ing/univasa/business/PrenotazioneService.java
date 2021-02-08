@@ -15,5 +15,7 @@ public interface PrenotazioneService {
 
     void eliminaPrenotazione(Prenotazione prenotazione) throws BusinessException;
 
+	void vota(Evento evento, Elettore elettore) throws BusinessException;
+
 	void cambioModalita(Prenotazione prenotazione) throws BusinessException;
 }
