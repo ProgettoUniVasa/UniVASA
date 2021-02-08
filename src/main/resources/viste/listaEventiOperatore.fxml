@@ -9,30 +9,35 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.operatorecontroller.ListaEventiOperatoreController">
+
+<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.operatorecontroller.ListaEventiOperatoreController">
    <children>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutY="14.0" prefHeight="39.0" prefWidth="829.0" text="Lista Eventi" textAlignment="CENTER" textFill="#0abab5">
-         <font>
-            <Font name="Palatino Linotype Bold" size="30.0" />
-         </font>
-      </Label>
-      <VBox layoutX="10.0" layoutY="61.0" prefHeight="517.0" prefWidth="763.0">
-         <padding>
-            <Insets bottom="10.0" left="5.0" right="10.0" />
-         </padding>
+      <AnchorPane>
          <children>
-            <TableView fx:id="listaEventiTable" prefHeight="489.0" prefWidth="803.0" style="-fx-background-color: #0ABAB5;">
-               <columns>
-                  <TableColumn fx:id="nomeTableColumn" prefWidth="125.0" text="Nome" />
-                  <TableColumn fx:id="aperturaSeggioTableColumn" prefWidth="150.0" text="Apertura seggio" />
-                  <TableColumn fx:id="chiusuraSeggioTableColumn" prefWidth="137.0" text="Chiusura seggio" />
-                  <TableColumn fx:id="luogoTableColumn" prefWidth="120.0" text="Luogo" />
-                  <TableColumn fx:id="azioneTableColumn" prefWidth="103.0" text="Azione" />
-                  <TableColumn fx:id="votiTableColumn" prefWidth="192.0" text="Caricamento voti" />
-               </columns>
-            </TableView>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutY="14.0" prefHeight="39.0" prefWidth="829.0" text="Lista Eventi" textAlignment="CENTER" textFill="ORANGE">
+               <font>
+                  <Font name="Palatino Linotype Bold" size="30.0" />
+               </font>
+            </Label>
+            <VBox layoutX="10.0" layoutY="61.0" prefHeight="517.0" prefWidth="763.0">
+               <padding>
+                  <Insets bottom="10.0" left="5.0" right="10.0" />
+               </padding>
+               <children>
+                  <TableView fx:id="listaEventiTable" prefHeight="489.0" prefWidth="803.0" style="-fx-background-color: orange;">
+                     <columns>
+                        <TableColumn fx:id="nomeTableColumn" prefWidth="125.0" text="Nome" />
+                        <TableColumn fx:id="aperturaSeggioTableColumn" prefWidth="130.0" text="Apertura seggio" />
+                        <TableColumn fx:id="chiusuraSeggioTableColumn" prefWidth="132.0" text="Chiusura seggio" />
+                        <TableColumn fx:id="luogoTableColumn" prefWidth="132.0" text="Luogo" />
+                        <TableColumn fx:id="azioneTableColumn" prefWidth="103.0" text="Azione" />
+                        <TableColumn fx:id="votiTableColumn" prefWidth="125.0" text="Caricamento voti" />
+                     </columns>
+                  </TableView>
+               </children>
+            </VBox>
+            <Button layoutX="711.0" layoutY="14.0" mnemonicParsing="false" onAction="#indietroAction" text="Indietro" />
          </children>
-      </VBox>
-      <Button layoutX="711.0" layoutY="14.0" mnemonicParsing="false" onAction="#indietroAction" text="Indietro" />
+      </AnchorPane>
    </children>
-</AnchorPane>
+</VBox>

@@ -9,30 +9,35 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.operatorecontroller.LavoroOperatoreController">
+
+<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.operatorecontroller.LavoroOperatoreController">
    <children>
-      <Label fx:id="farmaciLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="76.0" layoutY="13.0" prefHeight="39.0" prefWidth="612.0" text="I tuoi Turni di Lavoro" textAlignment="CENTER" textFill="#0abab5">
-         <font>
-            <Font name="Palatino Linotype Bold" size="30.0" />
-         </font>
-      </Label>
-      <VBox layoutY="51.0" prefHeight="517.0" prefWidth="763.0">
+      <AnchorPane>
          <children>
-            <TableView fx:id="lavoroTable" prefHeight="487.0" prefWidth="632.0" style="-fx-background-color: #0ABAB5;">
-               <columns>
-                  <TableColumn fx:id="eventoNomeTableColumn" prefWidth="255.0" text="Evento" />
-                  <TableColumn fx:id="giornoTableColumn" prefWidth="266.0" text="Giorno" />
-                  <TableColumn fx:id="fasciaTableColumn" prefWidth="211.0" text="Fascia" />
-               </columns>
-               <VBox.margin>
-                  <Insets bottom="10.0" left="5.0" right="10.0" top="10.0" />
-               </VBox.margin>
-            </TableView>
+            <Label fx:id="farmaciLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="76.0" layoutY="13.0" prefHeight="39.0" prefWidth="612.0" text="I tuoi Turni di Lavoro" textAlignment="CENTER" textFill="ORANGE">
+               <font>
+                  <Font name="Palatino Linotype Bold" size="30.0" />
+               </font>
+            </Label>
+            <VBox layoutY="51.0" prefHeight="517.0" prefWidth="763.0">
+               <children>
+                  <TableView fx:id="lavoroTable" prefHeight="487.0" prefWidth="632.0" style="-fx-background-color: orange;">
+                     <columns>
+                        <TableColumn fx:id="eventoNomeTableColumn" prefWidth="255.0" text="Evento" />
+                        <TableColumn fx:id="giornoTableColumn" prefWidth="266.0" text="Giorno" />
+                        <TableColumn fx:id="fasciaTableColumn" prefWidth="211.0" text="Fascia" />
+                     </columns>
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="5.0" right="10.0" top="10.0" />
+                     </VBox.margin>
+                  </TableView>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="5.0" right="10.0" />
+               </padding>
+            </VBox>
+            <Button layoutX="688.0" layoutY="20.0" mnemonicParsing="false" onAction="#indietroAction" text="Indietro" />
          </children>
-         <padding>
-            <Insets bottom="10.0" left="5.0" right="10.0" />
-         </padding>
-      </VBox>
-      <Button layoutX="688.0" layoutY="20.0" mnemonicParsing="false" onAction="#indietroAction" text="Indietro" />
+      </AnchorPane>
    </children>
-</AnchorPane>
+</VBox>

@@ -135,7 +135,7 @@ public class ListaReportAmministratoreController implements Initializable, DataI
 	public void initializeData(Amministratore amministratore) {
 		try {
 			this.amministratore = amministratore;
-			List<Evento> evento = eventoService.trovaTuttiEventi();
+			List<Evento> evento = eventoService.trovaEventiFiniti();
 			ObservableList<Evento> eventiData = FXCollections.observableArrayList(evento);
 			reportTable.setItems(eventiData);
 

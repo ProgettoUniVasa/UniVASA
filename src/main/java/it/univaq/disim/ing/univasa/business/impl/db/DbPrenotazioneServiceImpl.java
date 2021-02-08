@@ -29,7 +29,7 @@ public class DbPrenotazioneServiceImpl implements PrenotazioneService {
 	private static final String trovaPrenotazioniElettore = "select * from prenotazione where id_utente=?";
 	private static final String trovaPrenotazioneDaId = "select * from prenotazione where id=?";
 	private static final String trovaPrenotazioneOnlineElettore = "select * from prenotazione p join evento e on p.id_evento = e.id where p.id_utente=? and p.tipo_prenotazione='online' and e.stato='in corso'";
-
+	private static final String eliminaPrenotazione = "delete from prenotazione where id=?";
 	
 	public DbPrenotazioneServiceImpl(EventoService eventoService, UtenteService utenteService) {
 		this.eventoService=eventoService;
@@ -154,6 +154,21 @@ public class DbPrenotazioneServiceImpl implements PrenotazioneService {
 			ex.printStackTrace();
 		}
 		return prenotazioni;
+	}
+
+	@Override
+	public void eliminaPrenotazione(Prenotazione prenotazione) throws BusinessException {
+		// Connessione al Database e richiamo query
+		try (Connection c = DriverManager.getConnection(url, user, pwd);) {
+
+			PreparedStatement ps = c.prepareStatement(eliminaPrenotazione);
+
+			ps.setLong(1, prenotazione.getId());
+
+			ps.executeUpdate();
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
 	}
 
 }

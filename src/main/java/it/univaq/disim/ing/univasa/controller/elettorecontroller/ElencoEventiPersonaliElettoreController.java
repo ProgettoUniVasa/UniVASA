@@ -77,9 +77,13 @@ public class ElencoEventiPersonaliElettoreController implements Initializable, D
 	@FXML
 	private TableColumn<Prenotazione, Button> azioneTableColumn;
 
+	@FXML
+	private TableColumn<Prenotazione, Button> eliminaTableColumn;
+
 	private ViewDispatcher dispatcher;
 
 	private PrenotazioneService prenotazioneService;
+	private EventoService eventoService;
 
 	private Elettore elettore;
 
@@ -87,6 +91,7 @@ public class ElencoEventiPersonaliElettoreController implements Initializable, D
 		dispatcher = ViewDispatcher.getInstance();
 		UnivasaBusinessFactory factory = UnivasaBusinessFactory.getInstance(); // vedere business factory
 		prenotazioneService = factory.getPrenotazioneService();
+		eventoService = factory.getEventoService();
 	}
 
 	@Override
@@ -176,6 +181,30 @@ public class ElencoEventiPersonaliElettoreController implements Initializable, D
 							}
 						});
 						return new SimpleObjectProperty<Button>(azioneButton);
+					}
+				});
+		eliminaTableColumn.setStyle("-fx-alignment: CENTER;");
+		eliminaTableColumn.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<Prenotazione, Button>, ObservableValue<Button>>() {
+
+					@Override
+					public ObservableValue<Button> call(CellDataFeatures<Prenotazione, Button> param) {
+						try {
+							if (eventoService.verificaHaVotato(param.getValue().getEvento(), param.getValue().getElettore())) {
+								final Button azioneButton = new Button("Elimina");
+								azioneButton.setOnAction(new EventHandler<ActionEvent>() {
+
+									@Override
+									public void handle(ActionEvent event) {
+										dispatcher.renderView("eliminaPrenotazione", param.getValue());
+									}
+								});
+								return new SimpleObjectProperty<Button>(azioneButton);
+							}
+						} catch (BusinessException e) {
+							e.printStackTrace();
+						}
+						return null;
 					}
 				});
 	}
