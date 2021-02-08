@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.19, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.23, for Win64 (x86_64)
 --
 -- Host: localhost    Database: univasa
 -- ------------------------------------------------------
--- Server version	5.7.31
+-- Server version	8.0.23
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -15,6 +15,7 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+
 -- -----------------------------------------------------
 -- Schema univasa
 -- -----------------------------------------------------
@@ -26,6 +27,8 @@ DROP SCHEMA IF EXISTS `univasa` ;
 CREATE SCHEMA IF NOT EXISTS `univasa` DEFAULT CHARACTER SET utf8 ;
 USE `univasa` ;
 
+
+
 --
 -- Table structure for table `candidato`
 --
@@ -34,18 +37,18 @@ DROP TABLE IF EXISTS `candidato`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `candidato` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
   `nome` varchar(50) NOT NULL,
   `cognome` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
   `telefono` varchar(11) NOT NULL,
   `data_nascita` date NOT NULL,
   `nome_universita` varchar(50) NOT NULL,
-  `voti_ricevuti` int(10) unsigned NOT NULL DEFAULT '0',
-  `id_evento` int(10) unsigned NOT NULL,
+  `voti_ricevuti` int unsigned NOT NULL DEFAULT '0',
+  `id_evento` int unsigned NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_candidato_evento1` (`id_evento`),
-  CONSTRAINT `fk_candidato_evento1` FOREIGN KEY (`id_evento`) REFERENCES `evento` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
+  CONSTRAINT `fk_candidato_evento1` FOREIGN KEY (`id_evento`) REFERENCES `evento` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -67,7 +70,7 @@ DROP TABLE IF EXISTS `evento`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `evento` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
   `nome` varchar(50) NOT NULL,
   `regolamento` text NOT NULL,
   `data_inizio` date NOT NULL,
@@ -77,7 +80,7 @@ CREATE TABLE `evento` (
   `luogo` varchar(50) NOT NULL,
   `report_risultati` text,
   `report_statistiche` text,
-  `numero_preferenze_esprimibili` int(10) unsigned NOT NULL,
+  `numero_preferenze_esprimibili` int unsigned NOT NULL,
   `stato` enum('programmato','in corso','terminato') NOT NULL DEFAULT 'programmato',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
@@ -89,7 +92,7 @@ CREATE TABLE `evento` (
 
 LOCK TABLES `evento` WRITE;
 /*!40000 ALTER TABLE `evento` DISABLE KEYS */;
-INSERT INTO `evento` VALUES (1,'RAPPRESENTANTI UNI','si vota una persona per scheda elettorale','2021-02-02','2021-02-11','8:00','20:00','L\'Aquila','Enrico Adamelli   12\nLorenzo Solazzo   11\n','ssss',1,'in corso'),(9,'Rappresentanti Prof','Votate max 2 persone','2021-02-03','2021-02-07','11:00','18:00','Coppito 2','Samuel Cipriani   102\nMartina Nolletti   34\nLorenzo Solazzo   1\n','Martina ha preso 0 voti.',2,'in corso'),(10,'Elezione segreteria','Massimo 3 preferenze','2021-02-17','2021-02-22','10:00','23:00','Blocco 0',NULL,NULL,3,'programmato');
+INSERT INTO `evento` VALUES (1,'RAPPRESENTANTI UNI','si vota una persona per scheda elettorale','2021-02-02','2021-02-11','8:00','20:00','L\'Aquila','Enrico Adamelli   12\nLorenzo Solazzo   11\n','ssss',1,'in corso'),(9,'Rappresentanti Prof','Votate max 2 persone','2021-02-03','2021-02-07','11:00','18:00','Coppito 2','Samuel Cipriani   102\nMartina Nolletti   34\nLorenzo Solazzo   1\n','Martina ha preso 0 voti.',2,'terminato'),(10,'Elezione segreteria','Massimo 3 preferenze','2021-02-17','2021-02-22','10:00','23:00','Blocco 0',NULL,NULL,3,'programmato');
 /*!40000 ALTER TABLE `evento` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -101,17 +104,17 @@ DROP TABLE IF EXISTS `prenotazione`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `prenotazione` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `id_utente` int(10) unsigned NOT NULL,
-  `id_evento` int(10) unsigned NOT NULL,
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `id_utente` int unsigned NOT NULL,
+  `id_evento` int unsigned NOT NULL,
   `tipo_prenotazione` enum('online','in presenza') DEFAULT NULL,
   `stato` enum('si','no') NOT NULL DEFAULT 'no',
   `certificato` blob,
   PRIMARY KEY (`id`),
   KEY `fk_utente_has_evento_utente2` (`id_utente`),
   KEY `fk_utente_has_evento_evento3` (`id_evento`),
-  CONSTRAINT `fk_utente_has_evento_evento3` FOREIGN KEY (`id_evento`) REFERENCES `evento` (`id`) ON DELETE cascade ON UPDATE NO ACTION,
-  CONSTRAINT `fk_utente_has_evento_utente2` FOREIGN KEY (`id_utente`) REFERENCES `utente` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_utente_has_evento_evento3` FOREIGN KEY (`id_evento`) REFERENCES `evento` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_utente_has_evento_utente2` FOREIGN KEY (`id_utente`) REFERENCES `utente` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -133,16 +136,16 @@ DROP TABLE IF EXISTS `turnazione`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `turnazione` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `id_utente` int(10) unsigned NOT NULL,
-  `id_evento` int(10) unsigned NOT NULL,
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `id_utente` int unsigned NOT NULL,
+  `id_evento` int unsigned NOT NULL,
   `fascia` enum('mattina','pomeriggio','sera') NOT NULL,
   `data_giorno` date NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_utente_has_evento_utente` (`id_utente`),
   KEY `fk_utente_has_evento_evento1` (`id_evento`),
-  CONSTRAINT `fk_utente_has_evento_evento1` FOREIGN KEY (`id_evento`) REFERENCES `evento` (`id`) ON DELETE cascade ON UPDATE NO ACTION,
-  CONSTRAINT `fk_utente_has_evento_utente` FOREIGN KEY (`id_utente`) REFERENCES `utente` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_utente_has_evento_evento1` FOREIGN KEY (`id_evento`) REFERENCES `evento` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_utente_has_evento_utente` FOREIGN KEY (`id_utente`) REFERENCES `utente` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -164,7 +167,7 @@ DROP TABLE IF EXISTS `utente`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `utente` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
   `nome` varchar(50) NOT NULL,
   `cognome` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
@@ -204,9 +207,28 @@ DELIMITER ;;
 /*!50003 SET character_set_results = utf8mb4 */ ;;
 /*!50003 SET collation_connection  = utf8mb4_general_ci */ ;;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;;
+/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;;
 /*!50003 SET @saved_time_zone      = @@time_zone */ ;;
 /*!50003 SET time_zone             = 'SYSTEM' */ ;;
 /*!50106 CREATE*/ /*!50117 DEFINER=`root`@`localhost`*/ /*!50106 EVENT `aggiornaStatoEvento` ON SCHEDULE EVERY 30 SECOND STARTS '2021-02-08 18:41:52' ON COMPLETION NOT PRESERVE ENABLE DO call aggiornaStato */ ;;
+/*!50003 SET time_zone             = @saved_time_zone */ ;;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;;
+/*!50003 SET character_set_results = @saved_cs_results */ ;;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;;
+/*!50106 DROP EVENT IF EXISTS `puliziadb` */;;
+DELIMITER ;;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;;
+/*!50003 SET character_set_client  = utf8mb4 */ ;;
+/*!50003 SET character_set_results = utf8mb4 */ ;;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;;
+/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;;
+/*!50003 SET @saved_time_zone      = @@time_zone */ ;;
+/*!50003 SET time_zone             = '+00:00' */ ;;
+/*!50106 CREATE*/ /*!50117 DEFINER=`root`@`localhost`*/ /*!50106 EVENT `puliziadb` ON SCHEDULE EVERY 1 YEAR STARTS '2021-02-08 20:58:11' ON COMPLETION NOT PRESERVE ENABLE DO call pulizia */ ;;
 /*!50003 SET time_zone             = @saved_time_zone */ ;;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;;
@@ -226,24 +248,32 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
 /*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-
-
+/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `aggiornaStato`()
 begin update evento e set e.stato = 'in corso' where e.data_inizio<=now() and e.data_fine>=now();
 update evento e set e.stato = 'terminato' where e.data_fine<now(); 
 end ;;
 DELIMITER ;
-
-
-create event puliziadb on schedule every 1 year do call pulizia;
-delimiter $$
-create procedure pulizia() 
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `pulizia` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pulizia`()
 begin
 delete from evento e where e.data_fine < now() - interval 5 year;
-end $$
-delimiter ;
-
+end ;;
+DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
@@ -258,4 +288,4 @@ delimiter ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-02-08 18:43:21
+-- Dump completed on 2021-02-08 22:05:20
