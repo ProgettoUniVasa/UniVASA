@@ -85,6 +85,4 @@ public class Prenotazione {
 		this.certificato = certificato;
 	}
 	
-
-	
 }
