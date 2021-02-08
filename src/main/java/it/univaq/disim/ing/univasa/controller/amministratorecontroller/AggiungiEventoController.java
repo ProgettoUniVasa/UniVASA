@@ -3,6 +3,8 @@ package it.univaq.disim.ing.univasa.controller.amministratorecontroller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javax.swing.JOptionPane;
+
 import it.univaq.disim.ing.univasa.business.BusinessException;
 import it.univaq.disim.ing.univasa.business.EventoService;
 import it.univaq.disim.ing.univasa.business.UnivasaBusinessFactory;
@@ -83,7 +85,10 @@ public class AggiungiEventoController implements Initializable, DataInitializabl
 	@FXML
 	public void salvaAction(ActionEvent event) {
 		try {
-
+			if (!oraFine.getText().matches("[0-2][0-9]:[0-5][0-9]$") || !oraInizio.getText().matches("[0-2][0-9]:[0-5][0-9]$")) {
+				JOptionPane.showMessageDialog(null, " Inserire un orario corretto!", "ATTENZIONE",
+						JOptionPane.WARNING_MESSAGE);
+			} else {
 			Evento evento = new Evento();
 			evento.setNome(nome.getText());
 			evento.setRegolamento(regolamento.getText());
@@ -95,12 +100,8 @@ public class AggiungiEventoController implements Initializable, DataInitializabl
 			evento.setNumero_preferenze_esprimibili(Integer.parseInt(numero_preferenze_esprimibili.getText()));
 
 			eventoService.creaEvento(evento);
-			// vanno settati gli eventi per l'amministratore e viceversa
-			/*evento.getAmministratori().add(amministratore);
-			amministratore.getEvento().add(evento);*/
-			//
 			dispatcher.renderView("listaEventiAmministratore", amministratore);
-
+			}
 		} catch (BusinessException e) {
 			dispatcher.renderError(e);
 		}

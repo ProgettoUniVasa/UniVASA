@@ -18,7 +18,7 @@ public class PrenotazioneVotazioneOnlineElettoreController implements Initializa
 
 	@FXML
 	private Button prenotatiOnlineButton;
-
+	
 	@FXML
 	private Button annullaPrenotazioneOnlineButton;
 

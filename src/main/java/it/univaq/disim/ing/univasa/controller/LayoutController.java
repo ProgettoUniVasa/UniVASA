@@ -63,10 +63,7 @@ public class LayoutController implements Initializable, DataInitializable<Utente
 	@Override
     public void initializeData(Utente utente) {
         this.utente = utente;
-
-       /*menuBar.getChildren().addAll(createButton(MENU_HOME));
-       menuBar.getChildren().add(new Separator());
-        */
+        
         if (utente instanceof Amministratore) {
         	menuBar.getChildren().addAll(createButton(MENU_HOME_AMMINISTRATORE));
             menuBar.getChildren().add(new Separator());
@@ -101,7 +98,7 @@ public class LayoutController implements Initializable, DataInitializable<Utente
 		Button button = new Button(viewItem.getNome());
 		button.setStyle("-fx-background-color: transparent; -fx-font-size: 14;");
 		button.setTextFill(Paint.valueOf("white"));
-		button.setPrefHeight(10);
+		button.setPrefHeight(20);
 		button.setPrefWidth(180);
 		button.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
