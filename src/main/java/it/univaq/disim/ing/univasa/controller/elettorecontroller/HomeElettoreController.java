@@ -47,11 +47,6 @@ public class HomeElettoreController implements Initializable, DataInitializable<
 	};
 
 	@FXML
-	public void visualizzaProfiloAction(MouseEvent event) {
-		dispatcher.renderView("areaRiservataElettore", elettore);
-	}
-
-	@FXML
 	public void visualizzaEventiAction(ActionEvent event) {
 		dispatcher.renderView("elencoTuttiGliEventiElettore", elettore); //potrebbe andare bene un metodo generale in dispatcher 
 																		 //per tutti gli utenti tranne l'admin ("dispatcher.elencoEventi(Utente-)" piuttosto che renderView

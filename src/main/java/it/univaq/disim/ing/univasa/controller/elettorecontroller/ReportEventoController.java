@@ -1,11 +1,10 @@
 package it.univaq.disim.ing.univasa.controller.elettorecontroller;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
+import it.univaq.disim.ing.univasa.business.BusinessException;
 import it.univaq.disim.ing.univasa.business.EventoService;
 import it.univaq.disim.ing.univasa.business.UnivasaBusinessFactory;
 import it.univaq.disim.ing.univasa.controller.DataInitializable;
+import it.univaq.disim.ing.univasa.domain.Amministratore;
 import it.univaq.disim.ing.univasa.domain.Elettore;
 import it.univaq.disim.ing.univasa.domain.Evento;
 import it.univaq.disim.ing.univasa.domain.Prenotazione;
@@ -17,46 +16,40 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
-public class EventoCercatoController implements Initializable, DataInitializable<Prenotazione> {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class ReportEventoController implements Initializable, DataInitializable<Prenotazione> {
 
 	@FXML
-	private TextField nome;
+	private TextField nomeEvento;
+
+	@FXML
+	private TextField regolamentoEvento;
 
 	@FXML
 	private DatePicker dataInizio;
 
 	@FXML
-	private TextField oraInizio;
-
-	@FXML
 	private DatePicker dataFine;
-
-	@FXML
-	private TextField oraFine;
 
 	@FXML
 	private TextField luogo;
 
 	@FXML
-	private TextField regolamento;
+	private TextField report_statistiche;
 
 	@FXML
-	private Button indietroButton;
+	private TextField report_risultati;
 
 	private ViewDispatcher dispatcher;
-
-	private EventoService eventoService;
 
 	private Evento evento;
 	private Prenotazione prenotazione;
 	private Elettore elettore;
 
-	private Long id;
-
-	public EventoCercatoController() {
+	public ReportEventoController() {
 		dispatcher = ViewDispatcher.getInstance();
-		UnivasaBusinessFactory factory = UnivasaBusinessFactory.getInstance();
-		eventoService = factory.getEventoService();
 	}
 
 	@Override
@@ -66,29 +59,29 @@ public class EventoCercatoController implements Initializable, DataInitializable
 	@Override
 	public void initializeData(Prenotazione prenotazione) {
 		this.prenotazione = prenotazione;
-		this.elettore = prenotazione.getElettore();
 		this.evento = prenotazione.getEvento();
-		this.nome.setText(evento.getNome());
+		this.elettore = prenotazione.getElettore();
+		this.nomeEvento.setText(evento.getNome());
+		this.regolamentoEvento.setText(evento.getRegolamento());
 		this.dataInizio.setValue(evento.getDataInizio());
-		this.oraInizio.setText(evento.getOraInizio());
 		this.dataFine.setValue(evento.getDataFine());
-		this.oraFine.setText(evento.getOraFine());
 		this.luogo.setText(evento.getLuogo());
-		this.regolamento.setText(evento.getRegolamento());
+		this.report_statistiche.setText(evento.getReport_statistiche());
+		this.report_risultati.setText(evento.getReport_risultati());
 
-		nome.setEditable(false);
-		regolamento.setEditable(false);
+		nomeEvento.setEditable(false);
+		regolamentoEvento.setEditable(false);
 		dataInizio.setEditable(false);
 		dataFine.setEditable(false);
 		luogo.setEditable(false);
-		oraFine.setEditable(false);
-		oraInizio.setEditable(false);
+		report_risultati.setEditable(false);
+		report_statistiche.setEditable(false);
+
 
 	}
 
 	@FXML
 	public void indietroAction(ActionEvent event) {
-		dispatcher.renderView("elencoTuttiGliEventiElettore", elettore);
+		dispatcher.renderView("elencoReport", elettore);
 	}
-
 }
