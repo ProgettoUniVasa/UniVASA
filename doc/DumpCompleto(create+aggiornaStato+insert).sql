@@ -15,6 +15,17 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+-- -----------------------------------------------------
+-- Schema univasa
+-- -----------------------------------------------------
+DROP SCHEMA IF EXISTS `univasa` ;
+
+-- -----------------------------------------------------
+-- Schema univasa
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `univasa` DEFAULT CHARACTER SET utf8 ;
+USE `univasa` ;
+
 --
 -- Table structure for table `candidato`
 --
@@ -193,7 +204,6 @@ DELIMITER ;;
 /*!50003 SET character_set_results = utf8mb4 */ ;;
 /*!50003 SET collation_connection  = utf8mb4_general_ci */ ;;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;;
-/*!50003 SET sql_mode              = 'STRICT_ALL_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER' */ ;;
 /*!50003 SET @saved_time_zone      = @@time_zone */ ;;
 /*!50003 SET time_zone             = 'SYSTEM' */ ;;
 /*!50106 CREATE*/ /*!50117 DEFINER=`root`@`localhost`*/ /*!50106 EVENT `aggiornaStatoEvento` ON SCHEDULE EVERY 30 SECOND STARTS '2021-02-08 18:41:52' ON COMPLETION NOT PRESERVE ENABLE DO call aggiornaStato */ ;;
@@ -216,7 +226,8 @@ DELIMITER ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
 /*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_ALL_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER' */ ;
+
+
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `aggiornaStato`()
 begin update evento e set e.stato = 'in corso' where e.data_inizio<=now() and e.data_fine>=now();
