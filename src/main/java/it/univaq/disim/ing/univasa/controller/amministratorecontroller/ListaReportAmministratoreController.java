@@ -58,10 +58,10 @@ public class ListaReportAmministratoreController implements Initializable, DataI
 	private TableColumn<Evento, String> report_statisticheTableColumn;
 
 	@FXML
-	private TableColumn<Evento, Button> modificaTableColumn;
+	private TableColumn<Evento, Button> aggiungiReportTableColumn;
 
 	@FXML
-	private Button aggiungiReportButton;
+	private TableColumn<Evento, Button> aggiungiStatisticheTableColumn;
 
 	@FXML
 	private Button indietroButton;
@@ -88,8 +88,26 @@ public class ListaReportAmministratoreController implements Initializable, DataI
 		report_risultatiTableColumn.setCellValueFactory(new PropertyValueFactory<>("report_risultati"));
 		report_statisticheTableColumn.setCellValueFactory(new PropertyValueFactory<>("report_statistiche"));
 
-		modificaTableColumn.setStyle("-fx-alignment: CENTER;");
-		modificaTableColumn.setCellValueFactory(
+		aggiungiStatisticheTableColumn.setStyle("-fx-alignment: CENTER;");
+		aggiungiStatisticheTableColumn.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<Evento, Button>, ObservableValue<Button>>() {
+
+					@Override
+					public ObservableValue<Button> call(CellDataFeatures<Evento, Button> param) {
+						final Button modificaButton = new Button("Scrivi Statistiche");
+						modificaButton.setOnAction(new EventHandler<ActionEvent>() {
+
+							@Override
+							public void handle(ActionEvent event) {
+								dispatcher.renderView("aggiungiReport", param.getValue());
+							}
+						});
+						return new SimpleObjectProperty<Button>(modificaButton);
+					}
+				});
+
+		aggiungiReportTableColumn.setStyle("-fx-alignment: CENTER;");
+		aggiungiReportTableColumn.setCellValueFactory(
 				new Callback<TableColumn.CellDataFeatures<Evento, Button>, ObservableValue<Button>>() {
 
 					@Override
@@ -99,7 +117,12 @@ public class ListaReportAmministratoreController implements Initializable, DataI
 
 							@Override
 							public void handle(ActionEvent event) {
-								dispatcher.renderView("aggiungiReport", param.getValue());
+								try {
+									eventoService.creaReport(param.getValue());
+								} catch (BusinessException e) {
+									e.printStackTrace();
+								}
+								dispatcher.renderView("listaReportAmministratore", amministratore);
 							}
 						});
 						return new SimpleObjectProperty<Button>(modificaButton);

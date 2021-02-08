@@ -15,7 +15,8 @@ public interface EventoService {
 
 	void caricaRisultatiInPresenza(Candidato candidato, int votiRicevuti) throws  BusinessException;
 
-	void modificaReport(Evento evento) throws BusinessException;
+	String creaReport(Evento evento) throws BusinessException;
+	void modificaStatistiche(Evento evento) throws BusinessException;
 
 	List<Evento> trovaTuttiEventi() throws BusinessException;
 	List<Evento> trovaEventiInCorso() throws BusinessException;
@@ -44,4 +45,5 @@ public interface EventoService {
     boolean verificaHaVotato(Evento evento, Elettore elettore) throws BusinessException;
 
 	void votaInPresenza(Evento evento, Elettore elettore) throws BusinessException;
+
 }

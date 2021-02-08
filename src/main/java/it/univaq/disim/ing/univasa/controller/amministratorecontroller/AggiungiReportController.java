@@ -35,9 +35,6 @@ public class AggiungiReportController implements Initializable, DataInitializabl
 	private TextField luogo;
 
 	@FXML
-	private TextField report_risultati;
-
-	@FXML
 	private TextField report_statistiche;
 
 	@FXML
@@ -72,7 +69,6 @@ public class AggiungiReportController implements Initializable, DataInitializabl
 		this.dataInizio.setValue(evento.getDataInizio());
 		this.dataFine.setValue(evento.getDataFine());
 		this.luogo.setText(evento.getLuogo());
-		this.report_risultati.setText(evento.getReport_risultati());
 		this.report_statistiche.setText(evento.getReport_statistiche());
 
 		// Si disabilita il bottone se i campi di seguito non rispettano le proprietà
@@ -91,11 +87,10 @@ public class AggiungiReportController implements Initializable, DataInitializabl
 			evento.setDataInizio(dataInizio.getValue());
 			evento.setDataFine(dataFine.getValue());
 			evento.setLuogo(luogo.getText());
-			evento.setReport_risultati(report_risultati.getText());
 			evento.setReport_statistiche(report_statistiche.getText());
 
 			if (evento.getId() != null) {
-				eventoService.modificaReport(evento);
+				eventoService.modificaStatistiche(evento);
 			}
 
 			dispatcher.renderView("listaReportAmministratore", amministratore);

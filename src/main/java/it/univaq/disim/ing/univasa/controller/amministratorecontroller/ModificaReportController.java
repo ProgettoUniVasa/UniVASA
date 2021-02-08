@@ -61,7 +61,7 @@ public class ModificaReportController implements Initializable, DataInitializabl
 			evento.setReport_risultati(report_risultati.getText());
 			evento.setReport_statistiche(report_statistiche.getText());
 
-			eventoService.modificaReport(evento);
+			eventoService.modificaStatistiche(evento);
 			dispatcher.renderView("listaReportAmministratore", amministratore);
 
 		} catch (BusinessException e) {

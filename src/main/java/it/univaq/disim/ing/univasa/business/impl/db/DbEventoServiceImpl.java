@@ -18,7 +18,6 @@ import it.univaq.disim.ing.univasa.domain.Elettore;
 import it.univaq.disim.ing.univasa.domain.Evento;
 import it.univaq.disim.ing.univasa.domain.Professione;
 import it.univaq.disim.ing.univasa.domain.StatoEvento;
-import javafx.event.ActionEvent;
 
 public class DbEventoServiceImpl implements EventoService {
 
@@ -28,7 +27,9 @@ public class DbEventoServiceImpl implements EventoService {
 
 	// Definizione query in Java
 	private static final String creaEvento = "insert into evento (nome, regolamento, data_inizio, data_fine, ora_inizio, ora_fine, luogo, numero_preferenze_esprimibili,stato) values (?,?,?,?,?,?,?,?,'programmato') ";
-	private static final String modificaReport = "update evento set report_risultati=?, report_statistiche=? where id=? ";
+	private static final String creaReport = "select concat(nome, ' ',cognome), voti_ricevuti from candidato where id_evento=? order by voti_ricevuti desc";
+	private static final String aggiungiReport = "update evento set report_risultati=? where id=?";
+	private static final String modificaStatistiche = "update evento set report_statistiche=? where id=?";
 	private static final String eliminaEvento = "delete from evento where id=?";
 	private static final String trovaTuttiEventi = "select * from evento";
 	private static final String trovaEventiInCorso = "select * from evento where data_inizio<=now() and data_fine>=now()";
@@ -75,15 +76,14 @@ public class DbEventoServiceImpl implements EventoService {
 	}
 
 	@Override
-	public void modificaReport(Evento evento) throws BusinessException {
+	public void modificaStatistiche(Evento evento) throws BusinessException {
 		// Connessione al Database e richiamo query
 		try (Connection c = DriverManager.getConnection(url, user, password);) {
 
-			PreparedStatement ps = c.prepareStatement(modificaReport);
+			PreparedStatement ps = c.prepareStatement(modificaStatistiche);
 
-			ps.setLong(3, evento.getId());
-			ps.setString(1, evento.getReport_risultati());
-			ps.setString(2, evento.getReport_statistiche());
+			ps.setLong(2, evento.getId());
+			ps.setString(1, evento.getReport_statistiche());
 
 			ps.executeUpdate();
 
@@ -101,6 +101,46 @@ public class DbEventoServiceImpl implements EventoService {
 
 			ps.setLong(2, candidato.getId());
 			ps.setInt(1, votiRicevuti);
+
+			ps.executeUpdate();
+
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+	}
+
+	@Override
+	public String creaReport(Evento evento) throws BusinessException {
+		String buffer = "";
+		ResultSet r = null;
+
+		// Connessione al Database e richiamo query
+		try (Connection c = DriverManager.getConnection(url, user, password);) {
+
+			PreparedStatement ps = c.prepareStatement(creaReport);
+			ps.setLong(1, evento.getId());
+			r = ps.executeQuery();
+
+			while (r.next()) {
+				buffer += r.getString(1) + "   " + r.getInt(2) + "\n";
+			}
+
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+
+		aggiungiReport(buffer,evento);
+		return buffer;
+	}
+
+	private void aggiungiReport(String buffer, Evento evento) {
+		// Connessione al Database e richiamo query
+		try (Connection c = DriverManager.getConnection(url, user, password);) {
+
+			PreparedStatement ps = c.prepareStatement(aggiungiReport);
+
+			ps.setLong(2, evento.getId());
+			ps.setString(1, buffer);
 
 			ps.executeUpdate();
 
