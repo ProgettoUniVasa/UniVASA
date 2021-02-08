@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="651.0" style="-fx-background-color: orange;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.elettorecontroller.ReportEventoController">
+   <children>
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="49.0" prefWidth="665.0" text="Report Risultati e Statistiche">
+         <font>
+            <Font name="Palatino Linotype Bold" size="30.0" />
+         </font>
+         <padding>
+            <Insets top="10.0" />
+         </padding>
+      </Label>
+      <Separator prefHeight="28.0" prefWidth="610.0" />
+      <GridPane prefHeight="417.0" prefWidth="651.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="308.9999633789063" minWidth="10.0" prefWidth="308.9999633789063" />
+            <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" maxWidth="479.20001220703125" minWidth="-Infinity" prefWidth="301.8000366210937" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="33.0" minHeight="6.0" prefHeight="27.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="82.0" minHeight="10.0" prefHeight="59.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="103.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="102.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="118.0" minHeight="0.0" prefHeight="35.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="171.0" minHeight="10.0" prefHeight="94.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="114.0" minHeight="10.0" prefHeight="114.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Label alignment="CENTER" prefHeight="34.0" prefWidth="341.0" text="Nome Evento:">
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="90.0" prefWidth="339.0" text="Data Inizio Evento :" GridPane.rowIndex="2">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="10.0" layoutY="77.0" prefHeight="65.0" prefWidth="321.0" text="Data Fine Evento : " GridPane.rowIndex="3">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </Label>
+            <Label alignment="CENTER" layoutX="10.0" layoutY="110.0" prefHeight="81.0" prefWidth="309.0" text="Luogo Evento :" GridPane.rowIndex="4">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </Label>
+            <TextField fx:id="nomeEvento" prefHeight="26.0" prefWidth="366.0" GridPane.columnIndex="1">
+               <GridPane.margin>
+                  <Insets right="20.0" />
+               </GridPane.margin>
+            </TextField>
+            <DatePicker fx:id="dataFine" prefHeight="26.0" prefWidth="369.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets right="20.0" />
+               </GridPane.margin>
+            </DatePicker>
+            <TextField fx:id="luogo" prefHeight="26.0" prefWidth="375.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <GridPane.margin>
+                  <Insets right="20.0" />
+               </GridPane.margin>
+            </TextField>
+            <DatePicker fx:id="dataInizio" prefHeight="26.0" prefWidth="353.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets right="20.0" />
+               </GridPane.margin>
+            </DatePicker>
+            <Label alignment="CENTER" prefHeight="66.0" prefWidth="309.0" text="Report Statistiche :" GridPane.rowIndex="6">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <TextField fx:id="report_statistiche" prefHeight="94.0" prefWidth="395.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+               <GridPane.margin>
+                  <Insets right="20.0" />
+               </GridPane.margin>
+            </TextField>
+            <Label alignment="CENTER" prefHeight="34.0" prefWidth="341.0" text="Regolamento:" GridPane.rowIndex="1">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <TextField fx:id="regolamentoEvento" prefHeight="56.0" prefWidth="365.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets right="20.0" />
+               </GridPane.margin>
+            </TextField>
+            <Label alignment="CENTER" prefHeight="49.0" prefWidth="309.0" text="Report Risultati :" GridPane.rowIndex="5">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <TextField fx:id="report_risultati" prefHeight="89.0" prefWidth="362.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+               <GridPane.margin>
+                  <Insets right="20.0" />
+               </GridPane.margin>
+            </TextField>
+         </children>
+      </GridPane>
+      <Separator prefHeight="27.0" prefWidth="647.0" />
+      <HBox prefHeight="66.0" prefWidth="632.0">
+         <children>
+            <Button fx:id="indietroButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#indietroAction" prefHeight="37.0" prefWidth="79.0" text="Indietro">
+               <HBox.margin>
+                  <Insets bottom="10.0" left="270.0" top="15.0" />
+               </HBox.margin>
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </HBox>
+   </children>
+</VBox>
