@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="427.0" prefWidth="797.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.elettorecontroller.ElencoEventiPersonaliElettoreController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="434.0" prefWidth="922.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.elettorecontroller.ElencoEventiPersonaliElettoreController">
    <children>
       <HBox prefHeight="48.0" prefWidth="642.0">
          <children>
@@ -28,13 +28,14 @@
       <TableView fx:id="eventiPersonaliTable" prefHeight="319.0" prefWidth="575.0" style="-fx-background-color: orange;">
          <columns>
             <TableColumn fx:id="nomeTableColumn" minWidth="-1.0" prefWidth="87.19997823238373" resizable="false" text="Nome" />
-            <TableColumn fx:id="dataInizioTableColumn" minWidth="-1.0" prefWidth="100.80000305175781" resizable="false" text="Inizio dell'evento" />
-            <TableColumn fx:id="dataFineTableColumn" prefWidth="105.5999755859375" resizable="false" text="Fine dell'evento" />
-            <TableColumn fx:id="luogoTableColumn" prefWidth="97.5999755859375" resizable="false" text="Luogo" />
-            <TableColumn fx:id="regolamentoTableColumn" prefWidth="101.60003662109375" resizable="false" text="Regolamento" />
-            <TableColumn fx:id="statoEventoTableColumn" prefWidth="110.39993286132812" resizable="false" text="Stato" />
-            <TableColumn fx:id="prenotazioneTableColumn" prefWidth="94.39990234375" resizable="false" text="Prenotazione" />
-            <TableColumn fx:id="azioneTableColumn" maxWidth="500.0" prefWidth="98.400146484375" resizable="false" text="Azione" />
+            <TableColumn fx:id="dataInizioTableColumn" minWidth="-1.0" prefWidth="120.0" resizable="false" text="Inizio dell'evento" />
+            <TableColumn fx:id="dataFineTableColumn" prefWidth="106.0" resizable="false" text="Fine dell'evento" />
+            <TableColumn fx:id="luogoTableColumn" prefWidth="106.0" resizable="false" text="Luogo" />
+            <TableColumn fx:id="regolamentoTableColumn" prefWidth="113.0" resizable="false" text="Regolamento" />
+            <TableColumn fx:id="statoEventoTableColumn" prefWidth="73.0" resizable="false" text="Stato" />
+            <TableColumn fx:id="prenotazioneTableColumn" prefWidth="136.0" resizable="false" text="Prenotazione" />
+            <TableColumn fx:id="azioneTableColumn" maxWidth="500.0" prefWidth="99.0" resizable="false" text="Azione" />
+            <TableColumn fx:id="eliminaTableColumn" prefWidth="70.0" text="Elimina" />
          </columns>
          <VBox.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" />
