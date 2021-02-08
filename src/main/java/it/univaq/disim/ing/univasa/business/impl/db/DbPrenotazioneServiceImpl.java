@@ -24,8 +24,8 @@ public class DbPrenotazioneServiceImpl implements PrenotazioneService {
 
 
 	// creaElettoreInSede & creaElettoreOnline
-	private static final String prenotazioneInSede = "insert into prenotazione (id_utente,id_evento,tipo_prenotazione,stato,voti_espressi) values (?,?,'in presenza','no',0)";
-	private static final String prenotazioneOnline = "insert into prenotazione (id_utente,id_evento,tipo_prenotazione,stato,voti_espressi) values (?,?,'online','no',0)";
+	private static final String prenotazioneInSede = "insert into prenotazione (id_utente,id_evento,tipo_prenotazione,stato) values (?,?,'in presenza','no')";
+	private static final String prenotazioneOnline = "insert into prenotazione (id_utente,id_evento,tipo_prenotazione,stato) values (?,?,'online','no')";
 	private static final String trovaPrenotazioniElettore = "select * from prenotazione where id_utente=?";
 	private static final String trovaPrenotazioneDaId = "select * from prenotazione where id=?";
 	private static final String trovaPrenotazioneOnlineElettore = "select * from prenotazione p join evento e on p.id_evento = e.id where p.id_utente=? and p.tipo_prenotazione='online' and e.data_inizio<=now() and e.data_fine>=now() and p.stato='no'";
