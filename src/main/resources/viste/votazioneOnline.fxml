@@ -4,43 +4,93 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: orange;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.elettorecontroller.VotazioneOnlineController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="642.0" prefWidth="612.0" style="-fx-background-color: orange;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.elettorecontroller.VotazioneOnlineController">
    <children>
-      <Label alignment="CENTER" prefHeight="68.0" prefWidth="603.0" text="  Vota il candidato prescelto">
+      <Label alignment="CENTER" prefHeight="68.0" prefWidth="641.0" text="  Vota il candidato prescelto!">
          <font>
-            <Font size="24.0" />
+            <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <GridPane prefHeight="221.0" prefWidth="546.0">
+      <GridPane prefHeight="507.0" prefWidth="612.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <CheckBox fx:id="nomeCandidato1" mnemonicParsing="false" prefHeight="18.0" prefWidth="562.0" text="candidato 1">
+            <CheckBox fx:id="candidato1" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="21.0" prefWidth="235.0" textAlignment="CENTER" GridPane.rowIndex="1">
                <GridPane.margin>
-                  <Insets left="15.0" />
+                  <Insets left="100.0" />
                </GridPane.margin>
             </CheckBox>
-            <CheckBox fx:id="nomeCandidato2" mnemonicParsing="false" prefHeight="18.0" prefWidth="567.0" text="candidato 2" GridPane.rowIndex="1">
+            <CheckBox fx:id="candidato2" mnemonicParsing="false" prefHeight="18.0" prefWidth="567.0" GridPane.rowIndex="2">
                <GridPane.margin>
-                  <Insets left="15.0" />
+                  <Insets left="100.0" />
                </GridPane.margin>
             </CheckBox>
+            <CheckBox fx:id="candidato3" mnemonicParsing="false" prefHeight="18.0" prefWidth="567.0" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets left="100.0" />
+               </GridPane.margin>
+            </CheckBox>
+            <CheckBox fx:id="candidato4" mnemonicParsing="false" prefHeight="18.0" prefWidth="567.0" GridPane.rowIndex="4">
+               <GridPane.margin>
+                  <Insets left="100.0" />
+               </GridPane.margin>
+            </CheckBox>
+            <CheckBox fx:id="candidato5" mnemonicParsing="false" prefHeight="18.0" prefWidth="567.0" GridPane.rowIndex="5">
+               <GridPane.margin>
+                  <Insets left="100.0" />
+               </GridPane.margin>
+            </CheckBox>
+            <CheckBox fx:id="candidato6" mnemonicParsing="false" prefHeight="18.0" prefWidth="567.0" GridPane.rowIndex="6">
+               <GridPane.margin>
+                  <Insets left="100.0" />
+               </GridPane.margin>
+            </CheckBox>
+            <CheckBox fx:id="candidato7" mnemonicParsing="false" prefHeight="18.0" prefWidth="567.0" GridPane.rowIndex="7">
+               <GridPane.margin>
+                  <Insets left="100.0" />
+               </GridPane.margin>
+            </CheckBox>
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="626.0" text="Regolamento" underline="true">
+               <GridPane.margin>
+                  <Insets bottom="40.0" />
+               </GridPane.margin>
+               <font>
+                  <Font name="System Bold Italic" size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="regolamento" prefHeight="65.0" prefWidth="612.0">
+               <GridPane.margin>
+                  <Insets left="5.0" right="5.0" top="25.0" />
+               </GridPane.margin>
+            </TextField>
          </children>
       </GridPane>
-      <Button fx:id="confermaButton" mnemonicParsing="false" onAction="#confermaAction" text="Conferma">
+      <Label fx:id="sceltaErrorLabel" alignment="CENTER" prefHeight="30.0" prefWidth="638.0" textFill="#8a253e">
+         <font>
+            <Font name="Bell MT" size="25.0" />
+         </font>
+      </Label>
+      <Button fx:id="confermaButton" mnemonicParsing="false" onAction="#confermaAction" prefHeight="60.0" prefWidth="105.0" text="Conferma">
          <VBox.margin>
-            <Insets left="280.0" top="50.0" />
+            <Insets bottom="10.0" left="250.0" top="30.0" />
          </VBox.margin>
       </Button>
    </children>
