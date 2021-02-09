@@ -59,6 +59,8 @@ public class ViewDispatcher {
 			}
 			Scene scene = new Scene(layout);
 			stage.setScene(scene);
+			stage.setFullScreen(true);
+			stage.setResizable(true);
 
 		} catch (ViewException e) {
 			renderError(e);
@@ -84,6 +86,7 @@ public class ViewDispatcher {
 			DataInitializable<T> controller = view.getController();
 			controller.initializeData(data);
 			layout.setCenter(view.getView());
+			
 		} catch (ViewException e) {
 			renderError(e);
 		}

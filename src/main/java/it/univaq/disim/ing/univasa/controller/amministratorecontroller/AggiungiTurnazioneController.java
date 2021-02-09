@@ -134,6 +134,8 @@ public class AggiungiTurnazioneController implements Initializable, DataInitiali
 				JOptionPane.showMessageDialog(null, "Non hai specificato nessun evento", "Errore",
 						JOptionPane.ERROR_MESSAGE);
 			}
+			JOptionPane.showMessageDialog(null, "Turnazione associata con successo!", " ",
+					JOptionPane.INFORMATION_MESSAGE);
 			dispatcher.renderView("listaTurnazioniAmministratore", amministratore);
 		} catch (BusinessException e) {
 			dispatcher.renderError(e);

@@ -6,6 +6,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import javax.swing.JOptionPane;
+
 import it.univaq.disim.ing.univasa.business.BusinessException;
 import it.univaq.disim.ing.univasa.business.EventoService;
 import it.univaq.disim.ing.univasa.business.PrenotazioneService;
@@ -177,6 +179,8 @@ public class ElencoEventiPersonaliElettoreController implements Initializable, D
 										} catch (BusinessException e) {
 											e.printStackTrace();
 										}
+										JOptionPane.showMessageDialog(null, "Prenotazione Online effettuata con successo!", " ",
+												JOptionPane.INFORMATION_MESSAGE);
 										dispatcher.renderView("elencoEventiPersonaliElettore", param.getValue().getElettore());
 									}
 								});

@@ -36,7 +36,7 @@
             </Button>
          </children>
       </HBox>
-      <TableView fx:id="amministratoriTable" prefHeight="472.0" prefWidth="698.0" style="-fx-background-color: orange;">
+      <TableView fx:id="amministratoriTable" prefHeight="444.0" prefWidth="1014.0" style="-fx-background-color: orange;">
          <columns>
             <TableColumn fx:id="nomeTableColumn" prefWidth="88.0" text="Nome" />
             <TableColumn fx:id="cognomeTableColumn" prefWidth="102.0" text="Cognome" />
@@ -52,6 +52,9 @@
          <VBox.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
          </VBox.margin>
+         <padding>
+            <Insets right="1.0" />
+         </padding>
       </TableView>
    </children>
 </VBox>

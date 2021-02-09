@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="582.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.amministratorecontroller.ListaEventiAmministratoreController">
+<VBox alignment="CENTER" fillWidth="false" prefHeight="582.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.amministratorecontroller.ListaEventiAmministratoreController">
    <children>
       <Label fx:id="eventiLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="39.0" prefWidth="873.0" text="Lista Eventi" textAlignment="CENTER" textFill="ORANGE">
          <font>
@@ -19,7 +19,7 @@
             <Insets top="10.0" />
          </VBox.margin>
       </Label>
-      <HBox prefHeight="100.0" prefWidth="200.0">
+      <HBox prefHeight="84.0" prefWidth="1079.0">
          <children>
             <Button fx:id="indietroButton" mnemonicParsing="false" onAction="#indietroAction" prefHeight="36.0" prefWidth="103.0" text="Indietro" />
             <Button fx:id="aggiungiEventoButton" mnemonicParsing="false" onAction="#aggiungiEventoAction" prefHeight="38.0" prefWidth="147.0" text="Aggiungi Evento">
@@ -27,12 +27,12 @@
                   <Font size="16.0" />
                </font>
                <HBox.margin>
-                  <Insets left="620.0" />
+                  <Insets left="750.0" />
                </HBox.margin>
             </Button>
          </children>
       </HBox>
-      <TableView fx:id="eventiTable" prefHeight="461.0" prefWidth="1952.0" style="-fx-background-color: orange;">
+      <TableView fx:id="eventiTable" prefHeight="410.0" style="-fx-background-color: orange;">
         <columns>
           <TableColumn fx:id="nomeTableColumn" prefWidth="142.3999702334404" text="Nome" />
             <TableColumn fx:id="regolamentoTableColumn" prefWidth="117.59994506835938" text="Regolamento" />
@@ -41,12 +41,15 @@
             <TableColumn fx:id="luogoTableColumn" prefWidth="132.79998779296875" text="Luogo" />
             <TableColumn fx:id="numero_preferenze_esprimibiliTableColumn" prefWidth="130.39996337890625" text="Preferenze esprimibili" />
             <TableColumn fx:id="azioniTableColumn" prefWidth="128.7999267578125" text="Candidati" />
-            <TableColumn fx:id="azioni2TableColumn" prefWidth="104.0" text="Prenotati" />
+            <TableColumn fx:id="azioni2TableColumn" minWidth="150.0" prefWidth="104.0" text="Prenotati" />
             <TableColumn fx:id="eliminaTableColumn" minWidth="0.0" prefWidth="66.40008544921875" text="Elimina" />
         </columns>
          <VBox.margin>
             <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
          </VBox.margin>
+         <padding>
+            <Insets right="1.0" />
+         </padding>
       </TableView>
    </children>
    <padding>

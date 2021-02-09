@@ -10,7 +10,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="674.0" prefWidth="962.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.LayoutController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="674.0" prefWidth="962.0" style="-fx-background-color: lightgreen;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.LayoutController">
    <top>
       <HBox alignment="CENTER" prefHeight="87.0" prefWidth="962.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
          <children>
@@ -19,6 +19,9 @@
                <font>
                   <Font name="Palatino Linotype Bold" size="60.0" />
                </font>
+               <HBox.margin>
+                  <Insets left="150.0" />
+               </HBox.margin>
                <textFill>
                   <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
                      <stops>
@@ -27,9 +30,6 @@
                      </stops>
                   </RadialGradient>
                </textFill>
-               <HBox.margin>
-                  <Insets left="150.0" />
-               </HBox.margin>
             </Label>
             <Separator orientation="VERTICAL" prefHeight="121.0" prefWidth="142.0" visible="false" />
          </children>

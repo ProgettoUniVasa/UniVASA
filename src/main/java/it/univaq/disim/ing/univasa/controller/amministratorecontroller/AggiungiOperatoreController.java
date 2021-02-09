@@ -126,6 +126,8 @@ public class AggiungiOperatoreController implements Initializable, DataInitializ
 			} else {
 				if (c == 0 && operatore.getId() == null) {
 					utenteService.creaOperatore(operatore);
+					JOptionPane.showMessageDialog(null, "Operatore aggiunto con successo!", " ",
+							JOptionPane.INFORMATION_MESSAGE);
 					dispatcher.renderView("gestioneOperatoriAmministratore", amministratore);
 				}
 			}

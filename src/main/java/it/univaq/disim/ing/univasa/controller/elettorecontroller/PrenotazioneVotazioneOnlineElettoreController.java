@@ -3,6 +3,8 @@ package it.univaq.disim.ing.univasa.controller.elettorecontroller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javax.swing.JOptionPane;
+
 import it.univaq.disim.ing.univasa.business.*;
 import it.univaq.disim.ing.univasa.controller.DataInitializable;
 import it.univaq.disim.ing.univasa.domain.Elettore;
@@ -53,6 +55,8 @@ public class PrenotazioneVotazioneOnlineElettoreController implements Initializa
 	public void prenotatiOnlineAction(ActionEvent event) throws BusinessException {
 		try {
 			prenotazioneService.prenotazioneOnline(elettore, evento);
+			JOptionPane.showMessageDialog(null, "Prenotazione Online effettuata con successo!", " ",
+					JOptionPane.INFORMATION_MESSAGE);
 			dispatcher.renderView("elencoTuttiGliEventiElettore", elettore);
 		} catch (BusinessException e) {
 			e.printStackTrace();

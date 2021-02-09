@@ -5,37 +5,31 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.operatorecontroller.CaricaVotiOperatoreController">
+<VBox prefHeight="517.0" prefWidth="763.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.operatorecontroller.CaricaVotiOperatoreController">
+   <padding>
+      <Insets bottom="10.0" left="5.0" right="10.0" />
+   </padding>
    <children>
-      <AnchorPane>
-         <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutY="14.0" prefHeight="39.0" prefWidth="829.0" text="Lista Eventi" textAlignment="CENTER" textFill="ORANGE">
-               <font>
-                  <Font name="Palatino Linotype Bold" size="30.0" />
-               </font>
-            </Label>
-            <VBox layoutX="10.0" layoutY="61.0" prefHeight="517.0" prefWidth="763.0">
-               <padding>
-                  <Insets bottom="10.0" left="5.0" right="10.0" />
-               </padding>
-               <children>
-                  <TableView fx:id="votiTable" prefHeight="455.0" prefWidth="748.0" style="-fx-background-color: orange;">
-                     <columns>
-                        <TableColumn fx:id="nomeTableColumn" prefWidth="199.0" text="Nome Candidato" />
-                        <TableColumn fx:id="cognomeTableColumn" prefWidth="198.0" text="Cognome Candidato" />
-                        <TableColumn fx:id="emailTableColumn" minWidth="0.0" prefWidth="199.0" text="Email Candidato" />
-                        <TableColumn fx:id="azioneTableColumn" prefWidth="151.0" text="Azione" />
-                     </columns>
-                  </TableView>
-               </children>
-            </VBox>
-            <Button layoutX="711.0" layoutY="14.0" mnemonicParsing="false" onAction="#indietroAction" text="Indietro" />
-         </children>
-      </AnchorPane>
+      <Button mnemonicParsing="false" onAction="#indietroAction" prefHeight="26.0" prefWidth="66.0" text="Indietro">
+         <VBox.margin>
+            <Insets left="650.0" top="5.0" />
+         </VBox.margin>
+      </Button>
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="39.0" prefWidth="829.0" text="Lista Eventi" textAlignment="CENTER" textFill="ORANGE">
+         <font>
+            <Font name="Palatino Linotype Bold" size="30.0" />
+         </font>
+      </Label>
+      <TableView fx:id="votiTable" prefHeight="455.0" prefWidth="748.0" style="-fx-background-color: orange;">
+         <columns>
+            <TableColumn fx:id="nomeTableColumn" prefWidth="199.0" text="Nome Candidato" />
+            <TableColumn fx:id="cognomeTableColumn" prefWidth="198.0" text="Cognome Candidato" />
+            <TableColumn fx:id="emailTableColumn" minWidth="0.0" prefWidth="199.0" text="Email Candidato" />
+            <TableColumn fx:id="azioneTableColumn" prefWidth="151.0" text="Azione" />
+         </columns>
+      </TableView>
    </children>
 </VBox>

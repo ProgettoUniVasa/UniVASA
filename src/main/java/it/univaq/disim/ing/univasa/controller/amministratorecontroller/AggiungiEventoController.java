@@ -100,6 +100,8 @@ public class AggiungiEventoController implements Initializable, DataInitializabl
 			evento.setNumero_preferenze_esprimibili(Integer.parseInt(numero_preferenze_esprimibili.getText()));
 
 			eventoService.creaEvento(evento);
+			JOptionPane.showMessageDialog(null, "Evento aggiunto con successo! Ricordati di inserire i candidati", " ",
+					JOptionPane.INFORMATION_MESSAGE);
 			dispatcher.renderView("listaEventiAmministratore", amministratore);
 			}
 		} catch (BusinessException e) {

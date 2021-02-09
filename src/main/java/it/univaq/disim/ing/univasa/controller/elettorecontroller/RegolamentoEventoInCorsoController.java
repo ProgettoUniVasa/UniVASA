@@ -51,7 +51,7 @@ public class RegolamentoEventoInCorsoController implements Initializable, DataIn
 		this.elettore = prenotazione.getElettore();
 		this.evento = prenotazione.getEvento();
 		this.nome.setText(evento.getNome());
-		this.regolamento.setText(evento.getRegolamento());
+		this.regolamento.setText("E' possibile votare " + evento.getNumero_preferenze_esprimibili() + " candidato/i per scheda elettorale. \n " + evento.getRegolamento());
 		this.nome.setEditable(false);
 		this.regolamento.setEditable(false);
 	}

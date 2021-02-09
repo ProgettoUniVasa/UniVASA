@@ -83,7 +83,8 @@ public class AggiungiCandidatoController implements Initializable, DataInitializ
 			candidato.setTelefono(telefono.getText());
 			candidato.setNomeUniversita(nomeUniversita.getText());
 			candidato.setDataNascita(dataNascita.getValue());
-
+			System.out.println("numero candidati: " + utenteService.trovaTuttiCandidati(evento).size());
+			
 			for (Candidato ca : utenteService.trovaTuttiCandidati(evento)) {
 				if (ca.getEmail().equals(email.getText())) {
 					c++;
@@ -91,10 +92,19 @@ public class AggiungiCandidatoController implements Initializable, DataInitializ
 							JOptionPane.ERROR_MESSAGE);
 					break;
 				}
+				
+				if (utenteService.trovaTuttiCandidati(evento).size() >= 7) {
+					c++;
+					JOptionPane.showMessageDialog(null, "Il numero massimo di candidati per l'evento è stato raggiunto!", " ",
+							JOptionPane.ERROR_MESSAGE);
+					break;
+				}
 			}
 
 			if (c == 0 && candidato.getId() == null) {
 				utenteService.creaCandidato(candidato, evento);
+				JOptionPane.showMessageDialog(null, "Candidato aggiunto con successo!", " ",
+						JOptionPane.INFORMATION_MESSAGE);
 				dispatcher.renderView("listaCandidatiAmministratore", evento);
 			}
 

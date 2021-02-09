@@ -123,6 +123,8 @@ public class AggiungiAmministratoreController implements Initializable, DataInit
 			} else {
 				if (c == 0 && amministratore.getId() == null) {
 					utenteService.creaAmministratore(amministratore);
+					JOptionPane.showMessageDialog(null, "Amministratore aggiunto con successo!", " ",
+							JOptionPane.INFORMATION_MESSAGE);
 					dispatcher.renderView("gestioneAmministratoriAmministratore", amministratore);
 				}
 			}

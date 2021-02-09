@@ -20,7 +20,7 @@
             </Button>
          </children>
       </HBox>
-      <Label alignment="TOP_CENTER" prefHeight="46.0" prefWidth="734.0" text="I Tuoi Eventi" textFill="ORANGE">
+      <Label alignment="TOP_CENTER" prefHeight="46.0" prefWidth="917.0" text="I Tuoi Eventi" textFill="ORANGE">
          <font>
             <Font name="Palatino Linotype Bold" size="30.0" />
          </font>

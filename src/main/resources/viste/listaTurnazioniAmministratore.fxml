@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="580.0" prefWidth="841.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.amministratorecontroller.ListaTurnazioniAmministratoreController">
+<VBox alignment="CENTER" fillWidth="false" prefHeight="580.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.amministratorecontroller.ListaTurnazioniAmministratoreController">
    <children>
       <Label fx:id="turniLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="39.0" prefWidth="766.0" text="Lista Turni" textAlignment="CENTER" textFill="ORANGE">
          <font>
@@ -19,7 +19,7 @@
             <Insets top="10.0" />
          </VBox.margin>
       </Label>
-      <HBox prefHeight="100.0" prefWidth="200.0">
+      <HBox prefHeight="68.0">
          <children>
             <Button fx:id="indietroButton" mnemonicParsing="false" onAction="#indietroAction" prefHeight="36.0" prefWidth="75.0" text="Indietro" />
             <Button fx:id="aggiungiTurnoButton" mnemonicParsing="false" onAction="#aggiungiTurnoAction" onMouseClicked="#aggiungiTurnoAction" prefHeight="37.0" prefWidth="156.0" text="Aggiungi Turno">
@@ -32,7 +32,7 @@
             </Button>
          </children>
       </HBox>
-      <TableView fx:id="turniTable" prefHeight="463.0" prefWidth="599.0" style="-fx-background-color: orange;">
+      <TableView fx:id="turniTable" prefHeight="463.0" style="-fx-background-color: orange;">
         <columns>
           <TableColumn fx:id="emailTableColumn" prefWidth="215.0" text="Email operatore" />
             <TableColumn fx:id="fasciaTableColumn" prefWidth="88.0" text="Fascia Oraria" />
@@ -44,6 +44,9 @@
          <VBox.margin>
             <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
          </VBox.margin>
+         <padding>
+            <Insets right="1.0" />
+         </padding>
       </TableView>
    </children>
    <padding>

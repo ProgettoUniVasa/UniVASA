@@ -40,9 +40,9 @@ public class DbEventoServiceImpl implements EventoService {
 	private static final String trovaEventiDaLuogo = "select * from evento where luogo=?";
 	private static final String trovaEventiDaPrenotare = "select * from evento where data_inizio>now() and id not in (select e.id from prenotazione p join evento e on p.id_evento=e.id where p.id_utente=?)";
 	private static final String trovaEventiFinitiPrenotati = "select * from evento e join prenotazione p on e.id=p.id_evento where e.data_fine<now() and p.id_utente=?";
-	private static final String visualizzaCandidati = "select c.id,u.nome,u.cognome,u.email,u.telefono,u.data_nascita,u.nome_universita,c.voti_ricevuti from utente u join candidato c on u.email=c.email where c.id_evento=?";
+	private static final String visualizzaCandidati = "select c.id,c.nome,c.cognome,c.email,c.telefono,c.data_nascita,c.nome_universita,c.voti_ricevuti from candidato c where c.id_evento=?";
 	private static final String visualizzaPrenotatiInSede = "select * from utente u join prenotazione p on p.id_utente=u.id where id_evento=? and tipo_prenotazione='in presenza'";
-	private static final String caricaRisultatiInPresenza = "update candidato set voti_ricevuti=voti_ricevuti+? where id=?"; // ciclica
+	private static final String caricaRisultatiInPresenza = "update candidato set voti_ricevuti=voti_ricevuti+? where id=?";
 	private static final String trovaEventiDaVotare = "select * from evento e join prenotazione p on e.id=p.id_evento where p.stato='no' and p.tipo_prenotazione='online' and e.data_inizio<=now() and e.data_fine>=now() and p.id_utente=?";
 	private static final String verificaHaVotato = "select * from prenotazione where id_evento=? and id_utente=? and stato='no'";
 	private static final String aggiungiVoto = "update candidato set voti_ricevuti=voti_ricevuti+1 where id=?";

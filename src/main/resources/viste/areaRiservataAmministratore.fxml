@@ -19,7 +19,7 @@
       </Button>
       <HBox prefHeight="70.0" prefWidth="600.0">
          <children>
-            <Label prefHeight="70.0" prefWidth="680.0" text="Area Riservata" textFill="ORANGE">
+            <Label prefHeight="70.0" prefWidth="680.0" text="Area Riservata" textFill="#f08112">
                <font>
                   <Font name="Palatino Linotype Bold" size="30.0" />
                </font>

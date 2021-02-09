@@ -167,11 +167,6 @@ public class ElencoEventiInCorsoController implements Initializable, DataInitial
 	}
 	
 	@FXML
-	public void esciAction(MouseEvent event) {
-		dispatcher.logout();
-	};
-
-	@FXML
 	public void indietroAction(ActionEvent event) {
 		dispatcher.renderView("homeElettore", elettore);
 	}

@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="507.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.amministratorecontroller.ListaPrenotatiAmministratoreController">
+<VBox alignment="CENTER" prefHeight="507.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.amministratorecontroller.ListaPrenotatiAmministratoreController">
    <children>
       <Label fx:id="prenotatiLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="39.0" prefWidth="766.0" text="Lista Prenotati" textAlignment="CENTER" textFill="ORANGE">
          <font>

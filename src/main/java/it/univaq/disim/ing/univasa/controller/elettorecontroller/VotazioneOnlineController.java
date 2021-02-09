@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import javax.swing.JOptionPane;
+
 import it.univaq.disim.ing.univasa.business.BusinessException;
 import it.univaq.disim.ing.univasa.business.EventoService;
 import it.univaq.disim.ing.univasa.business.PrenotazioneService;
@@ -108,6 +110,8 @@ public class VotazioneOnlineController implements Initializable, DataInitializab
 			for (int i=0;i<7;i++)
 				if (checkboxList.get(i).isSelected()) eventoService.aggiungiVoto(candidati.get(i));
 			prenotazioneService.vota(evento, elettore);
+				JOptionPane.showMessageDialog(null, " Votazione effettuata con successo!", " ",
+						JOptionPane.INFORMATION_MESSAGE);
 			dispatcher.renderView("elencoEventiInCorso", elettore);
 		}else{
 			sceltaErrorLabel.setText("Hai selezionato più di "+evento.getNumero_preferenze_esprimibili()+" preferenze!");

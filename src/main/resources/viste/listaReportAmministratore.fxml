@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="597.0" prefWidth="1116.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.amministratorecontroller.ListaReportAmministratoreController">
+<VBox alignment="CENTER" fillWidth="false" prefHeight="597.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.amministratorecontroller.ListaReportAmministratoreController">
    <children>
       <Label fx:id="reportLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="39.0" prefWidth="1185.0" text="Lista Report" textAlignment="CENTER" textFill="ORANGE">
          <font>
@@ -24,7 +24,7 @@
             <Button fx:id="indietroButton" mnemonicParsing="false" onAction="#indietroAction" prefHeight="42.0" prefWidth="85.0" text="Indietro" />
          </children>
       </HBox>
-      <TableView fx:id="reportTable" prefHeight="464.0" prefWidth="743.0" style="-fx-background-color: orange;">
+      <TableView fx:id="reportTable" prefHeight="464.0" style="-fx-background-color: orange;">
         <columns>
           <TableColumn fx:id="nomeTableColumn" prefWidth="106.0" text="Nome Evento" />
             <TableColumn fx:id="regolamentoTableColumn" prefWidth="211.0" text="Regolamento" />
@@ -37,11 +37,11 @@
             <TableColumn fx:id="aggiungiStatisticheTableColumn" minWidth="3.0" prefWidth="130.0" text="Aggiungi Statistiche" />
            </columns>
          <VBox.margin>
-            <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
+            <Insets bottom="10.0" right="5.0" top="10.0" />
          </VBox.margin>
       </TableView>
    </children>
    <padding>
-      <Insets bottom="10.0" left="10.0" right="10.0" />
+      <Insets bottom="10.0" right="10.0" />
    </padding>
 </VBox>
