@@ -14,7 +14,7 @@
    <children>
       <AnchorPane>
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutY="14.0" prefHeight="39.0" prefWidth="829.0" text="Lista Eventi" textAlignment="CENTER" textFill="ORANGE">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutY="14.0" prefHeight="39.0" prefWidth="829.0" text="Lista Candidati" textAlignment="CENTER" textFill="ORANGE">
                <font>
                   <Font name="Palatino Linotype Bold" size="30.0" />
                </font>
