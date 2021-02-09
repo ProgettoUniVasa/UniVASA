@@ -71,7 +71,6 @@ public class AggiungiVotiOperatoreController implements Initializable, DataIniti
 		try {
 			Turnazione turnazione = new Turnazione();
 			turnazione.setEvento(evento);
-			//turnazione.setOperatore();
 			eventoService.caricaRisultatiInPresenza(candidato, Integer.valueOf(voti.getText()));
 			dispatcher.renderView("caricaVotiOperatore", turnazione);
 		} catch (BusinessException e) {
