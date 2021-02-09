@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="427.0" prefWidth="705.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.elettorecontroller.ElencoEventiInCorsoController">
+<VBox fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="427.0" prefWidth="705.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.elettorecontroller.ElencoEventiInCorsoController">
    <children>
       <HBox prefHeight="48.0" prefWidth="642.0">
          <children>
@@ -20,12 +20,12 @@
             </Button>
          </children>
       </HBox>
-      <Label alignment="TOP_CENTER" prefHeight="46.0" prefWidth="734.0" text="Eventi in corso" textFill="ORANGE">
+      <Label alignment="TOP_CENTER" prefHeight="46.0" prefWidth="734.0" text="Eventi in corso" textFill="#ffa100">
          <font>
             <Font name="Palatino Linotype Bold" size="30.0" />
          </font>
       </Label>
-      <TableView fx:id="eventiPersonaliTable" prefHeight="319.0" prefWidth="575.0" style="-fx-background-color: orange;">
+      <TableView fx:id="eventiPersonaliTable" prefHeight="319.0" prefWidth="689.0" style="-fx-background-color: orange;">
          <columns>
             <TableColumn fx:id="nomeTableColumn" minWidth="-1.0" prefWidth="87.19997823238373" resizable="false" text="Nome" />
             <TableColumn fx:id="dataInizioTableColumn" minWidth="-1.0" prefWidth="100.80000305175781" resizable="false" text="Inizio dell'evento" />

@@ -33,9 +33,9 @@
             <TableColumn fx:id="luogoTableColumn" prefWidth="106.0" resizable="false" text="Luogo" />
             <TableColumn fx:id="regolamentoTableColumn" prefWidth="113.0" resizable="false" text="Regolamento" />
             <TableColumn fx:id="statoEventoTableColumn" prefWidth="73.0" resizable="false" text="Stato" />
-            <TableColumn fx:id="prenotazioneTableColumn" prefWidth="136.0" resizable="false" text="Prenotazione" />
-            <TableColumn fx:id="azioneTableColumn" maxWidth="500.0" prefWidth="99.0" resizable="false" text="Cambio Modalità" />
-            <TableColumn fx:id="eliminaTableColumn" prefWidth="70.0" text="Elimina" />
+            <TableColumn fx:id="prenotazioneTableColumn" prefWidth="128.79998779296875" resizable="false" text="Prenotazione" />
+            <TableColumn fx:id="azioneTableColumn" maxWidth="500.0" prefWidth="108.7999267578125" resizable="false" text="Cambio Modalità" />
+            <TableColumn fx:id="eliminaTableColumn" prefWidth="68.800048828125" text="Elimina" />
          </columns>
          <VBox.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" />

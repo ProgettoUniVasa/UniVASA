@@ -23,10 +23,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.paint.Color;
 import javafx.util.Callback;
 
 public class ListaEventiAmministratoreController implements Initializable, DataInitializable<Amministratore> {
@@ -193,6 +195,32 @@ public class ListaEventiAmministratoreController implements Initializable, DataI
 			this.amministratore = amministratore;
 			List<Evento> evento = eventoService.trovaTuttiEventi();
 			ObservableList<Evento> eventiData = FXCollections.observableArrayList(evento);
+			
+			nomeTableColumn.setCellFactory(new Callback<TableColumn<Evento, String>, TableCell<Evento, String>>() {
+				public TableCell<Evento, String> call(TableColumn<Evento, String> param) {
+					return new TableCell<Evento, String>() {
+						@Override
+						public void updateItem(String item, boolean empty) {
+							super.updateItem(item, empty);
+							if (!isEmpty()) {
+								try {
+									// Per ogni evento senza candidati viene evidenziato il nome in rosso
+									for (Evento e : eventoService.eventoSenzaCandidati()) {
+										if (item.equals(e.getNome())) {
+											this.setTextFill(Color.RED);
+											break;
+										}
+									}
+								} catch (BusinessException e) {
+									e.printStackTrace();
+								}
+								setText(item);
+							}
+						}
+					};
+				}
+			});
+			
 			eventiTable.setItems(eventiData);
 		} catch (BusinessException e) {
 			dispatcher.renderError(e);

@@ -46,6 +46,7 @@ public class DbEventoServiceImpl implements EventoService {
 	private static final String trovaEventiDaVotare = "select * from evento e join prenotazione p on e.id=p.id_evento where p.stato='no' and p.tipo_prenotazione='online' and e.data_inizio<=now() and e.data_fine>=now() and p.id_utente=?";
 	private static final String verificaHaVotato = "select * from prenotazione where id_evento=? and id_utente=? and stato='no'";
 	private static final String aggiungiVoto = "update candidato set voti_ricevuti=voti_ricevuti+1 where id=?";
+	private static final String eventiSenzaCandidati = "select * from evento where id not in (select evento.id from evento join candidato on evento.id=candidato.id_evento)";
 
 	@Override
 	public void creaEvento(Evento evento) throws BusinessException {
@@ -645,6 +646,50 @@ public class DbEventoServiceImpl implements EventoService {
 				result.add(evento);
 			}
 
+			r.close();
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		} finally {
+			if (r != null) {
+				try {
+					r.close();
+				} catch (SQLException ex) {
+					ex.printStackTrace();
+				}
+			}
+		}
+		return result;
+	}
+	
+	@Override
+	public List<Evento> eventoSenzaCandidati() throws BusinessException {
+		List<Evento> result = new ArrayList<>();
+		ResultSet r = null;
+
+		// Connessione al Database e richiamo query
+		try (Connection c = DriverManager.getConnection(url, user, password);) {
+
+			PreparedStatement ps = c.prepareStatement(eventiSenzaCandidati);
+			r = ps.executeQuery();
+
+			while (r.next()) {
+				Evento evento = new Evento();
+				evento.setId(r.getLong(1));
+				evento.setNome(r.getString(2));
+				evento.setRegolamento(r.getString(3));
+				// Conversione da Date a LocalDateTime
+				evento.setDataInizio(
+						Instant.ofEpochMilli(r.getDate(4).getTime()).atZone(ZoneId.systemDefault()).toLocalDate());
+				evento.setDataFine(
+						Instant.ofEpochMilli(r.getDate(5).getTime()).atZone(ZoneId.systemDefault()).toLocalDate());
+				evento.setOraInizio(r.getString(6));
+				evento.setOraFine(r.getString(7));
+				evento.setLuogo(r.getString(8));
+				evento.setReport_risultati(r.getString(9));
+				evento.setReport_statistiche(r.getString(10));
+				evento.setNumero_preferenze_esprimibili(r.getInt(11));
+				result.add(evento);
+			}
 			r.close();
 		} catch (SQLException ex) {
 			ex.printStackTrace();
