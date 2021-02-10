@@ -28,7 +28,7 @@ import javafx.scene.control.TextField;
 public class AggiungiTurnazioneController implements Initializable, DataInitializable<Turnazione> {
 
 	@FXML
-	private TextField email;
+	private ComboBox<String> email;
 
 	@FXML
 	private ComboBox<TipologiaTurno> fascia;
@@ -37,10 +37,7 @@ public class AggiungiTurnazioneController implements Initializable, DataInitiali
 	private DatePicker data_turno;
 
 	@FXML
-	private TextField nome_evento;
-
-	@FXML
-	private TextField luogo;
+	private ComboBox<String> nome_evento;
 
 	@FXML
 	private Button salvaButton;
@@ -75,6 +72,14 @@ public class AggiungiTurnazioneController implements Initializable, DataInitiali
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		fascia.getItems().addAll(TipologiaTurno.values());
+		try {
+
+			email.getItems().addAll(utenteService.trovaEmailTuttiOperatori());
+			nome_evento.getItems().addAll(eventoService.nomiEventi());
+
+		} catch (BusinessException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -83,9 +88,9 @@ public class AggiungiTurnazioneController implements Initializable, DataInitiali
 		// Si disabilita il bottone se i campi di seguito non rispettano le proprietà
 		// definite
 		salvaButton.disableProperty()
-				.bind((email.textProperty().isEmpty()
+				.bind((email.valueProperty().isNull()
 						.or(fascia.valueProperty().isNull().or(data_turno.valueProperty().isNull())
-								.or(nome_evento.textProperty().isEmpty().or(luogo.textProperty().isEmpty())))));
+								.or(nome_evento.valueProperty().isNull())))); 
 
 	}
 
@@ -98,9 +103,8 @@ public class AggiungiTurnazioneController implements Initializable, DataInitiali
 			turnazione.setFascia(fascia.getValue());
 			turnazione.setData_turno(data_turno.getValue());
 
-			String nomeEvento = nome_evento.getText();
-			String luogoEvento = luogo.getText();
-			String emailOperatore = email.getText();
+			String nomeEvento = nome_evento.getValue();
+			String emailOperatore = email.getValue();
 			Long idOperatore;
 			Long idEvento;
 
@@ -115,8 +119,7 @@ public class AggiungiTurnazioneController implements Initializable, DataInitiali
 			}
 			for (Evento e : eventoService.trovaTuttiEventi()) {
 
-				if ((e.getNome().equals(nomeEvento)) && (e.getLuogo().equals(luogoEvento))) {
-
+				if ((e.getNome().equals(nomeEvento)) ) { 
 					idEvento = e.getId();
 					turnazione.setEvento((Evento) eventoService.trovaEventoDaId(idEvento));
 					count2++;

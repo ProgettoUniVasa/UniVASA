@@ -47,4 +47,5 @@ public interface EventoService {
 	void aggiungiVoto (Candidato candidato) throws BusinessException;
 
 	List<Evento> eventoSenzaCandidati() throws BusinessException;
+	
 }

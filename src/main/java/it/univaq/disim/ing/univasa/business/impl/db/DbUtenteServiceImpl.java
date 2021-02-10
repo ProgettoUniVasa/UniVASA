@@ -41,6 +41,7 @@ public class DbUtenteServiceImpl implements UtenteService {
 	private static final String trovaTuttiOperatori = "select * from utente where tipo_utente='operatore'";
 	private static final String trovaTuttiElettori = "select * from utente where tipo_utente='elettore'";
 	private static final String trovaTuttiCandidati = "select * from candidato where id_evento=?";
+	private static final String trovaEmailOperatori = "select email from utente where tipo_utente='operatore'";
 	// creaAmministratore
 	private static final String creaAmministratore = "insert into utente (nome, cognome, email, username, password, telefono, data_nascita, professione, nome_universita, dipartimento, tipo_utente) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'amministratore')";
 	// creaOperatore
@@ -759,6 +760,37 @@ public class DbUtenteServiceImpl implements UtenteService {
 			}
 		}
 		return candidati;
+	}
+	@Override
+	public List<String> trovaEmailTuttiOperatori() throws BusinessException {
+		List<String> result = new ArrayList<>();
+		ResultSet r = null;
+
+		// Connessione al Database e richiamo query
+		try (Connection c = DriverManager.getConnection(url, user, pwd);) {
+
+			PreparedStatement ps = c.prepareStatement(trovaEmailOperatori);
+			r = ps.executeQuery();
+
+			while (r.next()) {
+				String emailOperatore;
+				emailOperatore = (r.getString(1));
+				result.add(emailOperatore);
+			}
+
+			r.close();
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		} finally {
+			if (r != null) {
+				try {
+					r.close();
+				} catch (SQLException ex) {
+					ex.printStackTrace();
+				}
+			}
+		}
+		return result;
 	}
 
 }

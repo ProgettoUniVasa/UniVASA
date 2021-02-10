@@ -53,4 +53,6 @@ public interface UtenteService {
 	Utente utenteDaEmail(String email) throws UtenteNotFoundException, BusinessException;
 
     void eliminaCandidato(Candidato candidato) throws BusinessException;
+
+    List<String> trovaEmailTuttiOperatori() throws BusinessException;
 }

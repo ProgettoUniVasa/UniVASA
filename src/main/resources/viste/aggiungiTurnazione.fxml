@@ -6,7 +6,6 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -31,11 +30,10 @@
           <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" maxWidth="479.20001220703125" minWidth="-Infinity" prefWidth="301.8000366210937" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="40.799993896484374" minHeight="10.0" prefHeight="28.79999771118164" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="32.00000228881835" minHeight="10.0" prefHeight="32.00000228881835" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="32.00000228881835" minHeight="10.0" prefHeight="32.00000228881835" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="34.40000610351562" minHeight="0.0" prefHeight="32.8" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="59.2" minHeight="10.0" prefHeight="53.59999389648438" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="50.400006103515615" minHeight="10.0" prefHeight="32.80000610351563" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="43.20000000000002" minHeight="10.0" prefHeight="43.20000000000002" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="39.199993896484386" minHeight="10.0" prefHeight="39.199993896484386" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <Label alignment="CENTER" prefHeight="34.0" prefWidth="341.0" text="Email Operatore :">
@@ -64,29 +62,10 @@
                   <Insets />
                </GridPane.margin>
             </Label>
-            <Label alignment="CENTER" layoutX="10.0" layoutY="110.0" prefHeight="81.0" prefWidth="309.0" text="Luogo :" GridPane.rowIndex="4">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-            </Label>
-            <TextField fx:id="email" prefHeight="26.0" prefWidth="325.0" GridPane.columnIndex="1">
-               <GridPane.margin>
-                  <Insets right="20.0" />
-               </GridPane.margin></TextField>
-            <TextField fx:id="luogo" prefHeight="26.0" prefWidth="330.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
-               <GridPane.margin>
-                  <Insets right="20.0" />
-               </GridPane.margin></TextField>
             <DatePicker fx:id="data_turno" prefHeight="26.0" prefWidth="296.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField fx:id="nome_evento" prefHeight="26.0" prefWidth="319.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
-               <GridPane.margin>
-                  <Insets right="20.0" />
-               </GridPane.margin>
-            </TextField>
             <ComboBox fx:id="fascia" prefHeight="25.0" prefWidth="295.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <ComboBox fx:id="email" prefHeight="26.0" prefWidth="295.0" GridPane.columnIndex="1" />
+            <ComboBox fx:id="nome_evento" prefHeight="26.0" prefWidth="295.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          </children>
       </GridPane>
       <Separator prefHeight="27.0" prefWidth="647.0" />

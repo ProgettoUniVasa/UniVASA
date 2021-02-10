@@ -3,7 +3,10 @@ package it.univaq.disim.ing.univasa.controller.amministratorecontroller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javax.swing.JOptionPane;
+
 import it.univaq.disim.ing.univasa.business.BusinessException;
+import it.univaq.disim.ing.univasa.business.TurnazioneService;
 import it.univaq.disim.ing.univasa.business.UnivasaBusinessFactory;
 import it.univaq.disim.ing.univasa.business.UtenteService;
 import it.univaq.disim.ing.univasa.controller.DataInitializable;
@@ -45,6 +48,7 @@ public class EliminaOperatoreController implements Initializable, DataInitializa
 	private ViewDispatcher dispatcher;
 
 	private UtenteService utenteService;
+	private TurnazioneService turnazioniService;
 
 	private Operatore operatore;
 
@@ -54,6 +58,7 @@ public class EliminaOperatoreController implements Initializable, DataInitializa
 		dispatcher = ViewDispatcher.getInstance();
 		UnivasaBusinessFactory factory = UnivasaBusinessFactory.getInstance();
 		utenteService = factory.getUtenteService();
+		turnazioniService = factory.getTurnazioneService();
 	}
 
 	@Override
@@ -74,8 +79,15 @@ public class EliminaOperatoreController implements Initializable, DataInitializa
 	@FXML
 	public void eliminaAction(ActionEvent event) {
 		try {
-			utenteService.eliminaUtente(operatore);
-			dispatcher.renderView("gestioneOperatoriAmministratore", amministratore);
+			if (turnazioniService.visualizzaTurnazioni(operatore).size() == 0) {
+				utenteService.eliminaUtente(operatore);
+				JOptionPane.showMessageDialog(null, "Operatore eliminato con successo!", " ",
+						JOptionPane.INFORMATION_MESSAGE);
+				dispatcher.renderView("gestioneOperatoriAmministratore", amministratore);
+			} else {
+				JOptionPane.showMessageDialog(null, "L'operatore selezionato ha dei turni di lavoro assegnati! Non può essere eliminato.",
+						"Operatore con turni assegnati", JOptionPane.ERROR_MESSAGE);
+			}
 		} catch (BusinessException e) {
 			e.printStackTrace();
 		}

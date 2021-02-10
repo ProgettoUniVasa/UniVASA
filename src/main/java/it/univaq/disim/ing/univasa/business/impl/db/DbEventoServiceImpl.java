@@ -704,5 +704,5 @@ public class DbEventoServiceImpl implements EventoService {
 		}
 		return result;
 	}
-
+	
 }
