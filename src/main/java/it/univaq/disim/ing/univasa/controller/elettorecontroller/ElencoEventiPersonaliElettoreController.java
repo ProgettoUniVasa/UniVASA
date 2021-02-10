@@ -199,7 +199,7 @@ public class ElencoEventiPersonaliElettoreController implements Initializable, D
 					@Override
 					public ObservableValue<Button> call(CellDataFeatures<Prenotazione, Button> param) {
 						try {
-							if (eventoService.verificaHaVotato(param.getValue().getEvento(), param.getValue().getElettore())) {
+							if (eventoService.verificaHaVotato(param.getValue().getEvento(), param.getValue().getElettore()) && param.getValue().getEvento().getStatoEvento().equals(StatoEvento.programmato)) {
 								final Button azioneButton = new Button("Elimina");
 								azioneButton.setOnAction(new EventHandler<ActionEvent>() {
 
