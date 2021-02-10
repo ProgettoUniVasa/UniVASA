@@ -1,17 +1,22 @@
 package it.univaq.disim.ing.univasa.controller.operatorecontroller;
 
-import it.univaq.disim.ing.univasa.business.*;
+import java.net.URL;
+import java.util.ResourceBundle;
+
+import it.univaq.disim.ing.univasa.business.BusinessException;
+import it.univaq.disim.ing.univasa.business.EventoService;
+import it.univaq.disim.ing.univasa.business.UnivasaBusinessFactory;
 import it.univaq.disim.ing.univasa.controller.DataInitializable;
-import it.univaq.disim.ing.univasa.domain.*;
+import it.univaq.disim.ing.univasa.domain.Candidato;
+import it.univaq.disim.ing.univasa.domain.Evento;
+import it.univaq.disim.ing.univasa.domain.Turnazione;
 import it.univaq.disim.ing.univasa.view.ViewDispatcher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
-
-import javax.swing.*;
-import java.net.URL;
-import java.util.ResourceBundle;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 
 public class AggiungiVotiOperatoreController implements Initializable, DataInitializable<Candidato> {
 
@@ -56,8 +61,7 @@ public class AggiungiVotiOperatoreController implements Initializable, DataIniti
 	public void initializeData(Candidato candidato) {
 		this.candidato = candidato;
 		this.evento = candidato.getEvento();
-		confermaButton.disableProperty()
-				.bind((voti.textProperty().isEmpty()));
+		confermaButton.disableProperty().bind((voti.textProperty().isEmpty()));
 
 		nome.setText(candidato.getNome());
 		cognome.setText(candidato.getCognome());

@@ -10,7 +10,6 @@ public class Turnazione {
 	private TipologiaTurno fascia;
 	private LocalDate data_turno;
 
-
 	public Turnazione(Long id, Evento evento, Operatore operatore, TipologiaTurno fascia, LocalDate data_turno) {
 		super();
 		this.id = id;
@@ -63,13 +62,12 @@ public class Turnazione {
 	public void setOperatore(Operatore operatore) {
 		this.operatore = operatore;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Turnazione [id=" + id + ", evento=" + evento + ", operatore=" + operatore + ", fascia=" + fascia
 				+ ", data_turno=" + data_turno + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
 				+ ", toString()=" + super.toString() + "]";
 	}
-
 
 }

@@ -4,9 +4,15 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import it.univaq.disim.ing.univasa.business.*;
+import it.univaq.disim.ing.univasa.business.BusinessException;
+import it.univaq.disim.ing.univasa.business.EventoService;
+import it.univaq.disim.ing.univasa.business.PrenotazioneService;
+import it.univaq.disim.ing.univasa.business.UnivasaBusinessFactory;
 import it.univaq.disim.ing.univasa.controller.DataInitializable;
-import it.univaq.disim.ing.univasa.domain.*;
+import it.univaq.disim.ing.univasa.domain.Elettore;
+import it.univaq.disim.ing.univasa.domain.Evento;
+import it.univaq.disim.ing.univasa.domain.Operatore;
+import it.univaq.disim.ing.univasa.domain.Turnazione;
 import it.univaq.disim.ing.univasa.view.ViewDispatcher;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -25,125 +31,125 @@ import javafx.util.Callback;
 
 public class EventoOperatoreController implements Initializable, DataInitializable<Turnazione> {
 
-    @FXML
-    private Button indietroButton;
+	@FXML
+	private Button indietroButton;
 
-    @FXML
-    private TableView<Elettore> eventoTable;
+	@FXML
+	private TableView<Elettore> eventoTable;
 
-    @FXML
-    private TableColumn<Elettore, String> nomeTableColumn;
+	@FXML
+	private TableColumn<Elettore, String> nomeTableColumn;
 
-    @FXML
-    private TableColumn<Elettore, String> cognomeTableColumn;
+	@FXML
+	private TableColumn<Elettore, String> cognomeTableColumn;
 
-    @FXML
-    private TableColumn<Elettore, String> emailTableColumn;
+	@FXML
+	private TableColumn<Elettore, String> emailTableColumn;
 
-    @FXML
-    private TableColumn<Elettore, String> matricolaTableColumn;
+	@FXML
+	private TableColumn<Elettore, String> matricolaTableColumn;
 
-    @FXML
-    private TableColumn<Elettore, Button> segnaVotazioneTableColumn;
+	@FXML
+	private TableColumn<Elettore, Button> segnaVotazioneTableColumn;
 
-    private Evento evento;
-    private Operatore operatore;
-    private Turnazione turnazione;
+	private Evento evento;
+	private Operatore operatore;
+	private Turnazione turnazione;
 
-    private ViewDispatcher dispatcher;
+	private ViewDispatcher dispatcher;
 
-    private EventoService eventoService;
-    private PrenotazioneService prenotazioneService;
+	private EventoService eventoService;
+	private PrenotazioneService prenotazioneService;
 
-    public EventoOperatoreController() {
-        dispatcher = ViewDispatcher.getInstance();
-        UnivasaBusinessFactory factory = UnivasaBusinessFactory.getInstance();
-        prenotazioneService = factory.getPrenotazioneService();
-        eventoService = factory.getEventoService();
-    }
+	public EventoOperatoreController() {
+		dispatcher = ViewDispatcher.getInstance();
+		UnivasaBusinessFactory factory = UnivasaBusinessFactory.getInstance();
+		prenotazioneService = factory.getPrenotazioneService();
+		eventoService = factory.getEventoService();
+	}
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+	@Override
+	public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        nomeTableColumn.setCellValueFactory(
-                new Callback<TableColumn.CellDataFeatures<Elettore, String>, ObservableValue<String>>() {
-                    @Override
-                    public ObservableValue<String> call(CellDataFeatures<Elettore, String> param) {
-                        return new SimpleStringProperty(param.getValue().getNome());
-                    }
-                });
+		nomeTableColumn.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<Elettore, String>, ObservableValue<String>>() {
+					@Override
+					public ObservableValue<String> call(CellDataFeatures<Elettore, String> param) {
+						return new SimpleStringProperty(param.getValue().getNome());
+					}
+				});
 
-        cognomeTableColumn.setCellValueFactory(
-                new Callback<TableColumn.CellDataFeatures<Elettore, String>, ObservableValue<String>>() {
-                    @Override
-                    public ObservableValue<String> call(CellDataFeatures<Elettore, String> param) {
-                        return new SimpleObjectProperty<String>(param.getValue().getCognome());
-                    }
-                });
+		cognomeTableColumn.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<Elettore, String>, ObservableValue<String>>() {
+					@Override
+					public ObservableValue<String> call(CellDataFeatures<Elettore, String> param) {
+						return new SimpleObjectProperty<String>(param.getValue().getCognome());
+					}
+				});
 
-        emailTableColumn.setCellValueFactory(
-                new Callback<TableColumn.CellDataFeatures<Elettore, String>, ObservableValue<String>>() {
-                    @Override
-                    public ObservableValue<String> call(CellDataFeatures<Elettore, String> param) {
-                        return new SimpleObjectProperty<String>(param.getValue().getEmail());
-                    }
-                });
+		emailTableColumn.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<Elettore, String>, ObservableValue<String>>() {
+					@Override
+					public ObservableValue<String> call(CellDataFeatures<Elettore, String> param) {
+						return new SimpleObjectProperty<String>(param.getValue().getEmail());
+					}
+				});
 
-        matricolaTableColumn.setCellValueFactory(
-                new Callback<TableColumn.CellDataFeatures<Elettore, String>, ObservableValue<String>>() {
-                    @Override
-                    public ObservableValue<String> call(CellDataFeatures<Elettore, String> param) {
-                        return new SimpleObjectProperty<String>(param.getValue().getMatricola());
-                    }
-                });
+		matricolaTableColumn.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<Elettore, String>, ObservableValue<String>>() {
+					@Override
+					public ObservableValue<String> call(CellDataFeatures<Elettore, String> param) {
+						return new SimpleObjectProperty<String>(param.getValue().getMatricola());
+					}
+				});
 
-        segnaVotazioneTableColumn.setCellValueFactory(
-                new Callback<TableColumn.CellDataFeatures<Elettore, Button>, ObservableValue<Button>>() {
-                    @Override
-                    public ObservableValue<Button> call(CellDataFeatures<Elettore, Button> param) {
-                        try {
-                            if (eventoService.verificaHaVotato(evento, param.getValue())) {
-                                final Button azioneButton = new Button("Segna voto");
-                                azioneButton.setOnAction(new EventHandler<ActionEvent>() {
-                                    @Override
-                                    public void handle(ActionEvent event) {
-                                        try {
-                                            prenotazioneService.vota(evento, param.getValue());
-                                        } catch (BusinessException e) {
-                                            e.printStackTrace();
-                                        }
-                                        dispatcher.renderView("eventoOperatore", turnazione);
-                                    }
-                                });
-                                return new SimpleObjectProperty<Button>(azioneButton);
-                            } else {
-                                return null;
-                            }
-                        } catch (BusinessException e) {
-                            e.printStackTrace();
-                        }
-                        return null;
-                    }
-                });
-    }
+		segnaVotazioneTableColumn.setCellValueFactory(
+				new Callback<TableColumn.CellDataFeatures<Elettore, Button>, ObservableValue<Button>>() {
+					@Override
+					public ObservableValue<Button> call(CellDataFeatures<Elettore, Button> param) {
+						try {
+							if (eventoService.verificaHaVotato(evento, param.getValue())) {
+								final Button azioneButton = new Button("Segna voto");
+								azioneButton.setOnAction(new EventHandler<ActionEvent>() {
+									@Override
+									public void handle(ActionEvent event) {
+										try {
+											prenotazioneService.vota(evento, param.getValue());
+										} catch (BusinessException e) {
+											e.printStackTrace();
+										}
+										dispatcher.renderView("eventoOperatore", turnazione);
+									}
+								});
+								return new SimpleObjectProperty<Button>(azioneButton);
+							} else {
+								return null;
+							}
+						} catch (BusinessException e) {
+							e.printStackTrace();
+						}
+						return null;
+					}
+				});
+	}
 
-    @Override
-    public void initializeData(Turnazione turnazione) {
-        try {
-            this.turnazione = turnazione;
-            this.evento = turnazione.getEvento();
-            this.operatore = turnazione.getOperatore();
-            List<Elettore> elettoriInSede = eventoService.visualizzaPrenotatiInSede(evento);
-            ObservableList<Elettore> elettoriInSedeData = FXCollections.observableArrayList(elettoriInSede);
-            eventoTable.setItems(elettoriInSedeData);
-        } catch (BusinessException e) {
-            dispatcher.renderError(e);
-        }
-    }
+	@Override
+	public void initializeData(Turnazione turnazione) {
+		try {
+			this.turnazione = turnazione;
+			this.evento = turnazione.getEvento();
+			this.operatore = turnazione.getOperatore();
+			List<Elettore> elettoriInSede = eventoService.visualizzaPrenotatiInSede(evento);
+			ObservableList<Elettore> elettoriInSedeData = FXCollections.observableArrayList(elettoriInSede);
+			eventoTable.setItems(elettoriInSedeData);
+		} catch (BusinessException e) {
+			dispatcher.renderError(e);
+		}
+	}
 
-    @FXML
-    public void indietroAction(ActionEvent event) throws BusinessException {
-        dispatcher.renderView("listaEventiOperatore", operatore);
-    }
+	@FXML
+	public void indietroAction(ActionEvent event) throws BusinessException {
+		dispatcher.renderView("listaEventiOperatore", operatore);
+	}
 
 }

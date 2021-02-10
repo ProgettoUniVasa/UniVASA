@@ -12,7 +12,7 @@ public class Prenotazione {
 
 	private TipoPrenotazione tipoPrenotazione = TipoPrenotazione.in_presenza;
 
-	private Stato stato = Stato.no; // votazione_effettuata
+	private Stato stato = Stato.no;
 
 	private Blob certificato;
 
@@ -84,5 +84,5 @@ public class Prenotazione {
 	public void setCertificato(Blob certificato) {
 		this.certificato = certificato;
 	}
-	
+
 }

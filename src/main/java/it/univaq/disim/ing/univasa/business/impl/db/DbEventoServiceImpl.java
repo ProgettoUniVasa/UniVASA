@@ -128,7 +128,7 @@ public class DbEventoServiceImpl implements EventoService {
 			ex.printStackTrace();
 		}
 
-		aggiungiReport(buffer,evento);
+		aggiungiReport(buffer, evento);
 		return buffer;
 	}
 
@@ -285,7 +285,8 @@ public class DbEventoServiceImpl implements EventoService {
 				candidato.setCognome(r.getString(3));
 				candidato.setEmail(r.getString(4));
 				candidato.setTelefono(r.getString(5));
-				candidato.setDataNascita(Instant.ofEpochMilli(r.getDate(6).getTime()).atZone(ZoneId.systemDefault()).toLocalDate());
+				candidato.setDataNascita(
+						Instant.ofEpochMilli(r.getDate(6).getTime()).atZone(ZoneId.systemDefault()).toLocalDate());
 				candidato.setNomeUniversita(r.getString(7));
 				candidato.setVotiRicevuti(r.getInt(8));
 				candidato.setEvento(evento);
@@ -377,7 +378,7 @@ public class DbEventoServiceImpl implements EventoService {
 
 			if (r.next()) {
 				return true;
-			}else{
+			} else {
 				return false;
 			}
 
@@ -660,7 +661,7 @@ public class DbEventoServiceImpl implements EventoService {
 		}
 		return result;
 	}
-	
+
 	@Override
 	public List<Evento> eventoSenzaCandidati() throws BusinessException {
 		List<Evento> result = new ArrayList<>();
@@ -704,5 +705,5 @@ public class DbEventoServiceImpl implements EventoService {
 		}
 		return result;
 	}
-	
+
 }

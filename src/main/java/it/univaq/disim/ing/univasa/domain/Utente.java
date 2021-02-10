@@ -46,7 +46,6 @@ public class Utente {
 		super();
 	}
 
-
 	public Long getId() {
 		return id;
 	}

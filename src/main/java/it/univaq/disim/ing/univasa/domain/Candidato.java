@@ -1,8 +1,6 @@
 package it.univaq.disim.ing.univasa.domain;
 
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
 
 public class Candidato {
 
@@ -10,7 +8,7 @@ public class Candidato {
 	private String nome, cognome, email, telefono, nomeUniversita;
 	private LocalDate dataNascita;
 	private int votiRicevuti;
-	
+
 	private Evento evento;
 
 	public Long getId() {

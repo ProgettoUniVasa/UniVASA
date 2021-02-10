@@ -6,9 +6,7 @@ import java.util.ResourceBundle;
 import it.univaq.disim.ing.univasa.business.UnivasaBusinessFactory;
 import it.univaq.disim.ing.univasa.business.UtenteService;
 import it.univaq.disim.ing.univasa.controller.DataInitializable;
-import it.univaq.disim.ing.univasa.domain.Amministratore;
 import it.univaq.disim.ing.univasa.domain.Operatore;
-import it.univaq.disim.ing.univasa.domain.Utente;
 import it.univaq.disim.ing.univasa.view.ViewDispatcher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,9 +14,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 
 public class AreaRiservataOperatoreController implements Initializable, DataInitializable<Operatore> {
-	
+
 	private ViewDispatcher dispatcher;
+
 	private Operatore operatore;
+
 	private UtenteService utenteService;
 
 	@FXML
@@ -45,13 +45,11 @@ public class AreaRiservataOperatoreController implements Initializable, DataInit
 	@FXML
 	private Label usernameLabel;
 
-
 	public AreaRiservataOperatoreController() {
 		dispatcher = ViewDispatcher.getInstance();
 		UnivasaBusinessFactory factory = UnivasaBusinessFactory.getInstance();
 		utenteService = factory.getUtenteService();
 	}
-
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -71,10 +69,10 @@ public class AreaRiservataOperatoreController implements Initializable, DataInit
 		this.usernameLabel.setText(operatore.getUsername());
 
 	}
-	
+
 	@FXML
 	public void indietroAction(ActionEvent event) {
-			dispatcher.renderView("dashboardOperatore", operatore);
+		dispatcher.renderView("dashboardOperatore", operatore);
 	}
 
 }

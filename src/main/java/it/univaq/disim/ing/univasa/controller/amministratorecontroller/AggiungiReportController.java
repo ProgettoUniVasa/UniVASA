@@ -75,8 +75,8 @@ public class AggiungiReportController implements Initializable, DataInitializabl
 		// definite
 		salvaButton.disableProperty()
 				.bind((nomeEvento.textProperty().isEmpty().or(regolamentoEvento.textProperty().isEmpty())
-						.or((dataInizio.valueProperty().isNull()).or(
-								dataFine.valueProperty().isNull().or(luogo.textProperty().isEmpty())))));
+						.or((dataInizio.valueProperty().isNull())
+								.or(dataFine.valueProperty().isNull().or(luogo.textProperty().isEmpty())))));
 	}
 
 	@FXML

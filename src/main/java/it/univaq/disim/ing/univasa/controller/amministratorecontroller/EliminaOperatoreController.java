@@ -85,7 +85,8 @@ public class EliminaOperatoreController implements Initializable, DataInitializa
 						JOptionPane.INFORMATION_MESSAGE);
 				dispatcher.renderView("gestioneOperatoriAmministratore", amministratore);
 			} else {
-				JOptionPane.showMessageDialog(null, "L'operatore selezionato ha dei turni di lavoro assegnati! Non può essere eliminato.",
+				JOptionPane.showMessageDialog(null,
+						"L'operatore selezionato ha dei turni di lavoro assegnati! Non può essere eliminato.",
 						"Operatore con turni assegnati", JOptionPane.ERROR_MESSAGE);
 			}
 		} catch (BusinessException e) {

@@ -52,8 +52,6 @@ public class RegolamentoEventoAmministratoreController implements Initializable,
 	@Override
 	public void initializeData(Evento evento) {
 		this.evento = evento;
-		// this.amministratore =
-		// utenteService.trovaUtenteDaId(evento.getAmministratore().getId());
 		this.nome.setText(evento.getNome());
 		this.regolamento.setText(evento.getRegolamento());
 		this.nome.setEditable(false);

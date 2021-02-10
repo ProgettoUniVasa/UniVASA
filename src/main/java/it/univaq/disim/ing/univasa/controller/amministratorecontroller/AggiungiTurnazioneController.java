@@ -23,7 +23,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
 
 public class AggiungiTurnazioneController implements Initializable, DataInitializable<Turnazione> {
 
@@ -87,10 +86,8 @@ public class AggiungiTurnazioneController implements Initializable, DataInitiali
 		this.turnazione = turnazione;
 		// Si disabilita il bottone se i campi di seguito non rispettano le proprietà
 		// definite
-		salvaButton.disableProperty()
-				.bind((email.valueProperty().isNull()
-						.or(fascia.valueProperty().isNull().or(data_turno.valueProperty().isNull())
-								.or(nome_evento.valueProperty().isNull())))); 
+		salvaButton.disableProperty().bind((email.valueProperty().isNull().or(fascia.valueProperty().isNull()
+				.or(data_turno.valueProperty().isNull()).or(nome_evento.valueProperty().isNull()))));
 
 	}
 
@@ -119,7 +116,7 @@ public class AggiungiTurnazioneController implements Initializable, DataInitiali
 			}
 			for (Evento e : eventoService.trovaTuttiEventi()) {
 
-				if ((e.getNome().equals(nomeEvento)) ) { 
+				if ((e.getNome().equals(nomeEvento))) {
 					idEvento = e.getId();
 					turnazione.setEvento((Evento) eventoService.trovaEventoDaId(idEvento));
 					count2++;

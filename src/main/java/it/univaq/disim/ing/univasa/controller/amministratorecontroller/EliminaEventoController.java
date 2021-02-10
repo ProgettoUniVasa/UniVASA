@@ -87,10 +87,11 @@ public class EliminaEventoController implements Initializable, DataInitializable
 
 		// Si disabilita il bottone se i campi di seguito non rispettano le proprietà
 		// definite
-		eliminaButton.disableProperty().bind((nome.textProperty().isEmpty()
-				.or(regolamento.textProperty().isEmpty().or(dataInizio.valueProperty().isNull())
-						.or(dataFine.valueProperty().isNull().or(oraInizio.textProperty().isEmpty()
-								.or(oraFine.textProperty().isEmpty().or(luogo.textProperty().isEmpty()
+		eliminaButton.disableProperty()
+				.bind((nome.textProperty().isEmpty()
+						.or(regolamento.textProperty().isEmpty().or(dataInizio.valueProperty().isNull())
+								.or(dataFine.valueProperty().isNull().or(oraInizio.textProperty().isEmpty()
+										.or(oraFine.textProperty().isEmpty().or(luogo.textProperty().isEmpty()
 												.or(numero_preferenze_esprimibili.textProperty().isEmpty()))))))));
 	}
 
