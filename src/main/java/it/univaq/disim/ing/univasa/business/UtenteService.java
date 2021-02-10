@@ -18,7 +18,7 @@ public interface UtenteService {
 
 	List<Utente> trovaTuttiUtenti() throws BusinessException;
 
-	// Metodo che restituisce una lista di tutti gli amministratorei
+	// Metodo che restituisce una lista di tutti gli amministratori
 	List<Amministratore> trovaTuttiAmministratori() throws BusinessException;
 
 	// Metodo che restituisce una lista di tutti gli operatori

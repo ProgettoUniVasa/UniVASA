@@ -150,7 +150,7 @@ public class DbPrenotazioneServiceImpl implements PrenotazioneService {
 		return prenotazioni;
 	}
 
-	@Override			// DA FARE
+	@Override
 	public List<Prenotazione> trovaPrenotazioniOnlineInCorso(Elettore elettore) throws BusinessException {
 		List<Prenotazione> prenotazioni = new ArrayList<Prenotazione>();
 		ResultSet r = null;

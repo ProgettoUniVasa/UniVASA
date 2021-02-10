@@ -33,7 +33,7 @@ public class DbUtenteServiceImpl implements UtenteService {
 	 * ---------------------------------------------------------------
 	 */
 
-	// trovaUtenteById --- dobbiamo sapere che tipo di utente si tratta
+	// trovaUtenteById
 	private static final String trovaUtenteDaId = "select * from utente where id=?";
 	// trovaTuttiUtenti
 	private static final String trovaTuttiUtenti = "select * from utente";
@@ -245,7 +245,7 @@ public class DbUtenteServiceImpl implements UtenteService {
 				// Conversione da Date a LocalDate
 				utente.setData_nascita(
 						Instant.ofEpochMilli(r.getDate(8).getTime()).atZone(ZoneId.systemDefault()).toLocalDate());
-				utente.setProfessione(Professione.valueOf(r.getString(9))); // aaaaah
+				utente.setProfessione(Professione.valueOf(r.getString(9)));
 				utente.setNome_università(r.getString(10));
 				utente.setDipartimento(r.getString(11));
 				utente.setTelefono(r.getString(7));
@@ -295,7 +295,7 @@ public class DbUtenteServiceImpl implements UtenteService {
 				// Conversione da Date a LocalDate
 				amministratore.setData_nascita(
 						Instant.ofEpochMilli(r.getDate(8).getTime()).atZone(ZoneId.systemDefault()).toLocalDate());
-				amministratore.setProfessione(Professione.valueOf(r.getString(9))); // aaaaah
+				amministratore.setProfessione(Professione.valueOf(r.getString(9)));
 				amministratore.setNome_università(r.getString(10));
 				amministratore.setDipartimento(r.getString(11));
 				amministratore.setTelefono(r.getString(7));
@@ -341,7 +341,7 @@ public class DbUtenteServiceImpl implements UtenteService {
 				// Conversione da Date a LocalDate
 				operatore.setData_nascita(
 						Instant.ofEpochMilli(r.getDate(8).getTime()).atZone(ZoneId.systemDefault()).toLocalDate());
-				operatore.setProfessione(Professione.valueOf(r.getString(9))); // aaaaah
+				operatore.setProfessione(Professione.valueOf(r.getString(9)));
 				operatore.setNome_università(r.getString(10));
 				operatore.setDipartimento(r.getString(11));
 				operatore.setTelefono(r.getString(7));
@@ -595,12 +595,10 @@ public class DbUtenteServiceImpl implements UtenteService {
 
 	@Override
 	public void accettaCertificato(String certificato) throws BusinessException {
-		// Ehi qui mi serve la Prenotazione, abbiamo questa magnifica classe????
 	}
 
 	@Override
 	public void rifiutaCertificato(String certificato) throws BusinessException {
-		// Ehi qui mi serve la Prenotazione, abbiamo questa magnifica classe????
 	}
 
 	@Override

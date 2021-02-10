@@ -27,7 +27,6 @@ public interface EventoService {
 
 	List<Evento> trovaEventiDaLuogo(String luogo) throws BusinessException;
 
-	// Metodo che restituisce i nomi di tutti i farmaci
 	List<String> nomiEventi() throws BusinessException;
 
 	List<Elettore> visualizzaPrenotatiInSede(Evento evento) throws BusinessException;
