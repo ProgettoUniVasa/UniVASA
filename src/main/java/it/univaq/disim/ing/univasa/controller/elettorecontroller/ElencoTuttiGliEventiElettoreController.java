@@ -115,7 +115,6 @@ public class ElencoTuttiGliEventiElettoreController implements Initializable, Da
 					public ObservableValue<Button> call(CellDataFeatures<Evento, Button> param) {
 						final Button regolamentoButton = new Button("Visualizza");
 						regolamentoButton.setOnAction(new EventHandler<ActionEvent>() {
-							// E' na cosa fittizia per portarci dietro sia elettore sia evento
 							@Override
 							public void handle(ActionEvent event) {
 								Prenotazione prenotazione = new Prenotazione();

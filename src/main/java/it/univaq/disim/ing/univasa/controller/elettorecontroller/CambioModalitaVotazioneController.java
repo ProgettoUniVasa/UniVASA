@@ -57,7 +57,7 @@ public class CambioModalitaVotazioneController implements Initializable, DataIni
 
 	@FXML
 	public void confermaAction(ActionEvent event) {
-		//l'amministratore deve riceve la richiesta di cambio modalita
+		//l'amministratore deve riceve la richiesta di cambio modalita nella versione finale
 		dispatcher.renderView("elencoEventiPersonaliElettore", elettore);
 	}
 }

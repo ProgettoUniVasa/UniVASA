@@ -16,7 +16,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 
-public class PrenotazioneVotazioneInPresenzaElettoreController implements Initializable, DataInitializable<Prenotazione> { //<T> deve essere la prenotazione....
+public class PrenotazioneVotazioneInPresenzaElettoreController implements Initializable, DataInitializable<Prenotazione> { 
 
 	@FXML
 	private Button prenotatiInPresenzaButton;

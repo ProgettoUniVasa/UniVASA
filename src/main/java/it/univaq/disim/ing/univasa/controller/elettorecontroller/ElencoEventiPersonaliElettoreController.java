@@ -60,22 +60,11 @@ public class ElencoEventiPersonaliElettoreController implements Initializable, D
 	private TableColumn<Prenotazione, Button> regolamentoTableColumn;
 
 	@FXML
-	private TableColumn<Prenotazione, StatoEvento> statoEventoTableColumn; // uso String per visualizzare la mia
-																			// modalità di
-																			// voto (in
-	// presenza / online) se la prenotazione è stata effettuata.
-	// Se sono in presenza, devo poter cliccare il tasto per
-	// cambiare modalità di voto ed accedere alla vista che
-	// permette il cambio modalità di voto.
-	// Se l'evento è finito, devo poter visualizzare le
-	// statistiche e i risultati dell'evento tramite una nuova
-	// vista.
-	// Il problema è: sono tutte stringhe oppure c'è qualche
-	// bottone?
+	private TableColumn<Prenotazione, StatoEvento> statoEventoTableColumn;
 
 	@FXML
-	private TableColumn<Prenotazione, TipoPrenotazione> prenotazioneTableColumn; // come prendo la prenotazione
-																					// relativa?
+	private TableColumn<Prenotazione, TipoPrenotazione> prenotazioneTableColumn;
+
 	@FXML
 	private TableColumn<Prenotazione, Button> azioneTableColumn;
 
@@ -91,7 +80,7 @@ public class ElencoEventiPersonaliElettoreController implements Initializable, D
 
 	public ElencoEventiPersonaliElettoreController() {
 		dispatcher = ViewDispatcher.getInstance();
-		UnivasaBusinessFactory factory = UnivasaBusinessFactory.getInstance(); // vedere business factory
+		UnivasaBusinessFactory factory = UnivasaBusinessFactory.getInstance();
 		prenotazioneService = factory.getPrenotazioneService();
 		eventoService = factory.getEventoService();
 	}
@@ -137,8 +126,7 @@ public class ElencoEventiPersonaliElettoreController implements Initializable, D
 
 							@Override
 							public void handle(ActionEvent event) {
-								dispatcher.renderView("regolamentoEventoPersonale", param.getValue()); // creare vista
-								// regolamentoEvento
+								dispatcher.renderView("regolamentoEventoPersonale", param.getValue());
 							}
 						});
 						return new SimpleObjectProperty<Button>(regolamentoButton);
@@ -168,7 +156,9 @@ public class ElencoEventiPersonaliElettoreController implements Initializable, D
 					@Override
 					public ObservableValue<Button> call(CellDataFeatures<Prenotazione, Button> param) {
 						try {
-							if (eventoService.verificaHaVotato(param.getValue().getEvento(), param.getValue().getElettore()) && param.getValue().getTipoPrenotazione().equals(TipoPrenotazione.in_presenza)) {
+							if (eventoService.verificaHaVotato(param.getValue().getEvento(),
+									param.getValue().getElettore())
+									&& param.getValue().getTipoPrenotazione().equals(TipoPrenotazione.in_presenza)) {
 								final Button azioneButton = new Button("Modifica");
 								azioneButton.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -179,9 +169,11 @@ public class ElencoEventiPersonaliElettoreController implements Initializable, D
 										} catch (BusinessException e) {
 											e.printStackTrace();
 										}
-										JOptionPane.showMessageDialog(null, "Prenotazione Online effettuata con successo!", " ",
+										JOptionPane.showMessageDialog(null,
+												"Prenotazione Online effettuata con successo!", " ",
 												JOptionPane.INFORMATION_MESSAGE);
-										dispatcher.renderView("elencoEventiPersonaliElettore", param.getValue().getElettore());
+										dispatcher.renderView("elencoEventiPersonaliElettore",
+												param.getValue().getElettore());
 									}
 								});
 								return new SimpleObjectProperty<Button>(azioneButton);
@@ -199,7 +191,9 @@ public class ElencoEventiPersonaliElettoreController implements Initializable, D
 					@Override
 					public ObservableValue<Button> call(CellDataFeatures<Prenotazione, Button> param) {
 						try {
-							if (eventoService.verificaHaVotato(param.getValue().getEvento(), param.getValue().getElettore()) && param.getValue().getEvento().getStatoEvento().equals(StatoEvento.programmato)) {
+							if (eventoService.verificaHaVotato(param.getValue().getEvento(),
+									param.getValue().getElettore())
+									&& param.getValue().getEvento().getStatoEvento().equals(StatoEvento.programmato)) {
 								final Button azioneButton = new Button("Elimina");
 								azioneButton.setOnAction(new EventHandler<ActionEvent>() {
 
