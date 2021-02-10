@@ -59,8 +59,8 @@ public class ViewDispatcher {
 			}
 			Scene scene = new Scene(layout);
 			stage.setScene(scene);
-			stage.setFullScreen(true);
-			stage.setResizable(true);
+		//	stage.setFullScreen(true);
+			//stage.setResizable(true);
 
 		} catch (ViewException e) {
 			renderError(e);
