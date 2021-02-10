@@ -1,8 +1,10 @@
--- MySQL dump 10.13  Distrib 8.0.23, for Win64 (x86_64)
+CREATE DATABASE  IF NOT EXISTS `univasa` /*!40100 DEFAULT CHARACTER SET utf8 */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `univasa`;
+-- MySQL dump 10.13  Distrib 8.0.21, for Win64 (x86_64)
 --
 -- Host: localhost    Database: univasa
 -- ------------------------------------------------------
--- Server version	8.0.23
+-- Server version	8.0.21
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -14,20 +16,6 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
-
--- -----------------------------------------------------
--- Schema univasa
--- -----------------------------------------------------
-DROP SCHEMA IF EXISTS `univasa` ;
-
--- -----------------------------------------------------
--- Schema univasa
--- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `univasa` DEFAULT CHARACTER SET utf8 ;
-USE `univasa` ;
-
-
 
 --
 -- Table structure for table `candidato`
@@ -49,7 +37,7 @@ CREATE TABLE `candidato` (
   PRIMARY KEY (`id`),
   KEY `fk_candidato_evento1` (`id_evento`),
   CONSTRAINT `fk_candidato_evento1` FOREIGN KEY (`id_evento`) REFERENCES `evento` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -58,7 +46,7 @@ CREATE TABLE `candidato` (
 
 LOCK TABLES `candidato` WRITE;
 /*!40000 ALTER TABLE `candidato` DISABLE KEYS */;
-INSERT INTO `candidato` VALUES (13,'Enrico','Adamelli','enry@adams.it','3980987695','2000-01-16','Univaq',12,1),(14,'Lorenzo','Solazzo','lollo@sola.it','3859786959','2000-05-11','Univaq',11,1),(15,'Martina','Nolletti','martina@nolletti.org','3459319859','1999-05-24','UniBocconi',34,9),(16,'Samuel','Cipriani','samuel@cipciop.it','3893833983','2000-02-29','Univaq',102,9),(17,'Andrea','Fonte','andrea@fonte.com','1234567892','1999-05-13','Univaq',0,10),(18,'Samuel','Cipriani','samuel@cipciop.it','3893833983','2000-02-29','Univaq',0,10),(19,'Lorenzo','Solazzo','lollo@sola.it','3859786959','2000-05-11','Univaq',1,9);
+INSERT INTO `candidato` VALUES (13,'Enrico','Adamelli','enry@adams.it','3980987695','2000-01-16','Univaq',12,1),(14,'Lorenzo','Solazzo','lollo@sola.it','3859786959','2000-05-11','Univaq',11,1),(15,'Martina','Nolletti','martina@nolletti.org','3459319859','1999-05-24','UniBocconi',34,9),(16,'Samuel','Cipriani','samuel@cipciop.it','3893833983','2000-02-29','Univaq',102,9),(17,'Andrea','Fonte','andrea@fonte.com','1234567892','1999-05-13','Univaq',0,10),(18,'Samuel','Cipriani','samuel@cipciop.it','3893833983','2000-02-29','Univaq',0,10),(19,'Lorenzo','Solazzo','lollo@sola.it','3859786959','2000-05-11','Univaq',1,9),(20,'Pippo','Gialli','p@g.iy','3859786951','2000-02-11','UniPe',50,13),(21,'Paperino','Verdi','p@v.it','3859786952','2000-03-11','UniPe',11,11),(22,'Minnie','Blu','m@b.it','3859786953','2000-04-11','UniPe',110,13),(23,'Pluto','Viola','p@cane.it','3859786954','2000-06-11','UniPe',13,11),(24,'Mario','Rossi','M@R.it','3859786955','2000-07-11','UniPe',60,13),(25,'Giacomo','Penna','G@P.it','3859786957','2000-08-11','UnivAq',0,12),(26,'Giulia','Totti','G@T.it','5896473210','2000-09-11','UnivAq',0,12),(27,'Franco','Bianchi','F@B.it','0123456987','1999-07-04','UniPe',1,11);
 /*!40000 ALTER TABLE `candidato` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -83,7 +71,7 @@ CREATE TABLE `evento` (
   `numero_preferenze_esprimibili` int unsigned NOT NULL,
   `stato` enum('programmato','in corso','terminato') NOT NULL DEFAULT 'programmato',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -92,7 +80,7 @@ CREATE TABLE `evento` (
 
 LOCK TABLES `evento` WRITE;
 /*!40000 ALTER TABLE `evento` DISABLE KEYS */;
-INSERT INTO `evento` VALUES (1,'RAPPRESENTANTI UNI','si vota una persona per scheda elettorale','2021-02-02','2021-02-11','8:00','20:00','L\'Aquila','Enrico Adamelli   12\nLorenzo Solazzo   11\n','ssss',1,'in corso'),(9,'Rappresentanti Prof','Votate max 2 persone','2021-02-03','2021-02-07','11:00','18:00','Coppito 2','Samuel Cipriani   102\nMartina Nolletti   34\nLorenzo Solazzo   1\n','Martina ha preso 0 voti.',2,'terminato'),(10,'Elezione segreteria','Massimo 3 preferenze','2021-02-17','2021-02-22','10:00','23:00','Blocco 0',NULL,NULL,3,'programmato');
+INSERT INTO `evento` VALUES (1,'RAPPRESENTANTI UNI','si vota una persona per scheda elettorale','2021-02-02','2021-02-11','8:00','20:00','L\'Aquila','Enrico Adamelli   12\nLorenzo Solazzo   11\n','ssss',1,'in corso'),(9,'Rappresentanti Prof','Votate max 2 persone','2021-02-03','2021-02-07','11:00','18:00','Coppito 2','Samuel Cipriani   102\nMartina Nolletti   34\nLorenzo Solazzo   1\n','Martina ha preso 0 voti.',2,'terminato'),(10,'Elezione segreteria','Massimo 3 preferenze','2021-02-17','2021-02-22','10:00','23:00','Blocco 0',NULL,NULL,3,'programmato'),(11,'Evento 1','Massimo 2 persone.','2021-02-02','2021-02-28','8:00','20:00','Pescara',NULL,NULL,2,'in corso'),(12,'Evento 2','Massimo 1 persona.','2021-02-22','2021-02-25','8:00','20:00','L\'Aquila',NULL,NULL,1,'programmato'),(13,'Evento 3','Massimo 3 persone.','2020-01-25','2020-02-01','8:00','22:00','Blocco 11',NULL,NULL,3,'terminato');
 /*!40000 ALTER TABLE `evento` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -115,7 +103,7 @@ CREATE TABLE `prenotazione` (
   KEY `fk_utente_has_evento_evento3` (`id_evento`),
   CONSTRAINT `fk_utente_has_evento_evento3` FOREIGN KEY (`id_evento`) REFERENCES `evento` (`id`) ON DELETE CASCADE,
   CONSTRAINT `fk_utente_has_evento_utente2` FOREIGN KEY (`id_utente`) REFERENCES `utente` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -124,7 +112,7 @@ CREATE TABLE `prenotazione` (
 
 LOCK TABLES `prenotazione` WRITE;
 /*!40000 ALTER TABLE `prenotazione` DISABLE KEYS */;
-INSERT INTO `prenotazione` VALUES (1,2,1,'online','no',NULL),(11,17,9,'online','si',NULL);
+INSERT INTO `prenotazione` VALUES (1,2,1,'online','no',NULL),(11,17,9,'online','si',NULL),(12,17,11,'online','si',NULL),(13,17,13,'online','si',NULL),(20,17,12,'online','no',NULL);
 /*!40000 ALTER TABLE `prenotazione` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -288,4 +276,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-02-08 22:05:20
+-- Dump completed on 2021-02-10 20:07:50
