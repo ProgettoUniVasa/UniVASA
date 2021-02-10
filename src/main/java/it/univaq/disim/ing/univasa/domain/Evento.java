@@ -1,8 +1,6 @@
 package it.univaq.disim.ing.univasa.domain;
 
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
 
 public class Evento {
 

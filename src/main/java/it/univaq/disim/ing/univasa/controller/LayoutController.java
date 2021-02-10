@@ -20,13 +20,13 @@ import javafx.scene.paint.Paint;
 
 public class LayoutController implements Initializable, DataInitializable<Utente> {
 
-	private static final MenuElement[] MENU_AMMINISTRATORE = { 
+	private static final MenuElement[] MENU_AMMINISTRATORE = {
 			new MenuElement("Lista Eventi", "listaEventiAmministratore"),
 			new MenuElement("Turni Operatori", "listaTurnazioniAmministratore"),
 			new MenuElement("Crea Report", "listaReportAmministratore"),
 			new MenuElement("Gestione operatori", "gestioneOperatoriAmministratore"),
 			new MenuElement("Gestione segreteria", "gestioneAmministratoriAmministratore"),
-			new MenuElement("Area Riservata", "areaRiservataAmministratore")};
+			new MenuElement("Area Riservata", "areaRiservataAmministratore") };
 
 	private static final MenuElement MENU_HOME_AMMINISTRATORE = new MenuElement("Home", "dashboardAmministratore");
 
@@ -34,17 +34,15 @@ public class LayoutController implements Initializable, DataInitializable<Utente
 
 	private static final MenuElement MENU_HOME_ELETTORE = new MenuElement("Home", "homeElettore");
 
-	private static final MenuElement[] MENU_OPERATORE = { 
-			new MenuElement("Lista eventi", "listaEventiOperatore"),
+	private static final MenuElement[] MENU_OPERATORE = { new MenuElement("Lista eventi", "listaEventiOperatore"),
 			new MenuElement("Lista turni", "lavoroOperatore"),
-			new MenuElement("Area Riservata", "areaRiservataOperatore")};
+			new MenuElement("Area Riservata", "areaRiservataOperatore") };
 
-	private static final MenuElement[] MENU_ELETTORE = { 
-			new MenuElement("Eventi in corso", "elencoEventiInCorso"),
+	private static final MenuElement[] MENU_ELETTORE = { new MenuElement("Eventi in corso", "elencoEventiInCorso"),
 			new MenuElement("Tutti gli eventi", "elencoTuttiGLiEventiElettore"),
 			new MenuElement("Eventi prenotati", "elencoEventiPersonaliElettore"),
 			new MenuElement("Risultati e statistiche", "elencoReport"),
-			new MenuElement("Area Riservata", "areaRiservataElettore")};
+			new MenuElement("Area Riservata", "areaRiservataElettore") };
 	@FXML
 	private VBox menuBar;
 
@@ -53,46 +51,46 @@ public class LayoutController implements Initializable, DataInitializable<Utente
 	private ViewDispatcher dispatcher;
 
 	public LayoutController() {
-        dispatcher = ViewDispatcher.getInstance();
-    }
+		dispatcher = ViewDispatcher.getInstance();
+	}
 
 	@Override
-    public void initialize(URL location, ResourceBundle resources) {
-    }
+	public void initialize(URL location, ResourceBundle resources) {
+	}
 
 	@Override
-    public void initializeData(Utente utente) {
-        this.utente = utente;
-        
-        if (utente instanceof Amministratore) {
-        	menuBar.getChildren().addAll(createButton(MENU_HOME_AMMINISTRATORE));
-            menuBar.getChildren().add(new Separator());
-            for (MenuElement menu : MENU_AMMINISTRATORE) {
-                menuBar.getChildren().add(createButton(menu));
-            }
-        }
-        
-        if (utente instanceof Operatore) {
-        	menuBar.getChildren().addAll(createButton(MENU_HOME_OPERATORE));
-            menuBar.getChildren().add(new Separator());
-            for (MenuElement menu : MENU_OPERATORE) {
-                menuBar.getChildren().add(createButton(menu));
-            }
-        }
-        
-        if (utente instanceof Elettore) {
-        	menuBar.getChildren().addAll(createButton(MENU_HOME_ELETTORE));
-            menuBar.getChildren().add(new Separator());
-            for (MenuElement menu : MENU_ELETTORE) {
-                menuBar.getChildren().add(createButton(menu));
-            }
-        }
-    }
+	public void initializeData(Utente utente) {
+		this.utente = utente;
+
+		if (utente instanceof Amministratore) {
+			menuBar.getChildren().addAll(createButton(MENU_HOME_AMMINISTRATORE));
+			menuBar.getChildren().add(new Separator());
+			for (MenuElement menu : MENU_AMMINISTRATORE) {
+				menuBar.getChildren().add(createButton(menu));
+			}
+		}
+
+		if (utente instanceof Operatore) {
+			menuBar.getChildren().addAll(createButton(MENU_HOME_OPERATORE));
+			menuBar.getChildren().add(new Separator());
+			for (MenuElement menu : MENU_OPERATORE) {
+				menuBar.getChildren().add(createButton(menu));
+			}
+		}
+
+		if (utente instanceof Elettore) {
+			menuBar.getChildren().addAll(createButton(MENU_HOME_ELETTORE));
+			menuBar.getChildren().add(new Separator());
+			for (MenuElement menu : MENU_ELETTORE) {
+				menuBar.getChildren().add(createButton(menu));
+			}
+		}
+	}
 
 	@FXML
-    public void esciAction(MouseEvent event) {
-        dispatcher.logout();
-    }
+	public void esciAction(MouseEvent event) {
+		dispatcher.logout();
+	}
 
 	private Button createButton(MenuElement viewItem) {
 		Button button = new Button(viewItem.getNome());

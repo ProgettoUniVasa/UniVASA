@@ -1,13 +1,11 @@
 package it.univaq.disim.ing.univasa.domain;
 
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
 
 public class Elettore extends Utente {
 
 	private String matricola;
-	
+
 	public Elettore() {
 		super();
 	}
@@ -23,7 +21,7 @@ public class Elettore extends Utente {
 	public String getMatricola() {
 		return matricola;
 	}
-	
+
 	public void setMatricola(String matricola) {
 		this.matricola = matricola;
 	}

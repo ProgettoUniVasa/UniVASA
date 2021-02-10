@@ -75,9 +75,11 @@ public class ListaEventiAmministratoreController implements Initializable, DataI
 	private ViewDispatcher dispatcher;
 
 	private EventoService eventoService;
+
 	private UtenteService utenteService;
 
 	private Amministratore amministratore;
+
 	private Evento evento;
 
 	public ListaEventiAmministratoreController() {
@@ -195,7 +197,7 @@ public class ListaEventiAmministratoreController implements Initializable, DataI
 			this.amministratore = amministratore;
 			List<Evento> evento = eventoService.trovaTuttiEventi();
 			ObservableList<Evento> eventiData = FXCollections.observableArrayList(evento);
-			
+
 			nomeTableColumn.setCellFactory(new Callback<TableColumn<Evento, String>, TableCell<Evento, String>>() {
 				public TableCell<Evento, String> call(TableColumn<Evento, String> param) {
 					return new TableCell<Evento, String>() {
@@ -220,7 +222,7 @@ public class ListaEventiAmministratoreController implements Initializable, DataI
 					};
 				}
 			});
-			
+
 			eventiTable.setItems(eventiData);
 		} catch (BusinessException e) {
 			dispatcher.renderError(e);

@@ -1,18 +1,23 @@
 package it.univaq.disim.ing.univasa.business.impl.db;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 import it.univaq.disim.ing.univasa.business.BusinessException;
 import it.univaq.disim.ing.univasa.business.EventoService;
 import it.univaq.disim.ing.univasa.business.PrenotazioneService;
 import it.univaq.disim.ing.univasa.business.UtenteService;
-import it.univaq.disim.ing.univasa.domain.*;
+import it.univaq.disim.ing.univasa.domain.Elettore;
+import it.univaq.disim.ing.univasa.domain.Evento;
+import it.univaq.disim.ing.univasa.domain.Prenotazione;
+import it.univaq.disim.ing.univasa.domain.Stato;
+import it.univaq.disim.ing.univasa.domain.TipoPrenotazione;
 
-import java.sql.*;
-import java.time.Instant;
-import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.List;
-
-//aggiungere l'ora
 public class DbPrenotazioneServiceImpl implements PrenotazioneService {
 
 	EventoService eventoService;
@@ -22,8 +27,6 @@ public class DbPrenotazioneServiceImpl implements PrenotazioneService {
 	private static final String user = "root";
 	private static final String pwd = "";
 
-
-	// creaElettoreInSede & creaElettoreOnline
 	private static final String prenotazioneInSede = "insert into prenotazione (id_utente,id_evento,tipo_prenotazione,stato) values (?,?,'in presenza','no')";
 	private static final String prenotazioneOnline = "insert into prenotazione (id_utente,id_evento,tipo_prenotazione,stato) values (?,?,'online','no')";
 	private static final String trovaPrenotazioniElettore = "select * from prenotazione where id_utente=?";
@@ -34,8 +37,8 @@ public class DbPrenotazioneServiceImpl implements PrenotazioneService {
 	private static final String vota = "update prenotazione set stato='si' where id_evento=? and id_utente=?";
 
 	public DbPrenotazioneServiceImpl(EventoService eventoService, UtenteService utenteService) {
-		this.eventoService=eventoService;
-		this.utenteService=utenteService;
+		this.eventoService = eventoService;
+		this.utenteService = utenteService;
 	}
 
 	@Override
@@ -155,10 +158,11 @@ public class DbPrenotazioneServiceImpl implements PrenotazioneService {
 		List<Prenotazione> prenotazioni = new ArrayList<Prenotazione>();
 		ResultSet r = null;
 
+		// Connessione al Database e richiamo query
 		try (Connection c = DriverManager.getConnection(url, user, pwd);) {
 
 			PreparedStatement ps = c.prepareStatement(trovaPrenotazioneOnlineElettore);
-			
+
 			ps.setLong(1, elettore.getId());
 			r = ps.executeQuery();
 
@@ -167,7 +171,7 @@ public class DbPrenotazioneServiceImpl implements PrenotazioneService {
 				prenotazione = trovaPrenotazioneDaId(r.getLong(1));
 				prenotazioni.add(prenotazione);
 			}
-			
+
 			ps.executeQuery();
 		} catch (SQLException ex) {
 			ex.printStackTrace();

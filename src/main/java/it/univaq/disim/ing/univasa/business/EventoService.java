@@ -5,7 +5,6 @@ import java.util.List;
 import it.univaq.disim.ing.univasa.domain.Candidato;
 import it.univaq.disim.ing.univasa.domain.Elettore;
 import it.univaq.disim.ing.univasa.domain.Evento;
-import javafx.event.ActionEvent;
 
 public interface EventoService {
 
@@ -16,6 +15,7 @@ public interface EventoService {
 	void caricaRisultatiInPresenza(Candidato candidato, int votiRicevuti) throws  BusinessException;
 
 	String creaReport(Evento evento) throws BusinessException;
+
 	void modificaStatistiche(Evento evento) throws BusinessException;
 
 	List<Evento> trovaTuttiEventi() throws BusinessException;
@@ -46,5 +46,5 @@ public interface EventoService {
 	void aggiungiVoto (Candidato candidato) throws BusinessException;
 
 	List<Evento> eventoSenzaCandidati() throws BusinessException;
-	
+
 }

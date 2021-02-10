@@ -55,7 +55,6 @@ public class AggiungiEventoController implements Initializable, DataInitializabl
 
 	private EventoService eventoService;
 
-
 	private Amministratore amministratore;
 
 	public AggiungiEventoController() {
@@ -85,24 +84,25 @@ public class AggiungiEventoController implements Initializable, DataInitializabl
 	@FXML
 	public void salvaAction(ActionEvent event) {
 		try {
-			if (!oraFine.getText().matches("[0-2][0-9]:[0-5][0-9]$") || !oraInizio.getText().matches("[0-2][0-9]:[0-5][0-9]$")) {
+			if (!oraFine.getText().matches("[0-2][0-9]:[0-5][0-9]$")
+					|| !oraInizio.getText().matches("[0-2][0-9]:[0-5][0-9]$")) {
 				JOptionPane.showMessageDialog(null, " Inserire un orario corretto!", "ATTENZIONE",
 						JOptionPane.WARNING_MESSAGE);
 			} else {
-			Evento evento = new Evento();
-			evento.setNome(nome.getText());
-			evento.setRegolamento(regolamento.getText());
-			evento.setDataInizio(dataInizio.getValue());
-			evento.setDataFine(dataFine.getValue());
-			evento.setOraInizio(oraInizio.getText());
-			evento.setOraFine(oraFine.getText());
-			evento.setLuogo(luogo.getText());
-			evento.setNumero_preferenze_esprimibili(Integer.parseInt(numero_preferenze_esprimibili.getText()));
+				Evento evento = new Evento();
+				evento.setNome(nome.getText());
+				evento.setRegolamento(regolamento.getText());
+				evento.setDataInizio(dataInizio.getValue());
+				evento.setDataFine(dataFine.getValue());
+				evento.setOraInizio(oraInizio.getText());
+				evento.setOraFine(oraFine.getText());
+				evento.setLuogo(luogo.getText());
+				evento.setNumero_preferenze_esprimibili(Integer.parseInt(numero_preferenze_esprimibili.getText()));
 
-			eventoService.creaEvento(evento);
-			JOptionPane.showMessageDialog(null, "Evento aggiunto con successo! Ricordati di inserire i candidati", " ",
-					JOptionPane.INFORMATION_MESSAGE);
-			dispatcher.renderView("listaEventiAmministratore", amministratore);
+				eventoService.creaEvento(evento);
+				JOptionPane.showMessageDialog(null, "Evento aggiunto con successo! Ricordati di inserire i candidati",
+						" ", JOptionPane.INFORMATION_MESSAGE);
+				dispatcher.renderView("listaEventiAmministratore", amministratore);
 			}
 		} catch (BusinessException e) {
 			dispatcher.renderError(e);

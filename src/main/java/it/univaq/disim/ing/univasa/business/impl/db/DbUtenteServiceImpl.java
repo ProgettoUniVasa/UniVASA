@@ -28,11 +28,6 @@ public class DbUtenteServiceImpl implements UtenteService {
 	private static final String user = "root";
 	private static final String pwd = "";
 
-	/*
-	 * -----------------------------------------------------------------------------
-	 * ---------------------------------------------------------------
-	 */
-
 	// trovaUtenteById
 	private static final String trovaUtenteDaId = "select * from utente where id=?";
 	// trovaTuttiUtenti
@@ -54,8 +49,8 @@ public class DbUtenteServiceImpl implements UtenteService {
 	private static final String accettaCertificato = "update set stato='no' from prenotazione where id_evento=? and id_utente=?";
 	private static final String rifiutaCertificato = "delete from prenotazione where id_evento=? and id_utente=?";
 	// gestionePrenotazioni
-	private static final String gestionePrenotazioni = "select utente.id, utente.nome, utente.cognome, utente.email, utente.username, utente.password, utente.telefono, utente.data_nascita, utente.professione, utente.nome_universita, utente.dipartimento, utente.matricola\r\n" + 
-			" from prenotazione join utente on prenotazione.id_utente = utente.id join evento on prenotazione.id_evento = evento.id where id_evento=? and (tipo_prenotazione='in presenza' or (tipo_prenotazione='online' and prenotazione.stato is not null))";
+	private static final String gestionePrenotazioni = "select utente.id, utente.nome, utente.cognome, utente.email, utente.username, utente.password, utente.telefono, utente.data_nascita, utente.professione, utente.nome_universita, utente.dipartimento, utente.matricola\r\n"
+			+ " from prenotazione join utente on prenotazione.id_utente = utente.id join evento on prenotazione.id_evento = evento.id where id_evento=? and (tipo_prenotazione='in presenza' or (tipo_prenotazione='online' and prenotazione.stato is not null))";
 	// modificaAmministratore
 	private static final String modificaAmministratore = "update utente set telefono=?, email=?, nome_universita=?, dipartimento=? where id=?";
 	// modificaOperatore
@@ -63,7 +58,7 @@ public class DbUtenteServiceImpl implements UtenteService {
 	// visualizzaTurnazioni
 	private static final String visualizzaTurnazioni = "select * from turnazione where id_utente=?";
 	// vota
-	private static final String vota = "update from candidato set voti_ricevuti=voti_ricevuti+1 where id_utente=? and id_evento=?"; // ciclica
+	private static final String vota = "update from candidato set voti_ricevuti=voti_ricevuti+1 where id_utente=? and id_evento=?";
 	private static final String aggiornaPrenotazione = "update prenotazione set stato='si' where id_utente=? and id_evento=?";
 	// eliminaUtente
 	private static final String eliminaUtente = "delete from utente where id=?";
@@ -82,17 +77,17 @@ public class DbUtenteServiceImpl implements UtenteService {
 			while (r.next()) {
 				if (r.getString(5).equals(username) && r.getString(6).equals(password)) {
 					switch (r.getString(13)) {
-						case "elettore":
-							utente = new Elettore();
-							break;
-						case "operatore":
-							utente = new Operatore();
-							break;
-						case "amministratore":
-							utente = new Amministratore();
-							break;
-						default:
-							break;
+					case "elettore":
+						utente = new Elettore();
+						break;
+					case "operatore":
+						utente = new Operatore();
+						break;
+					case "amministratore":
+						utente = new Amministratore();
+						break;
+					default:
+						break;
 					}
 					if (utente != null) {
 						utente.setId(r.getLong(1));
@@ -759,6 +754,7 @@ public class DbUtenteServiceImpl implements UtenteService {
 		}
 		return candidati;
 	}
+
 	@Override
 	public List<String> trovaEmailTuttiOperatori() throws BusinessException {
 		List<String> result = new ArrayList<>();

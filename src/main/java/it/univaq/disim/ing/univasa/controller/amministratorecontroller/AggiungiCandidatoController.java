@@ -1,7 +1,6 @@
 package it.univaq.disim.ing.univasa.controller.amministratorecontroller;
 
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
@@ -67,14 +66,17 @@ public class AggiungiCandidatoController implements Initializable, DataInitializ
 		this.evento = evento;
 		// Si disabilita il bottone se i campi di seguito non rispettano le proprietà
 		// definite
-		aggiungiCandidatoButton.disableProperty().bind((nome.textProperty().isEmpty().or(telefono.textProperty().isEmpty().or(nomeUniversita.textProperty().isEmpty().or(dataNascita.valueProperty().isNull()
-				.or(cognome.textProperty().isEmpty().or(email.textProperty().isEmpty())))))));
+		aggiungiCandidatoButton.disableProperty()
+				.bind((nome.textProperty().isEmpty()
+						.or(telefono.textProperty().isEmpty()
+								.or(nomeUniversita.textProperty().isEmpty().or(dataNascita.valueProperty().isNull()
+										.or(cognome.textProperty().isEmpty().or(email.textProperty().isEmpty())))))));
 	}
 
 	@FXML
 	public void aggiungiCandidatoAction(ActionEvent event) {
 		try {
-			 Candidato candidato = new Candidato();
+			Candidato candidato = new Candidato();
 			// Variabile che conta il numero di candidati con email che si vuole inserire
 			int c = 0;
 			candidato.setNome(nome.getText());
@@ -84,7 +86,7 @@ public class AggiungiCandidatoController implements Initializable, DataInitializ
 			candidato.setNomeUniversita(nomeUniversita.getText());
 			candidato.setDataNascita(dataNascita.getValue());
 			System.out.println("numero candidati: " + utenteService.trovaTuttiCandidati(evento).size());
-			
+
 			for (Candidato ca : utenteService.trovaTuttiCandidati(evento)) {
 				if (ca.getEmail().equals(email.getText())) {
 					c++;
@@ -92,10 +94,11 @@ public class AggiungiCandidatoController implements Initializable, DataInitializ
 							JOptionPane.ERROR_MESSAGE);
 					break;
 				}
-				
+
 				if (utenteService.trovaTuttiCandidati(evento).size() >= 7) {
 					c++;
-					JOptionPane.showMessageDialog(null, "Il numero massimo di candidati per l'evento è stato raggiunto!", " ",
+					JOptionPane.showMessageDialog(null,
+							"Il numero massimo di candidati per l'evento è stato raggiunto!", " ",
 							JOptionPane.ERROR_MESSAGE);
 					break;
 				}

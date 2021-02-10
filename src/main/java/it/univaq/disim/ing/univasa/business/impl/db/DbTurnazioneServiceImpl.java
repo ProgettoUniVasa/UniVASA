@@ -28,11 +28,6 @@ public class DbTurnazioneServiceImpl implements TurnazioneService {
 	private static final String user = "root";
 	private static final String password = "";
 
-	/*
-	 * -----------------------------------------------------------------------------
-	 * ---------------------------------------------------------------
-	 */
-
 	// Definizione query in Java
 	private static final String creaTurnazione = "insert into turnazione(id_utente, id_evento, fascia, data_giorno) values(?,?,?,?)";
 	private static final String visualizzaTurnazioni = "select * from turnazione where id_utente=?";

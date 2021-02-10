@@ -12,9 +12,9 @@ public abstract class UnivasaBusinessFactory {
 
 	public abstract UtenteService getUtenteService();
 
-    public abstract PrenotazioneService getPrenotazioneService();
+	public abstract PrenotazioneService getPrenotazioneService();
 
-    public abstract TurnazioneService getTurnazioneService();
+	public abstract TurnazioneService getTurnazioneService();
 
 	public abstract EventoService getEventoService();
 
