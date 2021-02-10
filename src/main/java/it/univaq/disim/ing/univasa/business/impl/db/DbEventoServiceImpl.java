@@ -39,7 +39,7 @@ public class DbEventoServiceImpl implements EventoService {
 	private static final String eventoDaNome = "select * from evento where nome=?";
 	private static final String trovaEventiDaLuogo = "select * from evento where luogo=?";
 	private static final String trovaEventiDaPrenotare = "select * from evento where data_inizio>now() and id not in (select e.id from prenotazione p join evento e on p.id_evento=e.id where p.id_utente=?)";
-	private static final String trovaEventiFinitiPrenotati = "select * from evento e join prenotazione p on e.id=p.id_evento where e.data_fine<now() and p.id_utente=?";
+	private static final String trovaEventiFinitiPrenotati = "select * from evento e join prenotazione p on e.id=p.id_evento where e.data_fine<now() and p.id_utente=? and e.report_risultati is not null";
 	private static final String visualizzaCandidati = "select c.id,c.nome,c.cognome,c.email,c.telefono,c.data_nascita,c.nome_universita,c.voti_ricevuti from candidato c where c.id_evento=?";
 	private static final String visualizzaPrenotatiInSede = "select * from utente u join prenotazione p on p.id_utente=u.id where id_evento=? and tipo_prenotazione='in presenza'";
 	private static final String caricaRisultatiInPresenza = "update candidato set voti_ricevuti=voti_ricevuti+? where id=?";

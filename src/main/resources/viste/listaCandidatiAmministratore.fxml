@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="576.0" prefWidth="1215.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.amministratorecontroller.GestioneCandidatiAmministratoreController">
+<VBox fillWidth="false" prefHeight="576.0" prefWidth="1215.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.amministratorecontroller.GestioneCandidatiAmministratoreController">
    <children>
       <Label fx:id="candidatiLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="39.0" prefWidth="1196.0" text="Lista Candidati" textAlignment="CENTER" textFill="ORANGE">
          <font>
@@ -19,10 +19,10 @@
             <Insets top="10.0" />
          </VBox.margin>
       </Label>
-      <HBox prefHeight="81.0" prefWidth="904.0">
+      <HBox prefHeight="69.0" prefWidth="1190.0">
          <children>
             <Button fx:id="indietroButton" mnemonicParsing="false" onAction="#indietroAction" prefHeight="34.0" prefWidth="91.0" text="Indietro" />
-            <Button fx:id="aggiungiCandidatoButton" mnemonicParsing="false" onAction="#aggiungiCandidatoAction" prefHeight="37.0" prefWidth="198.0" text="Aggiungi Candidato">
+            <Button fx:id="aggiungiCandidatoButton" mnemonicParsing="false" onAction="#aggiungiCandidatoAction" prefHeight="38.0" prefWidth="192.0" text="Aggiungi Candidato">
                <font>
                   <Font size="16.0" />
                </font>
@@ -32,7 +32,7 @@
             </Button>
          </children>
       </HBox>
-      <TableView fx:id="candidatiTable" prefHeight="464.0" prefWidth="743.0" style="-fx-background-color: orange;">
+      <TableView fx:id="candidatiTable" prefHeight="439.0" prefWidth="1194.0" style="-fx-background-color: orange;">
         <columns>
           <TableColumn fx:id="nomeTableColumn" prefWidth="158.0" text="Nome" />
             <TableColumn fx:id="cognomeTableColumn" prefWidth="171.0" text="Cognome" />

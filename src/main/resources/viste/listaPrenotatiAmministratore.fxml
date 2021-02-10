@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="507.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.amministratorecontroller.ListaPrenotatiAmministratoreController">
+<VBox alignment="CENTER" fillWidth="false" prefHeight="507.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univaq.disim.ing.univasa.controller.amministratorecontroller.ListaPrenotatiAmministratoreController">
    <children>
       <Label fx:id="prenotatiLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="39.0" prefWidth="766.0" text="Lista Prenotati" textAlignment="CENTER" textFill="ORANGE">
          <font>
@@ -19,12 +19,12 @@
             <Insets top="10.0" />
          </VBox.margin>
       </Label>
-      <HBox prefHeight="100.0" prefWidth="200.0">
+      <HBox prefHeight="66.0" prefWidth="690.0">
          <children>
             <Button fx:id="indietroButton" mnemonicParsing="false" onAction="#indietroAction" prefHeight="39.0" prefWidth="92.0" text="Indietro" />
          </children>
       </HBox>
-      <TableView fx:id="prenotatiTable" prefHeight="463.0" prefWidth="599.0" style="-fx-background-color: orange;">
+      <TableView fx:id="prenotatiTable" prefHeight="370.0" prefWidth="678.0" style="-fx-background-color: orange;">
         <columns>
           <TableColumn fx:id="nomeTableColumn" prefWidth="117.0" text="Nome" />
             <TableColumn fx:id="cognomeTableColumn" prefWidth="134.0" text="Cognome" />
